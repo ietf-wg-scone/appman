@@ -6,8 +6,8 @@ category: info
 submissionType: IETF
 
 ipr: trust200902
-area: Web and Internet Transport
-workgroup: SCONE
+area: "Web and Internet Transport"
+workgroup: "Standard Communication with Network Elements"
 
 keyword: [SCONE, access networks, bit rate, throughput advice, applicability, manageability]
 
@@ -25,7 +25,7 @@ author:
     ins: Z. Sarker
     name: Zaheduzzaman Sarker
     organization: Nokia
-    email: zaheduzzaman.sarker@nokia.com 
+    email: zaheduzzaman.sarker@nokia.com
   -
     ins: A. Tomar
     name: Anoop Tomar
@@ -64,7 +64,7 @@ informative:
     author:
       - name: 3GPP
     date: 2025-01-07
- 
+
 --- abstract
 
 This document describes the Applicability and Manageability considerations for providing throughput guidance to
@@ -125,13 +125,13 @@ This enables applications to receive targeted throughput advice while
 preventing unintended impact on unrelated flows.
 
 ## QoS awareness
-Quality of Service (QoS) may be enforced by networks through a variety of 
-mechanisms. In certain deployments, network operators may choose to apply distinct 
-QoS policies to SCONE-enabled flows. The SCONE Network Element 
-responsible for inserting SCONE advice is not required to interpret or 
-enforce QoS policies; its role is limited to the signaling of the advisory 
-throughput information. It is expected that network operators shall be able to identify 
-SCONE-enabled flows and, where appropriate, provide throughput advice in accordance 
+Quality of Service (QoS) may be enforced by networks through a variety of
+mechanisms. In certain deployments, network operators may choose to apply distinct
+QoS policies to SCONE-enabled flows. The SCONE Network Element
+responsible for inserting SCONE advice is not required to interpret or
+enforce QoS policies; its role is limited to the signaling of the advisory
+throughput information. It is expected that network operators shall be able to identify
+SCONE-enabled flows and, where appropriate, provide throughput advice in accordance
 to their policy objectives.
 
 ## SCONE Hint to the Network
