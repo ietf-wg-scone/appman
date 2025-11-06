@@ -200,9 +200,6 @@ Security considerations are included separately in the SCONE protocol documents.
 # IANA Considerations
 This document has no IANA actions.
 
-# References
-{:numbered="false"}
-
 --- back
 
 # Acknowledgments
