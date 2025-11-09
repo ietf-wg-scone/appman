@@ -1,0 +1,114 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2025-11-09T01:47:17.051422+00:00",
+  "repo": "ietf-wg-scone/appman",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 2,
+      "id": "I_kwDOPxzXgc7WcUsq",
+      "title": "Introduction section ( restructure and re-phrasing)",
+      "url": "https://github.com/ietf-wg-scone/appman/issues/2",
+      "state": "OPEN",
+      "author": "anooptomar29",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Use the introduction section just to set the context (and refer protocol draft for protocol specific information to avoid duplication) and state the purpose/objective of this doc. \n\nMention of multi element in the introduction section does not fit well with the flow. We should add subsections under \u201cGeneric Applicability and Manageability considerations\u201d to discuss aspects specific to Single NE based deployment and Multiple NE deployment, if any. \n\n\n",
+      "createdAt": "2025-11-06T21:34:22Z",
+      "updatedAt": "2025-11-06T21:34:22Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOPxzXgc7Wcejf",
+      "title": "Interworking with Other Congestion Management Mechanisms",
+      "url": "https://github.com/ietf-wg-scone/appman/issues/3",
+      "state": "OPEN",
+      "author": "anooptomar29",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "SCONE most often gets confused with transport level congestion control mechanism such as L4S/ECN-EC. So it will help to explicitly clarify here that SCONE is not meant for transient congestion control  (due to varying load and/or varying channel conditions) of the bottleneck link (such as air interface or any other bottleneck link).  Both the mechanisms i.e SCONE and L4S are intended to address different scenario/use-case in the network. And if needed, both can co-exist in the network as they complement each other.",
+      "createdAt": "2025-11-06T21:47:39Z",
+      "updatedAt": "2025-11-06T21:47:39Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOPxzXgc6x7wsu",
+      "title": "Remove the manual declaration of References section",
+      "url": "https://github.com/ietf-wg-scone/appman/pull/1",
+      "state": "OPEN",
+      "author": "smishra1200",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Removing the manual # References section declaration from the body of the document (The YAML header generates the references). The manual declaration is redundant. Removed the following two lines:\r\n# References \r\n{:numbered=\"false\"}",
+      "createdAt": "2025-11-06T15:57:33Z",
+      "updatedAt": "2025-11-06T15:57:33Z",
+      "baseRepository": "ietf-wg-scone/appman",
+      "baseRefName": "main",
+      "baseRefOid": "6f0316a40f88f6bb24d96c88707593a59865d3cb",
+      "headRepository": "ietf-wg-scone/appman",
+      "headRefName": "smishra1200-patch-1",
+      "headRefOid": "9530cdcbc8877c364af4e36b30f7f96e3e21105b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
