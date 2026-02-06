@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 10 May 2026                                               Nokia
+Expires: 10 August 2026                                            Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                         6 November 2025
+                                                         6 February 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,11 +50,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 May 2026.
+   This Internet-Draft will expire on 10 August 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -84,10 +84,9 @@ Table of Contents
      3.11. Interworking with Other Congestion Management Mechanisms
    4.  Security Considerations
    5.  IANA Considerations
-   References
-   References
-     Normative References
-     Informative References
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -262,11 +261,9 @@ Table of Contents
 
    This document has no IANA actions.
 
-References
+6.  References
 
-References
-
-Normative References
+6.1.  Normative References
 
    [I-D.ietf-scone-protocol]
               Thomson, M., Huitema, C., Oku, K., Joras, M., and M.
@@ -276,7 +273,7 @@ Normative References
               <https://datatracker.ietf.org/doc/draft-ietf-scone-
               protocol/>.
 
-Informative References
+6.2.  Informative References
 
    [_4G-Arch] 3GPP, "System Architecture for the Evolved Packet Core
               (EPC)", 1 June 2020,
