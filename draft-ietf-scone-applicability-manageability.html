@@ -1240,33 +1240,22 @@ provider networks utilizing the Standard Communication with Network Elements (SC
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">The SCONE protocol <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span> provides a signaling mechanism that enables on-path SCONE-capable
-Network Elements to communicate the advisory maximum allowable bit rate to application endpoints, which is particularly
-relevant for adaptive bit-rate applications. This document addresses the Applicability and Manageability
-considerations for deploying the SCONE protocol within telecommunications service provider networks.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">SCONE operates based on a UDP 4-tuple. Network Elements capable of rate limiting at this granularity can send
-notifications of the advisory maximum allowable bit rate in each direction of the observed traffic. Such Network
-Elements may also drop or delay packets within the corresponding UDP 4-tuple flows. This implies that
-on-path SCONE-capable Network Elements (referred to as SCONE Network Elements in the rest of this document)
-are assumed to have the following capabilities: detect and maintain UDP 4-tuple flows, be aware of or
-configurable with rate-limiting policies, and identify flows that carry SCONE packets in order
-to insert throughput advice into those packets.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">In this document, on-path SCONE Network Elements are generally considered within the <em>access</em> portion of the
-Telecommunications provider's network. However, multiple SCONE Network Elements may exist along a path
-between the communicating peers. Depending on their configuration and roles they are likely to generate
-different throughput advices for the SCONE enabled application traffic flows, especially when different
-<em>access</em> technologies are in use. For example, the SCONE protocol in a wireless access network element
-may operate differently from one in a fixed broadband network. Wi-Fi networks provide another example,
-where enforcement is often per user or per Service Set Identifier (SSID), but visibility into individual
-UDP 4-tuples may be limited. Among access networks, mobile networks offer the most fine-grained
-visibility into traffic flows and can act on individual flows. For example, in mobile networks, the User Plane
-Function (UPF) in 5G <span>[<a href="#_5G-Arch" class="cite xref">_5G-Arch</a>]</span> and the Packet Data Network Gateway (P-GW) in 4G <span>[<a href="#_4G-Arch" class="cite xref">_4G-Arch</a>]</span> can generate throughput advice
-to guide adaptive bit-rates applications on a per-flow basis. In contrast, wireline broadband networks typically
-apply rate limiting at a centralized Broadband Network Gateway (BNG) or at aggregation points serving
-multiple Customer Premises Equipment (CPE) devices.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">Accordingly, Applicability and Manageability considerations must encompass a wide range of access-network
-scenarios, each of which handles per-flow rate limiting differently. However, the scope of this document is limited
-to discussing the core Applicability and Manageability considerations for the SCONE protocol.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-1">The SCONE protocol <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span> provides a signaling mechanism that enables on-path, SCONE-capable network elements to
+communicate "throughput advice", the advisory maximum allowable bit rate, to application endpoints via SCONE packets in the telecommunications
+service provider networks.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">Network elements capable of rate limiting can send notifications of the advisory maximum allowable bit rate in each direction of the observed
+traffic. This allows applications, particularly those using adaptive bit-rate (ABR) mechanisms, to proactively align their transmission rates
+with network policies. This document addresses the Applicability and Manageability considerations for deploying the SCONE protocol within service
+provider networks. It also addresses operational, configuration, and management aspects not covered in the core protocol specification.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">To participate in SCONE, a network element is assumed to have the functional capability to identify and track scone compliant application flows,
+recognize and process SCONE packets within those flows and map network policies into throughput advice to be inserted into the SCONE packets. While
+on-path network elements may exist at various points between the server and the client application end-points, their specific configuration and role
+will influence the advice they generate. Different network architectures handle flow visibility and policy enforcement at different points.
+In mobile networks, for example, the User Plane Function (UPF) in 5G <span>[<a href="#_5G-Arch" class="cite xref">_5G-Arch</a>]</span> and the Packet Data Network Gateway (P-GW) in 4G network <span>[<a href="#_4G-Arch" class="cite xref">_4G-Arch</a>]</span>
+can generate throughput advice to guide ABR applications on a per-flow basis. In contrast, other environments, such as wireline broadband or Wi-Fi,
+may apply policies at centralized aggregation points or gateways such as the Broadband Network Gateway serving multiple devices.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">Encompassing deployment of network elements in a wide range of networks, this document is limited to discussing the core Applicability and Manageability
+considerations for the SCONE protocol to ensure its consistent and effective use across varied network paths.<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terms-and-definitions">
