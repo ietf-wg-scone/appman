@@ -188,11 +188,21 @@ SCONE signaling is expected to traverse the existing data path associated
 with the UDP 4-tuple flow for which the Network Element intends to send the advisory bit-rate.
 
 ## Interworking with Other Congestion Management Mechanisms
-SCONE operates independently of transport-layer mechanisms such as
-Explicit Congestion Notification (ECN) or Low Latency, Low Loss, and
-Scalable throughput (L4S). Operators would benefit from harmonizing multiple
-congestion signaling methods by policy or scope deployments to manage
-conflicting feedback.
+SCONE is distinct from transport-level congestion control mechanisms, such as
+Explicit Congestion Notification (ECN) or Low Latency, Low Loss, and Scalable
+Throughput (L4S). While congestion control operates on short timescales to manage
+transient congestion caused by varying link conditions or instantaneous load, SCONE
+provides throughput advice based on relatively stable network policies or capacity
+management goals. ECN/L4S based congestion control works at transport level and SCONE
+works at application level. SCONE does not replace the need for endpoints to perform
+congestion control or network to provide explicit or implicit congestion signals; rather,
+it complements these mechanisms by providing a variable range for application-level rate
+adaptation. In environments where both are present, SCONE and congestion control mechanisms
+co-exist: congestion control manages the immediate dynamics of the bottleneck link, while
+SCONE informs the application of the maximum sustained rate allowed by policy. Network Operators
+would benefit from harmonizing multiple congestion signaling methods by policy or scope
+deployments to avoid conflicting feedback.
+
 
 # Security Considerations
 Security considerations are included separately in the SCONE protocol documents.
