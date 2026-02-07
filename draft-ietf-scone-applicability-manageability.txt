@@ -101,7 +101,7 @@ Table of Contents
    Network elements capable of rate limiting can send notifications of
    the advisory maximum allowable bit rate in each direction of the
    observed traffic.  This allows applications, particularly those using
-   adaptive bit-rate (ABR) mechanisms, to proactively align their
+   adaptive bit-rate (ABR) mechanisms,to proactively align their
    transmission rates with network policies.  This document addresses
    the Applicability and Manageability considerations for deploying the
    SCONE protocol within service provider networks.  It also addresses
