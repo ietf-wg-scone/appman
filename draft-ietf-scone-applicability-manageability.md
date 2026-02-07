@@ -75,25 +75,22 @@ provider networks utilizing the Standard Communication with Network Elements (SC
 
 # Introduction
 
-The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism that enables on-path, SCONE-capable network elements to
-communicate "throughput advice", the advisory maximum allowable bit rate, to application endpoints via SCONE packets in the telecommunications
-service provider networks.
+The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism that enables on-path, SCONE-capable network elements to communicate "throughput advice", the advisory maximum allowable bit rate, to application endpoints via SCONE packets in the telecommunications service provider networks.
 
-Network elements capable of rate limiting can send notifications of the advisory maximum allowable bit rate in each direction of the observed
-traffic. This allows applications, particularly those using adaptive bit-rate (ABR) mechanisms, to proactively align their transmission rates
-with network policies. This document addresses the Applicability and Manageability considerations for deploying the SCONE protocol within service
-provider networks. It also addresses operational, configuration, and management aspects not covered in the core protocol specification.
+Network elements capable of rate limiting can send notifications of the advisory maximum allowable bit rate in each direction of the observed traffic. This allows applications, particularly those using adaptive bit-rate (ABR)
+mechanisms,to proactively align their transmission rates with network policies. This document addresses the
+Applicability and Manageability considerations for deploying the SCONE protocol within service provider networks.
+It also addresses operational, configuration, and management aspects not covered in the core protocol specification.
 
-To participate in SCONE, a network element is assumed to have the functional capability to identify and track scone compliant application flows,
-recognize and process SCONE packets within those flows and map network policies into throughput advice to be inserted into the SCONE packets. While
-on-path network elements may exist at various points between the server and the client application end-points, their specific configuration and role
-will influence the advice they generate. Different network architectures handle flow visibility and policy enforcement at different points.
-In mobile networks, for example, the User Plane Function (UPF) in 5G {{5G-Arch}} and the Packet Data Network Gateway (P-GW) in 4G network {{4G-Arch}}
-can generate throughput advice to guide ABR applications on a per-flow basis. In contrast, other environments, such as wireline broadband or Wi-Fi,
-may apply policies at centralized aggregation points or gateways such as the Broadband Network Gateway serving multiple devices.
+To participate in SCONE, a network element is assumed to have the functional capability to identify and track scone compliant application flows, recognize and process SCONE packets within those flows and map network policies into
+throughput advice to be inserted into the SCONE packets. While on-path network elements may exist at various points
+between the server and the client application end-points, their specific configuration and role will influence the
+advice they generate. Different network architectures handle flow visibility and policy enforcement at different points.
+In mobile networks, for example, the User Plane Function (UPF) in 5G {{5G-Arch}} and the Packet Data Network Gateway (P-GW) in 4G network {{4G-Arch}} can generate throughput advice to guide ABR applications on a per-flow basis. In contrast,
+other environments, such as wireline broadband or Wi-Fi, may apply policies at centralized aggregation points or gateways such as the Broadband Network Gateway serving multiple devices.
 
-Encompassing deployment of network elements in a wide range of networks, this document is limited to discussing the core Applicability and Manageability
-considerations for the SCONE protocol to ensure its consistent and effective use across varied network paths.
+Encompassing deployment of network elements in a wide range of networks, this document is limited to discussing the core Applicability and Manageability considerations for the SCONE protocol to ensure its consistent and effective use across
+varied network paths.
 
 
 # Terms and Definitions
