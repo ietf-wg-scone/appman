@@ -99,17 +99,19 @@ This document uses terms and definitions described in {{I-D.ietf-scone-protocol}
 
 # Applicability and Manageability Considerations
 
-## Flow session awareness
-SCONE signaling operates only over established sessions. SCONE Network Elements
-ought to be able to unambiguously associate throughput advice with
-application flows. Each session is bound to an IP address and port,
-ensuring SCONE packets are routed precisely without affecting unrelated traffic.
-
-## Per-Flow Signaling
-Throughput advice is applied on a UDP 4-tuple basis. SCONE Network Elements
-ought to maintain flow-specific context to ensure signaling correctness.
-This enables applications to receive targeted throughput advice while
-preventing unintended impact on unrelated flows.
+## Flow Awareness and Per-Flow Signaling
+As defined in the SCONE Protocol document, throughput advice is associated with the
+flows of UDP datagrams that QUIC exchanges
+(see Section 1 of {{I-D.ietf-scone-protocol}}). pecifically, a flow is identified by
+packets sharing the same address tuple (IP version, source and destination IP
+addresses, and UDP ports) (see Section 3.3 of {{I-D.ietf-scone-protocol}}).
+SCONE signaling operates only over these established flows. To ensure signaling
+correctness, SCONE Network Elements need to be able to unambiguously associate
+throughput advice with specific application flows and maintain context for these flows.
+This flow awareness is critical because throughput advice applies strictly to that specific
+flow of packets on the same address tuple. By maintaining this per-flow context, network
+elements ensure that SCONE packets are routed precisely, enabling applications to receive
+targeted throughput advice while preventing any unintended impact on unrelated traffic.
 
 ## QoS awareness
 Quality of Service (QoS) may be enforced by networks through a variety of
