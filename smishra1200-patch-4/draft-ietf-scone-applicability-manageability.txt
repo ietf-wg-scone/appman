@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 11 August 2026                                            Nokia
+Expires: 19 October 2026                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                         7 February 2026
+                                                           17 April 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 August 2026.
+   This Internet-Draft will expire on 19 October 2026.
 
 Copyright Notice
 
@@ -71,17 +71,16 @@ Table of Contents
    1.  Introduction
    2.  Terms and Definitions
    3.  Applicability and Manageability Considerations
-     3.1.  Flow session awareness
-     3.2.  Per-Flow Signaling
-     3.3.  QoS awareness
-     3.4.  SCONE Hint to the Network
-     3.5.  Retransmission of Advised Bit-Rate
-     3.6.  Frequency of Updates
-     3.7.  Dynamic Updates
-     3.8.  Monitoring and Logging
-     3.9.  Conformance Monitoring
-     3.10. Standards Compliance
-     3.11. Interworking with Other Congestion Management Mechanisms
+     3.1.  Flow Awareness and Per-Flow Signaling
+     3.2.  QoS awareness
+     3.3.  SCONE Hint to the Network
+     3.4.  Retransmission of Advised Bit-Rate
+     3.5.  Frequency of Updates
+     3.6.  Dynamic Updates
+     3.7.  Monitoring and Logging
+     3.8.  Conformance Monitoring
+     3.9.  Standards Compliance
+     3.10. Interworking with Other Congestion Management Mechanisms
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -138,23 +137,25 @@ Table of Contents
 
 3.  Applicability and Manageability Considerations
 
-3.1.  Flow session awareness
+3.1.  Flow Awareness and Per-Flow Signaling
 
-   SCONE signaling operates only over established sessions.  SCONE
-   Network Elements ought to be able to unambiguously associate
-   throughput advice with application flows.  Each session is bound to
-   an IP address and port, ensuring SCONE packets are routed precisely
-   without affecting unrelated traffic.
+   As defined in the SCONE Protocol document, throughput advice is
+   associated with the flows of UDP datagrams that QUIC exchanges (see
+   Section 1 of [I-D.ietf-scone-protocol]). pecifically, a flow is
+   identified by packets sharing the same address tuple (IP version,
+   source and destination IP addresses, and UDP ports) (see Section 3.3
+   of [I-D.ietf-scone-protocol]).  SCONE signaling operates only over
+   these established flows.  To ensure signaling correctness, SCONE
+   Network Elements need to be able to unambiguously associate
+   throughput advice with specific application flows and maintain
+   context for these flows.  This flow awareness is critical because
+   throughput advice applies strictly to that specific flow of packets
+   on the same address tuple.  By maintaining this per-flow context,
+   network elements ensure that SCONE packets are routed precisely,
+   enabling applications to receive targeted throughput advice while
+   preventing any unintended impact on unrelated traffic.
 
-3.2.  Per-Flow Signaling
-
-   Throughput advice is applied on a UDP 4-tuple basis.  SCONE Network
-   Elements ought to maintain flow-specific context to ensure signaling
-   correctness.  This enables applications to receive targeted
-   throughput advice while preventing unintended impact on unrelated
-   flows.
-
-3.3.  QoS awareness
+3.2.  QoS awareness
 
    Quality of Service (QoS) may be enforced by networks through a
    variety of mechanisms.  In certain deployments, network operators may
@@ -166,7 +167,7 @@ Table of Contents
    and, where appropriate, provide throughput advice in accordance to
    their policy objectives.
 
-3.4.  SCONE Hint to the Network
+3.3.  SCONE Hint to the Network
 
    SCONE-aware applications ought to provide hints to the SCONE Network
    Elements, enabling it to generate appropriate throughput advice for a
@@ -175,7 +176,7 @@ Table of Contents
    and reduce CPU overhead by eliminating additional classification
    steps.
 
-3.5.  Retransmission of Advised Bit-Rate
+3.4.  Retransmission of Advised Bit-Rate
 
    Packet loss or non-delivery of SCONE advice reduces its
    effectiveness.  Both SCONE Network Elements and application endpoints
@@ -183,7 +184,7 @@ Table of Contents
    to ensure reliable delivery.  Conformance depends on the behavior of
    both network and application endpoint.
 
-3.6.  Frequency of Updates
+3.5.  Frequency of Updates
 
    The rate at which SCONE updates are issued depends on flow
    characteristics and available computational resources.  Excessively
@@ -192,7 +193,7 @@ Table of Contents
    adjustable update intervals based on application requirements,
    network capacity, and operational constraints.
 
-3.7.  Dynamic Updates
+3.6.  Dynamic Updates
 
    Dynamic rate limits updates can be enforced by the network during
    active application sessions due to:
@@ -207,7 +208,7 @@ Table of Contents
    generate SCONE packets frequently enough to trigger network
    responses.
 
-3.8.  Monitoring and Logging
+3.7.  Monitoring and Logging
 
    SCONE signaling can be integrated into existing operational and
    management frameworks to enable monitoring, troubleshooting, and
@@ -221,7 +222,7 @@ Table of Contents
    *  Error conditions where SCONE signaling fails to reach the intended
       endpoints
 
-3.9.  Conformance Monitoring
+3.8.  Conformance Monitoring
 
    Networks providing SCONE throughput advice ought to implement
    mechanisms to measure compliance, either per application flow or in
@@ -230,13 +231,13 @@ Table of Contents
    typically implemented in a SCONE Network Element but may also be
    implemented elsewhere in the network.
 
-3.10.  Standards Compliance
+3.9.  Standards Compliance
 
    SCONE signaling is expected to traverse the existing data path
    associated with the UDP 4-tuple flow for which the Network Element
    intends to send the advisory bit-rate.
 
-3.11.  Interworking with Other Congestion Management Mechanisms
+3.10.  Interworking with Other Congestion Management Mechanisms
 
    SCONE is distinct from transport-level congestion control mechanisms,
    such as Explicit Congestion Notification (ECN) or Low Latency, Low
