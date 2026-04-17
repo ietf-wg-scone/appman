@@ -50,7 +50,7 @@ normative:
     date: 2025-07
     seriesinfo: "Internet-Draft, draft-ietf-scone-protocol, Work in Progress"
 
-RFC2474:
+  RFC2474:
     target: https://www.rfc-editor.org/info/rfc2474
     title: Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers
     author:
