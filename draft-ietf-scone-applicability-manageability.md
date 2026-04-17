@@ -111,15 +111,20 @@ ought to maintain flow-specific context to ensure signaling correctness.
 This enables applications to receive targeted throughput advice while
 preventing unintended impact on unrelated flows.
 
-## QoS awareness
-Quality of Service (QoS) may be enforced by networks through a variety of
-mechanisms. In certain deployments, network operators may choose to apply distinct
-QoS policies to SCONE-enabled flows. The SCONE Network Element
-responsible for inserting SCONE advice is not required to interpret or
-enforce QoS policies; its role is limited to the signaling of the advisory
-throughput information. It is expected that network operators shall be able to identify
-SCONE-enabled flows and, where appropriate, provide throughput advice in accordance
-to their policy objectives.
+## QoS Awareness
+Quality of Service (QoS) may be enforced by networks through a variety of mechanisms.
+SCONE is fundamentally agnostic to Differentiated Services Code Point (DSCP) settings
+{{RFC2474}}. Because SCONE operates on the specific flows of UDP datagrams that QUIC exchanges,
+it does not inherently look at or depend on DSCP settings. For further discussion on DSCP
+interactions, refer to Section 5.3 of {{I-D.ietf-scone-protocol}}.
+
+In certain deployments, network operators may choose to apply distinct QoS policies to
+SCONE-enabled flows. The SCONE Network Element responsible for inserting SCONE advice is not
+required to interpret or enforce QoS policies; its role is limited to the signaling of the
+advisory throughput information. It is expected that network operators are able to identify
+SCONE-enabled flows and, where appropriate, provide throughput advice in accordance with their
+policy objectives.
+
 
 ## SCONE Hint to the Network
 SCONE-aware applications ought to provide hints to the SCONE Network Elements,
