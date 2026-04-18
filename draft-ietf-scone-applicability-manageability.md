@@ -143,15 +143,17 @@ adjustable update intervals based on application requirements, network
 capacity, and operational constraints.
 
 ## Dynamic Updates
-Dynamic rate limits updates can be enforced by the network during active
-application sessions due to:
-
-- Changes in access network type (requiring updated throughput advice)
-- Changes in Subscriber policy (e.g., exceeding usage thresholds)
-
-In such cases, the SCONE Network Elements need to be able to initiate SCONE
-packets to provide updated advice, or applications should generate SCONE
-packets frequently enough to trigger network responses.
+Target throughput advice can change dynamically due to access network
+handovers or changes in subscriber policy (e.g., reaching data thresholds).
+Because a Network Element cannot synthesize or inject a new SCONE packet into
+a flow, it needs to wait for the next endpoint generated SCONE packet to traverse
+the path. Following a dynamic trigger, the Network Element can opportunistically
+update the very next available SCONE packet(s) rather than waiting for its normal
+interval, thereby minimizing the application's reaction time to the new network
+state (see Section 7.1 and Section 9.2 of {{I-D.ietf-scone-protocol}}).
+Additional details on trade-off between the delay in dynamic updates to the advised
+bit-rate versus the CPU processing load is also covered in details
+in Section {{Frequency of Updates}}.
 
 ## Monitoring and Logging
 SCONE signaling can be integrated into existing operational and
