@@ -129,10 +129,27 @@ network to signal the maximum allowable bit rate, and reduce CPU
 overhead by eliminating additional classification steps.
 
 ## Retransmission of Advised Bit-Rate
-Packet loss or non-delivery of SCONE advice reduces its effectiveness. Both
-SCONE Network Elements and application endpoints should support retransmission or
-periodic re-sending of SCONE packets to ensure reliable delivery.
-Conformance depends on the behavior of both network and application endpoint.
+Packet loss or non-delivery of SCONE advice reduces its effectiveness. Because
+Network Elements cannot synthesize or inject new SCONE packets into a flow, they
+cannot perform transport-layer retransmissions (see Section 7.1 of
+{{I-D.ietf-scone-protocol}}). Instead, the reliable delivery of throughput advice
+relies on the periodic sending of SCONE packets by the application endpoints.
+
+To ensure advice is not lost and does not expire, application endpoints are expected
+to send SCONE packets periodically, typically at least twice per monitoring period or
+every 20 to 30 seconds. The SCONE Network Element then takes these opportunities to update
+the throughput advice in the traversing packets. While endpoints could utilize QUIC
+transport-layer acknowledgments to detect lost datagrams and trigger a retransmission
+of a SCONE packet, it is generally simpler and highly effective to achieve reliability
+by simply sending SCONE packets more frequently (see Section 8.1 of {{I-D.ietf-scone-protocol}}).
+
+If the CPU processing load in network elements for updating SCONE packets is not the
+limiting factor, it is preferred for endpoints to send, and network elements to update,
+SCONE packets with a higher frequency than every 20 to 30 seconds to minimize the delay
+in activating the advised bit-rate due to packet loss. However, if the CPU processing
+load in a network element becomes a bottleneck, then the SCONE packet update frequency
+can be scaled back to 20 to 30 seconds. Essentially, there is a trade-off between the
+delay in activating the advised bit-rate due to packet loss versus the CPU processing load.
 
 ## Frequency of Updates
 The rate at which SCONE updates are issued depends on flow
