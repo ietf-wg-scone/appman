@@ -82,15 +82,28 @@ mechanisms,to proactively align their transmission rates with network policies. 
 Applicability and Manageability considerations for deploying the SCONE protocol within service provider networks.
 It also addresses operational, configuration, and management aspects not covered in the core protocol specification.
 
-To participate in SCONE, a network element is assumed to have the functional capability to identify and track scone compliant application flows, recognize and process SCONE packets within those flows and map network policies into
-throughput advice to be inserted into the SCONE packets. While on-path network elements may exist at various points
-between the server and the client application end-points, their specific configuration and role will influence the
-advice they generate. Different network architectures handle flow visibility and policy enforcement at different points.
-In mobile networks, for example, the User Plane Function (UPF) in 5G {{5G-Arch}} and the Packet Data Network Gateway (P-GW) in 4G network {{4G-Arch}} can generate throughput advice to guide ABR applications on a per-flow basis. In contrast,
-other environments, such as wireline broadband or Wi-Fi, may apply policies at centralized aggregation points or gateways such as the Broadband Network Gateway serving multiple devices.
+To participate in SCONE, a network element is assumed to have the
+functional capability to identify and track SCONE-compliant QUIC
+flows, recognize and process SCONE packets within those flows, and
+map network policies into throughput advice to be inserted into the
+SCONE packets. However, from an end-to-end perspective, a data path
+might contain no such network elements, a single network element, or
+multiple network elements. When multiple elements are present, they
+can update the throughput advice independently without any coordination.
+More detail is covered in subsequent sections.
 
-Encompassing deployment of network elements in a wide range of networks, this document is limited to discussing the core Applicability and Manageability considerations for the SCONE protocol to ensure its consistent and effective use across
-varied network paths.
+When on-path network elements are present between the server and the client
+application end-points, their specific configuration and role will influence the advice they
+generate. Different network architectures handle flow visibility and policy enforcement at
+different points. In mobile networks, for example, the User Plane Function (UPF) in 5G {{5G-Arch}}
+and the Packet Data Network Gateway (P-GW) in 4G network {{4G-Arch}} can generate throughput
+advice to guide ABR applications on a per-flow basis. In contrast, other environments,
+such as wireline broadband or Wi-Fi, may apply policies at centralized aggregation points
+or gateways such as the Broadband Network Gateway serving multiple devices.
+
+Encompassing deployment of network elements in a wide range of networks, this document
+is limited to discussing the core Applicability and Manageability considerations for
+the SCONE protocol to ensure its consistent and effective use across varied network paths.
 
 
 # Terms and Definitions
@@ -152,6 +165,65 @@ application sessions due to:
 In such cases, the SCONE Network Elements need to be able to initiate SCONE
 packets to provide updated advice, or applications should generate SCONE
 packets frequently enough to trigger network responses.
+
+## Presence of SCONE Network Elements On the Data Path
+Regarding the presence of SCONE Network Elements on the data path between the
+client and server application endpoints, there are three possible scenarios:
+no network elements, a single network element, or multiple network elements.
+
+To handle the scenario where no network elements are present, the sending
+endpoint initially sets the 7-bit Rate Signal field to 127 (unknown).
+If this value arrives at the receiving endpoint unchanged, it informs the
+receiver that either there are no SCONE-aware network elements on the path,
+or the existing elements do not wish to provide throughput advice.
+Consequently, the endpoint can operate without SCONE-advised limits
+(see Section 5.1 of {{I-D.ietf-scone-protocol}}).
+
+In scenarios with one or multiple network elements, the application endpoint
+is not expected to be aware of the number of network elements on the data path.
+The application endpoint handles the Rate Signal field present in the SCONE
+packet as specified in the SCONE Protocol, irrespective of how many network
+elements are present. For example, if an endpoint receives multiple SCONE packets
+within a 67-second monitoring period with different Rate Signal values,
+it is expected to apply the lowest throughput advice received
+(see Section 5.4 of {{I-D.ietf-scone-protocol}}).
+
+Note that in the case of multiple network elements, it is possible that these
+network elements update the Rate Signal field in the SCONE packet independently
+without any coordination among each other, especially when the network elements
+are in different network domains. A network element only replaces the rate signal
+if it wishes to signal a lower value, which preserves the signal from any previous
+network element with a lower policy. As a result, the application endpoint simply
+handles the final Rate Signal field it receives as specified in the SCONE Protocol
+(see Section 7.1 of {{I-D.ietf-scone-protocol}}).
+
+## Change of Network Element During an Active Flow
+A change in the on-path network element can occur when an application changes
+its access network. This typically manifests in two scenarios: QUIC connection
+migration where the IP address changes, or mobility events where the IP address
+remains unchanged. In both cases, the endpoint and the new network element can
+follow the steps for migrated flows specified in Section 6.3 of
+{{I-D.ietf-scone-protocol}}. Because a connection that migrates cannot assume
+that throughput advice from one path applies to a new path, endpoints can send
+SCONE packets early on the new path. This gives the network element on the new
+path an opportunity to detect the SCONE-capable flow and provide its own throughput
+advice.
+
+Following a network element change, two operational outcomes are possible:
+- New network element supports SCONE: If the new network element supports the
+protocol and detects the flow, it can begin or continue updating the traversing
+SCONE packets with its own throughput advice.
+
+- New network element does not support SCONE (or misses the flow): If the new
+network element does not support the SCONE protocol, or if it fails to detect
+the flow after migration, the endpoint will cease receiving SCONE updates.
+The endpoint handles this scenario exactly as it would any loss of signal.
+If a full 67-second monitoring period elapses without receiving throughput
+advice, the previous advice expires (see Section 5.4 of {{I-D.ietf-scone-protocol}}).
+The endpoint can then assume that either there are no SCONE-aware network elements
+on the new path, or that they do not wish to enforce a specific bit-rate, allowing
+the endpoint to remove any SCONE-advised constraints and operate without SCONE
+limits for that flow.
 
 ## Monitoring and Logging
 SCONE signaling can be integrated into existing operational and
