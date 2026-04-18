@@ -152,7 +152,7 @@ update the very next available SCONE packet(s) rather than waiting for its norma
 interval, thereby minimizing the application's reaction time to the new network
 state (see Section 7.1 and Section 9.2 of {{I-D.ietf-scone-protocol}}).
 Details on trade-off between the delay in dynamic updates to the advised
-bit-rate versus the CPU processing load is also covered in {{Section freq-updates}}.
+bit-rate versus the CPU processing load is also covered in Section {{freq-updates}}.
 
 ## Monitoring and Logging
 SCONE signaling can be integrated into existing operational and
