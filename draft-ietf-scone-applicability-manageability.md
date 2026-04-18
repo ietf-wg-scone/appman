@@ -163,12 +163,53 @@ isolation. Metrics of interest include:
 - Error conditions where SCONE signaling fails to reach the intended endpoints
 
 ## Conformance Monitoring
-Networks providing SCONE throughput advice ought to implement
-mechanisms to measure compliance, either per application flow or in
-aggregate. This allows operators to validate advisory effectiveness and
-adjust policies. Due to flow awareness, such mechanisms are typically
-implemented in a SCONE Network Element but may also be implemented
-elsewhere in the network.
+Networks providing SCONE throughput advice can implement mechanisms to monitor
+QUIC flows and measure conformance to the advised bit-rate, either per flow of
+packets on the same UDP address tuple, or in aggregate across multiple QUIC flows
+if they contribute to a shared policy limit (e.g., at a device or network subscription
+level, see (Section 3.2 of {{I-D.ietf-scone-protocol}}). This allows operators to
+validate whether applications are following the advised bit-rate. While it is
+expected that monitoring will typically be implemented at the SCONE Network Element
+providing the advice, it could also be performed elsewhere in the network. However,
+network elements cannot enforce throughput limits based on throughput advice found
+in SCONE packets received from other network elements. This is because, unlike
+endpoints, network elements lack the capability to validate the legitimacy of
+SCONE packets coalesced with other QUIC packets (see Section 7.2 of
+{{I-D.ietf-scone-protocol}}). Therefore, a network element evaluates conformance
+only for the advised bit-rate that it set itself, not advice set by other network
+elements.
+
+When evaluating compliance (i.e., whether the endpoints are following
+the rate advice), network operators need to account for the time required for SCONE
+packets to be updated, received by endpoints, and acted upon by the application.
+Therefore, rather than checking compliance against instantaneous advice, a network
+element needs to evaluate QUIC flows against the highest throughput limit it advised
+over the last two monitoring periods (a span of 134 seconds, or 2 x 67 seconds).
+If a network element cannot update the throughput advice in every traversing SCONE
+packet, a longer evaluation period might be used to account for the possibility that
+updated SCONE packets were lost (see Section 7.2 of {{I-D.ietf-scone-protocol}}).
+
+However, as specified in Section 7.1 of {{I-D.ietf-scone-protocol}}, a network element
+needs to update SCONE packets at least once every 67 seconds to avoid the throughput
+advice expiring. If the endpoint does not receive throughput advice within a 67-second
+monitoring period after receiving the last advice, the endpoint treats the advice as
+expired (see Section 5.4 of {{I-D.ietf-scone-protocol}}). The endpoint can then assume
+that either there are no longer network elements on the path, or that they do not wish
+to set a specific bit-rate, allowing the endpoint to remove any SCONE-advised constraints
+and operate without SCONE limits for that QUIC flow.
+
+Additionally, as per Section 5.2 of {{I-D.ietf-scone-protocol}}, the monitoring window
+for network operators is "at least 67 seconds." If operators want to use a larger window
+to simplify the measurement function, reduce computational load, or offload this function
+to another node in the network, they can select any value larger than 67 seconds as their
+measurement and averaging window.
+
+Some applications will not support SCONE, and others either will not or cannot follow the
+provided throughput advice. If the monitoring function indicates that an application is
+not respecting the signaled throughput advice, the network can use other rate-limiting
+policy enforcement mechanisms, such as dropping or delaying packets, to ensure the QUIC
+flow does not exceed the throughput limits set by network policy
+(see {{I-D.ietf-scone-protocol}}, Sections 7.2 and 7.3 ).
 
 ## Standards Compliance
 SCONE signaling is expected to traverse the existing data path associated
