@@ -121,12 +121,13 @@ throughput information. It is expected that network operators shall be able to i
 SCONE-enabled flows and, where appropriate, provide throughput advice in accordance
 to their policy objectives.
 
-## SCONE Hint to the Network
-SCONE-aware applications ought to provide hints to the SCONE Network Elements,
-enabling it to generate appropriate throughput advice for a given
-UDP 4-tuple. Such hints prevent unnecessary default rate-limiting, allow the
-network to signal the maximum allowable bit rate, and reduce CPU
-overhead by eliminating additional classification steps.
+## SCONE Indication to the Network Element
+As specified in Section 6.1 of {{I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
+an indication to the SCONE Network Element, enabling it to identify the SCONE-capable flow
+without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
+through bit-rate self-adaptation, remove the need for complex rate-limiting functions in the network
+element. Support for SCONE indication and bit-rate self-adaptation reduces complexity and CPU processing
+load in the network element.
 
 ## Retransmission of Advised Bit-Rate
 Packet loss or non-delivery of SCONE advice reduces its effectiveness. Both
