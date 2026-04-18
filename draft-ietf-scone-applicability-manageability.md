@@ -135,33 +135,32 @@ periodic re-sending of SCONE packets to ensure reliable delivery.
 Conformance depends on the behavior of both network and application endpoint.
 
 ## Frequency of Updates
-As specified in {{I-D.ietf-scone-protocol, Section 8.1}}}, endpoints that wish
-to offer network elements the option to add throughput advice signals can send
-SCONE packets at any time. This is a decision that a sender makes when constructing
-datagrams.
+As specified in Section 8.1 of {{I-D.ietf-scone-protocol}}, endpoints that wish to
+offer network elements the option to add throughput advice signals can send SCONE packets
+at any time. This is a decision that a sender makes when constructing datagrams.
 
 The frequency of SCONE signaling is fundamentally driven by the application endpoint.
 Highly adaptive flows, such as ABR video clients fetching short media segments, may
 choose to send SCONE packets frequently (e.g., matching their segment request cadence)
-to rapidly track network capacity changes. Conversely, stable background tasks may
-function effectively by sending SCONE packets less frequently, such as every 20 to 30
-seconds, which is sufficient to ensure the throughput advice does not expire over
-the 67-second monitoring period; see {{I-D.ietf-scone-protocol, Section 5.2}}.
+to rapidly track network capacity changes. Conversely, stable background tasks may function
+effectively by sending SCONE packets less frequently, such as every 20 to 30 seconds,
+which is sufficient to ensure the throughput advice does not expire over the 67-second
+monitoring period; see Section 5.2 of {{I-D.ietf-scone-protocol}}.
 
-While SCONE packets operate entirely within the data path, detecting and updating
-the throughput advice requires computational resources at the SCONE Network Element.
+While SCONE packets operate entirely within the data path, detecting and updating the
+throughput advice requires computational resources at the SCONE Network Element.
 To manage this CPU load, network elements are not required to update every single
 traversing SCONE packet. Instead, they can conserve resources by selectively updating
 packets, ideally at least twice per monitoring period or every 20 to 30 seconds, which
 is sufficient to securely maintain the signal while protecting the element's processing
-capacity ({{I-D.ietf-scone-protocol, Section 7.1}}).
+capacity (see Section 7.1 of {{I-D.ietf-scone-protocol}}).
 
-Correspondingly, to avoid throughput advice from expiring, a network element needs
-to update the throughput advice in SCONE packets with no more than 67 seconds between
-each update, though a frequency of every 20 to 30 seconds is recommended to account for
-potential packet loss. Furthermore, at the start of a flow, network elements are encouraged
-to update the first few available SCONE packets so that endpoints receive advice early and
-can compensate for any initial packet loss ({{I-D.ietf-scone-protocol, Section 7.1}}).
+Correspondingly, to avoid throughput advice from expiring, a network element needs to
+update the throughput advice in SCONE packets with no more than 67 seconds between each update,
+though a frequency of every 20 to 30 seconds is recommended to account for potential packet loss.
+Furthermore, at the start of a flow, network elements are encouraged to update the first few available
+SCONE packets so that endpoints receive advice early and can compensate for any initial packet
+loss (see Section 7.1 of {{I-D.ietf-scone-protocol}}).
 
 ## Dynamic Updates
 Dynamic rate limits updates can be enforced by the network during active
