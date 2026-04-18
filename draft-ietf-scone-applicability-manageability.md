@@ -134,7 +134,7 @@ SCONE Network Elements and application endpoints should support retransmission o
 periodic re-sending of SCONE packets to ensure reliable delivery.
 Conformance depends on the behavior of both network and application endpoint.
 
-## Frequency of Updates
+## Frequency of Updates {#freq-updates}
 The rate at which SCONE updates are issued depends on flow
 characteristics and available computational resources. Excessively
 frequent updates may increase CPU load, while infrequent updates may
@@ -151,9 +151,8 @@ the path. Following a dynamic trigger, the Network Element can opportunistically
 update the very next available SCONE packet(s) rather than waiting for its normal
 interval, thereby minimizing the application's reaction time to the new network
 state (see Section 7.1 and Section 9.2 of {{I-D.ietf-scone-protocol}}).
-Additional details on trade-off between the delay in dynamic updates to the advised
-bit-rate versus the CPU processing load is also covered in details
-in Section {{Frequency of Updates}}.
+Details on trade-off between the delay in dynamic updates to the advised
+bit-rate versus the CPU processing load is also covered in {{Section freq-updates}}.
 
 ## Monitoring and Logging
 SCONE signaling can be integrated into existing operational and
