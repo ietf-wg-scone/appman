@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 19 October 2026                                           Nokia
+Expires: 21 October 2026                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           17 April 2026
+                                                           19 April 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 October 2026.
+   This Internet-Draft will expire on 21 October 2026.
 
 Copyright Notice
 
@@ -147,13 +147,13 @@ Table of Contents
    of [I-D.ietf-scone-protocol]).  SCONE signaling operates only over
    these established flows.  To ensure signaling correctness, SCONE
    Network Elements need to be able to unambiguously associate
-   throughput advice with specific application flows and maintain
-   context for these flows.  This flow awareness is critical because
-   throughput advice applies strictly to that specific flow of packets
-   on the same address tuple.  By maintaining this per-flow context,
-   network elements ensure that SCONE packets are routed precisely,
-   enabling applications to receive targeted throughput advice while
-   preventing any unintended impact on unrelated traffic.
+   throughput advice with specific QUIC flows and maintain context for
+   these flows.  This flow awareness is critical because throughput
+   advice applies strictly to that specific flow of packets on the same
+   address tuple.  By maintaining this per-flow context, network
+   elements ensure that SCONE packets are routed precisely, enabling
+   applications to receive targeted throughput advice while preventing
+   any unintended impact on unrelated traffic.
 
 3.2.  QoS awareness
 
