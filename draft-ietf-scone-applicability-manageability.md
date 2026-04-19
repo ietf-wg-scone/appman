@@ -50,7 +50,7 @@ normative:
     date: 2025-07
     seriesinfo: "Internet-Draft, draft-ietf-scone-protocol, Work in Progress"
 
-  informative:
+ informative:
   4G-Arch:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=24300
     title: System Architecture for the Evolved Packet Core (EPC)
