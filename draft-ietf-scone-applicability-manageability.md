@@ -65,6 +65,16 @@ informative:
       - name: 3GPP
     date: 2025-01-07
 
+  RFC3168:
+    target: https://www.rfc-editor.org/info/rfc3168
+    title: The Addition of Explicit Congestion Notification (ECN) to IP
+    author:
+      - name: K. Ramakrishnan
+      - name: S. Floyd
+      - name: D. Black
+    date: 2001-09
+    seriesinfo: "RFC 3168"
+
 --- abstract
 
 This document describes the Applicability and Manageability considerations for providing throughput guidance to
@@ -175,20 +185,43 @@ SCONE signaling is expected to traverse the existing data path associated
 with the UDP 4-tuple flow for which the Network Element intends to send the advisory bit-rate.
 
 ## Interworking with Other Congestion Management Mechanisms
-SCONE is distinct from transport-level congestion control mechanisms, such as
-Explicit Congestion Notification (ECN) or Low Latency, Low Loss, and Scalable
-Throughput (L4S). While congestion control operates on short timescales to manage
-transient congestion caused by varying link conditions or instantaneous load, SCONE
-provides throughput advice based on relatively stable network policies or capacity
-management goals. ECN/L4S based congestion control works at transport level and SCONE
-works at application level. SCONE does not replace the need for endpoints to perform
-congestion control or network to provide explicit or implicit congestion signals; rather,
-it complements these mechanisms by providing a variable range for application-level rate
-adaptation. In environments where both are present, SCONE and congestion control mechanisms
-co-exist: congestion control manages the immediate dynamics of the bottleneck link, while
-SCONE informs the application of the maximum sustained rate allowed by policy. Network Operators
-would benefit from harmonizing multiple congestion signaling methods by policy or scope
-deployments to avoid conflicting feedback.
+SCONE throughput advice is not a substitute for congestion feedback or congestion control
+mechanisms, such as Explicit Congestion Notification (ECN) or Low Latency, Low Loss, and
+Scalable Throughput (L4S) (see Section 3.1 of {{I-D.ietf-scone-protocol}}). Rather, they
+are complementary. Congestion signals provide real-time information on loss, delay, and
+transient congestion for a network path, typically operating on the time scale of a
+round-trip time (RTT), whereas SCONE throughput advice operates over a much longer
+period. SCONE can be used for any use case that requires network operators to send the
+maximum allowable bit-rate (throughput advice) that is driven by operator video policy,
+subscriber policy, and load management policy operating over a longer time period. The
+specific reasons or methods by which an operator determines these enforcement policies
+are out of scope for this document.
+
+Additionally, the SCONE throughput advice for a QUIC flow is strictly independent of the
+Explicit Congestion Notification (ECN) field {{RFC3168}}. Because SCONE throughput advice
+is carried within the QUIC payload as a SCONE packet (see Section 5 of
+{{I-D.ietf-scone-protocol}}), updating the throughput advice does not interact with or modify
+the ECN field located in the IP header. Consequently, network elements providing SCONE
+throughput advice do not alter IP-layer ECN markings as part of their SCONE protocol
+operation. This independence ensures that while SCONE informs the endpoint of network policy
+limits, real-time congestion feedback mechanisms remain fully operational and operate
+completely outside of the SCONE domain (see Section 3.1 of {{I-D.ietf-scone-protocol}}).
+
+Because a congestion controller needs to detect changed conditions and alter sending
+behavior more quickly than SCONE allows, congestion signals can indicate a throughput limit
+that is different from the signaled SCONE throughput advice. Endpoints cannot assume that the
+rate indicated in throughput advice is achievable if congestion signals indicate otherwise.
+Moreover, congestion could be experienced at an entirely different point on the network
+path than the network element providing the SCONE signal. Therefore, endpoints need to always
+respect the send rate constraints established by their congestion controller, even if the
+SCONE throughput advice indicates a higher available rate
+(see Section 3.1 of {{I-D.ietf-scone-protocol}}).
+
+In environments where both are present, SCONE and congestion control mechanisms co-exist.
+Congestion control manages the immediate dynamics of the bottleneck link, while SCONE informs
+the application of the maximum rate allowed by network policy. Network operators would benefit
+from harmonizing multiple congestion signaling methods by policy or within scoped deployments
+to avoid providing conflicting feedback to applications.
 
 
 # Security Considerations
