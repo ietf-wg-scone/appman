@@ -141,7 +141,7 @@ Table of Contents
 
    As defined in the SCONE Protocol document, throughput advice is
    associated with the flows of UDP datagrams that QUIC exchanges (see
-   Section 1 of [I-D.ietf-scone-protocol]). pecifically, a flow is
+   Section 1 of [I-D.ietf-scone-protocol]).  Specifically, a flow is
    identified by packets sharing the same address tuple (IP version,
    source and destination IP addresses, and UDP ports) (see Section 3.3
    of [I-D.ietf-scone-protocol]).  SCONE signaling operates only over
