@@ -171,8 +171,25 @@ implemented in a SCONE Network Element but may also be implemented
 elsewhere in the network.
 
 ## Standards Compliance
-SCONE signaling is expected to traverse the existing data path associated
-with the UDP 4-tuple flow for which the Network Element intends to send the advisory bit-rate.
+Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
+operates entirely in-band. It does not introduce any additional routing overhead or
+require the creation of out-of-band signaling interfaces. Instead, SCONE signaling
+inherently traverses the already established network path, such as the existing
+connection between a user device and a network gateway, associated with the QUIC flow
+for which the network element intends to send throughput advice. This ensures that
+SCONE seamlessly integrates into existing architectures without requiring new tunnels
+or data paths to be established.
+
+By providing a standardized and scalable mechanism, SCONE allows network operators
+and QUIC endpoints to exchange bit-rate information without custom APIs or per-network
+integrations. SCONE improves user experience by enabling the network to provide bit-rate
+guidance directly to applications, allowing them to self-adapt instead of relying on
+network rate limiters such as policers or shapers. This avoids packet drops and throttling,
+resulting in better Quality of Experience (QoE) (see Section 7.3 of {{I-D.ietf-scone-protocol}}).
+It also supports dynamic bit-rate updates, allowing the network to adjust the maximum allowed
+bit-rate for an active flow in real-time, enabling multiple network operator business use cases
+where controlled flow rates are required. At the same time, SCONE enables transparent and
+cooperative enforcement of tiered subscriber data plans (see Section 3.2 of {{I-D.ietf-scone-protocol}}).
 
 ## Interworking with Other Congestion Management Mechanisms
 SCONE is distinct from transport-level congestion control mechanisms, such as
