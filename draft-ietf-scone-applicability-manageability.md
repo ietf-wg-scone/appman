@@ -107,7 +107,7 @@ packets sharing the same address tuple (IP version, source and destination IP
 addresses, and UDP ports) (see Section 3.3 of {{I-D.ietf-scone-protocol}}).
 SCONE signaling operates only over these established flows. To ensure signaling
 correctness, SCONE Network Elements need to be able to unambiguously associate
-throughput advice with specific application flows and maintain context for these flows.
+throughput advice with specific QUIC flows and maintain context for these flows.
 This flow awareness is critical because throughput advice applies strictly to that specific
 flow of packets on the same address tuple. By maintaining this per-flow context, network
 elements ensure that SCONE packets are routed precisely, enabling applications to receive
