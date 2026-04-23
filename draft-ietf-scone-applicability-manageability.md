@@ -190,7 +190,7 @@ SCONE informs the application of the maximum sustained rate allowed by policy. N
 would benefit from harmonizing multiple congestion signaling methods by policy or scope
 deployments to avoid conflicting feedback.
 
-# Using SCONE in and for QUIC tunnels using MASQUE
+# Using SCONE in and for QUIC tunnels in MASQUE
 
 When traffic is tunneled on the network path, such as when using MASQUE {{?I-D.schinazi-masque-proxy}},
 SCONE maybe be carried on the inner traffic but can also be used on a QUIC-based tunnel itself.
