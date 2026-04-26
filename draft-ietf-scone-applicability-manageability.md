@@ -216,6 +216,13 @@ path than the network element providing the SCONE signal. Therefore, endpoints n
 respect the send rate constraints established by their congestion controller, even if the
 SCONE throughput advice indicates a higher available rate
 (see Section 3.1 of {{I-D.ietf-scone-protocol}}).
+In other words, in the best case the throughput advice is below the congestion limit
+and when the application adheres to the advice, congestion control would be
+application-limited and not go into action. However, in cases of e.g. high load,
+congestion control would limit the throughput below the provided advice
+as the scone advice is only an upper limit. As such congestion control or
+a similar mechanism to react to congestion, e.g. a circuit breaker,
+is always needed, in addition to SCONE.
 
 In environments where both are present, SCONE and congestion control mechanisms co-exist.
 Congestion control manages the immediate dynamics of the bottleneck link, while SCONE informs
