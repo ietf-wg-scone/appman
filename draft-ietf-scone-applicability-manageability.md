@@ -123,7 +123,7 @@ to their policy objectives.
 
 ## Considerations of Processing Complexity
 As specified in Section 6.1 of {{I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
-an indication to the SCONE Network Element, enabling it to identify the SCONE-capable flow
+an specific indication on the first SCONE packet to support the identification of a SCONE-capable flow
 without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
 through bit-rate self-adaptation, remove the need for complex rate-limiting functions in the network
 element. Support for SCONE indication and bit-rate self-adaptation reduces complexity and CPU processing
