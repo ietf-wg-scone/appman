@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 20 October 2026                                           Nokia
+Expires: 29 October 2026                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           18 April 2026
+                                                           27 April 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 October 2026.
+   This Internet-Draft will expire on 29 October 2026.
 
 Copyright Notice
 
@@ -74,7 +74,7 @@ Table of Contents
      3.1.  Flow session awareness
      3.2.  Per-Flow Signaling
      3.3.  QoS awareness
-     3.4.  SCONE Indication to the Network Element
+     3.4.  Considerations of Processing Complexity
      3.5.  Retransmission of Advised Bit-Rate
      3.6.  Frequency of Updates
      3.7.  Dynamic Updates
@@ -166,7 +166,7 @@ Table of Contents
    and, where appropriate, provide throughput advice in accordance to
    their policy objectives.
 
-3.4.  SCONE Indication to the Network Element
+3.4.  Considerations of Processing Complexity
 
    As specified in Section 6.1 of [I-D.ietf-scone-protocol], SCONE-aware
    endpoints provide an indication to the SCONE Network Element,
