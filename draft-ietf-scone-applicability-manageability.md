@@ -121,7 +121,7 @@ throughput information. It is expected that network operators shall be able to i
 SCONE-enabled flows and, where appropriate, provide throughput advice in accordance
 to their policy objectives.
 
-## SCONE Indication to the Network Element
+## Considerations of Processing Complexity
 As specified in Section 6.1 of {{I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
 an indication to the SCONE Network Element, enabling it to identify the SCONE-capable flow
 without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
