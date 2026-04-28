@@ -170,10 +170,6 @@ adjust policies. Due to flow awareness, such mechanisms are typically
 implemented in a SCONE Network Element but may also be implemented
 elsewhere in the network.
 
-## Standards Compliance
-SCONE signaling is expected to traverse the existing data path associated
-with the UDP 4-tuple flow for which the Network Element intends to send the advisory bit-rate.
-
 ## Interworking with Other Congestion Management Mechanisms
 SCONE is distinct from transport-level congestion control mechanisms, such as
 Explicit Congestion Notification (ECN) or Low Latency, Low Loss, and Scalable
@@ -189,6 +185,65 @@ co-exist: congestion control manages the immediate dynamics of the bottleneck li
 SCONE informs the application of the maximum sustained rate allowed by policy. Network Operators
 would benefit from harmonizing multiple congestion signaling methods by policy or scope
 deployments to avoid conflicting feedback.
+
+# Operational Considerations
+Although the core SCONE protocol specifies how throughput advice is
+communicated to endpoints, deploying SCONE requires network operators to
+integrate this signaling into their existing operational, policy, and
+management frameworks. To implement a complete and effective solution,
+operators must address several operational lifecycle phases, including
+policy configuration, fault detection, and performance monitoring.
+
+This section outlines the practical operational considerations and
+manageability requirements for deploying SCONE within an operator network,
+ensuring that SCONE Network Elements can reliably determine, deliver, and
+monitor throughput advice while addressing real-world network challenges.
+
+## Determining Throughput Constraints
+The specific algorithms used to calculate throughput advice are highly
+dependent on an operator's internal business logic and network architecture.
+In practice, however, these constraints are generally determined by mapping
+established network policies and real-time conditions into SCONE signals.
+To implement a complete solution, operators typically derive their throughput
+advice from one or more of the following operational inputs:
+
+- Subscriber Policies and Data Plans: Rate limits may be triggered when a
+subscriber reaches specific data plan thresholds or usage caps. For example,
+in a 5G architecture, the User Plane Function (UPF) acting as the SCONE network
+element receives Quality of Service (QoS) and charging policy rules from the
+Policy Control Function (PCF) via the Session Management Function (SMF) {{5G-Arch}}.
+Similarly, in a 4G network, the Packet Data Network Gateway (P-GW) applies
+policies received from the Policy and Charging Rules Function (PCRF) {{4G-Arch}}.
+Beyond mobile networks, this applies equally to wireline broadband networks
+enforcing policies at a Broadband Network Gateway (BNG), or enterprise Wi-Fi
+networks where rate limits are enforced at an Access Point (AP) or wireless
+LAN controller.
+
+- Application-Specific Policies: Operators may configure specific maximum
+bit-rates allowed for certain types of traffic based on the user's
+subscription tier or device type. This includes video optimization
+policies for adaptive bitrate video, as well as traffic shaping policies
+applied to low-priority bulk downloads (such as background software updates).
+
+- Dynamic Network Conditions: Constraints can be updated dynamically due to
+changes in the access network type, such as Radio Access Technology (RAT)
+handovers when a user moves between 5G and 4G coverage areas.
+
+- Capacity and Load Management: During periods of unusually high usage,
+persistent overuse, or temporary equipment faults, the network element might
+signal a temporarily reduced throughput advice to manage shared capacity and
+guide application network usage.
+
+## Detecting Signaling Failures
+tbd.
+
+## Standards Compliance
+SCONE signaling is expected to traverse the existing data path associated
+with the UDP 4-tuple flow for which the Network Element intends to send the
+advisory bit-rate.
+
+## TO DO
+Maybe move some other sections here?
 
 
 # Security Considerations
