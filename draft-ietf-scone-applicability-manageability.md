@@ -50,6 +50,7 @@ normative:
     date: 2025-07
     seriesinfo: "Internet-Draft, draft-ietf-scone-protocol, Work in Progress"
 
+
 informative:
   4G-Arch:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=24300
@@ -57,16 +58,15 @@ informative:
     author:
       - name: 3GPP
     date: 2020-06-01
-
   5G-Arch:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144
     title: System Architecture for the 5G System (5GS)
     author:
       - name: 3GPP
-    date: 2025-01-07    
+    date: 2025-01-07
   RFC3168: RFC3168
   RFC9330: RFC9330
-    
+  
 --- abstract
 
 This document describes the Applicability and Manageability considerations for providing throughput guidance to
