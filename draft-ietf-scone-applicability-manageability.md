@@ -142,6 +142,7 @@ reduce advisory effectiveness. Network Operators can define
 adjustable update intervals based on application requirements, network
 capacity, and operational constraints.
 
+{#dynamic-updates}
 ## Dynamic Updates
 Dynamic rate limits updates can be enforced by the network during active
 application sessions due to:
@@ -179,7 +180,7 @@ set by other downstream network elements.
 When evaluating compliance, network operators will need to account for the time required for
 SCONE packets to be updated, received by endpoints, and acted upon by the application.
 Operators can accommodate this by utilizing a sliding window approach. Specifically, as
-established in the {{Dynamic Updates}} section, operators should evaluate QUIC flows against the highest throughput
+established in the {{dynamic-updates}} section, operators should evaluate QUIC flows against the highest throughput
 limit advised over the preceding two monitoring periods (a span of 134 seconds). If a network
 element cannot update the throughput advice in every traversing SCONE packet, operators might
 configure a longer sliding window to account for the possibility of packet loss.
