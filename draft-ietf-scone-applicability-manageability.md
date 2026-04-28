@@ -143,16 +143,19 @@ adjustable update intervals based on application requirements, network
 capacity, and operational constraints.
 
 ## Dynamic Updates
-Target throughput advice can change dynamically due to access network
-handovers or changes in subscriber policy (e.g., reaching data thresholds).
-Because a Network Element cannot synthesize or inject a new SCONE packet into
-a flow, it needs to wait for the next endpoint generated SCONE packet to traverse
-the path. Following a dynamic trigger, the Network Element can opportunistically
-update the very next available SCONE packet(s) rather than waiting for its normal
-interval, thereby minimizing the application's reaction time to the new network
-state (see Section 7.1 and Section 9.2 of {{I-D.ietf-scone-protocol}}).
-Details on trade-off between the delay in dynamic updates to the advised
-bit-rate versus the CPU processing load is also covered in Section {{freq-updates}}.
+The frequency of SCONE signaling is fundamentally driven by the application endpoint
+based on its specific traffic characteristics. Highly adaptive flows, such as ABR video
+clients fetching short media segments, may choose to send SCONE packets frequently
+(for example, matching their segment request cadence) to rapidly track network capacity
+changes. Conversely, non-ABR applications, for example bulk transfer applications such
+as background software updates, may function effectively by sending SCONE packets less
+frequently, as they do not require immediate reactions to changing network conditions.
+
+For network operators, understanding this application-driven behavior is important because
+the Network Element relies entirely on these endpoint-generated packets to communicate
+throughput advice. While the core SCONE protocol defines the baseline timers to prevent
+advice from expiring, operators should expect the actual frequency of passing SCONE packets
+to vary significantly depending on the application type.
 
 ## Monitoring and Logging
 SCONE signaling can be integrated into existing operational and
