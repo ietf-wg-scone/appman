@@ -1059,7 +1059,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mishra, et al.</td>
-<td class="center">Expires 28 October 2026</td>
+<td class="center">Expires 30 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scone-applicability-manageability-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-04-26" class="published">26 April 2026</time>
+<time datetime="2026-04-28" class="published">28 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-28">28 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-30">30 October 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1136,7 +1136,7 @@ provider networks utilizing the Standard Communication with Network Elements (SC
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 30 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1410,47 +1410,34 @@ with the UDP 4-tuple flow for which the Network Element intends to send the advi
         <h3 id="name-interworking-with-other-con">
 <a href="#section-3.11" class="section-number selfRef">3.11. </a><a href="#name-interworking-with-other-con" class="section-name selfRef">Interworking with Other Congestion Management Mechanisms</a>
         </h3>
-<p id="section-3.11-1">SCONE throughput advice is not a substitute for congestion feedback or congestion control
-mechanisms, such as Explicit Congestion Notification (ECN) or Low Latency, Low Loss, and
-Scalable Throughput (L4S) (see Section 3.1 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>). Rather, they
-are complementary. Congestion signals provide real-time information on loss, delay, and
-transient congestion for a network path, typically operating on the time scale of a
-round-trip time (RTT), whereas SCONE throughput advice operates over a much longer
-period. SCONE can be used for any use case that requires network operators to send the
-maximum allowable bit-rate (throughput advice) that is driven by operator video policy,
-subscriber policy, and load management policy operating over a longer time period. The
-specific reasons or methods by which an operator determines these enforcement policies
-are out of scope for this document.<a href="#section-3.11-1" class="pilcrow">¶</a></p>
-<p id="section-3.11-2">Additionally, the SCONE throughput advice for a QUIC flow is strictly independent of the
-Explicit Congestion Notification (ECN) field <span>[<a href="#RFC3168" class="cite xref">RFC3168</a>]</span>. Because SCONE throughput advice
-is carried within the QUIC payload as a SCONE packet (see Section 5 of
-<span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>), updating the throughput advice does not interact with or modify
-the ECN field located in the IP header. Consequently, network elements providing SCONE
-throughput advice do not alter IP-layer ECN markings as part of their SCONE protocol
-operation. This independence ensures that while SCONE informs the endpoint of network policy
-limits, real-time congestion feedback mechanisms remain fully operational and operate
-completely outside of the SCONE domain (see Section 3.1 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).<a href="#section-3.11-2" class="pilcrow">¶</a></p>
-<p id="section-3.11-3">Because a congestion controller needs to detect changed conditions and alter sending
-behavior more quickly than SCONE allows, congestion signals can indicate a throughput limit
-that is different from the signaled SCONE throughput advice. Endpoints cannot assume that the
-rate indicated in throughput advice is achievable if congestion signals indicate otherwise.
-Moreover, congestion could be experienced at an entirely different point on the network
-path than the network element providing the SCONE signal. Therefore, endpoints need to always
-respect the send rate constraints established by their congestion controller, even if the
-SCONE throughput advice indicates a higher available rate
-(see Section 3.1 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).
-In other words, in the best case the throughput advice is below the congestion limit
-and when the application adheres to the advice, congestion control would be
-application-limited and not go into action. However, in cases of e.g. high load,
-congestion control would limit the throughput below the provided advice
-as the scone advice is only an upper limit. As such congestion control or
-a similar mechanism to react to congestion, e.g. a circuit breaker,
-is always needed, in addition to SCONE.<a href="#section-3.11-3" class="pilcrow">¶</a></p>
-<p id="section-3.11-4">In environments where both are present, SCONE and congestion control mechanisms co-exist.
-Congestion control manages the immediate dynamics of the bottleneck link, while SCONE informs
-the application of the maximum rate allowed by network policy. Network operators would benefit
-from harmonizing multiple congestion signaling methods by policy or within scoped deployments
-to avoid providing conflicting feedback to applications.<a href="#section-3.11-4" class="pilcrow">¶</a></p>
+<p id="section-3.11-1">SCONE throughput advice is not a substitute for congestion control mechanisms in
+transport protocols utilizing congestion feedback and signals such as acknowledgments,
+Explicit Congestion Notification (ECN) <span>[<a href="#RFC3168" class="cite xref">RFC3168</a>]</span>, and Low Latency, Low Loss, and Scalable
+Throughput (L4S) <span>[<a href="#RFC9330" class="cite xref">RFC9330</a>]</span>. Rather, they are complementary. Congestion signals provide real-time
+information on loss, delay, and transient congestion for a network path, typically operating
+on the time scale of a round-trip time (RTT). In contrast, SCONE throughput advice operates
+over a much longer period. Because the network element is generally unaware of the specific
+application traffic, it simply provides static or dynamically adapted advice based on available
+policy information. Operators can use SCONE to communicate these maximum allowable bit-rates
+driven by video optimization, subscriber data, or load management policies, independent of
+instantaneous link congestion. It is then up to the applications, such as adaptive bitrate video
+clients or bulk downloads, to utilize this advice according to their specific use cases.<a href="#section-3.11-1" class="pilcrow">¶</a></p>
+<p id="section-3.11-2">For network operators considering co-deployment, SCONE throughput advice is strictly independent
+of the IP-layer ECN field. Because SCONE advice is carried within the QUIC payload, updating the
+advice does not interact with or modify ECN markings. This independence ensures that operators can
+safely deploy SCONE alongside L4S or standard ECN. Real-time congestion feedback mechanisms remain
+fully operational and function completely outside the SCONE domain.<a href="#section-3.11-2" class="pilcrow">¶</a></p>
+<p id="section-3.11-3">Operators should expect that congestion signals might frequently indicate a throughput limit different
+from the signaled SCONE advice. In other words, in the best case, the throughput advice is below the
+congestion limit and when the application adheres to the advice, congestion control would be
+application-limited and not go into action. However, in cases of high load, congestion control would
+limit the throughput below the provided advice, as the SCONE advice is only an upper limit. As such,
+congestion control or a similar mechanism to react to congestion, such as a circuit breaker, is always
+needed in addition to SCONE.<a href="#section-3.11-3" class="pilcrow">¶</a></p>
+<p id="section-3.11-4">In environments where both are present, congestion control manages the immediate dynamics of the bottleneck
+link, while SCONE informs the application of the maximum rate allowed by network policy. Network operators
+will benefit from ensuring that throughput advice policies and congestion control configurations are consistent
+within scoped deployments, to avoid providing conflicting feedback to applications.<a href="#section-3.11-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1497,7 +1484,11 @@ to avoid providing conflicting feedback to applications.<a href="#section-3.11-4
 <dl class="references">
 <dt id="RFC3168">[RFC3168]</dt>
         <dd>
-<span class="refAuthor">Ramakrishnan, K.</span>, <span class="refAuthor">Floyd, S.</span>, and <span class="refAuthor">D. Black</span>, <span class="refTitle">"The Addition of Explicit Congestion Notification (ECN) to IP"</span>, <span class="seriesInfo">RFC 3168 </span>, <time datetime="2001-09" class="refDate">September 2001</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3168">https://www.rfc-editor.org/info/rfc3168</a>&gt;</span>. </dd>
+<span class="refAuthor">Ramakrishnan, K.</span>, <span class="refAuthor">Floyd, S.</span>, and <span class="refAuthor">D. Black</span>, <span class="refTitle">"The Addition of Explicit Congestion Notification (ECN) to IP"</span>, <span class="seriesInfo">RFC 3168</span>, <span class="seriesInfo">DOI 10.17487/RFC3168</span>, <time datetime="2001-09" class="refDate">September 2001</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3168">https://www.rfc-editor.org/rfc/rfc3168</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9330">[RFC9330]</dt>
+        <dd>
+<span class="refAuthor">Briscoe, B., Ed.</span>, <span class="refAuthor">De Schepper, K.</span>, <span class="refAuthor">Bagnulo, M.</span>, and <span class="refAuthor">G. White</span>, <span class="refTitle">"Low Latency, Low Loss, and Scalable Throughput (L4S) Internet Service: Architecture"</span>, <span class="seriesInfo">RFC 9330</span>, <span class="seriesInfo">DOI 10.17487/RFC9330</span>, <time datetime="2023-01" class="refDate">January 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9330">https://www.rfc-editor.org/rfc/rfc9330</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="_4G-Arch">[_4G-Arch]</dt>
         <dd>
