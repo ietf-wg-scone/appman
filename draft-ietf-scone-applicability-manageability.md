@@ -142,8 +142,7 @@ reduce advisory effectiveness. Network Operators can define
 adjustable update intervals based on application requirements, network
 capacity, and operational constraints.
 
-{#dynamic-updates}
-## Dynamic Updates
+## Dynamic Updates {#dynamic-updates}
 Dynamic rate limits updates can be enforced by the network during active
 application sessions due to:
 
