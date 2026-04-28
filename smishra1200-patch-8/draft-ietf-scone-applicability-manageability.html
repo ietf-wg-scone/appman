@@ -1059,7 +1059,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mishra, et al.</td>
-<td class="center">Expires 20 October 2026</td>
+<td class="center">Expires 30 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-scone-applicability-manageability-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-04-18" class="published">18 April 2026</time>
+<time datetime="2026-04-28" class="published">28 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-20">20 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-30">30 October 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1136,7 +1136,7 @@ provider networks utilizing the Standard Communication with Network Elements (SC
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 30 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1334,29 +1334,18 @@ Conformance depends on the behavior of both network and application endpoint.<a 
         <h3 id="name-frequency-of-updates">
 <a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-frequency-of-updates" class="section-name selfRef">Frequency of Updates</a>
         </h3>
-<p id="section-3.6-1">As specified in Section 8.1 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>, endpoints that wish to
-offer network elements the option to add throughput advice signals can send SCONE packets
-at any time. This is a decision that a sender makes when constructing datagrams.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
-<p id="section-3.6-2">The frequency of SCONE signaling is fundamentally driven by the application endpoint.
-Highly adaptive flows, such as ABR video clients fetching short media segments, may
-choose to send SCONE packets frequently (e.g., matching their segment request cadence)
-to rapidly track network capacity changes. Conversely, stable background tasks may function
-effectively by sending SCONE packets less frequently, such as every 20 to 30 seconds,
-which is sufficient to ensure the throughput advice does not expire over the 67-second
-monitoring period; see Section 5.2 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.<a href="#section-3.6-2" class="pilcrow">¶</a></p>
-<p id="section-3.6-3">While SCONE packets operate entirely within the data path, detecting and updating the
-throughput advice requires computational resources at the SCONE Network Element.
-To manage this CPU load, network elements are not required to update every single
-traversing SCONE packet. Instead, they can conserve resources by selectively updating
-packets, ideally at least twice per monitoring period or every 20 to 30 seconds, which
-is sufficient to securely maintain the signal while protecting the element's processing
-capacity (see Section 7.1 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).<a href="#section-3.6-3" class="pilcrow">¶</a></p>
-<p id="section-3.6-4">Correspondingly, to avoid throughput advice from expiring, a network element needs to
-update the throughput advice in SCONE packets with no more than 67 seconds between each update,
-though a frequency of every 20 to 30 seconds is recommended to account for potential packet loss.
-Furthermore, at the start of a flow, network elements are encouraged to update the first few available
-SCONE packets so that endpoints receive advice early and can compensate for any initial packet
-loss (see Section 7.1 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).<a href="#section-3.6-4" class="pilcrow">¶</a></p>
+<p id="section-3.6-1">The frequency of SCONE signaling is fundamentally driven by the application endpoint based on
+its specific traffic characteristics. Highly adaptive flows, such as ABR video clients fetching
+short media segments, may choose to send SCONE packets frequently (for example, matching their
+segment request cadence) to rapidly track network capacity changes. Conversely, non-ABR
+applications, for example bulk transfer applications such as background software updates,
+may function effectively by sending SCONE packets less frequently, as they do not require
+immediate reactions to changing network conditions.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
+<p id="section-3.6-2">For network operators, understanding this application-driven behavior is important
+because the Network Element relies entirely on these endpoint-generated packets to
+communicate throughput advice. While the core SCONE protocol defines the baseline
+timers to prevent advice from expiring, operators should expect the actual frequency
+of passing SCONE packets to vary significantly depending on the application type.<a href="#section-3.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="dynamic-updates">
