@@ -129,10 +129,16 @@ network to signal the maximum allowable bit rate, and reduce CPU
 overhead by eliminating additional classification steps.
 
 ## Retransmission of Advised Bit-Rate
-Packet loss or non-delivery of SCONE advice reduces its effectiveness. Both
-SCONE Network Elements and application endpoints should support retransmission or
-periodic re-sending of SCONE packets to ensure reliable delivery.
-Conformance depends on the behavior of both network and application endpoint.
+While endpoints send SCONE packets as frequently as they see fit to ensure
+reliable delivery, the Network Element makes independent decisions on how
+frequently to update those packets to mitigate packet loss. This decision
+relies on operational considerations such as CPU load and the nature of
+the network policies. A network enforcing dynamic policies will prioritize
+timely updates to minimize the delay in activating the advised bit-rate after
+a packet loss. Conversely, a network enforcing fixed, subscription-based
+policies that do not change over SCONE timescales can safely scale back the
+Network Element update frequency to conserve CPU resources, as timely recovery
+from packet loss is less critical.
 
 ## Frequency of Updates
 The rate at which SCONE updates are issued depends on flow
