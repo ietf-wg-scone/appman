@@ -100,18 +100,23 @@ This document uses terms and definitions described in {{I-D.ietf-scone-protocol}
 # Applicability and Manageability Considerations
 
 ## Flow Awareness and Per-Flow Signaling
-As defined in the SCONE Protocol document, throughput advice is associated with the
-flows of UDP datagrams that QUIC exchanges
-(see Section 1 of {{I-D.ietf-scone-protocol}}). Specifically, a flow is identified by
-packets sharing the same address tuple (IP version, source and destination IP
-addresses, and UDP ports) (see Section 3.3 of {{I-D.ietf-scone-protocol}}).
-SCONE signaling operates only over these established flows. To ensure signaling
-correctness, SCONE Network Elements need to be able to unambiguously associate
-throughput advice with specific QUIC flows and maintain context for these flows.
-This flow awareness is critical because throughput advice applies strictly to that specific
-flow of packets on the same address tuple. By maintaining this per-flow context, network
-elements ensure that SCONE packets are routed precisely, enabling applications to receive
-targeted throughput advice while preventing any unintended impact on unrelated traffic.
+As defined in the core SCONE protocol specification {{I-D.ietf-scone-protocol}},
+throughput advice is associated with the flow of QUIC UDP datagrams sharing the
+same address tuple (IP version, source and destination IP addresses, and UDP ports).
+
+Because throughput advice applies strictly to this specific flow, SCONE Network Elements
+need to unambiguously associate their policy limits with the correct QUIC flows. However,
+the act of applying SCONE throughput advice is inherently stateless. To provide advice, a
+network element simply identifies a traversing SCONE packet and updates its value based on
+the configured policy for that flow or network scope, without needing to maintain active
+per-flow state.
+
+While the signaling itself is stateless, managing the operational lifecycle of a SCONE
+deployment requires establishing and maintaining per-flow context. Specifically, to execute
+the monitoring, logging, and conformance evaluation functions detailed later in this document,
+the network element must track the flow's throughput over multiple monitoring periods. This
+per-flow context serves as the operational foundation for validating whether an application is
+adhering to the advised rate and for applying any necessary policy enforcement.
 
 ## QoS awareness
 Quality of Service (QoS) may be enforced by networks through a variety of
