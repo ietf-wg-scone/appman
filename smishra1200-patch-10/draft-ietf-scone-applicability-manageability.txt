@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 20 October 2026                                           Nokia
+Expires: 31 October 2026                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           18 April 2026
+                                                           29 April 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 October 2026.
+   This Internet-Draft will expire on 31 October 2026.
 
 Copyright Notice
 
@@ -221,68 +221,47 @@ Table of Contents
    possible scenarios: no network elements, a single network element, or
    multiple network elements.
 
-   To handle the scenario where no network elements are present, the
-   sending endpoint initially sets the 7-bit Rate Signal field to 127
-   (unknown).  If this value arrives at the receiving endpoint
-   unchanged, it informs the receiver that either there are no SCONE-
-   aware network elements on the path, or the existing elements do not
-   wish to provide throughput advice.  Consequently, the endpoint can
-   operate without SCONE-advised limits (see Section 5.1 of
-   [I-D.ietf-scone-protocol]).
+   If no SCONE-aware network elements are present on the path (or
+   existing elements do not wish to provide throughput advice), the
+   default unknown rate signal arrives at the endpoint unmodified.
+   Operationally, the application continues operate without any SCONE-
+   advised limits.
 
-   In scenarios with one or multiple network elements, the application
-   endpoint is not expected to be aware of the number of network
-   elements on the data path.  The application endpoint handles the Rate
-   Signal field present in the SCONE packet as specified in the SCONE
-   Protocol, irrespective of how many network elements are present.  For
-   example, if an endpoint receives multiple SCONE packets within a
-   67-second monitoring period with different Rate Signal values, it is
-   expected to apply the lowest throughput advice received (see
-   Section 5.4 of [I-D.ietf-scone-protocol]).
-
-   Note that in the case of multiple network elements, it is possible
-   that these network elements update the Rate Signal field in the SCONE
-   packet independently without any coordination among each other,
-   especially when the network elements are in different network
-   domains.  A network element only replaces the rate signal if it
-   wishes to signal a lower value, which preserves the signal from any
-   previous network element with a lower policy.  As a result, the
-   application endpoint simply handles the final Rate Signal field it
-   receives as specified in the SCONE Protocol (see Section 7.1 of
-   [I-D.ietf-scone-protocol]).
+   In topologies with one or more SCONE-capable network elements, the
+   elements operate strictly independently without requiring any
+   synchronization or control-plane coordination.  If a single network
+   element is present, it simply applies its policy and provides advice
+   directly to the traversing flow.  When multiple elements are present,
+   a network element only replaces the rate signal if it wishes to
+   signal a lower value, which preserves the signal from any previous
+   network element with a lower policy limit.  As a result, the
+   application endpoint seamlessly receives the most restrictive
+   throughput advice applied along the entire path.
 
 3.9.  Change of Network Element During an Active Flow
 
    A change in the on-path network element can occur when an application
-   changes its access network.  This typically manifests in two
-   scenarios: QUIC connection migration where the IP address changes, or
-   mobility events where the IP address remains unchanged.  In both
-   cases, the endpoint and the new network element can follow the steps
-   for migrated flows specified in Section 6.3 of
-   [I-D.ietf-scone-protocol].  Because a connection that migrates cannot
-   assume that throughput advice from one path applies to a new path,
-   endpoints can send SCONE packets early on the new path.  This gives
-   the network element on the new path an opportunity to detect the
-   SCONE-capable flow and provide its own throughput advice.
+   dynamically changes its access network, which can manifest during
+   QUIC connection migration or during mobility events where the IP
+   address remains unchanged.
 
-   Following a network element change, two operational outcomes are
-   possible: - New network element supports SCONE: If the new network
-   element supports the protocol and detects the flow, it can begin or
-   continue updating the traversing SCONE packets with its own
-   throughput advice.
+   Because the act of SCONE signaling is inherently stateless, this
+   transition requires no explicit teardown or state transfer between
+   the old and new network elements.  When a routing change occurs, the
+   endpoint and network elements simply follow the standard migration
+   steps defined in [I-D.ietf-scone-protocol], leading to two possible
+   operational outcomes:
 
-   *  New network element does not support SCONE (or misses the flow):
-      If the new network element does not support the SCONE protocol, or
-      if it fails to detect the flow after migration, the endpoint will
-      cease receiving SCONE updates.  The endpoint handles this scenario
-      exactly as it would any loss of signal.  If a full 67-second
-      monitoring period elapses without receiving throughput advice, the
-      previous advice expires (see Section 5.4 of
-      [I-D.ietf-scone-protocol]).  The endpoint can then assume that
-      either there are no SCONE-aware network elements on the new path,
-      or that they do not wish to enforce a specific bit-rate, allowing
-      the endpoint to remove any SCONE-advised constraints and operate
-      without SCONE limits for that flow.
+   *  New network element supports SCONE: If the new network element
+      supports the protocol and detects the flow, it simply begins
+      updating the traversing SCONE packets with its own policy limits.
+
+   *  New network element does not support SCONE: If the new network
+      element does not support the protocol, it forwards the packets
+      unmodified.  Any previously received advice will naturally expire
+      at the end of the standard monitoring period, allowing the
+      application to safely operate without SCONE-advised limits and
+      requiring no further intervention from the network.
 
 3.10.  Monitoring and Logging
 
