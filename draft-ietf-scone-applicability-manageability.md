@@ -50,17 +50,6 @@ normative:
     date: 2025-07
     seriesinfo: "Internet-Draft, draft-ietf-scone-protocol, Work in Progress"
 
-  RFC2474:
-    target: https://www.rfc-editor.org/info/rfc2474
-    title: Definition of the Differentiated Services Field (DS Field) in the IPv4 and IPv6 Headers
-    author:
-      - name: K. Nichols
-      - name: S. Blake
-      - name: F. Baker
-      - name: D. Black
-    date: 1998-12
-    seriesinfo: "RFC 2474"
-
 informative:
   4G-Arch:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=24300
@@ -122,21 +111,6 @@ Throughput advice is applied on a UDP 4-tuple basis. SCONE Network Elements
 ought to maintain flow-specific context to ensure signaling correctness.
 This enables applications to receive targeted throughput advice while
 preventing unintended impact on unrelated flows.
-
-## QoS Awareness
-Quality of Service (QoS) may be enforced by networks through a variety of mechanisms.
-SCONE is fundamentally agnostic to Differentiated Services Code Point (DSCP) settings
-{{RFC2474}}. Because SCONE operates on the specific flows of UDP datagrams that QUIC exchanges,
-it does not inherently look at or depend on DSCP settings. For further discussion on DSCP
-interactions, refer to Section 5.3 of {{I-D.ietf-scone-protocol}}.
-
-In certain deployments, network operators may choose to apply distinct QoS policies to
-SCONE-enabled flows. The SCONE Network Element responsible for inserting SCONE advice is not
-required to interpret or enforce QoS policies; its role is limited to the signaling of the
-advisory throughput information. It is expected that network operators are able to identify
-SCONE-enabled flows and, where appropriate, provide throughput advice in accordance with their
-policy objectives.
-
 
 ## SCONE Hint to the Network
 SCONE-aware applications ought to provide hints to the SCONE Network Elements,
