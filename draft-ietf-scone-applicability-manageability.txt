@@ -253,8 +253,10 @@ Table of Contents
 
 4.  Security Considerations
 
-   Security considerations are included separately in the SCONE protocol
-   documents.
+   This document does not add any additional security considerations.
+   The core security and privacy considerations for the SCONE protocol
+   are comprehensively defined in Sections 9 and 10 of
+   [I-D.ietf-scone-protocol].
 
 5.  IANA Considerations
 
