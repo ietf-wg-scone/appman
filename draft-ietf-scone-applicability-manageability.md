@@ -135,7 +135,7 @@ periodic re-sending of SCONE packets to ensure reliable delivery.
 Conformance depends on the behavior of both network and application endpoint.
 
 ## Frequency of Updates
-The frequency of SCONE signaling is fundamentally driven by the application endpoint based on
+The frequency of SCONE signaling is decided by the application endpoint based on
 its specific traffic characteristics. Highly adaptive flows, such as ABR video clients fetching
 short media segments, may choose to send SCONE packets frequently (for example, matching their
 segment request cadence) to rapidly track network capacity changes. Conversely, non-ABR
