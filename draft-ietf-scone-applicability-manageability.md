@@ -188,6 +188,35 @@ SCONE informs the application of the maximum sustained rate allowed by policy. N
 would benefit from harmonizing multiple congestion signaling methods by policy or scope
 deployments to avoid conflicting feedback.
 
+# Using SCONE in and for QUIC tunnels in MASQUE
+
+When traffic is tunneled on the network path, such as when using MASQUE {{?I-D.schinazi-masque-proxy}},
+SCONE maybe be carried on the inner traffic but can also be used on a QUIC-based tunnel itself.
+
+If the inner traffic is SCONE-capable, the tunnel endpoint itself
+can be a SCONE-capable network element as it has visibility into the demultiplexed tunneled traffic.
+In this case, throughput advice can used be to manage individual tunneled flows.
+
+If the MASQUE tunnel itself uses a SCONE-enabled QUIC connection,
+the SCONE-capable network element is on the path between the MASQUE client and the MASQUE proxy.
+In this case, the tunnel is the only flow visible to the network element
+and as such SCONE throughput advice applies to the tunnel as an aggregate QUIC connection.
+The advice reflects the maximum achievable throughput for traffic carried over the tunnel,
+independent of how many tunneled flows are multiplexed within it. The receiving tunnel endpoint,
+such as a MASQUE client, treats this advice as an upper bound on tunnel capacity
+and has to decide how to share that capacity across tunneled connections.
+
+If SCONE is used on the inner traffic as well as for the tunnel QUIC connection, the MASQUE client
+might receive two different throughput advise values. The client should take the minimum of the throughput values.
+If the MASQUE client is not also the endpoint of the end-to-end QUIC connection, the client needs to
+act as a network element and ensure the value in the SCONE packet of the outer QUIC connection
+is translated to an inner
+SCONE packet in order to be visible to the transport connection endpoints. Again in this case
+the MASQUE client has to decide how to share the capacity among all tunneled connections.
+
+Using SCONE on a MASQUE QUIC tunnel connection can enable throughput advise also for tunnelled
+non-QUIC traffic, however, this can only be applied if there is a interface or mechanism in the client
+that provides the throughput advise to the application.
 
 # Security Considerations
 Security considerations are included separately in the SCONE protocol documents.
