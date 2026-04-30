@@ -128,16 +128,17 @@ UDP 4-tuple. Such hints prevent unnecessary default rate-limiting, allow the
 network to signal the maximum allowable bit rate, and reduce CPU
 overhead by eliminating additional classification steps.
 
-## Retransmission of Advised Bit-Rate
-While endpoints send SCONE packets as frequently as they see fit to ensure
-reliable delivery, the network element makes independent decisions on how
-frequently to update those traversing packets. This decision relies on
-operational considerations such as CPU load and the nature of the network
-policies. A network enforcing dynamic policies might prioritize updating
-SCONE packets immediately upon a policy trigger to minimize the application's
-reaction time to the new limit. Conversely, a network enforcing fixed,
-subscription-based policies can safely scale back its update frequency to
-conserve CPU resources, provided it still updates SCONE packets periodically
+## Retransmission Rate of Advised Bit-Rate
+Packet loss or non-delivery of SCONE advice directly reduces its effectiveness.
+Because the reliable delivery of throughput advice relies entirely on the
+periodic sending of SCONE packets by application endpoints, the network element
+must make independent operational decisions on how frequently to update those
+traversing packets. This decision relies on operational considerations such as
+CPU load and the nature of the network policies. A network enforcing dynamic
+policies might prioritize updating SCONE packets immediately upon a policy trigger
+to minimize the application's reaction time to the new limit. Conversely, a network
+enforcing fixed, subscription-based policies can safely scale back its update frequency
+to conserve CPU resources, provided it still updates SCONE packets periodically
 (e.g., every 20 to 30 seconds). This periodic update frequency ensures that the
 throughput advice reliably reaches the endpoint and does not inadvertently expire
 across the standard monitoring period due to normal packet loss.
