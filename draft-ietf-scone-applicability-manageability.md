@@ -149,7 +149,7 @@ element can immediately update the next available traversing SCONE packet with t
 throughput limit rather than waiting for its normal update interval, thereby minimizing the
 application's reaction time to the new network state. Additional details on the operational
 trade-offs between the delay in dynamic updates to the advised bit-rate versus the CPU
-processing load are covered in Section {{Frequency of Updates}}.
+processing load are covered in Section {{freq-updates}}.
 
 ## Monitoring and Logging
 SCONE signaling can be integrated into existing operational and
