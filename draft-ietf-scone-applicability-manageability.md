@@ -100,17 +100,24 @@ This document uses terms and definitions described in {{I-D.ietf-scone-protocol}
 
 # Applicability and Manageability Considerations
 
-## Flow session awareness
-SCONE signaling operates only over established sessions. SCONE Network Elements
-ought to be able to unambiguously associate throughput advice with
-application flows. Each session is bound to an IP address and port,
-ensuring SCONE packets are routed precisely without affecting unrelated traffic.
+## Flow Awareness and Per-Flow Signaling
+As defined in the core SCONE protocol specification {{I-D.ietf-scone-protocol}},
+throughput advice is associated with the flow of QUIC UDP datagrams sharing the
+same address tuple (IP version, source and destination IP addresses, and UDP ports).
 
-## Per-Flow Signaling
-Throughput advice is applied on a UDP 4-tuple basis. SCONE Network Elements
-ought to maintain flow-specific context to ensure signaling correctness.
-This enables applications to receive targeted throughput advice while
-preventing unintended impact on unrelated flows.
+Because throughput advice applies strictly to this specific flow, SCONE Network Elements
+need to unambiguously associate their policy limits with the correct QUIC flows. However,
+the act of applying SCONE throughput advice is inherently stateless. To provide advice, a
+network element simply identifies a traversing SCONE packet and updates its value based on
+the configured policy for that flow or network scope, without needing to maintain active
+per-flow state.
+
+While the signaling itself is stateless, managing the operational lifecycle of a SCONE
+deployment requires establishing and maintaining per-flow context. Specifically, to execute
+the monitoring, logging, and conformance evaluation functions detailed later in this document,
+the network element must track the flow's throughput over multiple monitoring periods. This
+per-flow context serves as the operational foundation for validating whether an application is
+adhering to the advised rate and for applying any necessary policy enforcement.
 
 ## SCONE Hint to the Network
 SCONE-aware applications ought to provide hints to the SCONE Network Elements,
