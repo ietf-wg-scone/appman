@@ -1178,7 +1178,7 @@ provider networks utilizing the Standard Communication with Network Elements (SC
                 <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-flow-awareness-and-per-flow" class="internal xref">Flow Awareness and Per-Flow Signaling</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-scone-hint-to-the-network" class="internal xref">SCONE Hint to the Network</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-considerations-of-processin" class="internal xref">Considerations of Processing Complexity</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
                 <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-retransmission-of-advised-b" class="internal xref">Retransmission of Advised Bit-Rate</a></p>
@@ -1285,16 +1285,17 @@ per-flow context serves as the operational foundation for validating whether an 
 adhering to the advised rate and for applying any necessary policy enforcement.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="scone-hint-to-the-network">
+<div id="considerations-of-processing-complexity">
 <section id="section-3.2">
-        <h3 id="name-scone-hint-to-the-network">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-scone-hint-to-the-network" class="section-name selfRef">SCONE Hint to the Network</a>
+        <h3 id="name-considerations-of-processin">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-considerations-of-processin" class="section-name selfRef">Considerations of Processing Complexity</a>
         </h3>
-<p id="section-3.2-1">SCONE-aware applications ought to provide hints to the SCONE Network Elements,
-enabling it to generate appropriate throughput advice for a given
-UDP 4-tuple. Such hints prevent unnecessary default rate-limiting, allow the
-network to signal the maximum allowable bit rate, and reduce CPU
-overhead by eliminating additional classification steps.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-1">As specified in Section 6.1 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>, SCONE-aware endpoints provide
+a specific indication on the first SCONE packet to support the identification of a SCONE-capable flow
+without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
+through bit-rate self-adaptation, remove the need for complex rate-limiting functions in the network
+element. Support for SCONE indication and bit-rate self-adaptation reduces complexity and CPU processing
+load in the network element.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="retransmission-of-advised-bit-rate">
