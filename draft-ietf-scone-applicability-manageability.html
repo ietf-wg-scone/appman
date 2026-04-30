@@ -1368,12 +1368,35 @@ isolation. Metrics of interest include:<a href="#section-3.6-1" class="pilcrow">
         <h3 id="name-conformance-monitoring">
 <a href="#section-3.7" class="section-number selfRef">3.7. </a><a href="#name-conformance-monitoring" class="section-name selfRef">Conformance Monitoring</a>
         </h3>
-<p id="section-3.7-1">Networks providing SCONE throughput advice ought to implement
-mechanisms to measure compliance, either per application flow or in
-aggregate. This allows operators to validate advisory effectiveness and
-adjust policies. Due to flow awareness, such mechanisms are typically
-implemented in a SCONE Network Element but may also be implemented
-elsewhere in the network.<a href="#section-3.7-1" class="pilcrow">¶</a></p>
+<p id="section-3.7-1">Networks that choose to provide SCONE throughput advice can implement mechanisms to
+monitor QUIC flows and measure conformance to the advised bit-rate, either per flow of
+packets on the same UDP address tuple, or in aggregate across multiple QUIC flows if they
+contribute to a shared policy limit (such as a device or network subscription level). This
+will allow operators to validate whether applications are following the advised bit-rate.<a href="#section-3.7-1" class="pilcrow">¶</a></p>
+<p id="section-3.7-2">While it is expected that operators will implement monitoring at the SCONE Network Element
+providing the advice, it could also be performed elsewhere in the network. However, network
+elements lack the capability to validate the legitimacy of SCONE packets coalesced with other
+QUIC packets. Therefore, operators must ensure a network element evaluates conformance only
+against the advised bit-rate that it set itself, and never enforces limits based on advice
+set by other downstream network elements.<a href="#section-3.7-2" class="pilcrow">¶</a></p>
+<p id="section-3.7-3">When evaluating compliance, network operators will need to account for the time required for
+SCONE packets to be updated, received by endpoints, and acted upon by the application.
+Operators can accommodate this by utilizing a sliding window approach. Operators should
+evaluate QUIC flows against the highest throughput limit advised over the preceding two
+monitoring periods (a span of 134 seconds). If a network element cannot update the
+throughput advice in every traversing SCONE packet, operators might configure a
+longer sliding window to account for the possibility of packet loss.<a href="#section-3.7-3" class="pilcrow">¶</a></p>
+<p id="section-3.7-4">To simplify the measurement function, reduce computational load, or offload this
+function to another node in the network, operators can select any value larger
+than the baseline 67-second window for their measurement and averaging period.<a href="#section-3.7-4" class="pilcrow">¶</a></p>
+<p id="section-3.7-5">Because some applications will not support SCONE, and others either will not or cannot follow
+the provided throughput advice, operators have flexibility in how they handle violations.
+If the monitoring function detects a violation where an application is not respecting the
+signaled throughput advice, the network can employ a throttling fallback. This involves falling
+back to traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
+the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
+can deploy SCONE purely as an advisory signal without any throttling fallback, prioritizing
+cooperative application optimization over strict compliance enforcement.<a href="#section-3.7-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="standards-compliance">
