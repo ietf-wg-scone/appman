@@ -119,12 +119,13 @@ the network element must track the flow's throughput over multiple monitoring pe
 per-flow context serves as the operational foundation for validating whether an application is
 adhering to the advised rate and for applying any necessary policy enforcement.
 
-## SCONE Hint to the Network
-SCONE-aware applications ought to provide hints to the SCONE Network Elements,
-enabling it to generate appropriate throughput advice for a given
-UDP 4-tuple. Such hints prevent unnecessary default rate-limiting, allow the
-network to signal the maximum allowable bit rate, and reduce CPU
-overhead by eliminating additional classification steps.
+## Considerations of Processing Complexity
+As specified in Section 6.1 of {{I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
+a specific indication on the first SCONE packet to support the identification of a SCONE-capable flow
+without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
+through bit-rate self-adaptation, remove the need for complex rate-limiting functions in the network
+element. Support for SCONE indication and bit-rate self-adaptation reduces complexity and CPU processing
+load in the network element.
 
 ## Retransmission of Advised Bit-Rate
 Packet loss or non-delivery of SCONE advice reduces its effectiveness. Both
