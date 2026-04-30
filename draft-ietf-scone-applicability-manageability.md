@@ -50,6 +50,7 @@ normative:
     date: 2025-07
     seriesinfo: "Internet-Draft, draft-ietf-scone-protocol, Work in Progress"
 
+
 informative:
   4G-Arch:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=24300
@@ -57,17 +58,17 @@ informative:
     author:
       - name: 3GPP
     date: 2020-06-01
-
   5G-Arch:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144
     title: System Architecture for the 5G System (5GS)
     author:
       - name: 3GPP
     date: 2025-01-07
+  RFC3168: RFC3168
+  RFC9330: RFC9330
 
 
 --- abstract
-
 This document describes the Applicability and Manageability considerations for providing throughput guidance to
 application endpoints. This guidance is specifically addressed within the context of telecommunications service
 provider networks utilizing the Standard Communication with Network Elements (SCONE) protocol.
@@ -201,20 +202,37 @@ SCONE signaling is expected to traverse the existing data path associated
 with the UDP 4-tuple flow for which the Network Element intends to send the advisory bit-rate.
 
 ## Interworking with Other Congestion Management Mechanisms
-SCONE is distinct from transport-level congestion control mechanisms, such as
-Explicit Congestion Notification (ECN) or Low Latency, Low Loss, and Scalable
-Throughput (L4S). While congestion control operates on short timescales to manage
-transient congestion caused by varying link conditions or instantaneous load, SCONE
-provides throughput advice based on relatively stable network policies or capacity
-management goals. ECN/L4S based congestion control works at transport level and SCONE
-works at application level. SCONE does not replace the need for endpoints to perform
-congestion control or network to provide explicit or implicit congestion signals; rather,
-it complements these mechanisms by providing a variable range for application-level rate
-adaptation. In environments where both are present, SCONE and congestion control mechanisms
-co-exist: congestion control manages the immediate dynamics of the bottleneck link, while
-SCONE informs the application of the maximum sustained rate allowed by policy. Network Operators
-would benefit from harmonizing multiple congestion signaling methods by policy or scope
-deployments to avoid conflicting feedback.
+SCONE throughput advice is not a substitute for congestion control mechanisms in
+transport protocols utilizing congestion feedback and signals such as acknowledgments,
+Explicit Congestion Notification (ECN) {{RFC3168}}, and Low Latency, Low Loss, and Scalable
+Throughput (L4S) {{RFC9330}}. Rather, they are complementary. Congestion signals provide real-time
+information on loss, delay, and transient congestion for a network path, typically operating
+on the time scale of a round-trip time (RTT). In contrast, SCONE throughput advice operates
+over a much longer period. Because the network element is generally unaware of the specific
+application traffic, it simply provides static or dynamically adapted advice based on available
+policy information. Operators can use SCONE to communicate these maximum allowable bit-rates
+driven by video optimization, subscriber data, or load management policies, independent of
+instantaneous link congestion. It is then up to the applications, such as adaptive bitrate video
+clients or bulk downloads, to utilize this advice according to their specific use cases.
+
+For network operators considering co-deployment, SCONE throughput advice is strictly independent
+of the IP-layer ECN field. Because SCONE advice is carried within the QUIC payload, updating the
+advice does not interact with or modify ECN markings. This independence ensures that operators can
+safely deploy SCONE alongside L4S or standard ECN. Real-time congestion feedback mechanisms remain
+fully operational and function completely outside the SCONE domain.
+
+Operators should expect that congestion signals might frequently indicate a throughput limit different
+from the signaled SCONE advice. In other words, in the best case, the throughput advice is below the
+congestion limit and when the application adheres to the advice, congestion control would be
+application-limited and not go into action. However, in cases of high load, congestion control would
+limit the throughput below the provided advice, as the SCONE advice is only an upper limit. As such,
+congestion control or a similar mechanism to react to congestion, such as a circuit breaker, is always
+needed in addition to SCONE.
+
+In environments where both are present, congestion control manages the immediate dynamics of the bottleneck
+link, while SCONE informs the application of the maximum rate allowed by network policy. Network operators
+will benefit from ensuring that throughput advice policies and congestion control configurations are consistent
+within scoped deployments, to avoid providing conflicting feedback to applications.
 
 # Security Considerations
 This document does not add any additional security considerations. The core security and
