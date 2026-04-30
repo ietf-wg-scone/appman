@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 21 October 2026                                           Nokia
+Expires: 1 November 2026                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           19 April 2026
+                                                           30 April 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 October 2026.
+   This Internet-Draft will expire on 1 November 2026.
 
 Copyright Notice
 
@@ -73,15 +73,14 @@ Table of Contents
    3.  Applicability and Manageability Considerations
      3.1.  Flow session awareness
      3.2.  Per-Flow Signaling
-     3.3.  QoS Awareness
-     3.4.  SCONE Hint to the Network
-     3.5.  Retransmission of Advised Bit-Rate
-     3.6.  Frequency of Updates
-     3.7.  Dynamic Updates
-     3.8.  Monitoring and Logging
-     3.9.  Conformance Monitoring
-     3.10. Standards Compliance
-     3.11. Interworking with Other Congestion Management Mechanisms
+     3.3.  SCONE Hint to the Network
+     3.4.  Retransmission of Advised Bit-Rate
+     3.5.  Frequency of Updates
+     3.6.  Dynamic Updates
+     3.7.  Monitoring and Logging
+     3.8.  Conformance Monitoring
+     3.9.  Standards Compliance
+     3.10. Interworking with Other Congestion Management Mechanisms
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -154,26 +153,7 @@ Table of Contents
    throughput advice while preventing unintended impact on unrelated
    flows.
 
-3.3.  QoS Awareness
-
-   Quality of Service (QoS) may be enforced by networks through a
-   variety of mechanisms.  SCONE is fundamentally agnostic to
-   Differentiated Services Code Point (DSCP) settings [RFC2474].
-   Because SCONE operates on the specific flows of UDP datagrams that
-   QUIC exchanges, it does not inherently look at or depend on DSCP
-   settings.  For further discussion on DSCP interactions, refer to
-   Section 5.3 of [I-D.ietf-scone-protocol].
-
-   In certain deployments, network operators may choose to apply
-   distinct QoS policies to SCONE-enabled flows.  The SCONE Network
-   Element responsible for inserting SCONE advice is not required to
-   interpret or enforce QoS policies; its role is limited to the
-   signaling of the advisory throughput information.  It is expected
-   that network operators are able to identify SCONE-enabled flows and,
-   where appropriate, provide throughput advice in accordance with their
-   policy objectives.
-
-3.4.  SCONE Hint to the Network
+3.3.  SCONE Hint to the Network
 
    SCONE-aware applications ought to provide hints to the SCONE Network
    Elements, enabling it to generate appropriate throughput advice for a
@@ -182,7 +162,7 @@ Table of Contents
    and reduce CPU overhead by eliminating additional classification
    steps.
 
-3.5.  Retransmission of Advised Bit-Rate
+3.4.  Retransmission of Advised Bit-Rate
 
    Packet loss or non-delivery of SCONE advice reduces its
    effectiveness.  Both SCONE Network Elements and application endpoints
@@ -190,7 +170,7 @@ Table of Contents
    to ensure reliable delivery.  Conformance depends on the behavior of
    both network and application endpoint.
 
-3.6.  Frequency of Updates
+3.5.  Frequency of Updates
 
    The rate at which SCONE updates are issued depends on flow
    characteristics and available computational resources.  Excessively
@@ -199,7 +179,7 @@ Table of Contents
    adjustable update intervals based on application requirements,
    network capacity, and operational constraints.
 
-3.7.  Dynamic Updates
+3.6.  Dynamic Updates
 
    Dynamic rate limits updates can be enforced by the network during
    active application sessions due to:
@@ -214,7 +194,7 @@ Table of Contents
    generate SCONE packets frequently enough to trigger network
    responses.
 
-3.8.  Monitoring and Logging
+3.7.  Monitoring and Logging
 
    SCONE signaling can be integrated into existing operational and
    management frameworks to enable monitoring, troubleshooting, and
@@ -228,7 +208,7 @@ Table of Contents
    *  Error conditions where SCONE signaling fails to reach the intended
       endpoints
 
-3.9.  Conformance Monitoring
+3.8.  Conformance Monitoring
 
    Networks providing SCONE throughput advice ought to implement
    mechanisms to measure compliance, either per application flow or in
@@ -237,13 +217,13 @@ Table of Contents
    typically implemented in a SCONE Network Element but may also be
    implemented elsewhere in the network.
 
-3.10.  Standards Compliance
+3.9.  Standards Compliance
 
    SCONE signaling is expected to traverse the existing data path
    associated with the UDP 4-tuple flow for which the Network Element
    intends to send the advisory bit-rate.
 
-3.11.  Interworking with Other Congestion Management Mechanisms
+3.10.  Interworking with Other Congestion Management Mechanisms
 
    SCONE is distinct from transport-level congestion control mechanisms,
    such as Explicit Congestion Notification (ECN) or Low Latency, Low
@@ -284,11 +264,6 @@ Table of Contents
               protocol, Work in Progress , July 2025,
               <https://datatracker.ietf.org/doc/draft-ietf-scone-
               protocol/>.
-
-   [RFC2474]  Nichols, K., Blake, S., Baker, F., and D. Black,
-              "Definition of the Differentiated Services Field (DS
-              Field) in the IPv4 and IPv6 Headers", RFC 2474 , December
-              1998, <https://www.rfc-editor.org/info/rfc2474>.
 
 6.2.  Informative References
 
