@@ -130,15 +130,17 @@ overhead by eliminating additional classification steps.
 
 ## Retransmission of Advised Bit-Rate
 While endpoints send SCONE packets as frequently as they see fit to ensure
-reliable delivery, the Network Element makes independent decisions on how
-frequently to update those packets to mitigate packet loss. This decision
-relies on operational considerations such as CPU load and the nature of
-the network policies. A network enforcing dynamic policies will prioritize
-timely updates to minimize the delay in activating the advised bit-rate after
-a packet loss. Conversely, a network enforcing fixed, subscription-based
-policies that do not change over SCONE timescales can safely scale back the
-Network Element update frequency to conserve CPU resources, as timely recovery
-from packet loss is less critical.
+reliable delivery, the network element makes independent decisions on how
+frequently to update those traversing packets. This decision relies on
+operational considerations such as CPU load and the nature of the network
+policies. A network enforcing dynamic policies might prioritize updating
+SCONE packets immediately upon a policy trigger to minimize the application's
+reaction time to the new limit. Conversely, a network enforcing fixed,
+subscription-based policies can safely scale back its update frequency to
+conserve CPU resources, provided it still updates SCONE packets periodically
+(e.g., every 20 to 30 seconds). This periodic update frequency ensures that the
+throughput advice reliably reaches the endpoint and does not inadvertently expire
+across the standard monitoring period due to normal packet loss.
 
 ## Frequency of Updates
 The rate at which SCONE updates are issued depends on flow
