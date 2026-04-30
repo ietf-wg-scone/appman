@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 29 October 2026                                           Nokia
+Expires: 1 November 2026                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           27 April 2026
+                                                           30 April 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 October 2026.
+   This Internet-Draft will expire on 1 November 2026.
 
 Copyright Notice
 
@@ -169,7 +169,7 @@ Table of Contents
 3.4.  Considerations of Processing Complexity
 
    As specified in Section 6.1 of [I-D.ietf-scone-protocol], SCONE-aware
-   endpoints provide an specific indication on the first SCONE packet to
+   endpoints provide a specific indication on the first SCONE packet to
    support the identification of a SCONE-capable flow without any need
    for compute-intensive flow classification.  Additionally, SCONE-
    capable endpoints, through bit-rate self-adaptation, remove the need
