@@ -65,6 +65,7 @@ informative:
       - name: 3GPP
     date: 2025-01-07
 
+
 --- abstract
 
 This document describes the Applicability and Manageability considerations for providing throughput guidance to
@@ -110,16 +111,6 @@ Throughput advice is applied on a UDP 4-tuple basis. SCONE Network Elements
 ought to maintain flow-specific context to ensure signaling correctness.
 This enables applications to receive targeted throughput advice while
 preventing unintended impact on unrelated flows.
-
-## QoS awareness
-Quality of Service (QoS) may be enforced by networks through a variety of
-mechanisms. In certain deployments, network operators may choose to apply distinct
-QoS policies to SCONE-enabled flows. The SCONE Network Element
-responsible for inserting SCONE advice is not required to interpret or
-enforce QoS policies; its role is limited to the signaling of the advisory
-throughput information. It is expected that network operators shall be able to identify
-SCONE-enabled flows and, where appropriate, provide throughput advice in accordance
-to their policy objectives.
 
 ## SCONE Hint to the Network
 SCONE-aware applications ought to provide hints to the SCONE Network Elements,
