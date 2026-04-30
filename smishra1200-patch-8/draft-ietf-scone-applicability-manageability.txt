@@ -185,24 +185,16 @@ Table of Contents
 
 3.6.  Frequency of Updates
 
-   The frequency of SCONE signaling is decided by the application
-   endpoint based on its specific traffic characteristics.  Highly
-   adaptive flows, such as ABR video clients fetching short media
-   segments, may choose to send SCONE packets frequently (for example,
-   matching their segment request cadence) to rapidly track network
-   capacity changes.  Conversely, non-ABR applications, for example bulk
-   transfer applications such as background software updates, may
-   function effectively by sending SCONE packets less frequently, as
-   they do not require immediate reactions to changing network
-   conditions.
-
-   For network operators, understanding this application-driven behavior
-   is important because the Network Element relies entirely on these
-   endpoint-generated packets to communicate throughput advice.  While
-   the core SCONE protocol defines the baseline timers to prevent advice
-   from expiring, operators should expect the actual frequency of
-   passing SCONE packets to vary significantly depending on the
-   application type.
+   For network operators, understanding that SCONE signaling is
+   fundamentally decided by the application endpoint is critical.
+   Because a SCONE Network Element relies entirely on these endpoint-
+   generated packets to communicate throughput advice, operators should
+   expect the frequency of traversing SCONE packets to vary
+   significantly depending on the specific application type and its
+   traffic characteristics.  Consequently, network elements must be
+   prepared to apply updates to traversing packets at highly variable,
+   application-driven intervals rather than expecting a predictable or
+   uniform signaling cadence from the network side.
 
 3.7.  Dynamic Updates
 
