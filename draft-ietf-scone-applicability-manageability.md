@@ -188,9 +188,10 @@ SCONE informs the application of the maximum sustained rate allowed by policy. N
 would benefit from harmonizing multiple congestion signaling methods by policy or scope
 deployments to avoid conflicting feedback.
 
-
 # Security Considerations
-Security considerations are included separately in the SCONE protocol documents.
+This document does not add any additional security considerations. The core security and
+privacy considerations for the SCONE protocol are comprehensively defined in
+Sections 9 and 10 of {{I-D.ietf-scone-protocol}}.
 
 # IANA Considerations
 This document has no IANA actions.
