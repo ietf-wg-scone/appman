@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 30 October 2026                                           Nokia
+Expires: 1 November 2026                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           28 April 2026
+                                                           30 April 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 October 2026.
+   This Internet-Draft will expire on 1 November 2026.
 
 Copyright Notice
 
@@ -194,24 +194,15 @@ Table of Contents
 
 3.7.  Dynamic Updates
 
-   The frequency of SCONE signaling is fundamentally driven by the
-   application endpoint based on its specific traffic characteristics.
-   Highly adaptive flows, such as ABR video clients fetching short media
-   segments, may choose to send SCONE packets frequently (for example,
-   matching their segment request cadence) to rapidly track network
-   capacity changes.  Conversely, non-ABR applications, for example bulk
-   transfer applications such as background software updates, may
-   function effectively by sending SCONE packets less frequently, as
-   they do not require immediate reactions to changing network
-   conditions.
-
-   For network operators, understanding this application-driven behavior
-   is important because the Network Element relies entirely on these
-   endpoint-generated packets to communicate throughput advice.  While
-   the core SCONE protocol defines the baseline timers to prevent advice
-   from expiring, operators should expect the actual frequency of
-   passing SCONE packets to vary significantly depending on the
-   application type.
+   Target throughput advice can change dynamically due to access network
+   handovers or changes in subscriber policy (e.g., reaching data
+   thresholds).  When such a change occurs, the network element can
+   immediately update the next available traversing SCONE packet with
+   the new throughput limit rather than waiting for its normal update
+   interval, thereby minimizing the application's reaction time to the
+   new network state.  Additional details on the operational trade-offs
+   between the delay in dynamic updates to the advised bit-rate versus
+   the CPU processing load are covered in Section Section 3.6.
 
 3.8.  Monitoring and Logging
 
