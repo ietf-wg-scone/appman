@@ -134,7 +134,7 @@ SCONE Network Elements and application endpoints should support retransmission o
 periodic re-sending of SCONE packets to ensure reliable delivery.
 Conformance depends on the behavior of both network and application endpoint.
 
-## Frequency of Updates
+## Frequency of Updates {#freq-updates}
 The rate at which SCONE updates are issued depends on flow
 characteristics and available computational resources. Excessively
 frequent updates may increase CPU load, while infrequent updates may
@@ -143,15 +143,13 @@ adjustable update intervals based on application requirements, network
 capacity, and operational constraints.
 
 ## Dynamic Updates
-Dynamic rate limits updates can be enforced by the network during active
-application sessions due to:
-
-- Changes in access network type (requiring updated throughput advice)
-- Changes in Subscriber policy (e.g., exceeding usage thresholds)
-
-In such cases, the SCONE Network Elements need to be able to initiate SCONE
-packets to provide updated advice, or applications should generate SCONE
-packets frequently enough to trigger network responses.
+Target throughput advice can change dynamically due to access network handovers or changes in
+subscriber policy (e.g., reaching data thresholds). When such a change occurs, the network
+element can immediately update the next available traversing SCONE packet with the new
+throughput limit rather than waiting for its normal update interval, thereby minimizing the
+application's reaction time to the new network state. Additional details on the operational
+trade-offs between the delay in dynamic updates to the advised bit-rate versus the CPU
+processing load are covered in Section {{freq-updates}}.
 
 ## Monitoring and Logging
 SCONE signaling can be integrated into existing operational and
