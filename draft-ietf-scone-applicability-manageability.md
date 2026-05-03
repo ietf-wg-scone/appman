@@ -128,11 +128,19 @@ through bit-rate self-adaptation, remove the need for complex rate-limiting func
 element. Support for SCONE indication and bit-rate self-adaptation reduces complexity and CPU processing
 load in the network element.
 
-## Retransmission of Advised Bit-Rate
-Packet loss or non-delivery of SCONE advice reduces its effectiveness. Both
-SCONE Network Elements and application endpoints should support retransmission or
-periodic re-sending of SCONE packets to ensure reliable delivery.
-Conformance depends on the behavior of both network and application endpoint.
+## Mitigating Packet Loss
+Packet loss or non-delivery of SCONE advice directly reduces its effectiveness.
+Because the reliable delivery of throughput advice relies entirely on the periodic
+sending of SCONE packets by application endpoints, the network element needs to make
+independent operational decisions on how frequently to update those traversing packets.
+This decision relies on operational considerations such as CPU load and the nature of
+the network policies. A network enforcing dynamic policies might prioritize updating SCONE
+packets immediately upon a policy trigger to minimize the application's reaction time to the
+new limit. Conversely, a network enforcing fixed, subscription-based policies can safely
+scale back its update frequency to conserve CPU resources, provided it still updates SCONE
+packets periodically (e.g., every 20 to 30 seconds). This periodic update frequency ensures
+that the throughput advice reliably reaches the endpoint and does not inadvertently expire
+across the standard monitoring period due to normal packet loss.
 
 ## Frequency of Updates
 The rate at which SCONE updates are issued depends on flow
