@@ -128,28 +128,19 @@ UDP 4-tuple. Such hints prevent unnecessary default rate-limiting, allow the
 network to signal the maximum allowable bit rate, and reduce CPU
 overhead by eliminating additional classification steps.
 
-## Retransmission of Advised Bit-Rate
-Packet loss or non-delivery of SCONE advice reduces its effectiveness. Because
-Network Elements cannot synthesize or inject new SCONE packets into a flow, they
-cannot perform transport-layer retransmissions (see Section 7.1 of
-{{I-D.ietf-scone-protocol}}). Instead, the reliable delivery of throughput advice
-relies on the periodic sending of SCONE packets by the application endpoints.
-
-To ensure advice is not lost and does not expire, application endpoints are expected
-to send SCONE packets periodically, typically at least twice per monitoring period or
-every 20 to 30 seconds. The SCONE Network Element then takes these opportunities to update
-the throughput advice in the traversing packets. While endpoints could utilize QUIC
-transport-layer acknowledgments to detect lost datagrams and trigger a retransmission
-of a SCONE packet, it is generally simpler and highly effective to achieve reliability
-by simply sending SCONE packets more frequently (see Section 8.1 of {{I-D.ietf-scone-protocol}}).
-
-If the CPU processing load in network elements for updating SCONE packets is not the
-limiting factor, it is preferred for endpoints to send, and network elements to update,
-SCONE packets with a higher frequency than every 20 to 30 seconds to minimize the delay
-in activating the advised bit-rate due to packet loss. However, if the CPU processing
-load in a network element becomes a bottleneck, then the SCONE packet update frequency
-can be scaled back to 20 to 30 seconds. Essentially, there is a trade-off between the
-delay in activating the advised bit-rate due to packet loss versus the CPU processing load.
+## Mitigating Packet Loss
+Packet loss or non-delivery of SCONE advice directly reduces its effectiveness.
+Because the reliable delivery of throughput advice relies entirely on the periodic
+sending of SCONE packets by application endpoints, the network element needs to make
+independent operational decisions on how frequently to update those traversing packets.
+This decision relies on operational considerations such as CPU load and the nature of
+the network policies. A network enforcing dynamic policies might prioritize updating SCONE
+packets immediately upon a policy trigger to minimize the application's reaction time to the
+new limit. Conversely, a network enforcing fixed, subscription-based policies can safely
+scale back its update frequency to conserve CPU resources, provided it still updates SCONE
+packets periodically (e.g., every 20 to 30 seconds). This periodic update frequency ensures
+that the throughput advice reliably reaches the endpoint and does not inadvertently expire
+across the standard monitoring period due to normal packet loss.
 
 ## Frequency of Updates
 The rate at which SCONE updates are issued depends on flow
