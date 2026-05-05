@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 1 November 2026                                           Nokia
+Expires: 6 November 2026                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           30 April 2026
+                                                              5 May 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 November 2026.
+   This Internet-Draft will expire on 6 November 2026.
 
 Copyright Notice
 
@@ -198,11 +198,10 @@ Table of Contents
    handovers or changes in subscriber policy (e.g., reaching data
    thresholds).  When such a change occurs, the network element can
    immediately update the next available traversing SCONE packet with
-   the new throughput limit rather than waiting for its normal update
-   interval, thereby minimizing the application's reaction time to the
-   new network state.  Additional details on the operational trade-offs
-   between the delay in dynamic updates to the advised bit-rate versus
-   the CPU processing load are covered in Section Section 3.6.
+   the new throughput advice, rather than waiting for its next periodic
+   update (such as the cadence established to mitigate packet loss).
+   This immediate update minimizes the application's reaction time to
+   the new network state.
 
 3.8.  Monitoring and Logging
 
