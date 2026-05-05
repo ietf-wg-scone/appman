@@ -143,13 +143,12 @@ adjustable update intervals based on application requirements, network
 capacity, and operational constraints.
 
 ## Dynamic Updates
-Target throughput advice can change dynamically due to access network handovers or changes in
-subscriber policy (e.g., reaching data thresholds). When such a change occurs, the network
+Target throughput advice can change dynamically due to access network handovers or changes
+in subscriber policy (e.g., reaching data thresholds). When such a change occurs, the network
 element can immediately update the next available traversing SCONE packet with the new
-throughput limit rather than waiting for its normal update interval, thereby minimizing the
-application's reaction time to the new network state. Additional details on the operational
-trade-offs between the delay in dynamic updates to the advised bit-rate versus the CPU
-processing load are covered in Section {{freq-updates}}.
+throughput advice, rather than waiting for its next periodic update (such as the cadence
+established to mitigate packet loss). This immediate update minimizes the application's
+reaction time to the new network state.
 
 ## Monitoring and Logging
 SCONE signaling can be integrated into existing operational and
