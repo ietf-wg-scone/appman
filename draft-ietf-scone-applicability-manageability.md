@@ -128,19 +128,28 @@ UDP 4-tuple. Such hints prevent unnecessary default rate-limiting, allow the
 network to signal the maximum allowable bit rate, and reduce CPU
 overhead by eliminating additional classification steps.
 
-## Mitigating Packet Loss
+## Reliability and Mitigating Packet Loss
 Packet loss or non-delivery of SCONE advice directly reduces its effectiveness.
 Because the reliable delivery of throughput advice relies entirely on the periodic
-sending of SCONE packets by application endpoints, the network element needs to make
-independent operational decisions on how frequently to update those traversing packets.
-This decision relies on operational considerations such as CPU load and the nature of
-the network policies. A network enforcing dynamic policies might prioritize updating SCONE
-packets immediately upon a policy trigger to minimize the application's reaction time to the
-new limit. Conversely, a network enforcing fixed, subscription-based policies can safely
-scale back its update frequency to conserve CPU resources, provided it still updates SCONE
-packets periodically (e.g., every 20 to 30 seconds). This periodic update frequency ensures
-that the throughput advice reliably reaches the endpoint and does not inadvertently expire
-across the standard monitoring period due to normal packet loss.
+sending of SCONE packets by application endpoints, Section 7.1
+("Applying Throughput Advice Signals") of {{I-D.ietf-scone-protocol}}
+leaves the exact update frequency flexible. This flexibility allows operators to
+manage the tension between signaling reliability and network CPU load.
+
+A SCONE-enabled network element updates advice in SCONE packets at least twice per the
+67-second monitoring period (approximately every 20 to 30 seconds), but operators may
+choose to process and update SCONE packets more frequently to better mitigate packet losses
+or to ensure timely notifications to the application. Therefore, the network element needs
+to make independent operational decisions on how frequently to update those traversing packets.
+A network enforcing dynamic policies might prioritize updating SCONE packets immediately upon a
+policy trigger to minimize the application's reaction time to the new limit. Conversely, a network
+enforcing fixed, subscription-based policies can safely scale back its update frequency to the 20
+to 30-second baseline to conserve CPU resources. This baseline periodic update frequency ensures
+that the throughput advice reliably reaches the endpoint and does not inadvertently expire across
+the standard 67-second monitoring period due to normal packet loss.
+
+Operators balancing this reliability against network element overhead can refer to the sections
+on Frequency of Updates and Considerations of Processing Complexity for further guidance.
 
 ## Frequency of Updates
 The rate at which SCONE updates are issued depends on flow
