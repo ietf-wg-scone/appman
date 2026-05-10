@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 1 November 2026                                           Nokia
+Expires: 11 November 2026                                          Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           30 April 2026
+                                                             10 May 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 November 2026.
+   This Internet-Draft will expire on 11 November 2026.
 
 Copyright Notice
 
@@ -73,7 +73,7 @@ Table of Contents
    3.  Applicability and Manageability Considerations
      3.1.  Flow Awareness and Per-Flow Signaling
      3.2.  Considerations of Processing Complexity
-     3.3.  Retransmission of Advised Bit-Rate
+     3.3.  Reliability and Mitigating Packet Loss
      3.4.  Frequency of Updates
      3.5.  Dynamic Updates
      3.6.  Monitoring and Logging
@@ -171,13 +171,36 @@ Table of Contents
    for SCONE indication and bit-rate self-adaptation reduces complexity
    and CPU processing load in the network element.
 
-3.3.  Retransmission of Advised Bit-Rate
+3.3.  Reliability and Mitigating Packet Loss
 
-   Packet loss or non-delivery of SCONE advice reduces its
-   effectiveness.  Both SCONE Network Elements and application endpoints
-   should support retransmission or periodic re-sending of SCONE packets
-   to ensure reliable delivery.  Conformance depends on the behavior of
-   both network and application endpoint.
+   Packet loss or non-delivery of SCONE advice directly reduces its
+   effectiveness.  Because the reliable delivery of throughput advice
+   relies entirely on the periodic sending of SCONE packets by
+   application endpoints, Section 7.1 ("Applying Throughput Advice
+   Signals") of [I-D.ietf-scone-protocol] leaves the exact update
+   frequency flexible.  This flexibility allows operators to manage the
+   tension between signaling reliability and network CPU load.
+
+   A SCONE-enabled network element updates advice in SCONE packets at
+   least twice per the 67-second monitoring period (approximately every
+   20 to 30 seconds), but operators may choose to process and update
+   SCONE packets more frequently to better mitigate packet losses or to
+   ensure timely notifications to the application.  Therefore, the
+   network element needs to make independent operational decisions on
+   how frequently to update those traversing packets.  A network
+   enforcing dynamic policies might prioritize updating SCONE packets
+   immediately upon a policy trigger to minimize the application's
+   reaction time to the new limit.  Conversely, a network enforcing
+   fixed, subscription-based policies can safely scale back its update
+   frequency to the 20 to 30-second baseline to conserve CPU resources.
+   This baseline periodic update frequency ensures that the throughput
+   advice reliably reaches the endpoint and does not inadvertently
+   expire across the standard 67-second monitoring period due to normal
+   packet loss.
+
+   Operators balancing this reliability against network element overhead
+   can refer to the sections on Frequency of Updates and Considerations
+   of Processing Complexity for further guidance.
 
 3.4.  Frequency of Updates
 
