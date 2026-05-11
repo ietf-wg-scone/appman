@@ -152,12 +152,13 @@ Operators balancing this reliability against network element overhead can refer 
 on Frequency of Updates and Considerations of Processing Complexity for further guidance.
 
 ## Frequency of Updates
-The rate at which SCONE updates are issued depends on flow
-characteristics and available computational resources. Excessively
-frequent updates may increase CPU load, while infrequent updates may
-reduce advisory effectiveness. Network Operators can define
-adjustable update intervals based on application requirements, network
-capacity, and operational constraints.
+For network operators, understanding that SCONE signaling is fundamentally decided by the
+application endpoint is critical. Because a SCONE Network Element relies entirely on these
+endpoint-generated packets to communicate throughput advice, the frequency of traversing SCONE
+packets varies depending on the specific application type and its traffic
+characteristics. Consequently, network elements need to be prepared to apply updates to
+traversing packets at highly variable, application-driven intervals rather than expecting a
+predictable or uniform signaling cadence from the network side.
 
 ## Dynamic Updates
 Dynamic rate limits updates can be enforced by the network during active
