@@ -135,13 +135,13 @@ periodic re-sending of SCONE packets to ensure reliable delivery.
 Conformance depends on the behavior of both network and application endpoint.
 
 ## Frequency of Updates
-For network operators, understanding that SCONE signaling is fundamentally decided
-by the application endpoint is critical. Because a SCONE Network Element relies entirely
-on these endpoint-generated packets to communicate throughput advice, operators should
-expect the frequency of traversing SCONE packets to vary significantly depending on the
-specific application type and its traffic characteristics. Consequently, network elements
-must be prepared to apply updates to traversing packets at highly variable, application-driven
-intervals rather than expecting a predictable or uniform signaling cadence from the network side.
+For network operators, understanding that SCONE signaling is fundamentally decided by the
+application endpoint is critical. Because a SCONE Network Element relies entirely on these
+endpoint-generated packets to communicate throughput advice, the frequency of traversing SCONE
+packets varies depending on the specific application type and its traffic
+characteristics. Consequently, network elements need to be prepared to apply updates to
+traversing packets at highly variable, application-driven intervals rather than expecting a
+predictable or uniform signaling cadence from the network side.
 
 ## Dynamic Updates
 Dynamic rate limits updates can be enforced by the network during active
