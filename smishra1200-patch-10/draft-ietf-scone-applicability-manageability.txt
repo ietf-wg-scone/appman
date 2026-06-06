@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 31 October 2026                                           Nokia
+Expires: 8 December 2026                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           29 April 2026
+                                                             6 June 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 October 2026.
+   This Internet-Draft will expire on 8 December 2026.
 
 Copyright Notice
 
@@ -117,8 +117,8 @@ Table of Contents
    SCONE packets.  However, from an end-to-end perspective, a data path
    might contain no such network elements, a single network element, or
    multiple network elements.  When multiple elements are present, they
-   can update the throughput advice independently without any
-   coordination.  More detail is covered in subsequent sections.
+   can update (i.e. reduce) the throughput advice independently without
+   any coordination.  More detail is covered in subsequent sections.
 
    When on-path network elements are present between the server and the
    client application end-points, their specific configuration and role
