@@ -89,8 +89,8 @@ map network policies into throughput advice to be inserted into the
 SCONE packets. However, from an end-to-end perspective, a data path
 might contain no such network elements, a single network element, or
 multiple network elements. When multiple elements are present, they
-can update the throughput advice independently without any coordination.
-More detail is covered in subsequent sections.
+can update (i.e. reduce) the throughput advice independently without
+any coordination. More detail is covered in subsequent sections.
 
 When on-path network elements are present between the server and the client
 application end-points, their specific configuration and role will influence the advice they
