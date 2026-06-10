@@ -50,6 +50,7 @@ normative:
     date: 2025-07
     seriesinfo: "Internet-Draft, draft-ietf-scone-protocol, Work in Progress"
 
+
 informative:
   4G-Arch:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=24300
@@ -57,16 +58,17 @@ informative:
     author:
       - name: 3GPP
     date: 2020-06-01
-
   5G-Arch:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3144
     title: System Architecture for the 5G System (5GS)
     author:
       - name: 3GPP
     date: 2025-01-07
+  RFC3168: RFC3168
+  RFC9330: RFC9330
+
 
 --- abstract
-
 This document describes the Applicability and Manageability considerations for providing throughput guidance to
 application endpoints. This guidance is specifically addressed within the context of telecommunications service
 provider networks utilizing the Standard Communication with Network Elements (SCONE) protocol.
@@ -99,48 +101,64 @@ This document uses terms and definitions described in {{I-D.ietf-scone-protocol}
 
 # Applicability and Manageability Considerations
 
-## Flow session awareness
-SCONE signaling operates only over established sessions. SCONE Network Elements
-ought to be able to unambiguously associate throughput advice with
-application flows. Each session is bound to an IP address and port,
-ensuring SCONE packets are routed precisely without affecting unrelated traffic.
+## Flow Awareness and Per-Flow Signaling
+As defined in the core SCONE protocol specification {{I-D.ietf-scone-protocol}},
+throughput advice is associated with the flow of QUIC UDP datagrams sharing the
+same address tuple (IP version, source and destination IP addresses, and UDP ports).
 
-## Per-Flow Signaling
-Throughput advice is applied on a UDP 4-tuple basis. SCONE Network Elements
-ought to maintain flow-specific context to ensure signaling correctness.
-This enables applications to receive targeted throughput advice while
-preventing unintended impact on unrelated flows.
+Because throughput advice applies strictly to this specific flow, SCONE Network Elements
+need to unambiguously associate their policy limits with the correct QUIC flows. However,
+the act of applying SCONE throughput advice is inherently stateless. To provide advice, a
+network element simply identifies a traversing SCONE packet and updates its value based on
+the configured policy for that flow or network scope, without needing to maintain active
+per-flow state.
 
-## QoS awareness
-Quality of Service (QoS) may be enforced by networks through a variety of
-mechanisms. In certain deployments, network operators may choose to apply distinct
-QoS policies to SCONE-enabled flows. The SCONE Network Element
-responsible for inserting SCONE advice is not required to interpret or
-enforce QoS policies; its role is limited to the signaling of the advisory
-throughput information. It is expected that network operators shall be able to identify
-SCONE-enabled flows and, where appropriate, provide throughput advice in accordance
-to their policy objectives.
+While the signaling itself is stateless, managing the operational lifecycle of a SCONE
+deployment requires establishing and maintaining per-flow context. Specifically, to execute
+the monitoring, logging, and conformance evaluation functions detailed later in this document,
+the network element must track the flow's throughput over multiple monitoring periods. This
+per-flow context serves as the operational foundation for validating whether an application is
+adhering to the advised rate and for applying any necessary policy enforcement.
 
-## SCONE Hint to the Network
-SCONE-aware applications ought to provide hints to the SCONE Network Elements,
-enabling it to generate appropriate throughput advice for a given
-UDP 4-tuple. Such hints prevent unnecessary default rate-limiting, allow the
-network to signal the maximum allowable bit rate, and reduce CPU
-overhead by eliminating additional classification steps.
+## Considerations of Processing Complexity
+As specified in Section 6.1 of {{I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
+a specific indication on the first SCONE packet to support the identification of a SCONE-capable flow
+without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
+through bit-rate self-adaptation, remove the need for complex rate-limiting functions in the network
+element. Support for SCONE indication and bit-rate self-adaptation reduces complexity and CPU processing
+load in the network element.
 
-## Retransmission of Advised Bit-Rate
-Packet loss or non-delivery of SCONE advice reduces its effectiveness. Both
-SCONE Network Elements and application endpoints should support retransmission or
-periodic re-sending of SCONE packets to ensure reliable delivery.
-Conformance depends on the behavior of both network and application endpoint.
+## Reliability and Mitigating Packet Loss
+Packet loss or non-delivery of SCONE advice directly reduces its effectiveness.
+Because the reliable delivery of throughput advice relies entirely on the periodic
+sending of SCONE packets by application endpoints, Section 7.1
+("Applying Throughput Advice Signals") of {{I-D.ietf-scone-protocol}}
+leaves the exact update frequency flexible. This flexibility allows operators to
+manage the tension between signaling reliability and network CPU load.
 
-## Frequency of Updates {#freq-updates}
-The rate at which SCONE updates are issued depends on flow
-characteristics and available computational resources. Excessively
-frequent updates may increase CPU load, while infrequent updates may
-reduce advisory effectiveness. Network Operators can define
-adjustable update intervals based on application requirements, network
-capacity, and operational constraints.
+A SCONE-enabled network element updates advice in SCONE packets at least twice per the
+67-second monitoring period (approximately every 20 to 30 seconds), but operators may
+choose to process and update SCONE packets more frequently to better mitigate packet losses
+or to ensure timely notifications to the application. Therefore, the network element needs
+to make independent operational decisions on how frequently to update those traversing packets.
+A network enforcing dynamic policies might prioritize updating SCONE packets immediately upon a
+policy trigger to minimize the application's reaction time to the new limit. Conversely, a network
+enforcing fixed, subscription-based policies can safely scale back its update frequency to the 20
+to 30-second baseline to conserve CPU resources. This baseline periodic update frequency ensures
+that the throughput advice reliably reaches the endpoint and does not inadvertently expire across
+the standard 67-second monitoring period due to normal packet loss.
+
+Operators balancing this reliability against network element overhead can refer to the sections
+on Frequency of Updates and Considerations of Processing Complexity for further guidance.
+
+## Frequency of Updates
+For network operators, understanding that SCONE signaling is fundamentally decided by the
+application endpoint is critical. Because a SCONE Network Element relies entirely on these
+endpoint-generated packets to communicate throughput advice, the frequency of traversing SCONE
+packets varies depending on the specific application type and its traffic
+characteristics. Consequently, network elements need to be prepared to apply updates to
+traversing packets at highly variable, application-driven intervals rather than expecting a
+predictable or uniform signaling cadence from the network side.
 
 ## Dynamic Updates
 Target throughput advice can change dynamically due to access network handovers or changes
@@ -160,36 +178,81 @@ isolation. Metrics of interest include:
 - Error conditions where SCONE signaling fails to reach the intended endpoints
 
 ## Conformance Monitoring
-Networks providing SCONE throughput advice ought to implement
-mechanisms to measure compliance, either per application flow or in
-aggregate. This allows operators to validate advisory effectiveness and
-adjust policies. Due to flow awareness, such mechanisms are typically
-implemented in a SCONE Network Element but may also be implemented
-elsewhere in the network.
+Networks that choose to provide SCONE throughput advice can implement mechanisms to
+monitor QUIC flows and measure conformance to the advised bit-rate, either per flow of
+packets on the same UDP address tuple, or in aggregate across multiple QUIC flows if they
+contribute to a shared policy limit (such as a device or network subscription level). This
+will allow operators to validate whether applications are following the advised bit-rate.
+
+While it is expected that operators will implement monitoring at the SCONE Network Element
+providing the advice, it could also be performed elsewhere in the network. However, network
+elements lack the capability to validate the legitimacy of SCONE packets coalesced with other
+QUIC packets. Therefore, operators must ensure a network element evaluates conformance only
+against the advised bit-rate that it set itself, and never enforces limits based on advice
+set by other downstream network elements.
+
+When evaluating compliance, network operators will need to account for the time required for
+SCONE packets to be updated, received by endpoints, and acted upon by the application.
+Operators can accommodate this by utilizing a sliding window approach. Operators should
+evaluate QUIC flows against the highest throughput limit advised over the preceding two
+monitoring periods (a span of 134 seconds). If a network element cannot update the
+throughput advice in every traversing SCONE packet, operators might configure a
+longer sliding window to account for the possibility of packet loss.
+
+To simplify the measurement function, reduce computational load, or offload this
+function to another node in the network, operators can select any value larger
+than the baseline 67-second window for their measurement and averaging period.
+
+Because some applications will not support SCONE, and others either will not or cannot follow
+the provided throughput advice, operators have flexibility in how they handle violations.
+If the monitoring function detects a violation where an application is not respecting the
+signaled throughput advice, the network can employ a throttling fallback. This involves falling
+back to traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
+the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
+can deploy SCONE purely as an advisory signal without any throttling fallback, prioritizing
+cooperative application optimization over strict compliance enforcement.
 
 ## Standards Compliance
 SCONE signaling is expected to traverse the existing data path associated
 with the UDP 4-tuple flow for which the Network Element intends to send the advisory bit-rate.
 
 ## Interworking with Other Congestion Management Mechanisms
-SCONE is distinct from transport-level congestion control mechanisms, such as
-Explicit Congestion Notification (ECN) or Low Latency, Low Loss, and Scalable
-Throughput (L4S). While congestion control operates on short timescales to manage
-transient congestion caused by varying link conditions or instantaneous load, SCONE
-provides throughput advice based on relatively stable network policies or capacity
-management goals. ECN/L4S based congestion control works at transport level and SCONE
-works at application level. SCONE does not replace the need for endpoints to perform
-congestion control or network to provide explicit or implicit congestion signals; rather,
-it complements these mechanisms by providing a variable range for application-level rate
-adaptation. In environments where both are present, SCONE and congestion control mechanisms
-co-exist: congestion control manages the immediate dynamics of the bottleneck link, while
-SCONE informs the application of the maximum sustained rate allowed by policy. Network Operators
-would benefit from harmonizing multiple congestion signaling methods by policy or scope
-deployments to avoid conflicting feedback.
+SCONE throughput advice is not a substitute for congestion control mechanisms in
+transport protocols utilizing congestion feedback and signals such as acknowledgments,
+Explicit Congestion Notification (ECN) {{RFC3168}}, and Low Latency, Low Loss, and Scalable
+Throughput (L4S) {{RFC9330}}. Rather, they are complementary. Congestion signals provide real-time
+information on loss, delay, and transient congestion for a network path, typically operating
+on the time scale of a round-trip time (RTT). In contrast, SCONE throughput advice operates
+over a much longer period. Because the network element is generally unaware of the specific
+application traffic, it simply provides static or dynamically adapted advice based on available
+policy information. Operators can use SCONE to communicate these maximum allowable bit-rates
+driven by video optimization, subscriber data, or load management policies, independent of
+instantaneous link congestion. It is then up to the applications, such as adaptive bitrate video
+clients or bulk downloads, to utilize this advice according to their specific use cases.
 
+For network operators considering co-deployment, SCONE throughput advice is strictly independent
+of the IP-layer ECN field. Because SCONE advice is carried within the QUIC payload, updating the
+advice does not interact with or modify ECN markings. This independence ensures that operators can
+safely deploy SCONE alongside L4S or standard ECN. Real-time congestion feedback mechanisms remain
+fully operational and function completely outside the SCONE domain.
+
+Operators should expect that congestion signals might frequently indicate a throughput limit different
+from the signaled SCONE advice. In other words, in the best case, the throughput advice is below the
+congestion limit and when the application adheres to the advice, congestion control would be
+application-limited and not go into action. However, in cases of high load, congestion control would
+limit the throughput below the provided advice, as the SCONE advice is only an upper limit. As such,
+congestion control or a similar mechanism to react to congestion, such as a circuit breaker, is always
+needed in addition to SCONE.
+
+In environments where both are present, congestion control manages the immediate dynamics of the bottleneck
+link, while SCONE informs the application of the maximum rate allowed by network policy. Network operators
+will benefit from ensuring that throughput advice policies and congestion control configurations are consistent
+within scoped deployments, to avoid providing conflicting feedback to applications.
 
 # Security Considerations
-Security considerations are included separately in the SCONE protocol documents.
+This document does not add any additional security considerations. The core security and
+privacy considerations for the SCONE protocol are comprehensively defined in
+Sections 9 and 10 of {{I-D.ietf-scone-protocol}}.
 
 # IANA Considerations
 This document has no IANA actions.
