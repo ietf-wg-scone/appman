@@ -120,6 +120,35 @@ the network element must track the flow's throughput over multiple monitoring pe
 per-flow context serves as the operational foundation for validating whether an application is
 adhering to the advised rate and for applying any necessary policy enforcement.
 
+## Determining Throughput Constraints
+The specific algorithms used to calculate throughput advice are highly
+dependent on an operator's internal business logic and network
+architecture. In practice, these constraints are often derived from a
+combination of network policies, real-time conditions where
+applicable, and any other business logic the operator applies. The
+inputs below are illustrative and will likely vary by operator, and
+they are not exhaustive. A SCONE-capable network element may derive its
+throughput advice from one or more of the following:
+
+- Subscriber Policies and Data Plans: Rate limits may apply when a
+subscriber reaches a data plan threshold or usage cap, and the network
+element bases its throughput advice on that subscriber policy.
+
+- Application-Specific Policies: Operators may set maximum bit-rates for
+certain types of traffic based on subscription tier or device type, for
+example video optimization for adaptive bitrate video, or traffic
+shaping for low-priority bulk transfers such as background software
+updates.
+
+- Dynamic Network Conditions: Constraints may be updated as network
+conditions change, for example when a flow moves to a different access
+network.
+
+- Capacity and Load Management: During periods of unusually high usage,
+sustained overuse, or temporary equipment faults, the network element
+may temporarily lower its throughput advice to manage shared capacity
+and guide application usage.
+
 ## Considerations of Processing Complexity
 As specified in Section 6.1 of {{I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
 a specific indication on the first SCONE packet to support the identification of a SCONE-capable flow
