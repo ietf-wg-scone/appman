@@ -241,8 +241,7 @@ Table of Contents
    packet loss.
 
    Operators balancing this reliability against network element overhead
-   can refer to the sections on Frequency of Updates and Considerations
-   of Processing Complexity for further guidance.
+   can refer to Section 3.5 and Section 3.3 for further guidance.
 
 3.5.  Frequency of Updates
 
