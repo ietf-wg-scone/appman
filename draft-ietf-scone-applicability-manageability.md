@@ -161,12 +161,12 @@ traversing packets at highly variable, application-driven intervals rather than 
 predictable or uniform signaling cadence from the network side.
 
 ## Dynamic Updates
-Target throughput advice can change dynamically due to access network handovers or changes
-in subscriber policy (e.g., reaching data thresholds). When such a change occurs, the network
-element can immediately update the next available traversing SCONE packet with the new
-throughput advice, rather than waiting for its next periodic update (such as the cadence
-established to mitigate packet loss). This immediate update minimizes the application's
-reaction time to the new network state.
+Target throughput advice can change dynamically while a flow is active, for example when a
+subscriber reaches a data threshold or a network policy changes. When this happens, the network
+element can immediately update the next traversing SCONE packet with the new throughput advice,
+rather than waiting for its next periodic update cadence (see Section 9.2 of
+{{I-D.ietf-scone-protocol}}). This minimizes the application's reaction time to the new network
+state.
 
 ## Monitoring and Logging
 SCONE signaling can be integrated into existing operational and
