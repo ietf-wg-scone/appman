@@ -159,7 +159,7 @@ sustained overuse, or temporary equipment faults, the network element
 may temporarily lower its throughput advice to manage shared capacity
 and guide application usage.
 
-## Considerations of Processing Complexity
+## Considerations of Processing Complexity {#processing-complexity}
 As specified in Section 6.1 of {{I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
 a specific indication on the first SCONE packet to support the identification of a SCONE-capable flow
 without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
@@ -187,10 +187,10 @@ to 30-second baseline to conserve CPU resources. This baseline periodic update f
 that the throughput advice reliably reaches the endpoint and does not inadvertently expire across
 the standard 67-second monitoring period due to normal packet loss.
 
-Operators balancing this reliability against network element overhead can refer to the sections
-on Frequency of Updates and Considerations of Processing Complexity for further guidance.
+Operators balancing this reliability against network element overhead can refer to
+{{freq-updates}} and {{processing-complexity}} for further guidance.
 
-## Frequency of Updates
+## Frequency of Updates {#freq-updates}
 For network operators, understanding that SCONE signaling is fundamentally decided by the
 application endpoint is critical. Because a SCONE Network Element relies entirely on these
 endpoint-generated packets to communicate throughput advice, the frequency of traversing SCONE
