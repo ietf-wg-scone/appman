@@ -164,13 +164,13 @@ Table of Contents
 3.2.  Determining Throughput Constraints
 
    The specific algorithms used to calculate throughput advice are
-   highly dependent on an operator's internal business logic and network
-   architecture.  In practice, these constraints are often derived from
-   a combination of network policies, real-time conditions where
-   applicable, and any other business logic the operator applies.  The
-   inputs below are illustrative and will likely vary by operator, and
-   they are not exhaustive.  A SCONE-capable network element may derive
-   its throughput advice from one or more of the following:
+   highly dependent on an operator's network architecture.  In practice,
+   these constraints are often derived from a combination of network
+   policies, real-time conditions where applicable, and any other
+   business logic the operator applies.  The inputs below are
+   illustrative and will likely vary by operator, and they are not
+   exhaustive.  A SCONE-capable network element may derive its
+   throughput advice from one or more of the following:
 
    *  Subscriber Policies and Data Plans: Rate limits may apply when a
       subscriber reaches a data plan threshold or usage cap, and the
