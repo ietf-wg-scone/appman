@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 12 December 2026                                          Nokia
+Expires: 13 December 2026                                          Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                            10 June 2026
+                                                            11 June 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 December 2026.
+   This Internet-Draft will expire on 13 December 2026.
 
 Copyright Notice
 
@@ -78,7 +78,7 @@ Table of Contents
      3.5.  Dynamic Updates
      3.6.  Monitoring and Logging
      3.7.  Conformance Monitoring
-     3.8.  Standards Compliance
+     3.8.  In-Band Signaling and Network Integration
      3.9.  Interworking with Other Congestion Management Mechanisms
    4.  Security Considerations
    5.  IANA Considerations
@@ -289,7 +289,7 @@ Table of Contents
    signal without any throttling fallback, prioritizing cooperative
    application optimization over strict compliance enforcement.
 
-3.8.  Standards Compliance
+3.8.  In-Band Signaling and Network Integration
 
    Because SCONE packets are always coalesced with ordinary QUIC
    packets, SCONE signaling operates entirely in-band.  It does not
@@ -302,20 +302,13 @@ Table of Contents
    integrates into existing architectures without requiring new tunnels
    or data paths to be established.
 
-   By providing a standardized and scalable mechanism, SCONE allows
-   network operators and QUIC endpoints to exchange bit-rate information
-   without custom APIs or per-network integrations.  SCONE improves user
-   experience by enabling the network to provide bit-rate guidance
-   directly to applications, allowing them to self-adapt instead of
-   relying on network rate limiters such as policers or shapers.  This
-   avoids packet drops and throttling, resulting in better Quality of
-   Experience (QoE) (see Section 7.3 of [I-D.ietf-scone-protocol]).  It
-   also supports dynamic bit-rate updates, allowing the network to
-   adjust the maximum allowed bit-rate for an active flow in real-time,
-   enabling multiple network operator business use cases where
-   controlled flow rates are required.  At the same time, SCONE enables
-   transparent and cooperative enforcement of tiered subscriber data
-   plans (see Section 3.2 of [I-D.ietf-scone-protocol]).
+   By providing a standardized mechanism, SCONE allows network operators
+   and QUIC endpoints to exchange bit-rate information without custom
+   APIs or per-network integrations.  Applications can self-adapt to the
+   advised bit-rate rather than relying on network rate limiters such as
+   policers or shapers, and the network can update the advised bit-rate
+   for an active flow, including to support tiered subscriber data plans
+   (see Section 3.2 of [I-D.ietf-scone-protocol]).
 
 3.9.  Interworking with Other Congestion Management Mechanisms
 
