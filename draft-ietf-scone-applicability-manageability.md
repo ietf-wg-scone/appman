@@ -215,7 +215,7 @@ the QUIC flow does not exceed the throughput limits set by network policy. Alter
 can deploy SCONE purely as an advisory signal without any throttling fallback, prioritizing
 cooperative application optimization over strict compliance enforcement.
 
-## Standards Compliance
+## In-Band Signaling and Network Integration
 Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
 operates entirely in-band. It does not introduce any additional routing overhead or
 require the creation of out-of-band signaling interfaces. Instead, SCONE signaling
@@ -225,16 +225,11 @@ for which the network element intends to send throughput advice. This ensures th
 SCONE seamlessly integrates into existing architectures without requiring new tunnels
 or data paths to be established.
 
-By providing a standardized and scalable mechanism, SCONE allows network operators
-and QUIC endpoints to exchange bit-rate information without custom APIs or per-network
-integrations. SCONE improves user experience by enabling the network to provide bit-rate
-guidance directly to applications, allowing them to self-adapt instead of relying on
-network rate limiters such as policers or shapers. This avoids packet drops and throttling,
-resulting in better Quality of Experience (QoE) (see Section 7.3 of {{I-D.ietf-scone-protocol}}).
-It also supports dynamic bit-rate updates, allowing the network to adjust the maximum allowed
-bit-rate for an active flow in real-time, enabling multiple network operator business use cases
-where controlled flow rates are required. At the same time, SCONE enables transparent and
-cooperative enforcement of tiered subscriber data plans (see Section 3.2 of {{I-D.ietf-scone-protocol}}).
+By providing a standardized mechanism, SCONE allows network operators and QUIC endpoints to
+exchange bit-rate information without custom APIs or per-network integrations. Applications can
+self-adapt to the advised bit-rate rather than relying on network rate limiters such as policers
+or shapers, and the network can update the advised bit-rate for an active flow, including to
+support tiered subscriber data plans (see Section 3.2 of {{I-D.ietf-scone-protocol}}).
 
 ## Interworking with Other Congestion Management Mechanisms
 SCONE throughput advice is not a substitute for congestion control mechanisms in
