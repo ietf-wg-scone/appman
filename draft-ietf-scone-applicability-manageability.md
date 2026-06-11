@@ -99,7 +99,17 @@ varied network paths.
 
 This document uses terms and definitions described in {{I-D.ietf-scone-protocol}}.
 
-# Applicability and Manageability Considerations
+# Applicability, Manageability and Operational Considerations
+
+Deploying SCONE in an operator network involves the application
+endpoints and any SCONE-capable network elements along the path of a
+flow. SCONE is used on a flow only when its application endpoints
+support it. Network elements that forward QUIC packets also forward
+the SCONE packets carried among them, and specific network elements
+implement and configure the SCONE Network Element function that sets
+the throughput advice. This document as a whole covers the
+applicability, manageability, and operational considerations for
+deploying SCONE in such networks.
 
 ## Flow Awareness and Per-Flow Signaling
 As defined in the core SCONE protocol specification {{I-D.ietf-scone-protocol}},
