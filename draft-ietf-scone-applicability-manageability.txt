@@ -81,7 +81,7 @@ Table of Contents
      3.8.  Change of Network Element During an Active Flow
      3.9.  Monitoring and Logging
      3.10. Conformance Monitoring
-     3.11. Standards Compliance
+     3.11. In-Band Signaling and Network Integration
      3.12. Interworking with Other Congestion Management Mechanisms
    4.  Security Considerations
    5.  IANA Considerations
@@ -360,11 +360,26 @@ Table of Contents
    signal without any throttling fallback, prioritizing cooperative
    application optimization over strict compliance enforcement.
 
-3.11.  Standards Compliance
+3.11.  In-Band Signaling and Network Integration
 
-   SCONE signaling is expected to traverse the existing data path
-   associated with the UDP 4-tuple flow for which the Network Element
-   intends to send the advisory bit-rate.
+   Because SCONE packets are always coalesced with ordinary QUIC
+   packets, SCONE signaling operates entirely in-band.  It does not
+   introduce any additional routing overhead or require the creation of
+   out-of-band signaling interfaces.  Instead, SCONE signaling
+   inherently traverses the already established network path, such as
+   the existing connection between a user device and a network gateway,
+   associated with the QUIC flow for which the network element intends
+   to send throughput advice.  This ensures that SCONE seamlessly
+   integrates into existing architectures without requiring new tunnels
+   or data paths to be established.
+
+   By providing a standardized mechanism, SCONE allows network operators
+   and QUIC endpoints to exchange bit-rate information without custom
+   APIs or per-network integrations.  Applications can self-adapt to the
+   advised bit-rate rather than relying on network rate limiters such as
+   policers or shapers, and the network can update the advised bit-rate
+   for an active flow, including to support tiered subscriber data plans
+   (see Section 3.2 of [I-D.ietf-scone-protocol]).
 
 3.12.  Interworking with Other Congestion Management Mechanisms
 
