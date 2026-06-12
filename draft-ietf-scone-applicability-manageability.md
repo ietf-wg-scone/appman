@@ -200,15 +200,12 @@ traversing packets at highly variable, application-driven intervals rather than 
 predictable or uniform signaling cadence from the network side.
 
 ## Dynamic Updates
-Dynamic rate limits updates can be enforced by the network during active
-application sessions due to:
-
-- Changes in access network type (requiring updated throughput advice)
-- Changes in Subscriber policy (e.g., exceeding usage thresholds)
-
-In such cases, the SCONE Network Elements need to be able to initiate SCONE
-packets to provide updated advice, or applications should generate SCONE
-packets frequently enough to trigger network responses.
+Target throughput advice can change dynamically while a flow is active, for example when a
+subscriber reaches a data threshold or a network policy changes. When this happens, the network
+element can immediately update the next traversing SCONE packet with the new throughput advice,
+rather than waiting for its next periodic update cadence (see Section 9.2 of
+{{I-D.ietf-scone-protocol}}). This minimizes the application's reaction time to the new network
+state.
 
 ## Monitoring and Logging
 SCONE signaling can be integrated into existing operational and
