@@ -282,9 +282,21 @@ the QUIC flow does not exceed the throughput limits set by network policy. Alter
 can deploy SCONE purely as an advisory signal without any throttling fallback, prioritizing
 cooperative application optimization over strict compliance enforcement.
 
-## Standards Compliance
-SCONE signaling is expected to traverse the existing data path associated
-with the UDP 4-tuple flow for which the Network Element intends to send the advisory bit-rate.
+## In-Band Signaling and Network Integration
+Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
+operates entirely in-band. It does not introduce any additional routing overhead or
+require the creation of out-of-band signaling interfaces. Instead, SCONE signaling
+inherently traverses the already established network path, such as the existing
+connection between a user device and a network gateway, associated with the QUIC flow
+for which the network element intends to send throughput advice. This ensures that
+SCONE seamlessly integrates into existing architectures without requiring new tunnels
+or data paths to be established.
+
+By providing a standardized mechanism, SCONE allows network operators and QUIC endpoints to
+exchange bit-rate information without custom APIs or per-network integrations. Applications can
+self-adapt to the advised bit-rate rather than relying on network rate limiters such as policers
+or shapers, and the network can update the advised bit-rate for an active flow, including to
+support tiered subscriber data plans (see Section 3.2 of {{I-D.ietf-scone-protocol}}).
 
 ## Interworking with Other Congestion Management Mechanisms
 SCONE throughput advice is not a substitute for congestion control mechanisms in
