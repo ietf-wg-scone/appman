@@ -77,10 +77,12 @@ Table of Contents
      3.4.  Reliability and Mitigating Packet Loss
      3.5.  Frequency of Updates
      3.6.  Dynamic Updates
-     3.7.  Monitoring and Logging
-     3.8.  Conformance Monitoring
-     3.9.  Standards Compliance
-     3.10. Interworking with Other Congestion Management Mechanisms
+     3.7.  Presence of SCONE Network Elements On the Data Path
+     3.8.  Change of Network Element During an Active Flow
+     3.9.  Monitoring and Logging
+     3.10. Conformance Monitoring
+     3.11. Standards Compliance
+     3.12. Interworking with Other Congestion Management Mechanisms
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -108,21 +110,22 @@ Table of Contents
    core protocol specification.
 
    To participate in SCONE, a network element is assumed to have the
-   functional capability to identify and track scone compliant
-   application flows, recognize and process SCONE packets within those
-   flows and map network policies into throughput advice to be inserted
-   into the SCONE packets.  While on-path network elements may exist at
-   various points between the server and the client application end-
-   points, their specific configuration and role will influence the
-   advice they generate.  Different network architectures handle flow
-   visibility and policy enforcement at different points.  In mobile
-   networks, for example, the User Plane Function (UPF) in 5G [_5G-Arch]
-   and the Packet Data Network Gateway (P-GW) in 4G network [_4G-Arch]
-   can generate throughput advice to guide ABR applications on a per-
-   flow basis.  In contrast, other environments, such as wireline
-   broadband or Wi-Fi, may apply policies at centralized aggregation
-   points or gateways such as the Broadband Network Gateway serving
-   multiple devices.
+   functional capability to identify and track SCONE-compliant QUIC
+   flows, recognize and process SCONE packets within those flows, and
+   map network policies into throughput advice to be inserted into the
+   SCONE packets.
+
+   When on-path network elements are present between the server and the
+   client application end-points, their specific configuration and role
+   will influence the advice they generate.  Different network
+   architectures handle flow visibility and policy enforcement at
+   different points.  In mobile networks, for example, the User Plane
+   Function (UPF) in 5G [_5G-Arch] and the Packet Data Network Gateway
+   (P-GW) in 4G network [_4G-Arch] can generate throughput advice to
+   guide ABR applications on a per-flow basis.  In contrast, other
+   environments, such as wireline broadband or Wi-Fi, may apply policies
+   at centralized aggregation points or gateways such as the Broadband
+   Network Gateway serving multiple devices.
 
    Encompassing deployment of network elements in a wide range of
    networks, this document is limited to discussing the core
@@ -265,7 +268,34 @@ Table of Contents
    cadence (see Section 9.2 of [I-D.ietf-scone-protocol]).  This
    minimizes the application's reaction time to the new network state.
 
-3.7.  Monitoring and Logging
+3.7.  Presence of SCONE Network Elements On the Data Path
+
+   When multiple SCONE-capable network elements are present on the same
+   data path, they operate independently, with no synchronization or
+   control-plane coordination required between them.  Each network
+   element only lowers the rate signal, preserving any lower advice
+   already set by another element on the path, so the endpoint applies
+   the most restrictive advice along the path (see Section 5.4 of
+   [I-D.ietf-scone-protocol]).  This lets operators deploy and manage
+   SCONE network elements independently, without building integration
+   between them.
+
+3.8.  Change of Network Element During an Active Flow
+
+   The on-path network element can change when an application changes
+   its access network, for example during QUIC connection migration or a
+   mobility event where the IP address is unchanged.  Because SCONE
+   signaling is stateless, this transition needs no explicit teardown or
+   state transfer between the old and new network elements.  The
+   endpoint and network elements follow the migration steps defined in
+   Section 6.3 of [I-D.ietf-scone-protocol], where the endpoint sends
+   SCONE packets early on the new path so a network element there can
+   detect the flow and provide its own advice.  If no SCONE-capable
+   element is present on the new path, the previous advice expires after
+   a monitoring period (Section 5.4 of [I-D.ietf-scone-protocol]) and
+   the application operates without SCONE-advised limits.
+
+3.9.  Monitoring and Logging
 
    SCONE signaling can be integrated into existing operational and
    management frameworks to enable monitoring, troubleshooting, and
@@ -279,7 +309,7 @@ Table of Contents
    *  Error conditions where SCONE signaling fails to reach the intended
       endpoints
 
-3.8.  Conformance Monitoring
+3.10.  Conformance Monitoring
 
    Networks that choose to provide SCONE throughput advice can implement
    mechanisms to monitor QUIC flows and measure conformance to the
@@ -325,13 +355,13 @@ Table of Contents
    signal without any throttling fallback, prioritizing cooperative
    application optimization over strict compliance enforcement.
 
-3.9.  Standards Compliance
+3.11.  Standards Compliance
 
    SCONE signaling is expected to traverse the existing data path
    associated with the UDP 4-tuple flow for which the Network Element
    intends to send the advisory bit-rate.
 
-3.10.  Interworking with Other Congestion Management Mechanisms
+3.12.  Interworking with Other Congestion Management Mechanisms
 
    SCONE throughput advice is not a substitute for congestion control
    mechanisms in transport protocols utilizing congestion feedback and
