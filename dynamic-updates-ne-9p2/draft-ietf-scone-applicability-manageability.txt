@@ -263,10 +263,11 @@ Table of Contents
    Target throughput advice can change dynamically while a flow is
    active, for example when a subscriber reaches a data threshold or a
    network policy changes.  When this happens, the network element can
-   immediately update the next traversing SCONE packet with the new
-   throughput advice, rather than waiting for its next periodic update
-   cadence (see Section 9.2 of [I-D.ietf-scone-protocol]).  This
-   minimizes the application's reaction time to the new network state.
+   update the next traversing SCONE packet with the new throughput
+   advice, rather than waiting for its next periodic update cadence (see
+   Section 9.2 of [I-D.ietf-scone-protocol]).  How soon the application
+   sees the change depends on when the endpoint next sends a SCONE
+   packet, since the network element cannot originate one.
 
 3.7.  Presence of SCONE Network Elements On the Data Path
 
