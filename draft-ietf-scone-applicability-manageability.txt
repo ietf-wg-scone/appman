@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 13 December 2026                                          Nokia
+Expires: 14 December 2026                                          Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                            11 June 2026
+                                                            12 June 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 December 2026.
+   This Internet-Draft will expire on 14 December 2026.
 
 Copyright Notice
 
@@ -257,18 +257,13 @@ Table of Contents
 
 3.6.  Dynamic Updates
 
-   Dynamic rate limits updates can be enforced by the network during
-   active application sessions due to:
-
-   *  Changes in access network type (requiring updated throughput
-      advice)
-
-   *  Changes in Subscriber policy (e.g., exceeding usage thresholds)
-
-   In such cases, the SCONE Network Elements need to be able to initiate
-   SCONE packets to provide updated advice, or applications should
-   generate SCONE packets frequently enough to trigger network
-   responses.
+   Target throughput advice can change dynamically while a flow is
+   active, for example when a subscriber reaches a data threshold or a
+   network policy changes.  When this happens, the network element can
+   immediately update the next traversing SCONE packet with the new
+   throughput advice, rather than waiting for its next periodic update
+   cadence (see Section 9.2 of [I-D.ietf-scone-protocol]).  This
+   minimizes the application's reaction time to the new network state.
 
 3.7.  Monitoring and Logging
 
