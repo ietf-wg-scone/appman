@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 14 December 2026                                          Nokia
+Expires: 17 December 2026                                          Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                            12 June 2026
+                                                            15 June 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 December 2026.
+   This Internet-Draft will expire on 17 December 2026.
 
 Copyright Notice
 
@@ -478,9 +478,15 @@ Acknowledgments
 
    The authors thank Wesley Eddy, Renjie Tang, Kevin Smith, Tina Tsou,
    Tianji Jiang, Lucas Pardue, and Martin Thomson for their helpful
-   comments and contributions to this document.  The authors also thank
-   members of the SCONE Working Group for their review and support
-   throughout the development of this document.
+   comments and contributions to this document.
+
+   The authors are also grateful to Mirja Kühlewind, Gorry Fairhurst,
+   Marcus Ihlar, Qin Wu, Christian Huitema, and Brian Trammell for their
+   detailed reviews and contributions, which substantially improved this
+   document.
+
+   The authors also thank members of the SCONE Working Group for their
+   review and support throughout the development of this document.
 
 Authors' Addresses
 
