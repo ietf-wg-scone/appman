@@ -345,5 +345,11 @@ This document has no IANA actions.
 {:numbered="false"}
 
 The authors thank Wesley Eddy, Renjie Tang, Kevin Smith, Tina Tsou, Tianji Jiang, Lucas Pardue,
-and Martin Thomson for their helpful comments and contributions to this document. The authors also
-thank members of the SCONE Working Group for their review and support throughout the development of this document.
+and Martin Thomson for their helpful comments and contributions to this document.
+
+The authors are also grateful to Mirja Kühlewind, Gorry Fairhurst, Marcus Ihlar, Qin Wu,
+Christian Huitema, and Brian Trammell for their detailed reviews and contributions, which
+substantially improved this document.
+
+The authors also thank members of the SCONE Working Group for their review and support
+throughout the development of this document.
