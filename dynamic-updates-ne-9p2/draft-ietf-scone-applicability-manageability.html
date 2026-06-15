@@ -1203,7 +1203,7 @@ provider networks utilizing the Standard Communication with Network Elements (SC
                 <p id="section-toc.1-1.3.2.10.1"><a href="#section-3.10" class="auto internal xref">3.10</a>. <a href="#name-conformance-monitoring" class="internal xref">Conformance Monitoring</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.11">
-                <p id="section-toc.1-1.3.2.11.1"><a href="#section-3.11" class="auto internal xref">3.11</a>. <a href="#name-standards-compliance" class="internal xref">Standards Compliance</a></p>
+                <p id="section-toc.1-1.3.2.11.1"><a href="#section-3.11" class="auto internal xref">3.11</a>. <a href="#name-in-band-signaling-and-netwo" class="internal xref">In-Band Signaling and Network Integration</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.12">
                 <p id="section-toc.1-1.3.2.12.1"><a href="#section-3.12" class="auto internal xref">3.12</a>. <a href="#name-interworking-with-other-con" class="internal xref">Interworking with Other Congestion Management Mechanisms</a></p>
@@ -1501,13 +1501,24 @@ can deploy SCONE purely as an advisory signal without any throttling fallback, p
 cooperative application optimization over strict compliance enforcement.<a href="#section-3.10-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="standards-compliance">
+<div id="in-band-signaling-and-network-integration">
 <section id="section-3.11">
-        <h3 id="name-standards-compliance">
-<a href="#section-3.11" class="section-number selfRef">3.11. </a><a href="#name-standards-compliance" class="section-name selfRef">Standards Compliance</a>
+        <h3 id="name-in-band-signaling-and-netwo">
+<a href="#section-3.11" class="section-number selfRef">3.11. </a><a href="#name-in-band-signaling-and-netwo" class="section-name selfRef">In-Band Signaling and Network Integration</a>
         </h3>
-<p id="section-3.11-1">SCONE signaling is expected to traverse the existing data path associated
-with the UDP 4-tuple flow for which the Network Element intends to send the advisory bit-rate.<a href="#section-3.11-1" class="pilcrow">¶</a></p>
+<p id="section-3.11-1">Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
+operates entirely in-band. It does not introduce any additional routing overhead or
+require the creation of out-of-band signaling interfaces. Instead, SCONE signaling
+inherently traverses the already established network path, such as the existing
+connection between a user device and a network gateway, associated with the QUIC flow
+for which the network element intends to send throughput advice. This ensures that
+SCONE seamlessly integrates into existing architectures without requiring new tunnels
+or data paths to be established.<a href="#section-3.11-1" class="pilcrow">¶</a></p>
+<p id="section-3.11-2">By providing a standardized mechanism, SCONE allows network operators and QUIC endpoints to
+exchange bit-rate information without custom APIs or per-network integrations. Applications can
+self-adapt to the advised bit-rate rather than relying on network rate limiters such as policers
+or shapers, and the network can update the advised bit-rate for an active flow, including to
+support tiered subscriber data plans (see Section 3.2 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).<a href="#section-3.11-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="interworking-with-other-congestion-management-mechanisms">
