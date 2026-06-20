@@ -1,7 +1,7 @@
 ---
 title: "Applicability & Manageability Considerations for SCONE"
 abbrev: "SCONE Applicability & Manageability"
-docname: draft-ietf-scone-applicability-manageability-latest
+docname: draft-ietf-scone-applicability-manageability-02
 category: info
 submissionType: IETF
 
