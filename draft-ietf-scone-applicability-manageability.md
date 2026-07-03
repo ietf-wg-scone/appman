@@ -216,9 +216,9 @@ is translated to an inner
 SCONE packet in order to be visible to the transport connection endpoints. Again in this case
 the MASQUE client has to decide how to share the capacity among all tunneled connections.
 
-Using SCONE on a MASQUE QUIC tunnel connection can enable throughput advise also for tunnelled
+Using SCONE on a MASQUE QUIC tunnel connection can enable throughput advice also for tunneled
 non-QUIC traffic, however, this can only be applied if there is a interface or mechanism in the client
-that provides the throughput advise to the application.
+that provides the throughput advice to the application.
 
 # Security Considerations
 Security considerations are included separately in the SCONE protocol documents.
