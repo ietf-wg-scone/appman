@@ -197,7 +197,7 @@ SCONE maybe be carried on the inner traffic but can also be used on a QUIC-based
 
 If the inner traffic is SCONE-capable, the tunnel endpoint itself
 can be a SCONE-capable network element as it has visibility into the demultiplexed tunneled traffic.
-In this case, throughput advice can used be to manage individual tunneled flows.
+In this case, throughput advice can be applied to individual tunneled flows.
 
 If the MASQUE tunnel itself uses a SCONE-enabled QUIC connection,
 the SCONE-capable network element is on the path between the MASQUE client and the MASQUE proxy.
