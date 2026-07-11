@@ -14,7 +14,7 @@
 application endpoints. This guidance is specifically addressed within the context of telecommunications service
 provider networks utilizing the Standard Communication with Network Elements (SCONE) protocol. 
     " name="description">
-<meta content="xml2rfc 3.33.0" name="generator">
+<meta content="xml2rfc 3.34.0" name="generator">
 <meta content="SCONE" name="keyword">
 <meta content="access networks" name="keyword">
 <meta content="bit rate" name="keyword">
@@ -23,18 +23,19 @@ provider networks utilizing the Standard Communication with Network Elements (SC
 <meta content="manageability" name="keyword">
 <meta content="draft-ietf-scone-applicability-manageability-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.33.0
-    Python 3.12.13
-    ConfigArgParse 1.7
+  xml2rfc 3.34.0
+    Python 3.14.5
+    ConfigArgParse 1.7.5
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
-    lxml 6.0.2
-    platformdirs 4.9.6
+    lxml 6.1.1
+    natsort 8.4.0
+    platformdirs 4.10.0
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.7.0
+    wcwidth 0.8.2
 -->
 <link href="draft-ietf-scone-applicability-manageability.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1053,11 +1054,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SCONE Applicability &amp; Manageability</td>
-<td class="right">June 2026</td>
+<td class="right">July 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mishra, et al.</td>
-<td class="center">Expires 13 December 2026</td>
+<td class="center">Expires 12 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1070,12 +1071,12 @@ svg {
 <dd class="internet-draft">draft-ietf-scone-applicability-manageability-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-06-11" class="published">11 June 2026</time>
+<time datetime="2026-07-11" class="published">11 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-12-13">13 December 2026</time></dd>
+<dd class="expires"><time datetime="2027-01-12">12 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1134,7 +1135,7 @@ provider networks utilizing the Standard Communication with Network Elements (SC
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 12 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1191,16 +1192,22 @@ provider networks utilizing the Standard Communication with Network Elements (SC
                 <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-dynamic-updates" class="internal xref">Dynamic Updates</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.7">
-                <p id="section-toc.1-1.3.2.7.1"><a href="#section-3.7" class="auto internal xref">3.7</a>.  <a href="#name-monitoring-and-logging" class="internal xref">Monitoring and Logging</a></p>
+                <p id="section-toc.1-1.3.2.7.1"><a href="#section-3.7" class="auto internal xref">3.7</a>.  <a href="#name-presence-of-scone-network-e" class="internal xref">Presence of SCONE Network Elements On the Data Path</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.8">
-                <p id="section-toc.1-1.3.2.8.1"><a href="#section-3.8" class="auto internal xref">3.8</a>.  <a href="#name-conformance-monitoring" class="internal xref">Conformance Monitoring</a></p>
+                <p id="section-toc.1-1.3.2.8.1"><a href="#section-3.8" class="auto internal xref">3.8</a>.  <a href="#name-change-of-network-element-d" class="internal xref">Change of Network Element During an Active Flow</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.9">
-                <p id="section-toc.1-1.3.2.9.1"><a href="#section-3.9" class="auto internal xref">3.9</a>.  <a href="#name-standards-compliance" class="internal xref">Standards Compliance</a></p>
+                <p id="section-toc.1-1.3.2.9.1"><a href="#section-3.9" class="auto internal xref">3.9</a>.  <a href="#name-monitoring-and-logging" class="internal xref">Monitoring and Logging</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.10">
-                <p id="section-toc.1-1.3.2.10.1"><a href="#section-3.10" class="auto internal xref">3.10</a>. <a href="#name-interworking-with-other-con" class="internal xref">Interworking with Other Congestion Management Mechanisms</a></p>
+                <p id="section-toc.1-1.3.2.10.1"><a href="#section-3.10" class="auto internal xref">3.10</a>. <a href="#name-conformance-monitoring" class="internal xref">Conformance Monitoring</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.11">
+                <p id="section-toc.1-1.3.2.11.1"><a href="#section-3.11" class="auto internal xref">3.11</a>. <a href="#name-in-band-signaling-and-netwo" class="internal xref">In-Band Signaling and Network Integration</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.12">
+                <p id="section-toc.1-1.3.2.12.1"><a href="#section-3.12" class="auto internal xref">3.12</a>. <a href="#name-interworking-with-other-con" class="internal xref">Interworking with Other Congestion Management Mechanisms</a></p>
 </li>
             </ul>
 </li>
@@ -1241,14 +1248,22 @@ provider networks utilizing the Standard Communication with Network Elements (SC
 mechanisms,to proactively align their transmission rates with network policies. This document addresses the
 Applicability and Manageability considerations for deploying the SCONE protocol within service provider networks.
 It also addresses operational, configuration, and management aspects not covered in the core protocol specification.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">To participate in SCONE, a network element is assumed to have the functional capability to identify and track scone compliant application flows, recognize and process SCONE packets within those flows and map network policies into
-throughput advice to be inserted into the SCONE packets. While on-path network elements may exist at various points
-between the server and the client application end-points, their specific configuration and role will influence the
-advice they generate. Different network architectures handle flow visibility and policy enforcement at different points.
-In mobile networks, for example, the User Plane Function (UPF) in 5G <span>[<a href="#_5G-Arch" class="cite xref">_5G-Arch</a>]</span> and the Packet Data Network Gateway (P-GW) in 4G network <span>[<a href="#_4G-Arch" class="cite xref">_4G-Arch</a>]</span> can generate throughput advice to guide ABR applications on a per-flow basis. In contrast,
-other environments, such as wireline broadband or Wi-Fi, may apply policies at centralized aggregation points or gateways such as the Broadband Network Gateway serving multiple devices.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">Encompassing deployment of network elements in a wide range of networks, this document is limited to discussing the core Applicability and Manageability considerations for the SCONE protocol to ensure its consistent and effective use across
-varied network paths.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-3">To participate in SCONE, a network element is assumed to have the
+functional capability to identify and track SCONE-compliant QUIC
+flows, recognize and process SCONE packets within those flows, and
+map network policies into throughput advice to be inserted into the
+SCONE packets.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">When on-path network elements are present between the server and the client
+application end-points, their specific configuration and role will influence the advice they
+generate. Different network architectures handle flow visibility and policy enforcement at
+different points. In mobile networks, for example, the User Plane Function (UPF) in 5G <span>[<a href="#_5G-Arch" class="cite xref">_5G-Arch</a>]</span>
+and the Packet Data Network Gateway (P-GW) in 4G network <span>[<a href="#_4G-Arch" class="cite xref">_4G-Arch</a>]</span> can generate throughput
+advice to guide ABR applications on a per-flow basis. In contrast, other environments,
+such as wireline broadband or Wi-Fi, may apply policies at centralized aggregation points
+or gateways such as the Broadband Network Gateway serving multiple devices.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">Encompassing deployment of network elements in a wide range of networks, this document
+is limited to discussing the core Applicability and Manageability considerations for
+the SCONE protocol to ensure its consistent and effective use across varied network paths.<a href="#section-1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terms-and-definitions">
@@ -1340,7 +1355,7 @@ and guide application usage.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a><
         <h3 id="name-considerations-of-processin">
 <a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-considerations-of-processin" class="section-name selfRef">Considerations of Processing Complexity</a>
         </h3>
-<p id="section-3.3-1">As specified in Section 6.1 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>, SCONE-aware endpoints provide
+<p id="section-3.3-1">As specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-6.1" class="relref">Section 6.1</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>, SCONE-aware endpoints provide
 a specific indication on the first SCONE packet to support the identification of a SCONE-capable flow
 without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
 through bit-rate self-adaptation, remove the need for complex rate-limiting functions in the network
@@ -1355,12 +1370,12 @@ load in the network element.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
         </h3>
 <p id="section-3.4-1">Packet loss or non-delivery of SCONE advice directly reduces its effectiveness.
 Because the reliable delivery of throughput advice relies entirely on the periodic
-sending of SCONE packets by application endpoints, Section 7.1
-("Applying Throughput Advice Signals") of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>
-leaves the exact update frequency flexible. This flexibility allows operators to
+sending of SCONE packets by application endpoints. <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-7.1" class="relref">Section 7.1</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>
+("Applying Throughput Advice Signals") leaves the exact update frequency flexible. This flexibility allows operators to
 manage the tension between signaling reliability and network CPU load.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 <p id="section-3.4-2">A SCONE-enabled network element updates advice in SCONE packets at least twice per the
-67-second monitoring period (approximately every 20 to 30 seconds), but operators may
+67-second monitoring period (Section 5.2 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>,
+approximately every 20 to 30 seconds), but operators may
 choose to process and update SCONE packets more frequently to better mitigate packet losses
 or to ensure timely notifications to the application. Therefore, the network element needs
 to make independent operational decisions on how frequently to update those traversing packets.
@@ -1393,93 +1408,127 @@ predictable or uniform signaling cadence from the network side.<a href="#section
         <h3 id="name-dynamic-updates">
 <a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-dynamic-updates" class="section-name selfRef">Dynamic Updates</a>
         </h3>
-<p id="section-3.6-1">Dynamic rate limits updates can be enforced by the network during active
-application sessions due to:<a href="#section-3.6-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3.6-2.1">
-            <p id="section-3.6-2.1.1">Changes in access network type (requiring updated throughput advice)<a href="#section-3.6-2.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.6-2.2">
-            <p id="section-3.6-2.2.1">Changes in Subscriber policy (e.g., exceeding usage thresholds)<a href="#section-3.6-2.2.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
-<p id="section-3.6-3">In such cases, the SCONE Network Elements need to be able to initiate SCONE
-packets to provide updated advice, or applications should generate SCONE
-packets frequently enough to trigger network responses.<a href="#section-3.6-3" class="pilcrow">¶</a></p>
+<p id="section-3.6-1">Target throughput advice can change dynamically while a flow is active, for example when a
+subscriber reaches a data threshold or a network policy changes. When this happens, the network
+element can update the next traversing SCONE packet with the new throughput advice (see
+<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-9.2" class="relref">Section 9.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).
+How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
+since the network element cannot originate one.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="presence-of-scone-network-elements-on-the-data-path">
+<section id="section-3.7">
+        <h3 id="name-presence-of-scone-network-e">
+<a href="#section-3.7" class="section-number selfRef">3.7. </a><a href="#name-presence-of-scone-network-e" class="section-name selfRef">Presence of SCONE Network Elements On the Data Path</a>
+        </h3>
+<p id="section-3.7-1">When multiple SCONE-capable network elements are present on the same data path, they operate
+independently, with no synchronization or control-plane coordination required between them.
+Each network element only lowers the rate signal, preserving any lower advice already set by
+another element on the path, so the endpoint applies the most restrictive advice along the
+path (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-5.4" class="relref">Section 5.4</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>). This lets operators deploy and manage
+SCONE network elements independently, without building integration between them.<a href="#section-3.7-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="change-of-network-element-during-an-active-flow">
+<section id="section-3.8">
+        <h3 id="name-change-of-network-element-d">
+<a href="#section-3.8" class="section-number selfRef">3.8. </a><a href="#name-change-of-network-element-d" class="section-name selfRef">Change of Network Element During an Active Flow</a>
+        </h3>
+<p id="section-3.8-1">The on-path network element can change when an application changes its access network, for
+example during QUIC connection migration or a mobility event where the IP address is unchanged.
+Because SCONE signaling is stateless, this transition needs no explicit teardown or state
+transfer between the old and new network elements. The endpoint and network elements follow the
+migration steps defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-6.3" class="relref">Section 6.3</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>, where the endpoint sends
+SCONE packets early on the new path so a network element there can detect the flow and provide
+its own advice. If no SCONE-capable element is present on the new path, the previous advice
+expires after a monitoring period (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-5.4" class="relref">Section 5.4</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>) and the
+application operates without SCONE-advised limits.<a href="#section-3.8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="monitoring-and-logging">
-<section id="section-3.7">
+<section id="section-3.9">
         <h3 id="name-monitoring-and-logging">
-<a href="#section-3.7" class="section-number selfRef">3.7. </a><a href="#name-monitoring-and-logging" class="section-name selfRef">Monitoring and Logging</a>
+<a href="#section-3.9" class="section-number selfRef">3.9. </a><a href="#name-monitoring-and-logging" class="section-name selfRef">Monitoring and Logging</a>
         </h3>
-<p id="section-3.7-1">SCONE signaling can be integrated into existing operational and
+<p id="section-3.9-1">SCONE signaling can be integrated into existing operational and
 management frameworks to enable monitoring, troubleshooting, and fault
-isolation. Metrics of interest include:<a href="#section-3.7-1" class="pilcrow">¶</a></p>
+isolation. Metrics of interest include:<a href="#section-3.9-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.7-2.1">
-            <p id="section-3.7-2.1.1">Rate of SCONE advisory messages issued per session<a href="#section-3.7-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3.9-2.1">
+            <p id="section-3.9-2.1.1">Rate of SCONE advisory messages issued per session<a href="#section-3.9-2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.7-2.2">
-            <p id="section-3.7-2.2.1">Correlation between SCONE advisories and user-plane throughput changes<a href="#section-3.7-2.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.9-2.2">
+            <p id="section-3.9-2.2.1">Correlation between SCONE advisories and user-plane throughput changes<a href="#section-3.9-2.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.7-2.3">
-            <p id="section-3.7-2.3.1">Error conditions where SCONE signaling fails to reach the intended endpoints<a href="#section-3.7-2.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.9-2.3">
+            <p id="section-3.9-2.3.1">Error conditions where SCONE signaling fails to reach the intended endpoints<a href="#section-3.9-2.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
 </div>
 <div id="conformance-monitoring">
-<section id="section-3.8">
+<section id="section-3.10">
         <h3 id="name-conformance-monitoring">
-<a href="#section-3.8" class="section-number selfRef">3.8. </a><a href="#name-conformance-monitoring" class="section-name selfRef">Conformance Monitoring</a>
+<a href="#section-3.10" class="section-number selfRef">3.10. </a><a href="#name-conformance-monitoring" class="section-name selfRef">Conformance Monitoring</a>
         </h3>
-<p id="section-3.8-1">Networks that choose to provide SCONE throughput advice can implement mechanisms to
+<p id="section-3.10-1">Networks that choose to provide SCONE throughput advice can implement mechanisms to
 monitor QUIC flows and measure conformance to the advised bit-rate, either per flow of
 packets on the same UDP address tuple, or in aggregate across multiple QUIC flows if they
 contribute to a shared policy limit (such as a device or network subscription level). This
-will allow operators to validate whether applications are following the advised bit-rate.<a href="#section-3.8-1" class="pilcrow">¶</a></p>
-<p id="section-3.8-2">While it is expected that operators will implement monitoring at the SCONE Network Element
+will allow operators to validate whether applications are following the advised bit-rate.<a href="#section-3.10-1" class="pilcrow">¶</a></p>
+<p id="section-3.10-2">While it is expected that operators will implement monitoring at the SCONE Network Element
 providing the advice, it could also be performed elsewhere in the network. However, network
 elements lack the capability to validate the legitimacy of SCONE packets coalesced with other
 QUIC packets. Therefore, operators must ensure a network element evaluates conformance only
 against the advised bit-rate that it set itself, and never enforces limits based on advice
-set by other downstream network elements.<a href="#section-3.8-2" class="pilcrow">¶</a></p>
-<p id="section-3.8-3">When evaluating compliance, network operators will need to account for the time required for
+set by other downstream network elements.<a href="#section-3.10-2" class="pilcrow">¶</a></p>
+<p id="section-3.10-3">When evaluating compliance, network operators will need to account for the time required for
 SCONE packets to be updated, received by endpoints, and acted upon by the application.
 Operators can accommodate this by utilizing a sliding window approach. Operators should
 evaluate QUIC flows against the highest throughput limit advised over the preceding two
 monitoring periods (a span of 134 seconds). If a network element cannot update the
 throughput advice in every traversing SCONE packet, operators might configure a
-longer sliding window to account for the possibility of packet loss.<a href="#section-3.8-3" class="pilcrow">¶</a></p>
-<p id="section-3.8-4">To simplify the measurement function, reduce computational load, or offload this
+longer sliding window to account for the possibility of packet loss.<a href="#section-3.10-3" class="pilcrow">¶</a></p>
+<p id="section-3.10-4">To simplify the measurement function, reduce computational load, or offload this
 function to another node in the network, operators can select any value larger
-than the baseline 67-second window for their measurement and averaging period.<a href="#section-3.8-4" class="pilcrow">¶</a></p>
-<p id="section-3.8-5">Because some applications will not support SCONE, and others either will not or cannot follow
+than the baseline 67-second window (Section 5.2 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>)
+for their measurement and averaging period.<a href="#section-3.10-4" class="pilcrow">¶</a></p>
+<p id="section-3.10-5">Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle violations.
 If the monitoring function detects a violation where an application is not respecting the
 signaled throughput advice, the network can employ a throttling fallback. This involves falling
 back to traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
 can deploy SCONE purely as an advisory signal without any throttling fallback, prioritizing
-cooperative application optimization over strict compliance enforcement.<a href="#section-3.8-5" class="pilcrow">¶</a></p>
+cooperative application optimization over strict compliance enforcement.<a href="#section-3.10-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="standards-compliance">
-<section id="section-3.9">
-        <h3 id="name-standards-compliance">
-<a href="#section-3.9" class="section-number selfRef">3.9. </a><a href="#name-standards-compliance" class="section-name selfRef">Standards Compliance</a>
+<div id="in-band-signaling-and-network-integration">
+<section id="section-3.11">
+        <h3 id="name-in-band-signaling-and-netwo">
+<a href="#section-3.11" class="section-number selfRef">3.11. </a><a href="#name-in-band-signaling-and-netwo" class="section-name selfRef">In-Band Signaling and Network Integration</a>
         </h3>
-<p id="section-3.9-1">SCONE signaling is expected to traverse the existing data path associated
-with the UDP 4-tuple flow for which the Network Element intends to send the advisory bit-rate.<a href="#section-3.9-1" class="pilcrow">¶</a></p>
+<p id="section-3.11-1">Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
+operates entirely in-band. It does not introduce any additional routing overhead or
+require the creation of out-of-band signaling interfaces. Instead, SCONE signaling
+inherently traverses the already established network path, such as the existing
+connection between a user device and a network gateway, associated with the QUIC flow
+for which the network element intends to send throughput advice. This ensures that
+SCONE seamlessly integrates into existing architectures without requiring new tunnels
+or data paths to be established.<a href="#section-3.11-1" class="pilcrow">¶</a></p>
+<p id="section-3.11-2">By providing a standardized mechanism, SCONE allows network operators and QUIC endpoints to
+exchange bit-rate information without custom APIs or per-network integrations. Applications can
+self-adapt to the advised bit-rate rather than relying on network rate limiters such as policers
+or shapers, and the network can update the advised bit-rate for an active flow, including to
+support tiered subscriber data plans (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-3.2" class="relref">Section 3.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).<a href="#section-3.11-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="interworking-with-other-congestion-management-mechanisms">
-<section id="section-3.10">
+<section id="section-3.12">
         <h3 id="name-interworking-with-other-con">
-<a href="#section-3.10" class="section-number selfRef">3.10. </a><a href="#name-interworking-with-other-con" class="section-name selfRef">Interworking with Other Congestion Management Mechanisms</a>
+<a href="#section-3.12" class="section-number selfRef">3.12. </a><a href="#name-interworking-with-other-con" class="section-name selfRef">Interworking with Other Congestion Management Mechanisms</a>
         </h3>
-<p id="section-3.10-1">SCONE throughput advice is not a substitute for congestion control mechanisms in
+<p id="section-3.12-1">SCONE throughput advice is not a substitute for congestion control mechanisms in
 transport protocols utilizing congestion feedback and signals such as acknowledgments,
 Explicit Congestion Notification (ECN) <span>[<a href="#RFC3168" class="cite xref">RFC3168</a>]</span>, and Low Latency, Low Loss, and Scalable
 Throughput (L4S) <span>[<a href="#RFC9330" class="cite xref">RFC9330</a>]</span>. Rather, they are complementary. Congestion signals provide real-time
@@ -1490,23 +1539,23 @@ application traffic, it simply provides static or dynamically adapted advice bas
 policy information. Operators can use SCONE to communicate these maximum allowable bit-rates
 driven by video optimization, subscriber data, or load management policies, independent of
 instantaneous link congestion. It is then up to the applications, such as adaptive bitrate video
-clients or bulk downloads, to utilize this advice according to their specific use cases.<a href="#section-3.10-1" class="pilcrow">¶</a></p>
-<p id="section-3.10-2">For network operators considering co-deployment, SCONE throughput advice is strictly independent
+clients or bulk downloads, to utilize this advice according to their specific use cases.<a href="#section-3.12-1" class="pilcrow">¶</a></p>
+<p id="section-3.12-2">For network operators considering co-deployment, SCONE throughput advice is strictly independent
 of the IP-layer ECN field. Because SCONE advice is carried within the QUIC payload, updating the
 advice does not interact with or modify ECN markings. This independence ensures that operators can
 safely deploy SCONE alongside L4S or standard ECN. Real-time congestion feedback mechanisms remain
-fully operational and function completely outside the SCONE domain.<a href="#section-3.10-2" class="pilcrow">¶</a></p>
-<p id="section-3.10-3">Operators should expect that congestion signals might frequently indicate a throughput limit different
+fully operational and function completely outside the SCONE domain.<a href="#section-3.12-2" class="pilcrow">¶</a></p>
+<p id="section-3.12-3">Operators should expect that congestion signals might frequently indicate a throughput limit different
 from the signaled SCONE advice. In other words, in the best case, the throughput advice is below the
 congestion limit and when the application adheres to the advice, congestion control would be
 application-limited and not go into action. However, in cases of high load, congestion control would
 limit the throughput below the provided advice, as the SCONE advice is only an upper limit. As such,
 congestion control or a similar mechanism to react to congestion, such as a circuit breaker, is always
-needed in addition to SCONE.<a href="#section-3.10-3" class="pilcrow">¶</a></p>
-<p id="section-3.10-4">In environments where both are present, congestion control manages the immediate dynamics of the bottleneck
+needed in addition to SCONE.<a href="#section-3.12-3" class="pilcrow">¶</a></p>
+<p id="section-3.12-4">In environments where both are present, congestion control manages the immediate dynamics of the bottleneck
 link, while SCONE informs the application of the maximum rate allowed by network policy. Network operators
 will benefit from ensuring that throughput advice policies and congestion control configurations are consistent
-within scoped deployments, to avoid providing conflicting feedback to applications.<a href="#section-3.10-4" class="pilcrow">¶</a></p>
+within scoped deployments, to avoid providing conflicting feedback to applications.<a href="#section-3.12-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1518,7 +1567,7 @@ within scoped deployments, to avoid providing conflicting feedback to applicatio
       </h2>
 <p id="section-4-1">This document does not add any additional security considerations. The core security and
 privacy considerations for the SCONE protocol are comprehensively defined in
-Sections 9 and 10 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.<a href="#section-4-1" class="pilcrow">¶</a></p>
+Sections <a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-9" class="relref">9</a> and <a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-10" class="relref">10</a> of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.<a href="#section-4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1542,7 +1591,7 @@ Sections 9 and 10 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref"
 <dl class="references">
 <dt id="I-D.ietf-scone-protocol">[I-D.ietf-scone-protocol]</dt>
       <dd>
-<span class="refAuthor">Thomson, M.</span>, <span class="refAuthor">Huitema, C.</span>, <span class="refAuthor">Oku, K.</span>, <span class="refAuthor">Joras, M.</span>, and <span class="refAuthor">M. Ihlar</span>, <span class="refTitle">"Standard Communication with Network Elements (SCONE) Protocol"</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-scone-protocol, Work in Progress </span>, <time datetime="2025-07" class="refDate">July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/draft-ietf-scone-protocol/">https://datatracker.ietf.org/doc/draft-ietf-scone-protocol/</a>&gt;</span>. </dd>
+<span class="refAuthor">Thomson, M.</span>, <span class="refAuthor">Huitema, C.</span>, <span class="refAuthor">Oku, K.</span>, <span class="refAuthor">Joras, M.</span>, and <span class="refAuthor">L. M. Ihlar</span>, <span class="refTitle">"Standard Communication with Network Elements (SCONE) Protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-scone-protocol-05</span>, <time datetime="2026-07-06" class="refDate">6 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05">https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1580,8 +1629,12 @@ Sections 9 and 10 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref"
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
 <p id="appendix-A-1">The authors thank Wesley Eddy, Renjie Tang, Kevin Smith, Tina Tsou, Tianji Jiang, Lucas Pardue,
-and Martin Thomson for their helpful comments and contributions to this document. The authors also
-thank members of the SCONE Working Group for their review and support throughout the development of this document.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+and Martin Thomson for their helpful comments and contributions to this document.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2">The authors are also grateful to Mirja Kühlewind, Gorry Fairhurst, Marcus Ihlar, Qin Wu,
+Christian Huitema, and Brian Trammell for their detailed reviews and contributions, which
+substantially improved this document.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<p id="appendix-A-3">The authors also thank members of the SCONE Working Group for their review and support
+throughout the development of this document.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
