@@ -221,8 +221,8 @@ Table of Contents
    Packet loss or non-delivery of SCONE advice directly reduces its
    effectiveness.  Because the reliable delivery of throughput advice
    relies entirely on the periodic sending of SCONE packets by
-   application endpoints, Section 7.1 ("Applying Throughput Advice
-   Signals") of [I-D.ietf-scone-protocol] leaves the exact update
+   application endpoints.  Section 7.1 of [I-D.ietf-scone-protocol]
+   ("Applying Throughput Advice Signals") leaves the exact update
    frequency flexible.  This flexibility allows operators to manage the
    tension between signaling reliability and network CPU load.
 
@@ -440,12 +440,12 @@ Table of Contents
 6.1.  Normative References
 
    [I-D.ietf-scone-protocol]
-              Thomson, M., Huitema, C., Oku, K., Joras, M., and M.
+              Thomson, M., Huitema, C., Oku, K., Joras, M., and L. M.
               Ihlar, "Standard Communication with Network Elements
-              (SCONE) Protocol", Internet-Draft, draft-ietf-scone-
-              protocol, Work in Progress , July 2025,
-              <https://datatracker.ietf.org/doc/draft-ietf-scone-
-              protocol/>.
+              (SCONE) Protocol", Work in Progress, Internet-Draft,
+              draft-ietf-scone-protocol-05, 6 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-scone-
+              protocol-05>.
 
 6.2.  Informative References
 
