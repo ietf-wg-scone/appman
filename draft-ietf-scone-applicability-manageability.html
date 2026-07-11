@@ -35,7 +35,7 @@ provider networks utilizing the Standard Communication with Network Elements (SC
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.8.1
+    wcwidth 0.8.2
 -->
 <link href="draft-ietf-scone-applicability-manageability.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1054,11 +1054,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SCONE Applicability &amp; Manageability</td>
-<td class="right">June 2026</td>
+<td class="right">July 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mishra, et al.</td>
-<td class="center">Expires 22 December 2026</td>
+<td class="center">Expires 12 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1071,12 +1071,12 @@ svg {
 <dd class="internet-draft">draft-ietf-scone-applicability-manageability-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-06-20" class="published">20 June 2026</time>
+<time datetime="2026-07-11" class="published">11 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-12-22">22 December 2026</time></dd>
+<dd class="expires"><time datetime="2027-01-12">12 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1135,7 +1135,7 @@ provider networks utilizing the Standard Communication with Network Elements (SC
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 12 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1375,7 +1375,8 @@ sending of SCONE packets by application endpoints, Section 7.1
 leaves the exact update frequency flexible. This flexibility allows operators to
 manage the tension between signaling reliability and network CPU load.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 <p id="section-3.4-2">A SCONE-enabled network element updates advice in SCONE packets at least twice per the
-67-second monitoring period (approximately every 20 to 30 seconds), but operators may
+67-second monitoring period (Section 5.2 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>,
+approximately every 20 to 30 seconds), but operators may
 choose to process and update SCONE packets more frequently to better mitigate packet losses
 or to ensure timely notifications to the application. Therefore, the network element needs
 to make independent operational decisions on how frequently to update those traversing packets.
@@ -1491,7 +1492,8 @@ throughput advice in every traversing SCONE packet, operators might configure a
 longer sliding window to account for the possibility of packet loss.<a href="#section-3.10-3" class="pilcrow">¶</a></p>
 <p id="section-3.10-4">To simplify the measurement function, reduce computational load, or offload this
 function to another node in the network, operators can select any value larger
-than the baseline 67-second window for their measurement and averaging period.<a href="#section-3.10-4" class="pilcrow">¶</a></p>
+than the baseline 67-second window (Section 5.2 of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>)
+for their measurement and averaging period.<a href="#section-3.10-4" class="pilcrow">¶</a></p>
 <p id="section-3.10-5">Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle violations.
 If the monitoring function detects a violation where an application is not respecting the
