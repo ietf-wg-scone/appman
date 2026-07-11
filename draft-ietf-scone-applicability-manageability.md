@@ -185,7 +185,7 @@ leaves the exact update frequency flexible. This flexibility allows operators to
 manage the tension between signaling reliability and network CPU load.
 
 A SCONE-enabled network element updates advice in SCONE packets at least twice per the
-67-second monitoring period ({{Section 5.2 of I-D.ietf-scone-protocol}},
+67-second monitoring period (Section 5.2 of {{I-D.ietf-scone-protocol}},
 approximately every 20 to 30 seconds), but operators may
 choose to process and update SCONE packets more frequently to better mitigate packet losses
 or to ensure timely notifications to the application. Therefore, the network element needs
@@ -269,7 +269,7 @@ longer sliding window to account for the possibility of packet loss.
 
 To simplify the measurement function, reduce computational load, or offload this
 function to another node in the network, operators can select any value larger
-than the baseline 67-second window ({{Section 5.2 of I-D.ietf-scone-protocol}})
+than the baseline 67-second window (Section 5.2 of {{I-D.ietf-scone-protocol}})
 for their measurement and averaging period.
 
 Because some applications will not support SCONE, and others either will not or cannot follow
