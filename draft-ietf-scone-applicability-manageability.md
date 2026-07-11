@@ -39,16 +39,6 @@ author:
 
 normative:
   I-D.ietf-scone-protocol:
-    target: https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol
-    title: Standard Communication with Network Elements (SCONE) Protocol
-    author:
-      - name: M. Thomson
-      - name: C. Huitema
-      - name: K. Oku
-      - name: M. Joras
-      - name: M. Ihlar
-    date: 2025-07
-    seriesinfo: "Internet-Draft, draft-ietf-scone-protocol, Work in Progress"
 
 
 informative:
