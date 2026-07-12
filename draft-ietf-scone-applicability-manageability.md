@@ -234,6 +234,28 @@ isolation. Metrics of interest include:
 - Correlation between SCONE advisories and user-plane throughput changes
 - Error conditions where SCONE signaling fails to reach the intended endpoints
 
+When throughput advice does not appear to be followed, it is
+useful to determine whether the advice reached the application
+at all, or whether the application received it but did not act
+on it. Operators can narrow the diagnosis by
+correlating the rate of SCONE advisories issued at the network
+element against the observed per-flow throughput over the
+following two monitoring periods. If the network element
+successfully updates traversing SCONE packets during that window
+but the flow's throughput does not change, it indicates either
+that the packets were dropped downstream before reaching the
+application, or that the application received the advice but did
+not act upon it, as SCONE is an advisory signal per
+{{Section 3.5 of I-D.ietf-scone-protocol}}. Conversely, if the
+network element stops observing traversing SCONE packets
+arriving from the sender, this suggests either an upstream delivery
+failure or the endpoint is no longer sending SCONE packets on that flow.
+Recording both the timestamps of issued advisories and the subsequent
+per-flow throughput measurements in the logging infrastructure
+makes this correlation possible, aligning with the monitoring
+guidance in {{Section 7.2 of I-D.ietf-scone-protocol}}.
+
+
 ## Conformance Monitoring
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
 monitor QUIC flows and measure conformance to the advised bit-rate, either per flow of
