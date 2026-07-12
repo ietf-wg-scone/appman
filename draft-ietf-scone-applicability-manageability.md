@@ -225,7 +225,7 @@ its own advice. If no SCONE-capable element is present on the new path, the prev
 expires after a monitoring period ({{Section 5.4 of I-D.ietf-scone-protocol}}) and the
 application operates without SCONE-advised limits.
 
-## Monitoring and Logging
+## Monitoring and Logging {#monitoring-and-logging}
 SCONE signaling can be integrated into existing operational and
 management frameworks to enable monitoring, troubleshooting, and fault
 isolation. Metrics of interest include:
@@ -258,10 +258,14 @@ longer sliding window to account for the possibility of packet loss.
 
 To simplify the measurement function, reduce computational load, or offload this
 function to another node in the network, operators can select any value larger
-than the baseline 67-second window ({{Section 5.2 of I-D.ietf-scone-protocol}}) for their measurement and averaging period.
+than the baseline 67-second window ({{Section 5.2 of I-D.ietf-scone-protocol}})
+for their measurement and averaging period.
 
 Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle violations.
+Before applying penalties, operators can use the diagnostic approach described in
+{{monitoring-and-logging}} to confirm that a sustained violation reflects application
+non-compliance rather than a delivery failure per {{Section 7.3 of I-D.ietf-scone-protocol}}.
 If the monitoring function detects a violation where an application is not respecting the
 signaled throughput advice, the network can employ a throttling fallback. This involves falling
 back to traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
