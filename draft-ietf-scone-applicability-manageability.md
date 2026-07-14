@@ -166,6 +166,37 @@ through bit-rate self-adaptation, remove the need for complex rate-limiting func
 element. Support for SCONE indication and bit-rate self-adaptation reduces complexity and CPU processing
 load in the network element.
 
+## Network Element Overload Handling
+
+Processing SCONE packets creates a per-flow update obligation for
+network elements. To avoid throughput advice expiring
+({{Section 5.4 of I-D.ietf-scone-protocol}}), each active flow
+needs at least one rate signal update within each monitoring
+period. When the number of concurrent SCONE flows grows unusually
+large, as can occur during periods of elevated traffic or network
+stress, this update obligation can become a processing concern.
+
+Network element vendors and operators have two broad options for
+managing this. One is to provision the network element with
+capacity that accommodates the expected range of concurrent flows,
+recognizing that what constitutes adequate capacity will vary by
+deployment. The other is to handle the condition gracefully when
+that capacity is reached. One approach for graceful handling is
+for the network element to stop updating SCONE packets for a
+subset of flows entirely, rather than attempting to serve all
+flows with intermittent or delayed updates. A flow that goes
+without a SCONE update for a full monitoring period will have its
+throughput advice expire, causing the endpoint to operate without
+SCONE-advised limits, relying instead on standard congestion
+control ({{Section 5.4 of I-D.ietf-scone-protocol}}). This
+outcome is more predictable than partial updates, which can cause
+endpoints to alternate between operating under SCONE throughput
+advice and operating without it. Which flows continue to receive
+updates and how that selection changes over time are operator
+policy decisions. Network element implementations can provide the
+configuration options through which operators define and adjust
+that policy.
+
 ## Reliability and Mitigating Packet Loss
 Packet loss or non-delivery of SCONE advice directly reduces its effectiveness.
 Because the reliable delivery of throughput advice relies entirely on the periodic
