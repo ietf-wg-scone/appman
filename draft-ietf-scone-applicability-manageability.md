@@ -205,7 +205,7 @@ In this case, the tunnel is the only flow visible to the network element
 and as such SCONE throughput advice applies to the tunnel as an aggregate QUIC connection.
 The advice reflects the maximum achievable throughput for traffic carried over the tunnel,
 independent of how many tunneled flows are multiplexed within it. The receiving tunnel endpoint,
-such as a MASQUE client, treats this advice as an upper bound on tunnel capacity
+such as a MASQUE client, can apply this advice as a potential upper bound on tunnel capacity
 and has to decide how to share that capacity across tunneled connections.
 
 If SCONE is used on the inner traffic as well as for the tunnel QUIC connection, the MASQUE client
