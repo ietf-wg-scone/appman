@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 15 January 2027                                           Nokia
+Expires: 24 January 2027                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                            14 July 2026
+                                                            23 July 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 January 2027.
+   This Internet-Draft will expire on 24 January 2027.
 
 Copyright Notice
 
@@ -237,15 +237,14 @@ Table of Contents
    entirely, rather than attempting to serve all flows with intermittent
    or delayed updates.  A flow that goes without a SCONE update for a
    full monitoring period will have its throughput advice expire,
-   causing the endpoint to operate without SCONE-advised limits, relying
-   instead on standard congestion control (Section 5.4 of
-   [I-D.ietf-scone-protocol]).  This outcome is more predictable than
-   partial updates, which can cause endpoints to alternate between
-   operating under SCONE throughput advice and operating without it.
-   Which flows continue to receive updates and how that selection
-   changes over time are operator policy decisions.  Network element
-   implementations can provide the configuration options through which
-   operators define and adjust that policy.
+   causing the endpoint to operate without SCONE-advised limits.  This
+   outcome is more predictable than partial updates, which can cause
+   endpoints to alternate between operating under SCONE throughput
+   advice and operating without it.  Which flows continue to receive
+   updates and how that selection changes over time are operator policy
+   decisions.  Network element implementations can provide the
+   configuration options through which operators define and adjust that
+   policy.
 
 3.5.  Reliability and Mitigating Packet Loss
 
