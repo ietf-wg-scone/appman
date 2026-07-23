@@ -243,7 +243,7 @@ element against the observed per-flow throughput over the
 following two monitoring periods. If the network element
 successfully updates traversing SCONE packets during that window
 but the flow's throughput does not change, it indicates either
-that the packets were dropped downstream before reaching the
+that all updated packets were dropped downstream before reaching the
 application, or that the application received the advice but did
 not act upon it, as SCONE is an advisory signal per
 {{Section 3.5 of I-D.ietf-scone-protocol}}. Conversely, if the
