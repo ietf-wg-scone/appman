@@ -250,7 +250,7 @@ not act upon it, as SCONE is an advisory signal per
 network element stops observing traversing SCONE packets
 arriving from the sender, this suggests either an upstream delivery
 failure or the endpoint is no longer sending SCONE packets on that flow.
-Recording both the timestamps of issued advisories and the subsequent
+Recording both the timestamps of updates to packets and the subsequent
 per-flow throughput measurements in the logging infrastructure
 makes this correlation possible, aligning with the monitoring
 guidance in {{Section 7.2 of I-D.ietf-scone-protocol}}.
