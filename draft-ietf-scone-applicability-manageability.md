@@ -263,7 +263,7 @@ for their measurement and averaging period.
 
 Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle violations.
-Before applying penalties, operators can use the diagnostic approach described in
+Before applying rate control mechanisms, operators can use the diagnostic approach described in
 {{monitoring-and-logging}} to confirm that a sustained violation reflects application
 non-compliance rather than a delivery failure per {{Section 7.3 of I-D.ietf-scone-protocol}}.
 If the monitoring function detects a violation where an application is not respecting the
