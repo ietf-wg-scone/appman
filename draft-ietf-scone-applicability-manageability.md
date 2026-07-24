@@ -267,8 +267,7 @@ Before applying rate control mechanisms, operators can use the diagnostic approa
 {{monitoring-and-logging}} to confirm that the flow requires intervention
 in order to maintain target rates per {{Section 7.3 of I-D.ietf-scone-protocol}}.
 If the monitoring function detects that an application is not respecting the
-signaled throughput advice, the network can employ a throttling fallback. This involves falling
-back to traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
+signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
 can deploy SCONE purely as an advisory signal without any throttling fallback, prioritizing
 cooperative application optimization over strict compliance enforcement.
