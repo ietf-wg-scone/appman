@@ -31,7 +31,7 @@ provider networks utilizing the Standard Communication with Network Elements (SC
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.10.0
+    platformdirs 4.10.1
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -1058,7 +1058,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mishra, et al.</td>
-<td class="center">Expires 13 January 2027</td>
+<td class="center">Expires 25 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1071,12 +1071,12 @@ svg {
 <dd class="internet-draft">draft-ietf-scone-applicability-manageability-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-07-12" class="published">12 July 2026</time>
+<time datetime="2026-07-24" class="published">24 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-01-13">13 January 2027</time></dd>
+<dd class="expires"><time datetime="2027-01-25">25 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1135,7 +1135,7 @@ provider networks utilizing the Standard Communication with Network Elements (SC
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1491,11 +1491,11 @@ throughput advice in every traversing SCONE packet, operators might configure a
 longer sliding window to account for the possibility of packet loss.<a href="#section-3.10-3" class="pilcrow">¶</a></p>
 <p id="section-3.10-4">To simplify the measurement function, reduce computational load, or offload this
 function to another node in the network, operators can select any value larger
-than the baseline 67-second window (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>)
+than the baseline 67 second window (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>)
 for their measurement and averaging period.<a href="#section-3.10-4" class="pilcrow">¶</a></p>
 <p id="section-3.10-5">Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle violations.
-Before applying penalties, operators can use the diagnostic approach described in
+Before applying rate control mechanisms, operators can use the diagnostic approach described in
 <a href="#monitoring-and-logging" class="auto internal xref">Section 3.9</a> to confirm that a sustained violation reflects application
 non-compliance rather than a delivery failure per <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-7.3" class="relref">Section 7.3</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.
 If the monitoring function detects a violation where an application is not respecting the
