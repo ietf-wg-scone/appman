@@ -1496,8 +1496,8 @@ for their measurement and averaging period.<a href="#section-3.10-4" class="pilc
 <p id="section-3.10-5">Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle violations.
 Before applying rate control mechanisms, operators can use the diagnostic approach described in
-<a href="#monitoring-and-logging" class="auto internal xref">Section 3.9</a> to confirm that a sustained violation reflects application
-non-compliance rather than a delivery failure per <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-7.3" class="relref">Section 7.3</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.
+<a href="#monitoring-and-logging" class="auto internal xref">Section 3.9</a> to confirm that the flow requires intervention
+in order to maintain target rates per <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-05#section-7.3" class="relref">Section 7.3</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.
 If the monitoring function detects a violation where an application is not respecting the
 signaled throughput advice, the network can employ a throttling fallback. This involves falling
 back to traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
