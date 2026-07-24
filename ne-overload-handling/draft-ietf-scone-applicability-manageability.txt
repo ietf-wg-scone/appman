@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 24 January 2027                                           Nokia
+Expires: 25 January 2027                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                            23 July 2026
+                                                            24 July 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 January 2027.
+   This Internet-Draft will expire on 25 January 2027.
 
 Copyright Notice
 
@@ -235,8 +235,8 @@ Table of Contents
    reached.  One approach for graceful handling is for the network
    element to stop updating SCONE packets for a subset of flows
    entirely, rather than attempting to serve all flows with intermittent
-   or delayed updates.  A flow that goes without a SCONE update for a
-   full monitoring period will have its throughput advice expire,
+   or delayed updates.  A flow that does not observe a SCONE update for
+   a full monitoring period will have its throughput advice expire,
    causing the endpoint to operate without SCONE-advised limits.  This
    outcome is more predictable than partial updates, which can cause
    endpoints to alternate between operating under SCONE throughput
