@@ -262,7 +262,7 @@ than the baseline 67 second window ({{Section 5.2 of I-D.ietf-scone-protocol}})
 for their measurement and averaging period.
 
 Because some applications will not support SCONE, and others either will not or cannot follow
-the provided throughput advice, operators have flexibility in how they handle violations.
+the provided throughput advice, operators have flexibility in how they handle flows that exceed the limits that are set in their policies.
 Before applying rate control mechanisms, operators can use the diagnostic approach described in
 {{monitoring-and-logging}} to confirm that the flow requires intervention
 in order to maintain target rates per {{Section 7.3 of I-D.ietf-scone-protocol}}.
