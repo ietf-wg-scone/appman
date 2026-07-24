@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 12 January 2027                                           Nokia
+Expires: 25 January 2027                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                            11 July 2026
+                                                            24 July 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 January 2027.
+   This Internet-Draft will expire on 25 January 2027.
 
 Copyright Notice
 
@@ -74,15 +74,16 @@ Table of Contents
      3.1.  Flow Awareness and Per-Flow Signaling
      3.2.  Determining Throughput Constraints
      3.3.  Considerations of Processing Complexity
-     3.4.  Reliability and Mitigating Packet Loss
-     3.5.  Frequency of Updates
-     3.6.  Dynamic Updates
-     3.7.  Presence of SCONE Network Elements On the Data Path
-     3.8.  Change of Network Element During an Active Flow
-     3.9.  Monitoring and Logging
-     3.10. Conformance Monitoring
-     3.11. In-Band Signaling and Network Integration
-     3.12. Interworking with Other Congestion Management Mechanisms
+     3.4.  Network Element Overload Handling
+     3.5.  Reliability and Mitigating Packet Loss
+     3.6.  Frequency of Updates
+     3.7.  Dynamic Updates
+     3.8.  Presence of SCONE Network Elements On the Data Path
+     3.9.  Change of Network Element During an Active Flow
+     3.10. Monitoring and Logging
+     3.11. Conformance Monitoring
+     3.12. In-Band Signaling and Network Integration
+     3.13. Interworking with Other Congestion Management Mechanisms
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -216,7 +217,35 @@ Table of Contents
    for SCONE indication and bit-rate self-adaptation reduces complexity
    and CPU processing load in the network element.
 
-3.4.  Reliability and Mitigating Packet Loss
+3.4.  Network Element Overload Handling
+
+   Processing SCONE packets creates a per-flow update obligation for
+   network elements.  To avoid throughput advice expiring (Section 5.4
+   of [I-D.ietf-scone-protocol]), each active flow needs at least one
+   rate signal update within each monitoring period.  When the number of
+   concurrent SCONE flows grows unusually large, as can occur during
+   periods of elevated traffic or network stress, this update obligation
+   can become a processing concern.
+
+   Network element vendors and operators have two broad options for
+   managing this.  One is to provision the network element with capacity
+   that accommodates the expected range of concurrent flows, recognizing
+   that what constitutes adequate capacity will vary by deployment.  The
+   other is to handle the condition gracefully when that capacity is
+   reached.  One approach for graceful handling is for the network
+   element to stop updating SCONE packets for a subset of flows
+   entirely, rather than attempting to serve all flows with intermittent
+   or delayed updates.  A flow that does not observe a SCONE update for
+   a full monitoring period will have its throughput advice expire,
+   causing the endpoint to operate without SCONE-advice.  This outcome
+   is more predictable than partial updates, which can cause endpoints
+   to alternate between operating with SCONE throughput advice and
+   operating without it.  Which flows continue to receive updates and
+   how that selection changes over time are operator policy decisions.
+   Network element implementations can provide the configuration options
+   through which operators define and adjust that policy.
+
+3.5.  Reliability and Mitigating Packet Loss
 
    Packet loss or non-delivery of SCONE advice directly reduces its
    effectiveness.  Because the reliable delivery of throughput advice
@@ -244,9 +273,9 @@ Table of Contents
    67-second monitoring period due to normal packet loss.
 
    Operators balancing this reliability against network element overhead
-   can refer to Section 3.5 and Section 3.3 for further guidance.
+   can refer to Section 3.6 and Section 3.3 for further guidance.
 
-3.5.  Frequency of Updates
+3.6.  Frequency of Updates
 
    For network operators, understanding that SCONE signaling is
    fundamentally decided by the application endpoint is critical.
@@ -258,7 +287,7 @@ Table of Contents
    variable, application-driven intervals rather than expecting a
    predictable or uniform signaling cadence from the network side.
 
-3.6.  Dynamic Updates
+3.7.  Dynamic Updates
 
    Target throughput advice can change dynamically while a flow is
    active, for example when a subscriber reaches a data threshold or a
@@ -268,7 +297,7 @@ Table of Contents
    application sees the change depends on when the endpoint next sends a
    SCONE packet, since the network element cannot originate one.
 
-3.7.  Presence of SCONE Network Elements On the Data Path
+3.8.  Presence of SCONE Network Elements On the Data Path
 
    When multiple SCONE-capable network elements are present on the same
    data path, they operate independently, with no synchronization or
@@ -280,7 +309,7 @@ Table of Contents
    SCONE network elements independently, without building integration
    between them.
 
-3.8.  Change of Network Element During an Active Flow
+3.9.  Change of Network Element During an Active Flow
 
    The on-path network element can change when an application changes
    its access network, for example during QUIC connection migration or a
@@ -295,7 +324,7 @@ Table of Contents
    a monitoring period (Section 5.4 of [I-D.ietf-scone-protocol]) and
    the application operates without SCONE-advised limits.
 
-3.9.  Monitoring and Logging
+3.10.  Monitoring and Logging
 
    SCONE signaling can be integrated into existing operational and
    management frameworks to enable monitoring, troubleshooting, and
@@ -309,7 +338,7 @@ Table of Contents
    *  Error conditions where SCONE signaling fails to reach the intended
       endpoints
 
-3.10.  Conformance Monitoring
+3.11.  Conformance Monitoring
 
    Networks that choose to provide SCONE throughput advice can implement
    mechanisms to monitor QUIC flows and measure conformance to the
@@ -356,7 +385,7 @@ Table of Contents
    signal without any throttling fallback, prioritizing cooperative
    application optimization over strict compliance enforcement.
 
-3.11.  In-Band Signaling and Network Integration
+3.12.  In-Band Signaling and Network Integration
 
    Because SCONE packets are always coalesced with ordinary QUIC
    packets, SCONE signaling operates entirely in-band.  It does not
@@ -377,7 +406,7 @@ Table of Contents
    for an active flow, including to support tiered subscriber data plans
    (see Section 3.2 of [I-D.ietf-scone-protocol]).
 
-3.12.  Interworking with Other Congestion Management Mechanisms
+3.13.  Interworking with Other Congestion Management Mechanisms
 
    SCONE throughput advice is not a substitute for congestion control
    mechanisms in transport protocols utilizing congestion feedback and
