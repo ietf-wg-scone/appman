@@ -266,7 +266,7 @@ the provided throughput advice, operators have flexibility in how they handle vi
 Before applying rate control mechanisms, operators can use the diagnostic approach described in
 {{monitoring-and-logging}} to confirm that the flow requires intervention
 in order to maintain target rates per {{Section 7.3 of I-D.ietf-scone-protocol}}.
-If the monitoring function detects a violation where an application is not respecting the
+If the monitoring function detects that an application is not respecting the
 signaled throughput advice, the network can employ a throttling fallback. This involves falling
 back to traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
