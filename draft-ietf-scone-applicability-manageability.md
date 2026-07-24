@@ -258,7 +258,7 @@ longer sliding window to account for the possibility of packet loss.
 
 To simplify the measurement function, reduce computational load, or offload this
 function to another node in the network, operators can select any value larger
-than the baseline 67-second window ({{Section 5.2 of I-D.ietf-scone-protocol}})
+than the baseline 67 second window ({{Section 5.2 of I-D.ietf-scone-protocol}})
 for their measurement and averaging period.
 
 Because some applications will not support SCONE, and others either will not or cannot follow
