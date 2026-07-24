@@ -185,7 +185,7 @@ that capacity is reached. One approach for graceful handling is
 for the network element to stop updating SCONE packets for a
 subset of flows entirely, rather than attempting to serve all
 flows with intermittent or delayed updates. A flow that does not observe a SCONE update
-without a SCONE update for a full monitoring period will have its
+for a full monitoring period will have its
 throughput advice expire, causing the endpoint to operate without
 SCONE-advised limits. This
 outcome is more predictable than partial updates, which can cause
