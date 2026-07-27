@@ -270,7 +270,7 @@ at all, or whether the application received it but did not act
 on it. Operators can narrow the diagnosis by
 correlating the rate of SCONE advisories issued at the network
 element against the observed per-flow throughput over the
-following two monitoring periods. If the network element
+following two measurement and averaging period. If the network element
 successfully updates traversing SCONE packets during that window
 but the flow's throughput does not change, it indicates either
 that all updated packets were dropped downstream before reaching the
