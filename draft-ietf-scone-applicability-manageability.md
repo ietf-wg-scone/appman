@@ -221,8 +221,6 @@ Operators may choose to process and update SCONE packets more frequently to bett
 or to ensure timely notifications to the application. 
 This flexibility allows operators to
 manage the tension between signaling reliability and network CPU load.
-Operators balancing this reliability against network element overhead can refer to
-{{processing-complexity}} for further guidance.
 
 As such, the network element needs
 to make independent operational decisions based on their own policies
