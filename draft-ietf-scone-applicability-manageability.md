@@ -91,7 +91,13 @@ To participate in SCONE, a network element is assumed to have the
 functional capability to identify and track SCONE-compliant QUIC
 flows, recognize and process SCONE packets within those flows, and
 map network policies into throughput advice to be inserted into the
-SCONE packets.
+SCONE packets (see also {{network-integration}}.
+
+By providing a standardized mechanism, SCONE allows network operators to provide
+throughput advice information without custom APIs or per-network integrations. Applications can
+self-adapt to the advised rate rather than relying on network rate limiters such as policers
+or shapers, and the network can update the advised rate for an active flow, including to
+support tiered subscriber data plans (see {{Section 3.2 of I-D.ietf-scone-protocol}}).
 
 When on-path network elements are present between the server and the client
 application end-points, their specific configuration and role will influence the advice they
@@ -328,21 +334,17 @@ the QUIC flow does not exceed the throughput limits set by network policy. Alter
 can deploy SCONE purely as an advisory signal without any throttling fallback, prioritizing
 cooperative application optimization over strict compliance enforcement.
 
-## In-Band Signaling and Network Integration
+## Network Integration {#network-integration}
+
 Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
-operates entirely in-band. It does not introduce any additional routing overhead or
-require the creation of out-of-band signaling interfaces. Instead, SCONE signaling
+operates entirely in-band. SCONE signaling
 inherently traverses the already established network path, such as the existing
 connection between a user device and a network gateway, associated with the QUIC flow
-for which the network element intends to send throughput advice. This ensures that
-SCONE seamlessly integrates into existing architectures without requiring new tunnels
-or data paths to be established.
+for which the network element intends to send throughput advice.
+As such, SCONE seamlessly integrates into existing architectures without requiring 
+new data paths, e.g. using tunnels, nor introducing any additional routing overhead.
+Similarly, operators are not required to deploy any additional out-of-band signaling interfaces. 
 
-By providing a standardized mechanism, SCONE allows network operators to provide
-throughput advice information without custom APIs or per-network integrations. Applications can
-self-adapt to the advised rate rather than relying on network rate limiters such as policers
-or shapers, and the network can update the advised rate for an active flow, including to
-support tiered subscriber data plans (see {{Section 3.2 of I-D.ietf-scone-protocol}}).
 
 ## Interworking with Other Congestion Management Mechanisms
 
