@@ -209,7 +209,7 @@ As SCONE signaling is decided by the
 application endpoint, it is critical to understand for network operator that the frequency of traversing SCONE
 packets varies depending on the specific application type and its traffic
 characteristics rather than expecting a predictable or uniform signaling cadence.
-However, a SCONE-enabled network element does not need to update every SCONE packet but 
+However, a SCONE-enabled network element does not need to update every SCONE packet but
 can implement its own update interval and then wait for the next SCONE packet.
 It is recommended to updates advice in SCONE packets at least twice per the
 67-second monitoring period ({{Section 5.2 of I-D.ietf-scone-protocol}},
@@ -218,7 +218,7 @@ This baseline periodic update frequency ensures
 that the throughput advice reliably reaches the endpoint and does not inadvertently expire across
 the standard 67-second monitoring period e.g. due to normal packet loss.
 Operators may choose to process and update SCONE packets more frequently to better mitigate packet losses
-or to ensure timely notifications to the application. 
+or to ensure timely notifications to the application.
 This flexibility allows operators to
 manage the tension between signaling reliability and network CPU load.
 
