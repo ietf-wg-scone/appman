@@ -1,5 +1,5 @@
 ---
-title: "Applicability & Manageability Considerations for SCONE"
+title: "Manageability Considerations for SCONE"
 abbrev: "SCONE Applicability & Manageability"
 docname: draft-ietf-scone-applicability-manageability-latest
 category: info
@@ -9,7 +9,7 @@ ipr: trust200902
 area: "Web and Internet Transport"
 workgroup: "Standard Communication with Network Elements"
 
-keyword: [SCONE, access networks, bit rate, throughput advice, applicability, manageability]
+keyword: [SCONE, access networks, bitrate, throughput advice, manageability]
 
 stand_alone: yes
 smart_quotes: no
