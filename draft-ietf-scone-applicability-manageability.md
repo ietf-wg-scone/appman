@@ -196,43 +196,32 @@ policy decisions. Network element implementations can provide the
 configuration options through which operators define and adjust
 that policy.
 
-## Reliability and Mitigating Packet Loss
-Packet loss or non-delivery of SCONE advice directly reduces its effectiveness.
-Because the reliable delivery of throughput advice relies entirely on the periodic
-sending of SCONE packets by application endpoints. {{Section 7.1 of I-D.ietf-scone-protocol}}
-("Applying Throughput Advice Signals") leaves the exact update frequency flexible. This flexibility allows operators to
-manage the tension between signaling reliability and network CPU load.
+## Reliability of Throughput Advice Delivery
+The frequency at which SCONE packets arrive at a network element is set by the
+application endpoint, not the network, and varies by application type and
+traffic pattern ({{Section 7.1 of I-D.ietf-scone-protocol}}, "Applying
+Throughput Advice Signals"). A network element cannot expect a predictable or
+uniform signaling cadence from the traffic itself, and instead decides its own
+update interval within that flexibility.
 
-A SCONE-enabled network element updates advice in SCONE packets at least twice per the
-67-second monitoring period ({{Section 5.2 of I-D.ietf-scone-protocol}},
-approximately every 20 to 30 seconds), but operators may
-choose to process and update SCONE packets more frequently to better mitigate packet losses
-or to ensure timely notifications to the application. Therefore, the network element needs
-to make independent operational decisions on how frequently to update those traversing packets.
-A network enforcing dynamic policies might prioritize updating SCONE packets immediately upon a
-policy trigger to minimize the application's reaction time to the new limit. Conversely, a network
-enforcing fixed, subscription-based policies can safely scale back its update frequency to the 20
-to 30-second baseline to conserve CPU resources. This baseline periodic update frequency ensures
-that the throughput advice reliably reaches the endpoint and does not inadvertently expire across
-the standard 67-second monitoring period due to normal packet loss.
-
-Operators balancing this reliability against network element overhead can refer to
-{{freq-updates}} and {{processing-complexity}} for further guidance.
-
-## Frequency of Updates {#freq-updates}
-For network operators, understanding that SCONE signaling is fundamentally decided by the
-application endpoint is critical. Because a SCONE Network Element relies entirely on these
-endpoint-generated packets to communicate throughput advice, the frequency of traversing SCONE
-packets varies depending on the specific application type and its traffic
-characteristics. Consequently, network elements need to be prepared to apply updates to
-traversing packets at highly variable, application-driven intervals rather than expecting a
-predictable or uniform signaling cadence from the network side.
+A SCONE-enabled network element updates advice in SCONE packets at least twice
+per the 67-second monitoring period ({{Section 5.2 of I-D.ietf-scone-protocol}},
+approximately every 20 to 30 seconds). This baseline ensures advice reliably
+reaches the endpoint and does not expire across the monitoring period, since
+SCONE packets are not delivered reliably for a variety of reasons. Operators
+may choose to update more frequently than this baseline, at the cost of
+additional network element CPU load, in exchange for a lower chance that
+advice goes unheard during any single window. A network enforcing fixed,
+subscription-based policies can typically rely on this baseline, since the
+applicable policy for a flow does not usually change once established.
 
 ## Dynamic Updates
-Target throughput advice can change dynamically while a flow is active, for example when a
-subscriber reaches a data threshold or a network policy changes. When this happens, the network
-element can update the next traversing SCONE packet with the new throughput advice (see
-{{Section 9.2 of I-D.ietf-scone-protocol}}).
+Target throughput advice can change while a flow is active, for example when a
+subscriber reaches a data threshold, or when a network-wide policy such as a
+time-of-day or congestion-based limit takes effect while the flow is already
+established. When this happens, the network element prioritizes updating the
+next traversing SCONE packet promptly, to minimize the application's reaction
+time to the new limit (see {{Section 9.2 of I-D.ietf-scone-protocol}}).
 How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.
 
