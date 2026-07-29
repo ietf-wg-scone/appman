@@ -341,35 +341,38 @@ or shapers, and the network can update the advised bit-rate for an active flow, 
 support tiered subscriber data plans (see {{Section 3.2 of I-D.ietf-scone-protocol}}).
 
 ## Interworking with Other Congestion Management Mechanisms
-SCONE throughput advice is not a substitute for congestion control mechanisms in
-transport protocols utilizing congestion feedback and signals such as acknowledgments,
-Explicit Congestion Notification (ECN) {{RFC3168}}, and Low Latency, Low Loss, and Scalable
-Throughput (L4S) {{RFC9330}}. Rather, they are complementary. Congestion signals provide real-time
-information on loss, delay, and transient congestion for a network path, typically operating
+
+As stated in {{Section 3.1 of I-D.ietf-scone-protocol}},
+SCONE throughput advice is not a substitute for congestion control
+utilizing congestion signals such as packet loss based on transport acknowledgments, delay, or
+Explicit Congestion Notification (ECN) {{RFC3168}} as also used by Low Latency, Low Loss, and Scalable
+Throughput (L4S) {{RFC9330}}. Rather, they are complementary.
+
+Congestion control applies a throughput limit different from the signaled SCONE advice.
+Congestion control manages the immediate dynamics of the bottleneck
+link, while SCONE informs the application of the maximum rate allowed by network policy.
+As such, congestion signals provide real-time
+information on transient congestion for a network path, as input for congestion control that typically operates
 on the time scale of a round-trip time (RTT). In contrast, SCONE throughput advice operates
-over a much longer period. Because the network element is generally unaware of the specific
-application traffic, it simply provides static or dynamically adapted advice based on available
-policy information. Operators can use SCONE to communicate these maximum allowable bit-rates
-driven by video optimization, subscriber data, or load management policies, independent of
-instantaneous link congestion. It is then up to the applications, such as adaptive bitrate video
-clients or bulk downloads, to utilize this advice according to their specific use cases.
-
-For network operators considering co-deployment, SCONE throughput advice is strictly independent
-of the IP-layer ECN field. Because SCONE advice is carried within the QUIC payload, updating the
-advice does not interact with or modify ECN markings. This independence ensures that operators can
-safely deploy SCONE alongside L4S or standard ECN. Real-time congestion feedback mechanisms remain
-fully operational and function completely outside the SCONE domain.
-
-Operators should expect that congestion signals might frequently indicate a throughput limit different
-from the signaled SCONE advice. In other words, in the best case, the throughput advice is below the
+over a much longer period.
+Often, the throughput advice is expected to be below the
 congestion limit and when the application adheres to the advice, congestion control would be
 application-limited and not go into action. However, in cases of high load, congestion control would
 limit the throughput below the provided advice, as the SCONE advice is only an upper limit. As such,
 congestion control or a similar mechanism to react to congestion, such as a circuit breaker, is always
 needed in addition to SCONE.
 
-In environments where both are present, congestion control manages the immediate dynamics of the bottleneck
-link, while SCONE informs the application of the maximum rate allowed by network policy. Network operators
+Operators can use SCONE to communicate static or dynamically adapted advice based on available
+policy information, e.g. based on subscriber data, or load management policies, and
+are expected to provide this information independent of
+instantaneous link congestion. It is then up to the applications, such as adaptive bitrate video
+clients or bulk downloads, to utilize this advice according to their specific use cases.
+
+Network operators can deploy SCONE alongside L4S or standard ECN as two
+independent network functions. Real-time congestion feedback mechanisms remain outside the SCONE domain
+as SCONE advice is carried within the QUIC payload, which does not interact
+with or modify ECN markings of the IP-layer ECN field.
+In environments where both are present, Network operators
 will benefit from ensuring that throughput advice policies and congestion control configurations are consistent
 within scoped deployments, to avoid providing conflicting feedback to applications.
 
