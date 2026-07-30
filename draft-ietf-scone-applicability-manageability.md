@@ -213,15 +213,19 @@ may choose to update more frequently than this baseline, at the cost of
 additional network element CPU load, in exchange for a lower chance that
 advice goes unheard during any single window. A network enforcing fixed,
 subscription-based policies can typically rely on this baseline, since the
-applicable policy for a flow does not usually change once established.
+applicable policy for a flow does not usually change once established. In
+practice, the network element can only update advice when a SCONE packet
+is available to modify. If none arrives once the chosen interval has
+elapsed, the network element waits for the next one, and that arrival is
+what sets the real interval between updates.
 
-## Dynamic Updates
+## Sending Updates for Dynamic Target Throughput Changes
 Target throughput advice can change while a flow is active, for example when a
-subscriber reaches a data threshold, or when a network-wide policy such as a
-time-of-day or congestion-based limit takes effect while the flow is already
-established. When this happens, the network element prioritizes updating the
-next traversing SCONE packet promptly, to minimize the application's reaction
-time to the new limit (see {{Section 9.2 of I-D.ietf-scone-protocol}}).
+subscriber reaches a data threshold, or when a network policy or capacity
+allocation changes while the flow is already established. When this happens,
+the network element prioritizes updating the next traversing SCONE packet
+promptly, bypassing its scheduled periodic update interval, to minimize the
+application's reaction time to the new limit (see {{Section 9.2 of I-D.ietf-scone-protocol}}).
 How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.
 
