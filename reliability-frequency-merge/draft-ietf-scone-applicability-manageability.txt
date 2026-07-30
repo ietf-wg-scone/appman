@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 30 January 2027                                           Nokia
+Expires: 31 January 2027                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                            29 July 2026
+                                                            30 July 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 January 2027.
+   This Internet-Draft will expire on 31 January 2027.
 
 Copyright Notice
 
@@ -76,7 +76,7 @@ Table of Contents
      3.3.  Considerations of Processing Complexity
      3.4.  Network Element Overload Handling
      3.5.  Reliability of Throughput Advice Delivery
-     3.6.  Dynamic Updates
+     3.6.  Sending Updates for Dynamic Target Throughput Changes
      3.7.  Presence of SCONE Network Elements On the Data Path
      3.8.  Change of Network Element During an Active Flow
      3.9.  Monitoring and Logging
@@ -267,18 +267,26 @@ Table of Contents
    since the applicable policy for a flow does not usually change once
    established.
 
-3.6.  Dynamic Updates
+   Whatever interval an operator selects, the network element can only
+   act on it when a SCONE packet is actually available to update.  If
+   none arrives exactly when the operator's interval elapses, the
+   network element has to wait for the next one, so the effective update
+   interval in practice is set jointly by the operator's chosen setting
+   and the endpoint's own packet cadence.
+
+3.6.  Sending Updates for Dynamic Target Throughput Changes
 
    Target throughput advice can change while a flow is active, for
    example when a subscriber reaches a data threshold, or when a
    network-wide policy such as a time-of-day or congestion-based limit
-   takes effect while the flow is already established.  When this
-   happens, the network element prioritizes updating the next traversing
-   SCONE packet promptly, to minimize the application's reaction time to
-   the new limit (see Section 9.2 of [I-D.ietf-scone-protocol]).  How
-   soon the application sees the change depends on when the endpoint
-   next sends a SCONE packet, since the network element cannot originate
-   one.
+   takes effect while the flow is already established.  When the target
+   throughput changes, the network element does not wait for its own
+   selected update interval to expire.  Instead, it updates the next
+   traversing SCONE packet as soon as one arrives, to minimize the
+   application's reaction time to the new limit (see Section 9.2 of
+   [I-D.ietf-scone-protocol]).  How soon the application sees the change
+   still depends on when the endpoint next sends a SCONE packet, since
+   the network element cannot originate one.
 
 3.7.  Presence of SCONE Network Elements On the Data Path
 
@@ -479,9 +487,9 @@ Table of Contents
               Thomson, M., Huitema, C., Oku, K., Joras, M., and L. M.
               Ihlar, "Standard Communication with Network Elements
               (SCONE) Protocol", Work in Progress, Internet-Draft,
-              draft-ietf-scone-protocol-05, 6 July 2026,
+              draft-ietf-scone-protocol-06, 29 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-scone-
-              protocol-05>.
+              protocol-06>.
 
 6.2.  Informative References
 
