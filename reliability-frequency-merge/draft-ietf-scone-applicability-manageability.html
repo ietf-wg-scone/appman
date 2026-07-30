@@ -1186,7 +1186,7 @@ provider networks utilizing the Standard Communication with Network Elements (SC
                 <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-reliability-of-throughput-a" class="internal xref">Reliability of Throughput Advice Delivery</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6">
-                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-sending-updates-for-dynamic" class="internal xref">Sending Updates for Dynamic Target Throughput Changes</a></p>
+                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-dynamic-updates" class="internal xref">Dynamic Updates</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.7">
                 <p id="section-toc.1-1.3.2.7.1"><a href="#section-3.7" class="auto internal xref">3.7</a>.  <a href="#name-presence-of-scone-network-e" class="internal xref">Presence of SCONE Network Elements On the Data Path</a></p>
@@ -1414,27 +1414,20 @@ additional network element CPU load, in exchange for a lower chance that
 advice goes unheard during any single window. A network enforcing fixed,
 subscription-based policies can typically rely on this baseline, since the
 applicable policy for a flow does not usually change once established.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
-<p id="section-3.5-3">Whatever interval an operator selects, the network element can only act on
-it when a SCONE packet is actually available to update. If none arrives
-exactly when the operator's interval elapses, the network element has to
-wait for the next one, so the effective update interval in practice is
-set jointly by the operator's chosen setting and the endpoint's own
-packet cadence.<a href="#section-3.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sending-updates-for-dynamic-target-throughput-changes">
+<div id="dynamic-updates">
 <section id="section-3.6">
-        <h3 id="name-sending-updates-for-dynamic">
-<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-sending-updates-for-dynamic" class="section-name selfRef">Sending Updates for Dynamic Target Throughput Changes</a>
+        <h3 id="name-dynamic-updates">
+<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-dynamic-updates" class="section-name selfRef">Dynamic Updates</a>
         </h3>
 <p id="section-3.6-1">Target throughput advice can change while a flow is active, for example when a
 subscriber reaches a data threshold, or when a network-wide policy such as a
 time-of-day or congestion-based limit takes effect while the flow is already
-established. When the target throughput changes, the network element does
-not wait for its own selected update interval to expire. Instead, it updates
-the next traversing SCONE packet as soon as one arrives, to minimize the
-application's reaction time to the new limit (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-9.2" class="relref">Section 9.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).
-How soon the application sees the change still depends on when the endpoint next sends a SCONE packet,
+established. When this happens, the network element prioritizes updating the
+next traversing SCONE packet promptly, to minimize the application's reaction
+time to the new limit (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-9.2" class="relref">Section 9.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).
+How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
