@@ -215,22 +215,14 @@ advice goes unheard during any single window. A network enforcing fixed,
 subscription-based policies can typically rely on this baseline, since the
 applicable policy for a flow does not usually change once established.
 
-Whatever interval an operator selects, the network element can only act on
-it when a SCONE packet is actually available to update. If none arrives
-exactly when the operator's interval elapses, the network element has to
-wait for the next one, so the effective update interval in practice is
-set jointly by the operator's chosen setting and the endpoint's own
-packet cadence.
-
-## Sending Updates for Dynamic Target Throughput Changes
+## Dynamic Updates
 Target throughput advice can change while a flow is active, for example when a
 subscriber reaches a data threshold, or when a network-wide policy such as a
 time-of-day or congestion-based limit takes effect while the flow is already
-established. When the target throughput changes, the network element does
-not wait for its own selected update interval to expire. Instead, it updates
-the next traversing SCONE packet as soon as one arrives, to minimize the
-application's reaction time to the new limit (see {{Section 9.2 of I-D.ietf-scone-protocol}}).
-How soon the application sees the change still depends on when the endpoint next sends a SCONE packet,
+established. When this happens, the network element prioritizes updating the
+next traversing SCONE packet promptly, to minimize the application's reaction
+time to the new limit (see {{Section 9.2 of I-D.ietf-scone-protocol}}).
+How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.
 
 ## Presence of SCONE Network Elements On the Data Path
