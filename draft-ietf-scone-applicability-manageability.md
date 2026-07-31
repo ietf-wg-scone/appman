@@ -230,7 +230,7 @@ predictable or uniform signaling cadence from the network side.
 
 ## Dynamic Updates
 Target throughput advice can change dynamically while a flow is active, for example when a
-subscriber reaches a data threshold or a network policy changes. When this happens, the network
+subscriber reaches a data threshold or a network policy changes or change in radio access technology. When this happens, the network
 element can update the next traversing SCONE packet with the new throughput advice (see
 {{Section 9.2 of I-D.ietf-scone-protocol}}).
 How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
