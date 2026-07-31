@@ -139,9 +139,7 @@ vary by operator, and they are not exhaustive. A SCONE-capable network
 element may derive its throughput advice from one or more of the
 following:
 
-- Subscriber Policies and Data Plans: Rate limits may apply when a
-subscriber reaches a data plan threshold or usage cap, and the network
-element bases its throughput advice on that subscriber policy.
+- Subscriber Policies and Data Plans: The network element bases its throughput advice on the subscriber's data plan. This includes cases where rate limits apply once a subscriber's data volume usage reaches a threshold or usage cap.
 
 - Application-Specific Policies: Operators may set maximum bit-rates for
 certain types of traffic based on subscription tier or device type, for
