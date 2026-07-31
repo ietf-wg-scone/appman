@@ -159,13 +159,12 @@ may temporarily lower its throughput advice to manage shared capacity
 and guide application usage.
 
 ## Considerations of Processing Complexity {#processing-complexity}
-As specified in {{Section 6.1 of I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
-a specific indication on the first SCONE packet to support the identification of a SCONE-capable flow
+As specified in {{Section 6.1 of I-D.ietf-scone-protocol}}, SCONE-aware endpoints add
+scone indication bytes (values 0xc8 and 0x13 as the last two bytes of the payload of the UDP datagrams that commence a new flow) to support the identification of a SCONE-capable flow
 without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
 through bit-rate self-adaptation, remove the need for complex rate-limiting functions in the network
 element. Support for SCONE indication and bit-rate self-adaptation reduces complexity and CPU processing
-load in the network element.
-
+load in the network element. Similarly as explained in {{Section 7.1 of I-D.ietf-scone-protocol}} detection and modification of SCONE packet to update the rate signal field is also a light weight operation. 
 ## Network Element Overload Handling
 
 Processing SCONE packets creates a per-flow update obligation for
