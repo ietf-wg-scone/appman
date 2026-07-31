@@ -236,12 +236,12 @@ element can update the next traversing SCONE packet with the new throughput advi
 How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.
 
-## Presence of SCONE Network Elements On the Data Path
+## Presence of multiple SCONE Network Elements On the Data Path
 When multiple SCONE-capable network elements are present on the same data path, they operate
 independently, with no synchronization or control-plane coordination required between them.
-Each network element only lowers the rate signal, preserving any lower advice already set by
+Each network element only lowers the rate signal if rate signal in the received scone packet is set to a valid value , preserving any lower advice already set by
 another element on the path, so the endpoint applies the most restrictive advice along the
-path (see {{Section 5.4 of I-D.ietf-scone-protocol}}). This lets operators deploy and manage
+path (see {{Section 5.4 of I-D.ietf-scone-protocol}}).If network element receives scone packet with rate signal set to unknown (127) and if it does not want to restrict the bit-rate then it does not need to update the scone packet. This lets operators deploy and manage
 SCONE network elements independently, without building integration between them.
 
 ## Change of Network Element During an Active Flow
