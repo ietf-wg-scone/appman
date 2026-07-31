@@ -226,7 +226,7 @@ endpoint-generated packets to communicate throughput advice, the frequency of tr
 packets varies depending on the specific application type and its traffic
 characteristics. Consequently, network elements need to be prepared to apply updates to
 traversing packets at highly variable, application-driven intervals rather than expecting a
-predictable or uniform signaling cadence from the network side.
+predictable or uniform signaling cadence from the network side. However in order to reduce the CPU load on network element, application endpoint can send scone packets at lower frequency. 
 
 ## Dynamic Updates
 Target throughput advice can change dynamically while a flow is active, for example when a
