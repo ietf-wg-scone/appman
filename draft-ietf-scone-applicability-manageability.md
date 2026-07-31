@@ -286,7 +286,7 @@ makes this correlation possible, aligning with the monitoring
 guidance in {{Section 7.2 of I-D.ietf-scone-protocol}}.
 
 
-## Conformance Measurement 
+## Conformance Measurement
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
 monitor QUIC flows and measure conformance to the advised bit-rate, either per flow of
 packets on the same UDP address tuple, or in aggregate across multiple QUIC flows if they
