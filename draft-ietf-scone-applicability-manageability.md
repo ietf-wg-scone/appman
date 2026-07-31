@@ -288,7 +288,7 @@ makes this correlation possible, aligning with the monitoring
 guidance in {{Section 7.2 of I-D.ietf-scone-protocol}}.
 
 
-## Conformance Monitoring {#conformance-monitoring}
+## Conformance Measurement {#conformance-monitoring}
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
 monitor QUIC flows and measure conformance to the advised bit-rate, either per flow of
 packets on the same UDP address tuple, or in aggregate across multiple QUIC flows if they
@@ -317,13 +317,13 @@ for their measurement and averaging period.
 
 Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle flows that exceed the limits that are set in their policies.
-Before applying rate control mechanisms, operators can use the diagnostic approach described in
-{{monitoring-and-logging}} to confirm that the flow requires intervention
+Before applying rate-limiting (throttling) mechanisms on SCONE-capable flows, operators can use Conformance measurement and/or diagnostic approach described in
+{{monitoring-and-logging}} to check that the flow requires intervention
 in order to maintain target rates per {{Section 7.3 of I-D.ietf-scone-protocol}}.
-If the monitoring function detects that an application is not respecting the
+If the Conformance measurement function detects that an application is not respecting the
 signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
-can deploy SCONE purely as an advisory signal without any throttling fallback, prioritizing
+can deploy SCONE purely as an advisory signal without any rate-limiting mechanism fallback, prioritizing
 cooperative application optimization over strict compliance enforcement.
 
 ## In-Band Signaling and Network Integration {#network-integration}
