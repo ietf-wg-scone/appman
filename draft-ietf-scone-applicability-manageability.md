@@ -215,8 +215,8 @@ advice goes unheard during any single window. A network enforcing fixed,
 subscription-based policies can typically rely on this baseline, since the
 applicable policy for a flow does not usually change once established. In
 practice, the network element can only update advice when a SCONE packet
-is available to modify. If none arrives once the chosen interval has
-elapsed, the network element waits for the next one, and that arrival is
+is available to modify. When the interval has
+elapsed, the network element waits for the next SCONE packet, and that arrival is
 what sets the real interval between updates.
 
 ## Sending Updates for Dynamic Target Throughput Changes
