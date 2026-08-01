@@ -221,8 +221,9 @@ what sets the real interval between updates.
 
 ## Sending Updates for Dynamic Target Throughput Changes
 Target throughput advice can change while a flow is active, for example when a
-subscriber reaches a data threshold or when the radio access technology or capacity
-allocation changes while the flow is already established. When this happens,
+subscriber reaches a data threshold or when the radio access technology changes
+or when the bandwidth allocated to the subscriber or the bearer changes
+while the flow is already established. When this happens,
 the network element prioritizes updating the next traversing SCONE packet
 promptly, bypassing its scheduled periodic update interval, to minimize the
 application's reaction time to the new limit (see {{Section 9.2 of I-D.ietf-scone-protocol}}).
