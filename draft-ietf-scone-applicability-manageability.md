@@ -78,7 +78,7 @@ To participate in SCONE, a network element is assumed to have the
 functional capability to identify and track SCONE-compliant QUIC
 flows, recognize and process SCONE packets within those flows, and
 map network policies into throughput advice to be inserted into the
-SCONE packets (see also {{network-integration}}.
+SCONE packets (see also {{network-integration}}).
 
 When on-path network elements are present between the server and the client
 application end-points, their specific configuration and role will influence the advice they
