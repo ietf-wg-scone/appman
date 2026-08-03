@@ -78,7 +78,7 @@ To participate in SCONE, a network element is assumed to have the
 functional capability to identify and track SCONE-compliant QUIC
 flows, recognize and process SCONE packets within those flows, and
 map network policies into throughput advice to be inserted into the
-SCONE packets.
+SCONE packets (see also {{network-integration}}).
 
 When on-path network elements are present between the server and the client
 application end-points, their specific configuration and role will influence the advice they
@@ -124,7 +124,8 @@ per-flow state.
 
 While the signaling itself is stateless, managing the operational lifecycle of a SCONE
 deployment requires establishing and maintaining per-flow context. Specifically, to execute
-the monitoring, logging, and conformance evaluation functions detailed later in this document,
+the monitoring, logging, and conformance evaluation functions detailed later in this document
+(see {{conformance-monitoring}}),
 the network element must track the flow's throughput over multiple monitoring periods. This
 per-flow context serves as the operational foundation for validating whether an application is
 adhering to the advised rate and for applying any necessary policy enforcement.
@@ -280,7 +281,7 @@ makes this correlation possible, aligning with the monitoring
 guidance in {{Section 7.2 of I-D.ietf-scone-protocol}}.
 
 
-## Conformance Monitoring
+## Conformance Monitoring {#conformance-monitoring}
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
 monitor QUIC flows and measure conformance to the advised bit-rate, either per flow of
 packets on the same UDP address tuple, or in aggregate across multiple QUIC flows if they
@@ -318,7 +319,7 @@ the QUIC flow does not exceed the throughput limits set by network policy. Alter
 can deploy SCONE purely as an advisory signal without any throttling fallback, prioritizing
 cooperative application optimization over strict compliance enforcement.
 
-## In-Band Signaling and Network Integration
+## In-Band Signaling and Network Integration {#network-integration}
 Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
 operates entirely in-band. It does not introduce any additional routing overhead or
 require the creation of out-of-band signaling interfaces. Instead, SCONE signaling
