@@ -351,7 +351,7 @@ over a much longer period. Because the network element is generally unaware of t
 application traffic, it simply provides static or dynamically adapted advice based on available
 policy information. Operators can use SCONE to communicate a maximum sustainable throughput
 driven by video optimization, subscriber data, or load management policies, independent of
-instantaneous link congestion. It is then up to the applications, such as Adaptive bitrate (ABR) video
+instantaneous link congestion. It is then up to the applications, such as ABR video
 clients or bulk downloads, to utilize this advice according to their specific use cases.
 
 For network operators considering co-deployment, SCONE throughput advice is strictly independent
