@@ -257,9 +257,9 @@ SCONE network elements independently, without building integration between them.
 The on-path network element can change when an application changes its access network, for
 example during QUIC connection migration or a mobility event where the IP address is unchanged.
 Because SCONE signaling is stateless, this transition needs no explicit teardown or state
-transfer between the old and new network elements.
-As defined in {{Section 6.3 of I-D.ietf-scone-protocol}}, the endpoint is expected to send
-SCONE packets early on the new path, so the new network element can detect the flow and provide
+transfer between the old and new network elements. The endpoint and network elements follow the
+migration steps defined in {{Section 6.3 of I-D.ietf-scone-protocol}}, where the endpoint sends
+SCONE packets early on the new path so a network element there can detect the flow and provide
 its own advice. If no SCONE-capable element is present on the new path, the previous advice
 expires after a monitoring period ({{Section 5.4 of I-D.ietf-scone-protocol}}) and the
 application operates without SCONE-advised limits.
