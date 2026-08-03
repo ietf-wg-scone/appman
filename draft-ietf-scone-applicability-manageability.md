@@ -9,7 +9,7 @@ ipr: trust200902
 area: "Web and Internet Transport"
 workgroup: "Standard Communication with Network Elements"
 
-keyword: [SCONE, access networks, bit rate, throughput advice, applicability, manageability]
+keyword: [SCONE, access networks, bitrate, throughput advice, applicability, manageability]
 
 stand_alone: yes
 smart_quotes: no
@@ -67,9 +67,9 @@ provider networks utilizing the Standard Communication with Network Elements (SC
 
 # Introduction
 
-The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism that enables on-path, SCONE-capable network elements to communicate "throughput advice", the advisory maximum allowable bit rate, to application endpoints via SCONE packets in the telecommunications service provider networks.
+The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism that enables on-path, SCONE-capable network elements to communicate "throughput advice", the advisory maximum sustainable throughput, to application endpoints via SCONE packets in the telecommunications service provider networks.
 
-Network elements capable of rate limiting can send notifications of the advisory maximum allowable bit rate in each direction of the observed traffic. This allows applications, particularly those using adaptive bit-rate (ABR)
+Network elements capable of rate limiting can send notifications of the advisory maximum sustainable throughput in each direction of the observed traffic. This allows applications, particularly those using adaptive bitrate (ABR)
 mechanisms,to proactively align their transmission rates with network policies. This document addresses the
 Applicability and Manageability considerations for deploying the SCONE protocol within service provider networks.
 It also addresses operational, configuration, and management aspects not covered in the core protocol specification.
@@ -143,9 +143,9 @@ following:
 subscriber reaches a data plan threshold or usage cap, and the network
 element bases its throughput advice on that subscriber policy.
 
-- Application-Specific Policies: Operators may set maximum bit-rates for
+- Application-Specific Policies: Operators may set maximum bitrates for
 certain types of traffic based on subscription tier or device type, for
-example video optimization for adaptive bitrate video, or traffic
+example video optimization for ABR video, or traffic
 shaping for low-priority bulk transfers such as background software
 updates.
 
@@ -162,8 +162,8 @@ and guide application usage.
 As specified in {{Section 6.1 of I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
 a specific indication on the first SCONE packet to support the identification of a SCONE-capable flow
 without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
-through bit-rate self-adaptation, remove the need for complex rate-limiting functions in the network
-element. Support for SCONE indication and bit-rate self-adaptation reduces complexity and CPU processing
+through rate self-adaptation, remove the need for complex rate-limiting functions in the network
+element. Support for SCONE indication and rate self-adaptation reduces complexity and CPU processing
 load in the network element.
 
 ## Network Element Overload Handling
@@ -288,16 +288,16 @@ guidance in {{Section 7.2 of I-D.ietf-scone-protocol}}.
 
 ## Conformance Monitoring
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
-monitor QUIC flows and measure conformance to the advised bit-rate, either per flow of
+monitor QUIC flows and measure conformance to the throughput advice, either per flow of
 packets on the same UDP address tuple, or in aggregate across multiple QUIC flows if they
 contribute to a shared policy limit (such as a device or network subscription level). This
-will allow operators to validate whether applications are following the advised bit-rate.
+will allow operators to validate whether applications are following the throughput advice.
 
 While it is expected that operators will implement monitoring at the SCONE Network Element
 providing the advice, it could also be performed elsewhere in the network. However, network
 elements lack the capability to validate the legitimacy of SCONE packets coalesced with other
 QUIC packets. Therefore, operators must ensure a network element evaluates conformance only
-against the advised bit-rate that it set itself, and never enforces limits based on advice
+against the throughput advice that it set itself, and never enforces limits based on advice
 set by other downstream network elements.
 
 When evaluating compliance, network operators will need to account for the time required for
@@ -335,9 +335,9 @@ SCONE seamlessly integrates into existing architectures without requiring new tu
 or data paths to be established.
 
 By providing a standardized mechanism, SCONE allows network operators and QUIC endpoints to
-exchange bit-rate information without custom APIs or per-network integrations. Applications can
-self-adapt to the advised bit-rate rather than relying on network rate limiters such as policers
-or shapers, and the network can update the advised bit-rate for an active flow, including to
+exchange throughput advice information without custom APIs or per-network integrations. Applications can
+self-adapt to the advised rate rather than relying on network rate limiters such as policers
+or shapers, and the network can update the throughput advice for an active flow, including to
 support tiered subscriber data plans (see {{Section 3.2 of I-D.ietf-scone-protocol}}).
 
 ## Interworking with Other Congestion Management Mechanisms
@@ -349,9 +349,9 @@ information on loss, delay, and transient congestion for a network path, typical
 on the time scale of a round-trip time (RTT). In contrast, SCONE throughput advice operates
 over a much longer period. Because the network element is generally unaware of the specific
 application traffic, it simply provides static or dynamically adapted advice based on available
-policy information. Operators can use SCONE to communicate these maximum allowable bit-rates
+policy information. Operators can use SCONE to communicate a maximum sustainable throughput
 driven by video optimization, subscriber data, or load management policies, independent of
-instantaneous link congestion. It is then up to the applications, such as adaptive bitrate video
+instantaneous link congestion. It is then up to the applications, such as Adaptive bitrate (ABR) video
 clients or bulk downloads, to utilize this advice according to their specific use cases.
 
 For network operators considering co-deployment, SCONE throughput advice is strictly independent
