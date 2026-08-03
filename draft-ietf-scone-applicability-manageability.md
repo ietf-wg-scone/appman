@@ -249,10 +249,10 @@ since the network element cannot originate one.
 ## Presence of SCONE Network Elements On the Data Path
 When multiple SCONE-capable network elements are present on the same data path, they operate
 independently, with no synchronization or control-plane coordination required between them.
-This is possible because each network element is expected to only lowers the rate signal,
-preserving any lower advice already set by
+Each network element only lowers the rate signal, preserving any lower advice already set by
 another element on the path, so the endpoint applies the most restrictive advice along the
-path (see {{Section 5.4 of I-D.ietf-scone-protocol}}).
+path (see {{Section 5.4 of I-D.ietf-scone-protocol}}). This lets operators deploy and manage
+SCONE network elements independently, without building integration between them.
 
 ## Change of Network Element During an Active Flow
 The on-path network element can change when an application changes its access network, for
