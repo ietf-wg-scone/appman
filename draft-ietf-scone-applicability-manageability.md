@@ -90,7 +90,7 @@ such as wireline broadband or Wi-Fi, may apply policies at centralized aggregati
 or gateways such as the Broadband Network Gateway serving multiple devices.
 
 Encompassing deployment of network elements in a wide range of networks, this document
-is limited to discussing the core Manageability considerations for
+is limited to discussing the core manageability considerations for
 the SCONE protocol to ensure its consistent and effective use across varied network paths.
 
 
