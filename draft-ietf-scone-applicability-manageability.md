@@ -1,5 +1,5 @@
 ---
-title: "Manageability Considerations for SCONE"
+title: "Applicability & Manageability Considerations for SCONE"
 abbrev: "SCONE Applicability & Manageability"
 docname: draft-ietf-scone-applicability-manageability-latest
 category: info
@@ -9,7 +9,7 @@ ipr: trust200902
 area: "Web and Internet Transport"
 workgroup: "Standard Communication with Network Elements"
 
-keyword: [SCONE, access networks, bitrate, throughput advice, manageability]
+keyword: [SCONE, access networks, bit rate, throughput advice, applicability, manageability]
 
 stand_alone: yes
 smart_quotes: no
@@ -59,7 +59,7 @@ informative:
 
 
 --- abstract
-This document describes manageability considerations for network operators for providing throughput guidance to
+This document describes the Applicability and Manageability considerations for network operators for providing throughput guidance to
 application endpoints. This guidance is specifically addressed within the context of communication
 networks utilizing the Standard Communication with Network Elements (SCONE) protocol.
 
@@ -67,7 +67,7 @@ networks utilizing the Standard Communication with Network Elements (SCONE) prot
 
 # Introduction
 
-The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism that enables on-path, SCONE-capable network elements to communicate "throughput advice", the advisory maximum sustainable rate, to application endpoints via SCONE packets in the communication networks.
+The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism that enables on-path, SCONE-capable network elements to communicate "throughput advice", the advisory maximum allowable bit to application endpoints via SCONE packets in the communication networks.
 
 Network elements can provide notifications of the advisory maximum sustainable rate in each direction of the observed traffic. This allows applications, particularly those using adaptive bit-rate (ABR)
 mechanisms, to proactively align their transmission rates with network policies. This document provides
@@ -91,7 +91,7 @@ To participate in SCONE, a network element is assumed to have the
 functional capability to identify and track SCONE-compliant QUIC
 flows, recognize and process SCONE packets within those flows, and
 map network policies into throughput advice to be inserted into the
-SCONE packets (see also {{network-integration}}.
+SCONE packets.
 
 By providing a standardized mechanism, SCONE allows network operators to provide
 throughput advice information without custom APIs or per-network integrations. Applications can
@@ -112,7 +112,7 @@ or gateways such as the Broadband Network Gateway serving multiple devices.
 
 This document uses terms and definitions described in {{I-D.ietf-scone-protocol}}.
 
-# Manageability Considerations
+# Applicability, Manageability and Operational Considerations
 
 Encompassing deployment of network elements in a wide range of networks, this document
 is limited to discussing the core manageability considerations for
@@ -123,7 +123,7 @@ As defined in the core SCONE protocol specification {{I-D.ietf-scone-protocol}},
 throughput advice is associated with the flow of QUIC UDP datagrams sharing the
 same address tuple (IP version, source and destination IP addresses, and UDP ports).
 
-Because throughput advice applies strictly to this specific flow, SCONE network elements
+Because throughput advice applies strictly to this specific flow, SCONE Network Elements
 need to unambiguously associate their policy limits with the correct QUIC flows. However,
 the act of applying SCONE throughput advice is inherently stateless. To provide advice, a
 network element simply identifies a traversing SCONE packet and updates its value based on
@@ -296,18 +296,18 @@ makes this correlation possible, aligning with the monitoring
 guidance in {{Section 7.2 of I-D.ietf-scone-protocol}}.
 
 
-## Conformance Monitoring {#conformance-monitoring}
+## Conformance Monitoring
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
-monitor QUIC flows and measure conformance to the advised rate, either per flow of
+monitor QUIC flows and measure conformance to the advised bit-rate, either per flow of
 packets on the same UDP address tuple, or in aggregate across multiple QUIC flows if they
 contribute to a shared policy limit (such as a device or network subscription level). This
-will allow operators to validate whether applications are following the advised rate.
+will allow operators to validate whether applications are following the advised bit-rate.
 
-While it is expected that operators will implement monitoring at the SCONE network element
+While it is expected that operators will implement monitoring at the SCONE Network Element
 providing the advice, it could also be performed elsewhere in the network. However, network
 elements lack the capability to validate the legitimacy of SCONE packets coalesced with other
 QUIC packets. Therefore, operators must ensure a network element evaluates conformance only
-against the advised rate that it set itself, and never enforces limits based on advice
+against the advised bit-rate that it set itself, and never enforces limits based on advice
 set by other downstream network elements.
 
 When evaluating compliance, network operators will need to account for the time required for
@@ -334,7 +334,7 @@ the QUIC flow does not exceed the throughput limits set by network policy. Alter
 can deploy SCONE purely as an advisory signal without any throttling fallback, prioritizing
 cooperative application optimization over strict compliance enforcement.
 
-## Network Integration {#network-integration}
+## In-Band Signaling and Network Integration
 
 Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
 operates entirely in-band. SCONE signaling
