@@ -130,12 +130,14 @@ per-flow context serves as the operational foundation for validating whether an 
 adhering to the advised rate and for applying any necessary policy enforcement.
 
 ## Determining Throughput Constraints
+
 The specific algorithms used to calculate throughput advice are highly
-dependent on an operator's network architecture. In practice, these
-constraints are often derived from a combination of network policies,
+dependent on a combination of network policies,
 real-time conditions where applicable, and any other business logic
 the operator applies. The inputs below are illustrative and will likely
-vary by operator, and they are not exhaustive. A SCONE-capable network
+vary by operator, and they are not exhaustive.
+
+A SCONE-capable network
 element may derive its throughput advice from one or more of the
 following:
 
