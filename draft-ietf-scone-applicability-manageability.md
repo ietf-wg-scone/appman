@@ -133,8 +133,7 @@ per-flow state.
 
 While the signaling itself is stateless, managing the operational lifecycle of a SCONE
 deployment may require establishing and maintaining per-flow context. Specifically, to execute
-the monitoring, logging, and conformance evaluation functions detailed later in this document
-(see {{conformance-monitoring}}),
+the monitoring, logging, and conformance evaluation functions detailed later in this document,
 the network element has to track the flow's throughput over multiple monitoring periods. This
 per-flow context serves as the operational foundation for validating whether an application is
 adhering to the advised rate and for applying any potentially necessary policy enforcement.
