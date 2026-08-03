@@ -71,7 +71,7 @@ The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism th
 
 Network elements capable of rate limiting can send notifications of the advisory maximum allowable bit rate in each direction of the observed traffic. This allows applications, particularly those using adaptive bit-rate (ABR)
 mechanisms,to proactively align their transmission rates with network policies. This document addresses the
-Manageability considerations for deploying the SCONE protocol within service provider networks.
+manageability considerations for deploying the SCONE protocol within service provider networks.
 It also addresses operational, configuration, and management aspects not covered in the core protocol specification.
 
 To participate in SCONE, a network element is assumed to have the
