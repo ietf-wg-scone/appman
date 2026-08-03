@@ -244,14 +244,19 @@ another element on the path, so the endpoint applies the most restrictive advice
 path (see {{Section 5.4 of I-D.ietf-scone-protocol}}). This lets operators deploy and manage
 SCONE network elements independently, without building integration between them.
 
-## Change of Network Element During an Active Flow
-The on-path network element can change when an application changes its access network, for
-example during QUIC connection migration or a mobility event where the IP address is unchanged.
+## Change of Network Element
+
+If the network path changes, for
+example during QUIC connection migration or a mobility event where the IP address is unchanged,
+an application flow might hit a new SCONE network element in the middle of an active connection.
 Because SCONE signaling is stateless, this transition needs no explicit teardown or state
-transfer between the old and new network elements. The endpoint and network elements follow the
-migration steps defined in {{Section 6.3 of I-D.ietf-scone-protocol}}, where the endpoint sends
-SCONE packets early on the new path so a network element there can detect the flow and provide
-its own advice. If no SCONE-capable element is present on the new path, the previous advice
+transfer between the old and new network elements.
+
+As defined in {{Section 6.3 of I-D.ietf-scone-protocol}}, the endpoint is expected to send
+SCONE packets early on the new path, so the new network element can detect the flow and provide
+its own advice.
+
+If no SCONE-capable element is present on the new path, the previous advice
 expires after a monitoring period ({{Section 5.4 of I-D.ietf-scone-protocol}}) and the
 application operates without SCONE-advised limits.
 
