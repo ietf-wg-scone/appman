@@ -164,7 +164,8 @@ scone indication bytes (values 0xc8 and 0x13 as the last two bytes of the payloa
 without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
 through bit-rate self-adaptation, remove the need for complex rate-limiting functions in the network
 element. Support for SCONE indication and bit-rate self-adaptation reduces complexity and CPU processing
-load in the network element. Similarly as explained in {{Section 7.1 of I-D.ietf-scone-protocol}} detection and modification of SCONE packet to update the rate signal field is also a light weight operation. 
+load in the network element. Similarly as explained in {{Section 7.1 of I-D.ietf-scone-protocol}} detection and modification of SCONE packet to update the rate signal field is also a light weight operation.
+
 ## Network Element Overload Handling
 
 Processing SCONE packets creates a per-flow update obligation for
