@@ -105,7 +105,7 @@ endpoints and any SCONE-capable network elements along the path of a
 flow. SCONE is used on a flow only when its application endpoints
 support it. Network elements that forward QUIC packets also forward
 the SCONE packets carried among them, and specific network elements
-implement and configure the SCONE Network Element function that sets
+implement and configure the SCONE network element function that sets
 the throughput advice. This document as a whole covers the
 applicability, manageability, and operational considerations for
 deploying SCONE in such networks.
@@ -115,7 +115,7 @@ As defined in the core SCONE protocol specification {{I-D.ietf-scone-protocol}},
 throughput advice is associated with the flow of QUIC UDP datagrams sharing the
 same address tuple (IP version, source and destination IP addresses, and UDP ports).
 
-Because throughput advice applies strictly to this specific flow, SCONE Network Elements
+Because throughput advice applies strictly to this specific flow, SCONE network elements
 need to unambiguously associate their policy limits with the correct QUIC flows. However,
 the act of applying SCONE throughput advice is inherently stateless. To provide advice, a
 network element simply identifies a traversing SCONE packet and updates its value based on
