@@ -60,14 +60,14 @@ informative:
 
 --- abstract
 This document describes the Applicability and Manageability considerations for network operators for providing throughput guidance to
-application endpoints. This guidance is specifically addressed within the context of communication
-networks utilizing the Standard Communication with Network Elements (SCONE) protocol.
+application endpoints. This guidance is specifically addressed within the context of telecommunication service
+provider networks utilizing the Standard Communication with Network Elements (SCONE) protocol.
 
 --- middle
 
 # Introduction
 
-The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism that enables on-path, SCONE-capable network elements to communicate "throughput advice", the advisory maximum allowable bit to application endpoints via SCONE packets in the communication networks.
+The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism that enables on-path, SCONE-capable network elements to communicate "throughput advice", the advisory maximum allowable bit rate to application endpoints via SCONE packets in the telecommunications service provider networks.
 
 Network elements can provide notifications of the advisory maximum sustainable rate in each direction of the observed traffic. This allows applications, particularly those using adaptive bit-rate (ABR)
 mechanisms, to proactively align their transmission rates with network policies. This document provides
