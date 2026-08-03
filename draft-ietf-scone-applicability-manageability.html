@@ -1249,7 +1249,7 @@ It also addresses operational, configuration, and management aspects not covered
 functional capability to identify and track SCONE-compliant QUIC
 flows, recognize and process SCONE packets within those flows, and
 map network policies into throughput advice to be inserted into the
-SCONE packets.<a href="#section-1-3" class="pilcrow">¶</a></p>
+SCONE packets (see also <a href="#network-integration" class="auto internal xref">Section 3.11</a>).<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">When on-path network elements are present between the server and the client
 application end-points, their specific configuration and role will influence the advice they
 generate. Different network architectures handle flow visibility and policy enforcement at
@@ -1301,7 +1301,8 @@ the configured policy for that flow or network scope, without needing to maintai
 per-flow state.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">While the signaling itself is stateless, managing the operational lifecycle of a SCONE
 deployment requires establishing and maintaining per-flow context. Specifically, to execute
-the monitoring, logging, and conformance evaluation functions detailed later in this document,
+the monitoring, logging, and conformance evaluation functions detailed later in this document
+(see <a href="#conformance-monitoring" class="auto internal xref">Section 3.10</a>),
 the network element must track the flow's throughput over multiple monitoring periods. This
 per-flow context serves as the operational foundation for validating whether an application is
 adhering to the advised rate and for applying any necessary policy enforcement.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
@@ -1545,7 +1546,7 @@ can deploy SCONE purely as an advisory signal without any throttling fallback, p
 cooperative application optimization over strict compliance enforcement.<a href="#section-3.10-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="in-band-signaling-and-network-integration">
+<div id="network-integration">
 <section id="section-3.11">
         <h3 id="name-in-band-signaling-and-netwo">
 <a href="#section-3.11" class="section-number selfRef">3.11. </a><a href="#name-in-band-signaling-and-netwo" class="section-name selfRef">In-Band Signaling and Network Integration</a>
