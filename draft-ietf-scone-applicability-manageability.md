@@ -60,7 +60,7 @@ informative:
 
 --- abstract
 This document describes the Applicability and Manageability considerations for network operators for providing throughput guidance to
-application endpoints. This guidance is specifically addressed within the context of telecommunication service
+application endpoints. This guidance is specifically addressed within the context of telecommunications service
 provider networks utilizing the Standard Communication with Network Elements (SCONE) protocol.
 
 --- middle
