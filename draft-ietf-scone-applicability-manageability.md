@@ -79,9 +79,9 @@ It also addresses operational, configuration, and management aspects not covered
 Deploying SCONE in a communication network involves the application
 endpoints and any SCONE-capable network elements along the path of a
 flow of QUIC UDP datagrams. SCONE is used on a QUIC flow only when its application endpoints
-support it. SCONE packets use a QUIC header with a new version number
-and are sent in the same UDP datagram as
-the end-to-end QUIC packet using the same connection ID.
+support it. SCONE packets are QUIC long header packets carrying a
+SCONE-specific version number, coalesced into the same UDP datagram
+as the QUIC packets they accompany.
 This ensures that network elements that forward QUIC packets also forward
 the SCONE packets.
 Any network element can
