@@ -116,8 +116,8 @@ This document uses terms and definitions described in {{I-D.ietf-scone-protocol}
 # Applicability, Manageability and Operational Considerations
 
 Encompassing deployment of network elements in a wide range of networks, this document
-is limited to discussing the core manageability considerations for
-the SCONE protocol to ensure its consistent and effective use across varied network paths.
+is limited to discussing the core manageability and operational considerations for
+the SCONE protocol to support its effective use across these varied network types.
 
 ## Flow Awareness and Per-Flow Signaling
 As defined in the core SCONE protocol specification {{I-D.ietf-scone-protocol}},
