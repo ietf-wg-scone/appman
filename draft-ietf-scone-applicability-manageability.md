@@ -76,9 +76,9 @@ It also addresses operational, configuration, and management aspects not covered
 
 ## SCONE Protocol Overview and Network Element Function {#scone-overview}
 
-Deploying SCONE in an operator network involves the application
+Deploying SCONE in a communication network involves the application
 endpoints and any SCONE-capable network elements along the path of a
-flow. SCONE is used on a flow only when its application endpoints
+flow of QUIC UDP datagrams. SCONE is used on a QUIC flow only when its application endpoints
 support it. SCONE packets use a QUIC header with a new version number
 and are sent in the same UDP datagram as
 the end-to-end QUIC packet using the same connection ID.
