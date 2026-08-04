@@ -107,7 +107,7 @@ support it. Network elements that forward QUIC packets also forward
 the SCONE packets carried among them, and specific network elements
 implement and configure the SCONE Network Element function that sets
 the throughput advice. This document as a whole covers the
-manageability, and operational considerations for
+manageability and operational considerations for
 deploying SCONE in such networks.
 
 ## Flow Awareness and Per-Flow Signaling
