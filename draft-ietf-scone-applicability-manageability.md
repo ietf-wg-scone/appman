@@ -95,9 +95,9 @@ map network policies into throughput advice to be inserted into the
 SCONE packets.
 
 By providing a standardized mechanism, SCONE allows network operators to provide
-throughput advice information without custom APIs or per-network integrations. Applications can
-self-adapt to the advised rate rather than relying on network rate limiters such as policers
-or shapers, and the network can update the advised rate for an active flow, including to
+throughput advice information to QUIC endpoints without custom APIs or per-network integrations. Applications can
+self-adapt to the advised bitrate rather than relying on network rate limiters such as policers
+or shapers, and the network can update the advised bitrate for an active flow, including to
 support tiered subscriber data plans (see {{Section 3.2 of I-D.ietf-scone-protocol}}).
 
 When on-path network elements are present between the server and the client
