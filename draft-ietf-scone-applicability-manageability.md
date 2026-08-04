@@ -74,7 +74,7 @@ mechanisms,to proactively align their transmission rates with network policies. 
 Applicability and Manageability considerations for deploying the SCONE protocol within service provider networks.
 It also addresses operational, configuration, and management aspects not covered in the core protocol specification.
 
-## SCONE Protocol Overview and Network Element Function
+## SCONE Protocol Overview and Network Element Function {#scone-overview}
 
 Deploying SCONE in an operator network involves the application
 endpoints and any SCONE-capable network elements along the path of a
