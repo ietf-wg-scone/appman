@@ -84,8 +84,8 @@ and are sent in the same UDP datagram as
 the end-to-end QUIC packet using the same connection ID.
 This ensures that network elements that forward QUIC packets also forward
 the SCONE packets.
-Specific network elements can
-implement a SCONE network element function that sets
+Any network element can
+implement the SCONE network element function that sets
 the throughput advice.
 
 To participate in SCONE, a network element is assumed to have the
