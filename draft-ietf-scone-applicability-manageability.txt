@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 4 February 2027                                           Nokia
+Expires: 6 February 2027                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           3 August 2026
+                                                           5 August 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 February 2027.
+   This Internet-Draft will expire on 6 February 2027.
 
 Copyright Notice
 
@@ -69,6 +69,7 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
+     1.1.  SCONE Protocol Overview and Network Element Function
    2.  Terms and Definitions
    3.  Applicability, Manageability and Operational Considerations
      3.1.  Flow Awareness and Per-Flow Signaling
@@ -109,11 +110,31 @@ Table of Contents
    operational, configuration, and management aspects not covered in the
    core protocol specification.
 
+1.1.  SCONE Protocol Overview and Network Element Function
+
+   Deploying SCONE in a communication network involves the application
+   endpoints and any SCONE-capable network elements along the path of a
+   flow of QUIC UDP datagrams.  SCONE is used on a QUIC flow only when
+   its application endpoints support it.  SCONE packets are QUIC long
+   header packets carrying a SCONE-specific version number, coalesced
+   into the same UDP datagram as the QUIC packets they accompany.  This
+   ensures that network elements that forward QUIC packets also forward
+   the SCONE packets.  Any network element can implement the SCONE
+   network element function that sets the throughput advice.
+
    To participate in SCONE, a network element is assumed to have the
    functional capability to identify and track SCONE-compliant QUIC
    flows, recognize and process SCONE packets within those flows, and
    map network policies into throughput advice to be inserted into the
    SCONE packets (see also Section 3.11).
+
+   By providing a standardized mechanism, SCONE allows network operators
+   to provide throughput advice information to QUIC endpoints without
+   custom APIs or per-network integrations.  Applications can self-adapt
+   to the advised bitrate rather than relying on network rate limiters
+   such as policers or shapers, and the network can update the advised
+   bitrate for an active flow, including to support tiered subscriber
+   data plans (see Section 3.2 of [I-D.ietf-scone-protocol]).
 
    When on-path network elements are present between the server and the
    client application end-points, their specific configuration and role
@@ -127,12 +148,6 @@ Table of Contents
    at centralized aggregation points or gateways such as the Broadband
    Network Gateway serving multiple devices.
 
-   Encompassing deployment of network elements in a wide range of
-   networks, this document is limited to discussing the core
-   Applicability and Manageability considerations for the SCONE protocol
-   to ensure its consistent and effective use across varied network
-   paths.
-
 2.  Terms and Definitions
 
    This document uses terms and definitions described in
@@ -140,15 +155,10 @@ Table of Contents
 
 3.  Applicability, Manageability and Operational Considerations
 
-   Deploying SCONE in an operator network involves the application
-   endpoints and any SCONE-capable network elements along the path of a
-   flow.  SCONE is used on a flow only when its application endpoints
-   support it.  Network elements that forward QUIC packets also forward
-   the SCONE packets carried among them, and specific network elements
-   implement and configure the SCONE Network Element function that sets
-   the throughput advice.  This document as a whole covers the
-   applicability, manageability, and operational considerations for
-   deploying SCONE in such networks.
+   Encompassing deployment of network elements in a wide range of
+   networks, this document is limited to discussing the core
+   manageability and operational considerations for the SCONE protocol
+   to support its effective use across these varied network types.
 
 3.1.  Flow Awareness and Per-Flow Signaling
 
@@ -409,14 +419,6 @@ Table of Contents
    to send throughput advice.  This ensures that SCONE seamlessly
    integrates into existing architectures without requiring new tunnels
    or data paths to be established.
-
-   By providing a standardized mechanism, SCONE allows network operators
-   and QUIC endpoints to exchange bit-rate information without custom
-   APIs or per-network integrations.  Applications can self-adapt to the
-   advised bit-rate rather than relying on network rate limiters such as
-   policers or shapers, and the network can update the advised bit-rate
-   for an active flow, including to support tiered subscriber data plans
-   (see Section 3.2 of [I-D.ietf-scone-protocol]).
 
 3.12.  Interworking with Other Congestion Management Mechanisms
 
