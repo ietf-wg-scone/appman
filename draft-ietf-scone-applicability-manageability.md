@@ -74,11 +74,31 @@ mechanisms,to proactively align their transmission rates with network policies. 
 Applicability and Manageability considerations for deploying the SCONE protocol within service provider networks.
 It also addresses operational, configuration, and management aspects not covered in the core protocol specification.
 
+## SCONE Protocol Overview and Network Element Function {#scone-overview}
+
+Deploying SCONE in a communication network involves the application
+endpoints and any SCONE-capable network elements along the path of a
+flow of QUIC UDP datagrams. SCONE is used on a QUIC flow only when its application endpoints
+support it. SCONE packets are QUIC long header packets carrying a
+SCONE-specific version number, coalesced into the same UDP datagram
+as the QUIC packets they accompany.
+This ensures that network elements that forward QUIC packets also forward
+the SCONE packets.
+Any network element can
+implement the SCONE network element function that sets
+the throughput advice.
+
 To participate in SCONE, a network element is assumed to have the
 functional capability to identify and track SCONE-compliant QUIC
 flows, recognize and process SCONE packets within those flows, and
 map network policies into throughput advice to be inserted into the
 SCONE packets (see also {{network-integration}}).
+
+By providing a standardized mechanism, SCONE allows network operators to provide
+throughput advice information to QUIC endpoints without custom APIs or per-network integrations. Applications can
+self-adapt to the advised bitrate rather than relying on network rate limiters such as policers
+or shapers, and the network can update the advised bitrate for an active flow, including to
+support tiered subscriber data plans (see {{Section 3.2 of I-D.ietf-scone-protocol}}).
 
 When on-path network elements are present between the server and the client
 application end-points, their specific configuration and role will influence the advice they
@@ -89,26 +109,15 @@ advice to guide ABR applications on a per-flow basis. In contrast, other environ
 such as wireline broadband or Wi-Fi, may apply policies at centralized aggregation points
 or gateways such as the Broadband Network Gateway serving multiple devices.
 
-Encompassing deployment of network elements in a wide range of networks, this document
-is limited to discussing the core Applicability and Manageability considerations for
-the SCONE protocol to ensure its consistent and effective use across varied network paths.
-
-
 # Terms and Definitions
 
 This document uses terms and definitions described in {{I-D.ietf-scone-protocol}}.
 
 # Applicability, Manageability and Operational Considerations
 
-Deploying SCONE in an operator network involves the application
-endpoints and any SCONE-capable network elements along the path of a
-flow. SCONE is used on a flow only when its application endpoints
-support it. Network elements that forward QUIC packets also forward
-the SCONE packets carried among them, and specific network elements
-implement and configure the SCONE Network Element function that sets
-the throughput advice. This document as a whole covers the
-applicability, manageability, and operational considerations for
-deploying SCONE in such networks.
+Encompassing deployment of network elements in a wide range of networks, this document
+is limited to discussing the core manageability and operational considerations for
+the SCONE protocol to support its effective use across these varied network types.
 
 ## Flow Awareness and Per-Flow Signaling
 As defined in the core SCONE protocol specification {{I-D.ietf-scone-protocol}},
@@ -329,11 +338,6 @@ for which the network element intends to send throughput advice. This ensures th
 SCONE seamlessly integrates into existing architectures without requiring new tunnels
 or data paths to be established.
 
-By providing a standardized mechanism, SCONE allows network operators and QUIC endpoints to
-exchange bit-rate information without custom APIs or per-network integrations. Applications can
-self-adapt to the advised bit-rate rather than relying on network rate limiters such as policers
-or shapers, and the network can update the advised bit-rate for an active flow, including to
-support tiered subscriber data plans (see {{Section 3.2 of I-D.ietf-scone-protocol}}).
 
 ## Interworking with Other Congestion Management Mechanisms
 SCONE throughput advice is not a substitute for congestion control mechanisms in
