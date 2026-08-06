@@ -351,13 +351,14 @@ Throughput (L4S) {{RFC9330}}. Rather, they are complementary.
 Congestion control applies a throughput limit different from the signaled SCONE advice.
 Congestion control manages the immediate dynamics of the bottleneck
 link, while SCONE informs the application of the maximum rate allowed by network policy.
-As such, congestion signals provide real-time
-information on transient congestion for a network path, as input for congestion control that typically operates
-on the time scale of a round-trip time (RTT). In contrast, SCONE throughput advice operates
+Congestion signals provide real-time
+information on transient congestion for a network path, typically operating
+on the time scale of a round-trip time (RTT), whereas  SCONE throughput advice operates
 over a much longer period.
-Often, the throughput advice is expected to be below the
-congestion limit and when the application adheres to the advice, congestion control would be
-application-limited and not go into action. However, in cases of high load, congestion control would
+
+When the throughput advice is below the
+congestion limit and the application adheres to it, congestion control remains
+application-limited and does not act. However, in cases of high load, congestion control would
 limit the throughput below the provided advice, as the SCONE advice is only an upper limit. As such,
 congestion control or a similar mechanism to react to congestion, such as a circuit breaker, is always
 needed in addition to SCONE.
