@@ -210,7 +210,7 @@ application endpoint, not the network, and varies by application type and
 traffic pattern ({{Section 7.1 of I-D.ietf-scone-protocol}}, "Applying
 Throughput Advice Signals"). A network element cannot expect a predictable or
 uniform signaling cadence from the traffic itself, and instead decides its own
-update interval within that flexibility. However it is allowed to the application end point to decide on the SCONE packet sending frequency, it can send SCONE packets at lower frequency if it helps manage the network element's SCONE packet update processing load. 
+update interval within that flexibility. However it is allowed to the application end point to decide on the SCONE packet sending frequency, it can send SCONE packets at lower frequency if it helps manage the processing load on the SCONE network element.
 
 A SCONE-enabled network element updates advice in SCONE packets at least twice
 per the 67-second monitoring period ({{Section 5.2 of I-D.ietf-scone-protocol}},
