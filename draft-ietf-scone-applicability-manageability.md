@@ -193,9 +193,9 @@ deployments to avoid conflicting feedback.
 # Using SCONE in tunnels and for QUIC-based tunnels in MASQUE
 
 When traffic is tunneled on the network path, such as when using MASQUE {{?I-D.schinazi-masque-proxy}},
-SCONE maybe be carried on the inner traffic but can also be used on a QUIC-based tunnel itself.
+SCONE can be carried on the inner traffic but can also be used on a QUIC-based tunnel itself.
 
-If the inner traffic is SCONE-capable, each tunnel endpoints
+If the inner traffic is SCONE-capable, each tunnel endpoint
 can be a SCONE-capable network element. In this case, as the tunnel endpoints have visibility into
 the demultiplexed tunneled traffic, throughput advice can be applied to individual tunneled flows.
 
@@ -209,10 +209,10 @@ might have multiple, independent pieces of throughput advice.
 
 If the MASQUE client is not also the endpoint of the end-to-end QUIC connection, the tunnel egress 
 might consider the throughput advice of the outer tunnel when providing throughput advice on
-the inner SCONE-enables flows.
+the inner SCONE-enabled flows.
 
 Using SCONE on a MASQUE QUIC tunnel connection can enable throughput advice also for tunneled
-non-QUIC traffic, however, this can only be applied if there is a interface or mechanism in the
+non-QUIC traffic, however, this can only be applied if there is an interface or mechanism in the
 the tunnel that provides the throughput advice to the application.
 
 # Security Considerations
