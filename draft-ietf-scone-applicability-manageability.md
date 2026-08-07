@@ -294,7 +294,7 @@ provide these benefits to networks that are not applying rate limiting. This lea
 different deployment options for operators:
 
 Signaling-only mode:
-: Opertors that do not enforce any rate limits might provide SCONE throughput advice to
+: Operators that do not enforce any rate limits might provide SCONE throughput advice to
   support the application with a choice of a stable rate below the capacity limit
   leading to a more smooth user experience. This operation mode does not require
   the deployment of rate limits or any conformance measurements.
