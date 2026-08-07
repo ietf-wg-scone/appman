@@ -370,7 +370,7 @@ instantaneous link congestion. It is then up to the applications, such as adapti
 clients or bulk downloads, to utilize this advice according to their specific use cases.
 
 Network operators can deploy SCONE alongside L4S or standard ECN as two
-independent network functions. 
+independent network functions.
 SCONE advice is carried within the QUIC payload, which does not interact
 with or modify ECN markings of the IP-layer ECN field.
 Real-time congestion feedback mechanisms remain outside the SCONE domain.
