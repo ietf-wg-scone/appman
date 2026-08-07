@@ -289,7 +289,7 @@ guidance in {{Section 7.2 of I-D.ietf-scone-protocol}}.
 
 SCONE provides explicit signaling of throughput advice. SCONE is intended as an alternative
 to in-network rate limiting enabling more dynamic network load management and better quality of experience
-for the application user. Note that the use of SCONE throughput advise signaling can also
+for application users. Note that the use of SCONE throughput advice signaling can also
 provide these benefits to networks that are not applying rate limiting. This leads to three
 different deployment options for operators:
 
