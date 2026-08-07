@@ -287,6 +287,32 @@ per-flow throughput measurements in the logging infrastructure
 makes this correlation possible, aligning with the monitoring
 guidance in {{Section 7.2 of I-D.ietf-scone-protocol}}.
 
+## Deployment Options
+
+SCONE provides explicit signaling of throughput advice. SCONE is intended as an alternative
+to in-network rate limiting enabling more dynamic network load management and better quality of experience
+for application users. Note that the use of SCONE throughput advice signaling can also
+provide these benefits to networks that are not applying rate limiting. This leads to three
+different deployment options for operators:
+
+Signaling-only mode:
+: Operators that do not enforce any rate limits might provide SCONE throughput advice to
+  support the application with a choice of a stable rate below the capacity limit
+  leading to a more smooth user experience. This operation mode does not require
+  the deployment of rate limits or any conformance measurements.
+
+Dynamic rate enforcement mode:
+: Operators that use rate limits might disable rate enforcement for scone flows and only
+  enable it dynamically if a SCONE flow is detected to not apply the limit itself.
+  This mode saves network processing and buffer resources for compliant flows but requires
+  conformance measurements as described in the next section.
+
+Static rate enforcement mode:
+: Operators that deploy rate limit are not require to change these deployment. SCONE
+  signalling can be used in addition. In this case it is recommended to select a SCONE
+  rate that lies slightly below the actual enforcement rate in order to ensure that applications
+  can avoid to get throttled. This mode does not require conformance measurements but
+  may realise less network savings and can still lead to unwanted application impairments.
 
 ## Conformance Monitoring {#conformance-monitoring}
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
