@@ -366,8 +366,7 @@ needed in addition to SCONE.
 Operators can use SCONE to communicate static or dynamically adapted advice based on available
 policy information, e.g. based on subscriber data, or load management policies.
 Operators set this advice independent of
-instantaneous link congestion. Congestion control, not SCONE, is responsible for reacting to 
-congestion. It is then up to the applications, such as adaptive bitrate video
+instantaneous link congestion. It is then up to the applications, such as adaptive bitrate video
 clients or bulk downloads, to utilize this advice according to their specific use cases.
 
 Network operators can deploy SCONE alongside L4S or standard ECN as two
