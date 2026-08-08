@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 6 February 2027                                           Nokia
+Expires: 9 February 2027                                           Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           5 August 2026
+                                                           8 August 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -21,8 +21,8 @@ Abstract
    This document describes the Applicability and Manageability
    considerations for providing throughput guidance to application
    endpoints.  This guidance is specifically addressed within the
-   context of telecommunications service provider networks utilizing the
-   Standard Communication with Network Elements (SCONE) protocol.
+   context of communication networks utilizing the Standard
+   Communication with Network Elements (SCONE) protocol.
 
 Discussion Venues
 
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 February 2027.
+   This Internet-Draft will expire on 9 February 2027.
 
 Copyright Notice
 
@@ -97,8 +97,8 @@ Table of Contents
    The SCONE protocol [I-D.ietf-scone-protocol] provides a signaling
    mechanism that enables on-path, SCONE-capable network elements to
    communicate "throughput advice", the advisory maximum allowable bit
-   rate, to application endpoints via SCONE packets in the
-   telecommunications service provider networks.
+   rate, to application endpoints via SCONE packets in the communication
+   networks.
 
    Network elements capable of rate limiting can send notifications of
    the advisory maximum allowable bit rate in each direction of the
@@ -106,7 +106,7 @@ Table of Contents
    adaptive bit-rate (ABR) mechanisms,to proactively align their
    transmission rates with network policies.  This document addresses
    the Applicability and Manageability considerations for deploying the
-   SCONE protocol within service provider networks.  It also addresses
+   SCONE protocol within communication networks.  It also addresses
    operational, configuration, and management aspects not covered in the
    core protocol specification.
 
