@@ -176,14 +176,14 @@ Table of Contents
    network scope, without needing to maintain active per-flow state.
 
    While the signaling itself is stateless, managing the operational
-   lifecycle of a SCONE deployment requires establishing and maintaining
-   per-flow context.  Specifically, to execute the monitoring, logging,
-   and conformance evaluation functions detailed later in this document
-   (see Section 3.10), the network element must track the flow's
-   throughput over multiple monitoring periods.  This per-flow context
-   serves as the operational foundation for validating whether an
-   application is adhering to the advised rate and for applying any
-   necessary policy enforcement.
+   lifecycle of a SCONE deployment may require establishing and
+   maintaining per-flow context.  Specifically, to execute the
+   monitoring, logging, and conformance evaluation functions detailed
+   later in this document (see Section 3.10), the network element has to
+   track the flow's throughput over multiple monitoring periods.  This
+   per-flow context serves as the operational foundation for validating
+   whether an application is adhering to the advised rate and for
+   applying any potentially necessary policy enforcement.
 
 3.2.  Determining Throughput Constraints
 

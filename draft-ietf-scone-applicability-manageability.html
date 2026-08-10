@@ -1319,12 +1319,12 @@ network element simply identifies a traversing SCONE packet and updates its valu
 the configured policy for that flow or network scope, without needing to maintain active
 per-flow state.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">While the signaling itself is stateless, managing the operational lifecycle of a SCONE
-deployment requires establishing and maintaining per-flow context. Specifically, to execute
+deployment may require establishing and maintaining per-flow context. Specifically, to execute
 the monitoring, logging, and conformance evaluation functions detailed later in this document
 (see <a href="#conformance-monitoring" class="auto internal xref">Section 3.10</a>),
-the network element must track the flow's throughput over multiple monitoring periods. This
+the network element has to track the flow's throughput over multiple monitoring periods. This
 per-flow context serves as the operational foundation for validating whether an application is
-adhering to the advised rate and for applying any necessary policy enforcement.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+adhering to the advised rate and for applying any potentially necessary policy enforcement.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="determining-throughput-constraints">
