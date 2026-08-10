@@ -246,13 +246,13 @@ SCONE network elements independently, without building integration between them.
 
 ## Change of Network Element
 
-If the network path changes, for
-example during QUIC connection migration or a mobility event where the IP address is unchanged,
+If the network path changes, for example during QUIC connection migration, or a mobility
+event such as a cellular handover where the device's anchored IP address stays the same,
 an application flow might hit a new SCONE network element in the middle of an active connection.
 Because SCONE signaling is stateless, this transition needs no explicit teardown or state
 transfer between the old and new network elements.
 
-As defined in {{Section 6.3 of I-D.ietf-scone-protocol}}, the endpoint is expected to send
+As defined in {{Section 6.3 of I-D.ietf-scone-protocol}}, the endpoint sends
 SCONE packets early on the new path, so the new network element can detect the flow and provide
 its own advice.
 
