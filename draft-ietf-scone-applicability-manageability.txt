@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 9 February 2027                                           Nokia
+Expires: 11 February 2027                                          Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           8 August 2026
+                                                          10 August 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 February 2027.
+   This Internet-Draft will expire on 11 February 2027.
 
 Copyright Notice
 
@@ -81,7 +81,7 @@ Table of Contents
      3.7.  Presence of SCONE Network Elements On the Data Path
      3.8.  Change of Network Element During an Active Flow
      3.9.  Monitoring and Logging
-     3.10. Conformance Monitoring
+     3.10. Conformance Measurement
      3.11. In-Band Signaling and Network Integration
      3.12. Interworking with Other Congestion Management Mechanisms
    4.  Security Considerations
@@ -356,7 +356,7 @@ Table of Contents
    correlation possible, aligning with the monitoring guidance in
    Section 7.2 of [I-D.ietf-scone-protocol].
 
-3.10.  Conformance Monitoring
+3.10.  Conformance Measurement
 
    Networks that choose to provide SCONE throughput advice can implement
    mechanisms to monitor QUIC flows and measure conformance to the
@@ -394,18 +394,19 @@ Table of Contents
    Because some applications will not support SCONE, and others either
    will not or cannot follow the provided throughput advice, operators
    have flexibility in how they handle flows that exceed the limits that
-   are set in their policies.  Before applying rate control mechanisms,
-   operators can use the diagnostic approach described in Section 3.9 to
-   confirm that the flow requires intervention in order to maintain
-   target rates per Section 7.3 of [I-D.ietf-scone-protocol].  If the
-   monitoring function detects that an application is not respecting the
-   signaled throughput advice, the network can employ traditional rate-
-   limiting mechanisms, such as dropping or delaying packets, to ensure
-   the QUIC flow does not exceed the throughput limits set by network
-   policy.  Alternatively, operators can deploy SCONE purely as an
-   advisory signal without any throttling fallback, prioritizing
-   cooperative application optimization over strict compliance
-   enforcement.
+   are set in their policies.  Before applying rate-limiting
+   (throttling) mechanisms on SCONE-capable flows, operators can use
+   Conformance measurement and/or diagnostic approach described in
+   Section 3.9 to check that the flow requires intervention in order to
+   maintain target rates per Section 7.3 of [I-D.ietf-scone-protocol].
+   If the Conformance measurement function detects that an application
+   is not respecting the signaled throughput advice, the network can
+   employ traditional rate-limiting mechanisms, such as dropping or
+   delaying packets, to ensure the QUIC flow does not exceed the
+   throughput limits set by network policy.  Alternatively, operators
+   can deploy SCONE purely as an advisory signal without any rate-
+   limiting mechanism fallback, prioritizing cooperative application
+   optimization over strict compliance enforcement.
 
 3.11.  In-Band Signaling and Network Integration
 
