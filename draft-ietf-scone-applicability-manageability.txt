@@ -168,7 +168,7 @@ Table of Contents
    version, source and destination IP addresses, and UDP ports).
 
    Because throughput advice applies strictly to this specific flow,
-   SCONE Network Elements need to unambiguously associate their policy
+   SCONE network elements need to unambiguously associate their policy
    limits with the correct QUIC flows.  However, the act of applying
    SCONE throughput advice is inherently stateless.  To provide advice,
    a network element simply identifies a traversing SCONE packet and
