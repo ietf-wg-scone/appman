@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 12 February 2027                                          Nokia
+Expires: 13 February 2027                                          Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                          11 August 2026
+                                                          12 August 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 February 2027.
+   This Internet-Draft will expire on 13 February 2027.
 
 Copyright Notice
 
@@ -79,7 +79,7 @@ Table of Contents
      3.5.  Reliability of Throughput Advice Delivery
      3.6.  Sending Updates for Dynamic Target Throughput Changes
      3.7.  Presence of SCONE Network Elements On the Data Path
-     3.8.  Change of Network Element During an Active Flow
+     3.8.  Change of Network Element
      3.9.  Monitoring and Logging
      3.10. Conformance Measurement
      3.11. In-Band Signaling and Network Integration
@@ -307,20 +307,22 @@ Table of Contents
    SCONE network elements independently, without building integration
    between them.
 
-3.8.  Change of Network Element During an Active Flow
+3.8.  Change of Network Element
 
-   The on-path network element can change when an application changes
-   its access network, for example during QUIC connection migration or a
-   mobility event where the IP address is unchanged.  Because SCONE
-   signaling is stateless, this transition needs no explicit teardown or
-   state transfer between the old and new network elements.  The
-   endpoint and network elements follow the migration steps defined in
-   Section 6.3 of [I-D.ietf-scone-protocol], where the endpoint sends
-   SCONE packets early on the new path so a network element there can
-   detect the flow and provide its own advice.  If no SCONE-capable
-   element is present on the new path, the previous advice expires after
-   a monitoring period (Section 5.4 of [I-D.ietf-scone-protocol]) and
-   the application operates without SCONE-advised limits.
+   If the network path changes, for example during QUIC connection
+   migration, the flow can be routed through a different SCONE network
+   element.  Because SCONE signaling is stateless, this transition
+   requires no explicit teardown or state transfer between the old and
+   new network elements.
+
+   As defined in Section 6.3 of [I-D.ietf-scone-protocol], the endpoint
+   sends SCONE packets early on the new path, so the new network element
+   can detect the flow and provide its own advice.
+
+   If no SCONE-capable element is present on the new path, the previous
+   advice expires after a monitoring period (Section 5.4 of
+   [I-D.ietf-scone-protocol]) and the application operates without
+   SCONE-advised limits.
 
 3.9.  Monitoring and Logging
 
