@@ -1,6 +1,6 @@
 ---
-title: "Applicability & Manageability Considerations for SCONE"
-abbrev: "SCONE Applicability & Manageability"
+title: "Manageability Considerations for SCONE"
+abbrev: "SCONE Manageability"
 docname: draft-ietf-scone-applicability-manageability-latest
 category: info
 submissionType: IETF
@@ -8,8 +8,7 @@ submissionType: IETF
 ipr: trust200902
 area: "Web and Internet Transport"
 workgroup: "Standard Communication with Network Elements"
-
-keyword: [SCONE, access networks, bitrate, throughput advice, applicability, manageability]
+keyword: [SCONE, access networks, bitrate, throughput advice, manageability]
 
 stand_alone: yes
 smart_quotes: no
@@ -59,7 +58,7 @@ informative:
 
 
 --- abstract
-This document describes the Applicability and Manageability considerations for providing throughput guidance to
+This document describes the manageability considerations for providing throughput guidance to
 application endpoints. This guidance is specifically addressed within the context of
 communication networks utilizing the Standard Communication with Network Elements (SCONE) protocol.
 
@@ -71,7 +70,7 @@ The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism th
 
 Network elements capable of rate limiting can send notifications of the advisory maximum sustainable throughput in each direction of the observed traffic. This allows applications, particularly those using Adaptive bitrate (ABR)
 mechanisms,to proactively align their transmission rates with network policies. This document addresses the
-Applicability and Manageability considerations for deploying the SCONE protocol within communication networks.
+manageability considerations for deploying the SCONE protocol within communication networks.
 It also addresses operational, configuration, and management aspects not covered in the core protocol specification.
 
 ## SCONE Protocol Overview and Network Element Function {#scone-overview}
@@ -109,15 +108,17 @@ advice to guide ABR applications on a per-flow basis. In contrast, other environ
 such as wireline broadband or Wi-Fi, may apply policies at centralized aggregation points
 or gateways such as the Broadband Network Gateway serving multiple devices.
 
+
 # Terms and Definitions
 
 This document uses terms and definitions described in {{I-D.ietf-scone-protocol}}.
 
-# Applicability, Manageability and Operational Considerations
+# Manageability and Operational Considerations
 
 Encompassing deployment of network elements in a wide range of networks, this document
 is limited to discussing the core manageability and operational considerations for
 the SCONE protocol to support its effective use across these varied network types.
+
 
 ## Flow Awareness and Per-Flow Signaling
 As defined in the core SCONE protocol specification {{I-D.ietf-scone-protocol}},
