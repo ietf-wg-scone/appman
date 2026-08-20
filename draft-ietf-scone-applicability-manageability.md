@@ -358,7 +358,7 @@ Where flows are tunneled, throughput advice applies to the flow to which it was 
 This might mean that a QUIC flow that is tunneled in QUIC
 might have multiple, independent pieces of throughput advice.
 
-If the MASQUE client is not also the endpoint of the end-to-end QUIC connection, the tunnel egress 
+If the MASQUE client is not also the endpoint of the end-to-end QUIC connection, the tunnel egress
 might consider the throughput advice of the outer tunnel when providing throughput advice on
 the inner SCONE-enabled flows.
 
