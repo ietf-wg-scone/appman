@@ -243,7 +243,7 @@ independently, with no synchronization or control-plane coordination required be
 This is possible because each network element is expected to only lowers the rate signal,
 preserving any lower advice already set by
 another element on the path, so the endpoint applies the most restrictive advice along the
-path (see {{Section 5.4 of I-D.ietf-scone-protocol}}).
+path (see {{Section 7.1 of I-D.ietf-scone-protocol}}).
 
 ## Change of Network Element During an Active Flow
 The on-path network element can change when an application changes its access network, for
