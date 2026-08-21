@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 13 February 2027                                          Nokia
+Expires: 22 February 2027                                          Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                          12 August 2026
+                                                          21 August 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 February 2027.
+   This Internet-Draft will expire on 22 February 2027.
 
 Copyright Notice
 
@@ -78,7 +78,8 @@ Table of Contents
      3.4.  Network Element Overload Handling
      3.5.  Reliability of Throughput Advice Delivery
      3.6.  Sending Updates for Dynamic Target Throughput Changes
-     3.7.  Presence of SCONE Network Elements On the Data Path
+     3.7.  Presence of Multiple SCONE Network Elements On the Data
+            Path
      3.8.  Change of Network Element
      3.9.  Monitoring and Logging
      3.10. Conformance Measurement
@@ -295,17 +296,15 @@ Table of Contents
    depends on when the endpoint next sends a SCONE packet, since the
    network element cannot originate one.
 
-3.7.  Presence of SCONE Network Elements On the Data Path
+3.7.  Presence of Multiple SCONE Network Elements On the Data Path
 
    When multiple SCONE-capable network elements are present on the same
    data path, they operate independently, with no synchronization or
-   control-plane coordination required between them.  Each network
-   element only lowers the rate signal, preserving any lower advice
-   already set by another element on the path, so the endpoint applies
-   the most restrictive advice along the path (see Section 5.4 of
-   [I-D.ietf-scone-protocol]).  This lets operators deploy and manage
-   SCONE network elements independently, without building integration
-   between them.
+   control-plane coordination required between them.  This is possible
+   because each network element is expected to only lower the rate
+   signal, preserving any lower advice already set by another element on
+   the path, so the endpoint applies the most restrictive advice along
+   the path (see Section 7.1 of [I-D.ietf-scone-protocol]).
 
 3.8.  Change of Network Element
 
@@ -483,9 +482,9 @@ Table of Contents
               Thomson, M., Huitema, C., Oku, K., Joras, M., and L. M.
               Ihlar, "Standard Communication with Network Elements
               (SCONE) Protocol", Work in Progress, Internet-Draft,
-              draft-ietf-scone-protocol-06, 29 July 2026,
+              draft-ietf-scone-protocol-07, 20 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-scone-
-              protocol-06>.
+              protocol-07>.
 
 6.2.  Informative References
 
