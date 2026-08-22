@@ -238,7 +238,8 @@ application's reaction time to the new limit (see {{Section 9.2 of I-D.ietf-scon
 How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.
 
-## Presence of SCONE Network Elements On the Data Path
+## Presence of Multiple SCONE Network Elements On the Data Path
+
 When multiple SCONE-capable network elements are present on the same data path, they operate
 independently, with no synchronization or control-plane coordination required between them.
 A network element might receive a packet that already includes a rate signal
@@ -246,8 +247,9 @@ set to a valid value (not unknown). The network element replaces the rate signal
 if it wishes to signal a lower value for throughput advice; otherwise,
 the original values are retained, preserving any lower advice already set by
 another element on the path. This way the endpoint applies the most restrictive advice along the
-path (see {{Section 5.4 of I-D.ietf-scone-protocol}}). This lets operators deploy and manage
+path (see {{Section 7.1 of I-D.ietf-scone-protocol}}). This lets operators deploy and manage
 SCONE network elements independently, without building integration between them.
+
 
 ## Change of Network Element
 
