@@ -242,10 +242,14 @@ since the network element cannot originate one.
 
 When multiple SCONE-capable network elements are present on the same data path, they operate
 independently, with no synchronization or control-plane coordination required between them.
-This is possible because each network element is expected to only lower the rate signal,
-preserving any lower advice already set by
-another element on the path, so the endpoint applies the most restrictive advice along the
-path (see {{Section 7.1 of I-D.ietf-scone-protocol}}).
+A network element might receive a packet that already includes a rate signal
+set to a valid value (not unknown). The network element replaces the rate signal
+if it wishes to signal a lower value for throughput advice; otherwise,
+the original values are retained, preserving any lower advice already set by
+another element on the path. This way the endpoint applies the most restrictive advice along the
+path (see {{Section 7.1 of I-D.ietf-scone-protocol}}). This lets operators deploy and manage
+SCONE network elements independently, without building integration between them.
+
 
 ## Change of Network Element
 
