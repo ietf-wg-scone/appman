@@ -307,8 +307,8 @@ will allow operators to validate whether applications are following the throughp
 While it is expected that operators will implement monitoring at the SCONE Network Element
 providing the advice, it could also be performed elsewhere in the network. However, network
 elements lack the capability to validate the legitimacy of SCONE packets coalesced with other
-QUIC packets. Therefore, operators must ensure a network element evaluates conformance only
-against the throughput advice that it set itself, and never enforces limits based on advice
+QUIC packets. Therefore, operators need to ensure a network element evaluates conformance only
+against the throughput advice that it set itself, rather than enforcing limits based on advice
 set by other downstream network elements.
 
 When evaluating compliance, network operators will need to account for the time required for
