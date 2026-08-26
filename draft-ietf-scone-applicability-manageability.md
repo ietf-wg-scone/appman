@@ -319,6 +319,29 @@ monitoring periods (a span of 134 seconds). If a network element cannot update t
 throughput advice in every traversing SCONE packet, operators might configure a
 longer sliding window to account for the possibility of packet loss.
 
+{{Section 7.2 of I-D.ietf-scone-protocol}} explains that the second monitoring period in this
+window compensates for SCONE packets not being delivered reliably. Two distinct delays make
+up that margin. The first, and usually the dominant one, is simply the interval between SCONE
+packets. A network element can only act when one arrives, so its updates lag the endpoint's
+own sending cadence. Network transit delay and the endpoint's own processing delay are both
+small by comparison and can typically be disregarded. The second is the possibility that a
+given SCONE packet carrying updated advice is lost before reaching the endpoint, against which
+the additional monitoring period also provides margin.
+
+A network element that can characterize its own downstream packet loss rate and track how
+many SCONE packets it has sent since a change in advice may be able to justify a shorter
+window for its own purposes. For example, an element serving an adaptive bitrate video flow
+that receives a SCONE packet with every video segment, typically every two seconds, would
+need to lose ten consecutive packets for the advice to be missed entirely. Assuming a two
+percent packet loss rate, that combined probability is many orders of magnitude smaller than
+the two percent loss rate for any single packet. This kind of reasoning goes beyond the
+illustrative monitoring approach described in {{Section 7.2 of I-D.ietf-scone-protocol}},
+which cautions that monitoring more strictly than the two-period baseline risks
+misclassifying a compliant application as non-conformant, while a longer window carries no
+such risk. Operators considering a shorter window should weigh that risk, the added tracking
+complexity, and how the flow is treated if an update is missed, against the benefit of a
+faster measurement cycle.
+
 To simplify the measurement function, reduce computational load, or offload this
 function to another node in the network, operators can select any value larger
 than the baseline 67 second window ({{Section 5.2 of I-D.ietf-scone-protocol}})
