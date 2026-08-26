@@ -329,7 +329,7 @@ the provided throughput advice, operators have flexibility in how they handle fl
 Before applying rate-limiting (throttling) mechanisms on SCONE-capable flows, operators can use conformance measurement and/or diagnostic approach described in
 {{monitoring-and-logging}} to check that the flow requires intervention
 in order to maintain target rates per {{Section 7.3 of I-D.ietf-scone-protocol}}.
-If the conformance measurement function detects that an application is not respecting the
+If the conformance measurement function detects that an application is not following the
 signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
 can deploy SCONE purely as an advisory signal without any rate-limiting mechanism fallback, prioritizing
