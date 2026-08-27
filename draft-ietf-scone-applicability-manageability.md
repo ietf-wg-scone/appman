@@ -1,6 +1,6 @@
 ---
-title: "Applicability & Manageability Considerations for SCONE"
-abbrev: "SCONE Applicability & Manageability"
+title: "Manageability Considerations for SCONE"
+abbrev: "SCONE Manageability"
 docname: draft-ietf-scone-applicability-manageability-latest
 category: info
 submissionType: IETF
@@ -8,8 +8,7 @@ submissionType: IETF
 ipr: trust200902
 area: "Web and Internet Transport"
 workgroup: "Standard Communication with Network Elements"
-
-keyword: [SCONE, access networks, bitrate, throughput advice, applicability, manageability]
+keyword: [SCONE, access networks, bitrate, throughput advice, manageability]
 
 stand_alone: yes
 smart_quotes: no
@@ -38,7 +37,7 @@ author:
     email: khurram.abbas@verizonwireless.com
 
 normative:
-  I-D.ietf-scone-protocol:
+  SCONE: I-D.ietf-scone-protocol
 
 
 informative:
@@ -59,20 +58,26 @@ informative:
 
 
 --- abstract
-This document describes the Applicability and Manageability considerations for providing throughput guidance to
+This document describes the manageability considerations for network operators
+for providing throughput guidance to
 application endpoints. This guidance is specifically addressed within the context of
-communication networks utilizing the Standard Communication with Network Elements (SCONE) protocol.
+communication networks utilizing the Standard Communication with Network Elements (SCONE) protocol {{SCONE}}.
 
 --- middle
 
 # Introduction
 
-The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism that enables on-path, SCONE-capable network elements to communicate "throughput advice", the advisory maximum sustainable throughput, to application endpoints via SCONE packets in the communication networks.
+The SCONE protocol {{SCONE}} provides a signaling mechanism that enables on-path, SCONE-capable network elements to communicate "throughput advice", the advisory maximum sustainable throughput, to application endpoints via SCONE packets in the communication networks.
 
 Network elements capable of rate limiting can send notifications of the advisory maximum sustainable throughput in each direction of the observed traffic. This allows applications, particularly those using Adaptive bitrate (ABR)
 mechanisms,to proactively align their transmission rates with network policies. This document addresses the
-Applicability and Manageability considerations for deploying the SCONE protocol within communication networks.
-It also addresses operational, configuration, and management aspects not covered in the core protocol specification.
+manageability considerations for deploying the SCONE protocol within communication networks.
+The SCONE core protocol specification provides guidance for network deployment,
+specifically details on how to apply throughput advice signals in the SCONE header,
+on protocol requirements on flow monitoring and considerations for flows that exceed
+throughput advice (see {{Section 7 of SCONE}}). This document complements this guidance
+by discussing various deployment options and providing additional manageability
+considerations for network operators.
 
 ## SCONE Protocol Overview and Network Element Function {#scone-overview}
 
@@ -98,7 +103,7 @@ By providing a standardized mechanism, SCONE allows network operators to provide
 throughput advice information to QUIC endpoints without custom APIs or per-network integrations. Applications can
 self-adapt to the advised bitrate rather than relying on network rate limiters such as policers
 or shapers, and the network can update the advised bitrate for an active flow, including to
-support tiered subscriber data plans (see {{Section 3.2 of I-D.ietf-scone-protocol}}).
+support tiered subscriber data plans (see {{Section 3.2 of SCONE}}).
 
 When on-path network elements are present between the server and the client
 application end-points, their specific configuration and role will influence the advice they
@@ -109,18 +114,20 @@ advice to guide ABR applications on a per-flow basis. In contrast, other environ
 such as wireline broadband or Wi-Fi, may apply policies at centralized aggregation points
 or gateways such as the Broadband Network Gateway serving multiple devices.
 
+
 # Terms and Definitions
 
-This document uses terms and definitions described in {{I-D.ietf-scone-protocol}}.
+This document uses terms and definitions described in {{SCONE}}.
 
-# Applicability, Manageability and Operational Considerations
+# Manageability and Operational Considerations
 
 Encompassing deployment of network elements in a wide range of networks, this document
 is limited to discussing the core manageability and operational considerations for
 the SCONE protocol to support its effective use across these varied network types.
 
+
 ## Flow Awareness and Per-Flow Signaling
-As defined in the core SCONE protocol specification {{I-D.ietf-scone-protocol}},
+As defined in the core SCONE protocol specification {{SCONE}},
 throughput advice is associated with the flow of QUIC UDP datagrams sharing the
 same address tuple (IP version, source and destination IP addresses, and UDP ports).
 
@@ -167,7 +174,7 @@ may temporarily lower its throughput advice to manage shared capacity
 and guide application usage.
 
 ## Considerations of Processing Complexity {#processing-complexity}
-As specified in {{Section 6.1 of I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
+As specified in {{Section 6.1 of SCONE}}, SCONE-aware endpoints provide
 a specific indication on the first SCONE packet to support the identification of a SCONE-capable flow
 without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
 through rate self-adaptation, remove the need for complex rate-limiting functions in the network
@@ -178,7 +185,7 @@ load in the network element.
 
 Processing SCONE packets creates a per-flow update obligation for
 network elements. To avoid throughput advice expiring
-({{Section 5.4 of I-D.ietf-scone-protocol}}), each active flow
+({{Section 5.4 of SCONE}}), each active flow
 needs at least one rate signal update within each monitoring
 period. When the number of concurrent SCONE flows grows unusually
 large, as can occur during periods of elevated traffic or network
@@ -207,13 +214,13 @@ that policy.
 ## Reliability of Throughput Advice Delivery
 The frequency at which SCONE packets arrive at a network element is set by the
 application endpoint, not the network, and varies by application type and
-traffic pattern ({{Section 7.1 of I-D.ietf-scone-protocol}}, "Applying
+traffic pattern ({{Section 7.1 of SCONE}}, "Applying
 Throughput Advice Signals"). A network element cannot expect a predictable or
 uniform signaling cadence from the traffic itself, and instead decides its own
 update interval within that flexibility.
 
 A SCONE-enabled network element updates advice in SCONE packets at least twice
-per the 67-second monitoring period ({{Section 5.2 of I-D.ietf-scone-protocol}},
+per the 67-second monitoring period ({{Section 5.2 of SCONE}},
 approximately every 20 to 30 seconds). This baseline ensures advice reliably
 reaches the endpoint and does not expire across the monitoring period, since
 SCONE packets are not delivered reliably for a variety of reasons. Operators
@@ -234,7 +241,7 @@ or when the bandwidth allocated to the subscriber or the bearer changes
 while the flow is already established. When this happens,
 the network element prioritizes updating the next traversing SCONE packet
 promptly, bypassing its scheduled periodic update interval, to minimize the
-application's reaction time to the new limit (see {{Section 9.2 of I-D.ietf-scone-protocol}}).
+application's reaction time to the new limit (see {{Section 9.2 of SCONE}}).
 How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.
 
@@ -247,7 +254,7 @@ set to a valid value (not unknown). The network element replaces the rate signal
 if it wishes to signal a lower value for throughput advice; otherwise,
 the original values are retained, preserving any lower advice already set by
 another element on the path. This way the endpoint applies the most restrictive advice along the
-path (see {{Section 7.1 of I-D.ietf-scone-protocol}}). This lets operators deploy and manage
+path (see {{Section 7.1 of SCONE}}). This lets operators deploy and manage
 SCONE network elements independently, without building integration between them.
 
 
@@ -258,12 +265,12 @@ can be routed through a different SCONE network element. Because SCONE signaling
 stateless, this transition requires no explicit teardown or state transfer between
 the old and new network elements.
 
-As defined in {{Section 6.3 of I-D.ietf-scone-protocol}}, the endpoint sends
+As defined in {{Section 6.3 of SCONE}}, the endpoint sends
 SCONE packets early on the new path, so the new network element can detect the flow and provide
 its own advice.
 
 If no SCONE-capable element is present on the new path, the previous advice
-expires after a monitoring period ({{Section 5.4 of I-D.ietf-scone-protocol}}) and the
+expires after a monitoring period ({{Section 5.4 of SCONE}}) and the
 application operates without SCONE-advised limits.
 
 ## Monitoring and Logging {#monitoring-and-logging}
@@ -287,14 +294,14 @@ but the flow's throughput does not change, it indicates either
 that all updated packets were dropped downstream before reaching the
 application, or that the application received the advice but did
 not act upon it, as SCONE is an advisory signal per
-{{Section 3.5 of I-D.ietf-scone-protocol}}. Conversely, if the
+{{Section 3.5 of SCONE}}. Conversely, if the
 network element stops observing traversing SCONE packets
 arriving from the sender, this suggests either an upstream delivery
 failure or the endpoint is no longer sending SCONE packets on that flow.
 Recording both the timestamps of updates to packets and the subsequent
 per-flow throughput measurements in the logging infrastructure
 makes this correlation possible, aligning with the monitoring
-guidance in {{Section 7.2 of I-D.ietf-scone-protocol}}.
+guidance in {{Section 7.2 of SCONE}}.
 
 
 ## Conformance Measurement {#conformance-monitoring}
@@ -321,14 +328,14 @@ longer sliding window to account for the possibility of packet loss.
 
 To simplify the measurement function, reduce computational load, or offload this
 function to another node in the network, operators can select any value larger
-than the baseline 67 second window ({{Section 5.2 of I-D.ietf-scone-protocol}})
+than the baseline 67 second window ({{Section 5.2 of SCONE}})
 for their measurement and averaging period.
 
 Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle flows that exceed the limits that are set in their policies.
 Before applying rate-limiting (throttling) mechanisms on SCONE-capable flows, operators can use conformance measurement and/or diagnostic approach described in
 {{monitoring-and-logging}} to check that the flow requires intervention
-in order to maintain target rates per {{Section 7.3 of I-D.ietf-scone-protocol}}.
+in order to maintain target rates per {{Section 7.3 of SCONE}}.
 If the conformance measurement function detects that an application is not following the
 signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
@@ -348,7 +355,7 @@ or data paths to be established.
 
 ## Interworking with Other Congestion Management Mechanisms
 
-As stated in {{Section 3.1 of I-D.ietf-scone-protocol}},
+As stated in {{Section 3.1 of SCONE}},
 SCONE throughput advice is not a substitute for congestion control
 utilizing congestion signals such as packet loss based on transport acknowledgments, delay, or
 Explicit Congestion Notification (ECN) {{RFC3168}} as also used by Low Latency, Low Loss, and Scalable
@@ -385,7 +392,7 @@ Real-time congestion feedback mechanisms remain outside the SCONE domain.
 # Security Considerations
 This document does not add any additional security considerations. The core security and
 privacy considerations for the SCONE protocol are comprehensively defined in
-{{Sections 9 and 10 of I-D.ietf-scone-protocol}}.
+{{Sections 9 and 10 of SCONE}}.
 
 # IANA Considerations
 This document has no IANA actions.
