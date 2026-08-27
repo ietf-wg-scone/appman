@@ -37,7 +37,7 @@ author:
     email: khurram.abbas@verizonwireless.com
 
 normative:
-  SCONE: I-D.ietf-scone-protocol:
+  SCONE: I-D.ietf-scone-protocol
 
 
 informative:
