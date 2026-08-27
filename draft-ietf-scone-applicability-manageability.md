@@ -245,13 +245,18 @@ application's reaction time to the new limit (see {{Section 9.2 of SCONE}}).
 How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.
 
-## Presence of SCONE Network Elements On the Data Path
+## Presence of Multiple SCONE Network Elements On the Data Path
+
 When multiple SCONE-capable network elements are present on the same data path, they operate
 independently, with no synchronization or control-plane coordination required between them.
-Each network element only lowers the rate signal, preserving any lower advice already set by
-another element on the path, so the endpoint applies the most restrictive advice along the
-path (see {{Section 5.4 of SCONE}}). This lets operators deploy and manage
+A network element might receive a packet that already includes a rate signal
+set to a valid value (not unknown). The network element replaces the rate signal
+if it wishes to signal a lower value for throughput advice; otherwise,
+the original values are retained, preserving any lower advice already set by
+another element on the path. This way the endpoint applies the most restrictive advice along the
+path (see {{Section 7.1 of I-D.SCONE}}). This lets operators deploy and manage
 SCONE network elements independently, without building integration between them.
+
 
 ## Change of Network Element
 
@@ -309,8 +314,8 @@ will allow operators to validate whether applications are following the throughp
 While it is expected that operators will implement monitoring at the SCONE Network Element
 providing the advice, it could also be performed elsewhere in the network. However, network
 elements lack the capability to validate the legitimacy of SCONE packets coalesced with other
-QUIC packets. Therefore, operators must ensure a network element evaluates conformance only
-against the throughput advice that it set itself, and never enforces limits based on advice
+QUIC packets. Therefore, operators need to ensure a network element evaluates conformance only
+against the throughput advice that it set itself, rather than enforcing limits based on advice
 set by other downstream network elements.
 
 When evaluating compliance, network operators will need to account for the time required for
@@ -331,7 +336,7 @@ the provided throughput advice, operators have flexibility in how they handle fl
 Before applying rate-limiting (throttling) mechanisms on SCONE-capable flows, operators can use conformance measurement and/or diagnostic approach described in
 {{monitoring-and-logging}} to check that the flow requires intervention
 in order to maintain target rates per {{Section 7.3 of SCONE}}.
-If the conformance measurement function detects that an application is not respecting the
+If the conformance measurement function detects that an application is not following the
 signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
 can deploy SCONE purely as an advisory signal without any rate-limiting mechanism fallback, prioritizing
