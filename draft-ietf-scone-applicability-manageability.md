@@ -254,7 +254,7 @@ set to a valid value (not unknown). The network element replaces the rate signal
 if it wishes to signal a lower value for throughput advice; otherwise,
 the original values are retained, preserving any lower advice already set by
 another element on the path. This way the endpoint applies the most restrictive advice along the
-path (see {{Section 7.1 of I-D.SCONE}}). This lets operators deploy and manage
+path (see {{Section 7.1 of SCONE}}). This lets operators deploy and manage
 SCONE network elements independently, without building integration between them.
 
 
