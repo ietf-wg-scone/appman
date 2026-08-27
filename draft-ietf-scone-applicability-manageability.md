@@ -72,7 +72,12 @@ The SCONE protocol {{I-D.ietf-scone-protocol}} provides a signaling mechanism th
 Network elements capable of rate limiting can send notifications of the advisory maximum sustainable throughput in each direction of the observed traffic. This allows applications, particularly those using Adaptive bitrate (ABR)
 mechanisms,to proactively align their transmission rates with network policies. This document addresses the
 manageability considerations for deploying the SCONE protocol within communication networks.
-It also addresses operational, configuration, and management aspects not covered in the core protocol specification.
+The SCONE core protocol specification provides guidance for network deployment,
+specifically details on how to apply throughput advice signals in the SCONE header,
+on protocol requirements on flow monitoring and considerations for flows that exceed
+throughput advice (see {{Section 7 of SCONE}}). This document complements this guidance
+by discussing various deployment options and providing additional manageability
+considerations for network operators.
 
 ## SCONE Protocol Overview and Network Element Function {#scone-overview}
 
