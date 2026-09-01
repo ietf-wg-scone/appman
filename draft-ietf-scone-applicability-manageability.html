@@ -1453,9 +1453,9 @@ what sets the real interval between updates.<a href="#section-3.5-2" class="pilc
 subscriber reaches a data threshold or when the radio access technology changes
 or when the bandwidth allocated to the subscriber or the bearer changes
 while the flow is already established. When this happens,
-the network element prioritizes updating the next traversing SCONE packet
-promptly, bypassing its scheduled periodic update interval, to minimize the
-application's reaction time to the new limit (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-9.2" class="relref">Section 9.2</a> of [<a href="#SCONE" class="cite xref">SCONE</a>]</span>).
+the network element updates the next SCONE packet it observes,
+rather than waiting for its update interval to elapse, to minimize the
+application's reaction time to the new limit (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-9.3" class="relref">Section 9.3</a> of [<a href="#SCONE" class="cite xref">SCONE</a>]</span>).
 How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
 </section>

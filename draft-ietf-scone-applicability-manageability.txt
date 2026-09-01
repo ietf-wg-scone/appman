@@ -292,13 +292,12 @@ Table of Contents
    example when a subscriber reaches a data threshold or when the radio
    access technology changes or when the bandwidth allocated to the
    subscriber or the bearer changes while the flow is already
-   established.  When this happens, the network element prioritizes
-   updating the next traversing SCONE packet promptly, bypassing its
-   scheduled periodic update interval, to minimize the application's
-   reaction time to the new limit (see Section 9.2 of [SCONE]).  How
-   soon the application sees the change depends on when the endpoint
-   next sends a SCONE packet, since the network element cannot originate
-   one.
+   established.  When this happens, the network element updates the next
+   SCONE packet it observes, rather than waiting for its update interval
+   to elapse, to minimize the application's reaction time to the new
+   limit (see Section 9.3 of [SCONE]).  How soon the application sees
+   the change depends on when the endpoint next sends a SCONE packet,
+   since the network element cannot originate one.
 
 3.7.  Presence of Multiple SCONE Network Elements On the Data Path
 
