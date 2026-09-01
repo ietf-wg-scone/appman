@@ -59,7 +59,7 @@ informative:
 
 --- abstract
 This document describes the manageability considerations for network operators
-for providing throughput guidance to
+for providing throughput advice to
 application endpoints. This guidance is specifically addressed within the context of
 communication networks utilizing the Standard Communication with Network Elements (SCONE) protocol {{SCONE}}.
 
