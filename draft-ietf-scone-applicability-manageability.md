@@ -267,7 +267,9 @@ the old and new network elements.
 
 As defined in {{Section 6.3 of SCONE}}, the endpoint sends
 SCONE packets early on the new path, so the new network element can detect the flow and provide
-its own advice.
+its own advice. Because this is not a new flow, the new network element does not observe the
+flow-start indication described in {{Section 6.1 of SCONE}}. It detects the flow directly from
+the SCONE packet itself.
 
 If no SCONE-capable element is present on the new path, the previous advice
 expires after a monitoring period ({{Section 5.4 of SCONE}}) and the
