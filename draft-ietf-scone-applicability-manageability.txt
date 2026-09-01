@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 28 February 2027                                          Nokia
+Expires: 5 March 2027                                              Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                          27 August 2026
+                                                        1 September 2026
 
 
                  Manageability Considerations for SCONE
@@ -19,7 +19,7 @@ Expires: 28 February 2027                                          Nokia
 Abstract
 
    This document describes the manageability considerations for network
-   operators for providing throughput guidance to application endpoints.
+   operators for providing throughput advice to application endpoints.
    This guidance is specifically addressed within the context of
    communication networks utilizing the Standard Communication with
    Network Elements (SCONE) protocol [SCONE].
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 February 2027.
+   This Internet-Draft will expire on 5 March 2027.
 
 Copyright Notice
 
