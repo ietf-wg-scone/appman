@@ -175,7 +175,7 @@ and guide application usage.
 
 ## Considerations of Processing Complexity {#processing-complexity}
 As specified in {{Section 6.1 of SCONE}}, SCONE-aware endpoints add SCONE indication bytes
-at the end of the payload of the UDP datagrams sent when starting a new flow, to support the
+as the last two bytes of the payload of each UDP datagram that starts a new flow, to support the
 identification of a SCONE-capable flow without any need for compute-intensive flow
 classification. Additionally, SCONE-capable endpoints, through rate self-adaptation, remove
 the need for complex rate-limiting functions in the network element. Support for SCONE
