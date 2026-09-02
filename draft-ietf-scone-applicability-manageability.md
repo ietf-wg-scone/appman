@@ -101,7 +101,7 @@ SCONE packets (see also {{network-integration}}).
 
 By providing a standardized mechanism, SCONE allows network operators to provide
 throughput advice information to QUIC endpoints without custom APIs or per-network integrations. Applications can
-self-adapt to the throughput advise rather than relying on network rate limiters such as policers
+self-adapt to the throughput advice rather than relying on network rate limiters such as policers
 or shapers, and the network can update the throughput advice for an active flow, including to
 support tiered subscriber data plans (see {{Section 3.2 of SCONE}}).
 
