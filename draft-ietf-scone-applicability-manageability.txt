@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 5 March 2027                                              Nokia
+Expires: 6 March 2027                                              Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                        1 September 2026
+                                                        2 September 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 March 2027.
+   This Internet-Draft will expire on 6 March 2027.
 
 Copyright Notice
 
@@ -137,10 +137,10 @@ Table of Contents
    By providing a standardized mechanism, SCONE allows network operators
    to provide throughput advice information to QUIC endpoints without
    custom APIs or per-network integrations.  Applications can self-adapt
-   to the advised bitrate rather than relying on network rate limiters
-   such as policers or shapers, and the network can update the advised
-   bitrate for an active flow, including to support tiered subscriber
-   data plans (see Section 3.2 of [SCONE]).
+   to the throughput advice rather than relying on network rate limiters
+   such as policers or shapers, and the network can update the
+   throughput advice for an active flow, including to support tiered
+   subscriber data plans (see Section 3.2 of [SCONE]).
 
    When on-path network elements are present between the server and the
    client application end-points, their specific configuration and role
