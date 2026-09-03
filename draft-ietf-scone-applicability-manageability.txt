@@ -270,6 +270,15 @@ Table of Contents
    itself, and instead decides its own update interval within that
    flexibility.
 
+   Applications are incentivized to keep the sending frequency low to
+   avoid high overhead, but still need to manage a sending rate that
+   enables adaptation to throughput advice changes in a reasonable time.
+   Even a high frequency is expected to be on the order of multiple
+   seconds, since most applications can only apply a change at discrete
+   intervals, such as an ABR application's next video segment.  Sending
+   at a much higher frequency than that would only waste resources for
+   both the network and the endpoints without additional benefit.
+
    A SCONE-enabled network element updates advice in SCONE packets at
    least twice per the 67-second monitoring period (Section 5.2 of
    [SCONE], approximately every 20 to 30 seconds).  This baseline

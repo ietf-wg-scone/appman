@@ -1428,7 +1428,15 @@ traffic pattern (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf
 Throughput Advice Signals"). A network element cannot expect a predictable or
 uniform signaling cadence from the traffic itself, and instead decides its own
 update interval within that flexibility.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.5-2">A SCONE-enabled network element updates advice in SCONE packets at least twice
+<p id="section-3.5-2">Applications are incentivized to keep the sending frequency low to
+avoid high overhead, but still need to manage a sending rate that
+enables adaptation to throughput advice changes in a reasonable time.
+Even a high frequency is expected to be on the order of multiple
+seconds, since most applications can only apply a change at discrete
+intervals, such as an ABR application's next video segment. Sending at
+a much higher frequency than that would only waste resources for both
+the network and the endpoints without additional benefit.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.5-3">A SCONE-enabled network element updates advice in SCONE packets at least twice
 per the 67-second monitoring period (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-5.2" class="relref">Section 5.2</a> of [<a href="#SCONE" class="cite xref">SCONE</a>]</span>,
 approximately every 20 to 30 seconds). This baseline ensures advice reliably
 reaches the endpoint and does not expire across the monitoring period, since
@@ -1441,7 +1449,7 @@ applicable policy for a flow does not usually change once established. In
 practice, the network element can only update advice when a SCONE packet
 is available to modify. When the interval has
 elapsed, the network element waits for the next SCONE packet, and that arrival is
-what sets the real interval between updates.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
+what sets the real interval between updates.<a href="#section-3.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sending-updates-for-dynamic-target-throughput-changes">
