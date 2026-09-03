@@ -361,7 +361,7 @@ utilizing congestion signals such as packet loss based on transport acknowledgme
 Explicit Congestion Notification (ECN) {{RFC3168}} as also used by Low Latency, Low Loss, and Scalable
 Throughput (L4S) {{RFC9330}}. Rather, they are complementary.
 
-Congestion control applies a throughput limit different from the signaled SCONE advice.
+Congestion control applies a throughput limit different from the signaled throughput advice.
 Congestion control manages the immediate dynamics of the bottleneck
 link, while SCONE informs the application of the maximum rate allowed by network policy.
 Congestion signals provide real-time
@@ -372,7 +372,7 @@ over a much longer period.
 When the throughput advice is below the
 congestion limit and the application adheres to it, congestion control remains
 application-limited and does not act. However, in cases of high load, congestion control would
-limit the throughput below the provided advice, as the SCONE advice is only an upper limit. As such,
+limit the throughput below the provided advice, as the throughput advice is only an upper limit. As such,
 congestion control or a similar mechanism to react to congestion, such as a circuit breaker, is always
 needed in addition to SCONE.
 
@@ -385,7 +385,7 @@ clients or bulk downloads, to utilize this advice according to their specific us
 
 Network operators can deploy SCONE alongside L4S or standard ECN as two
 independent network functions.
-SCONE advice is carried within the QUIC payload, which does not interact
+Throuhgput advice is carried within the QUIC payload, which does not interact
 with or modify ECN markings of the IP-layer ECN field.
 Real-time congestion feedback mechanisms remain outside the SCONE domain.
 
