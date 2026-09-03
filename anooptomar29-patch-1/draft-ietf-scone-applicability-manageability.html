@@ -24,18 +24,18 @@ provider networks utilizing the Standard Communication with Network Elements (SC
 <meta content="draft-ietf-scone-applicability-manageability-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.34.0
-    Python 3.14.5
+    Python 3.14.7
     ConfigArgParse 1.7.5
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.11.0
+    platformdirs 4.11.7
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.8.2
+    wcwidth 0.8.3
 -->
 <link href="draft-ietf-scone-applicability-manageability.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1051,11 +1051,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SCONE Applicability &amp; Manageability</td>
-<td class="right">August 2026</td>
+<td class="right">September 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mishra, et al.</td>
-<td class="center">Expires 7 February 2027</td>
+<td class="center">Expires 7 March 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg {
 <dd class="internet-draft">draft-ietf-scone-applicability-manageability-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-08-06" class="published">6 August 2026</time>
+<time datetime="2026-09-03" class="published">3 September 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-02-07">7 February 2027</time></dd>
+<dd class="expires"><time datetime="2027-03-07">7 March 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1132,7 +1132,7 @@ provider networks utilizing the Standard Communication with Network Elements (SC
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1275,7 +1275,7 @@ SCONE packets (see also <a href="#network-integration" class="auto internal xref
 throughput advice information to QUIC endpoints without custom APIs or per-network integrations. Applications can
 self-adapt to the advised bitrate rather than relying on network rate limiters such as policers
 or shapers, and the network can update the advised bitrate for an active flow, including to
-support tiered subscriber data plans (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-3.2" class="relref">Section 3.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+support tiered subscriber data plans (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-3.2" class="relref">Section 3.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).<a href="#section-1.1-3" class="pilcrow">¶</a></p>
 <p id="section-1.1-4">When on-path network elements are present between the server and the client
 application end-points, their specific configuration and role will influence the advice they
 generate. Different network architectures handle flow visibility and policy enforcement at
@@ -1370,7 +1370,7 @@ and guide application usage.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a><
         <h3 id="name-considerations-of-processin">
 <a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-considerations-of-processin" class="section-name selfRef">Considerations of Processing Complexity</a>
         </h3>
-<p id="section-3.3-1">As specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-6.1" class="relref">Section 6.1</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>, SCONE-aware endpoints provide
+<p id="section-3.3-1">As specified in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-6.1" class="relref">Section 6.1</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>, SCONE-aware endpoints provide
 a specific indication on the first SCONE packet to support the identification of a SCONE-capable flow
 without any need for compute-intensive flow classification. Additionally, SCONE-capable endpoints,
 through bit-rate self-adaptation, remove the need for complex rate-limiting functions in the network
@@ -1385,7 +1385,7 @@ load in the network element.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
         </h3>
 <p id="section-3.4-1">Processing SCONE packets creates a per-flow update obligation for
 network elements. To avoid throughput advice expiring
-(<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-5.4" class="relref">Section 5.4</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>), each active flow
+(<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-5.4" class="relref">Section 5.4</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>), each active flow
 needs at least one rate signal update within each monitoring
 period. When the number of concurrent SCONE flows grows unusually
 large, as can occur during periods of elevated traffic or network
@@ -1418,12 +1418,20 @@ that policy.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
         </h3>
 <p id="section-3.5-1">The frequency at which SCONE packets arrive at a network element is set by the
 application endpoint, not the network, and varies by application type and
-traffic pattern (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-7.1" class="relref">Section 7.1</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>, "Applying
+traffic pattern (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-7.1" class="relref">Section 7.1</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>, "Applying
 Throughput Advice Signals"). A network element cannot expect a predictable or
 uniform signaling cadence from the traffic itself, and instead decides its own
-update interval within that flexibility. However it is allowed to the application end point to decide on the SCONE packet sending frequency, it can send SCONE packets at lower frequency if it helps manage the processing load on the SCONE network element.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.5-2">A SCONE-enabled network element updates advice in SCONE packets at least twice
-per the 67-second monitoring period (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>,
+update interval within that flexibility.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+<p id="section-3.5-2">Applications are incentivized to keep the sending frequency low to
+avoid high overhead, but still need to manage a sending rate that
+enables adaptation to throughput advice changes in a reasonable time.
+Even a high frequency is expected to be on the order of multiple
+seconds, since most applications can only apply a change at discrete
+intervals, such as an ABR application's next video segment. Sending at
+a much higher frequency than that would only waste resources for both
+the network and the endpoints without additional benefit.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.5-3">A SCONE-enabled network element updates advice in SCONE packets at least twice
+per the 67-second monitoring period (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>,
 approximately every 20 to 30 seconds). This baseline ensures advice reliably
 reaches the endpoint and does not expire across the monitoring period, since
 SCONE packets are not delivered reliably for a variety of reasons. Operators
@@ -1435,7 +1443,7 @@ applicable policy for a flow does not usually change once established. In
 practice, the network element can only update advice when a SCONE packet
 is available to modify. When the interval has
 elapsed, the network element waits for the next SCONE packet, and that arrival is
-what sets the real interval between updates.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
+what sets the real interval between updates.<a href="#section-3.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sending-updates-for-dynamic-target-throughput-changes">
@@ -1449,7 +1457,7 @@ or when the bandwidth allocated to the subscriber or the bearer changes
 while the flow is already established. When this happens,
 the network element prioritizes updating the next traversing SCONE packet
 promptly, bypassing its scheduled periodic update interval, to minimize the
-application's reaction time to the new limit (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-9.2" class="relref">Section 9.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).
+application's reaction time to the new limit (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-9.2" class="relref">Section 9.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>).
 How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
 </section>
@@ -1463,7 +1471,7 @@ since the network element cannot originate one.<a href="#section-3.6-1" class="p
 independently, with no synchronization or control-plane coordination required between them.
 Each network element only lowers the rate signal, preserving any lower advice already set by
 another element on the path, so the endpoint applies the most restrictive advice along the
-path (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-5.4" class="relref">Section 5.4</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>). This lets operators deploy and manage
+path (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-5.4" class="relref">Section 5.4</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>). This lets operators deploy and manage
 SCONE network elements independently, without building integration between them.<a href="#section-3.7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1476,10 +1484,10 @@ SCONE network elements independently, without building integration between them.
 example during QUIC connection migration or a mobility event where the IP address is unchanged.
 Because SCONE signaling is stateless, this transition needs no explicit teardown or state
 transfer between the old and new network elements. The endpoint and network elements follow the
-migration steps defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-6.3" class="relref">Section 6.3</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>, where the endpoint sends
+migration steps defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-6.3" class="relref">Section 6.3</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>, where the endpoint sends
 SCONE packets early on the new path so a network element there can detect the flow and provide
 its own advice. If no SCONE-capable element is present on the new path, the previous advice
-expires after a monitoring period (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-5.4" class="relref">Section 5.4</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>) and the
+expires after a monitoring period (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-5.4" class="relref">Section 5.4</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>) and the
 application operates without SCONE-advised limits.<a href="#section-3.8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1514,14 +1522,14 @@ but the flow's throughput does not change, it indicates either
 that all updated packets were dropped downstream before reaching the
 application, or that the application received the advice but did
 not act upon it, as SCONE is an advisory signal per
-<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-3.5" class="relref">Section 3.5</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>. Conversely, if the
+<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-3.5" class="relref">Section 3.5</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>. Conversely, if the
 network element stops observing traversing SCONE packets
 arriving from the sender, this suggests either an upstream delivery
 failure or the endpoint is no longer sending SCONE packets on that flow.
 Recording both the timestamps of updates to packets and the subsequent
 per-flow throughput measurements in the logging infrastructure
 makes this correlation possible, aligning with the monitoring
-guidance in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-7.2" class="relref">Section 7.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.<a href="#section-3.9-3" class="pilcrow">¶</a></p>
+guidance in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-7.2" class="relref">Section 7.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.<a href="#section-3.9-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conformance-monitoring">
@@ -1549,13 +1557,13 @@ throughput advice in every traversing SCONE packet, operators might configure a
 longer sliding window to account for the possibility of packet loss.<a href="#section-3.10-3" class="pilcrow">¶</a></p>
 <p id="section-3.10-4">To simplify the measurement function, reduce computational load, or offload this
 function to another node in the network, operators can select any value larger
-than the baseline 67 second window (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>)
+than the baseline 67 second window (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-5.2" class="relref">Section 5.2</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>)
 for their measurement and averaging period.<a href="#section-3.10-4" class="pilcrow">¶</a></p>
 <p id="section-3.10-5">Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle flows that exceed the limits that are set in their policies.
 Before applying rate control mechanisms, operators can use the diagnostic approach described in
 <a href="#monitoring-and-logging" class="auto internal xref">Section 3.9</a> to confirm that the flow requires intervention
-in order to maintain target rates per <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-7.3" class="relref">Section 7.3</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.
+in order to maintain target rates per <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-7.3" class="relref">Section 7.3</a> of [<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.
 If the monitoring function detects that an application is not respecting the
 signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
@@ -1622,7 +1630,7 @@ within scoped deployments, to avoid providing conflicting feedback to applicatio
       </h2>
 <p id="section-4-1">This document does not add any additional security considerations. The core security and
 privacy considerations for the SCONE protocol are comprehensively defined in
-Sections <a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-9" class="relref">9</a> and <a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06#section-10" class="relref">10</a> of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.<a href="#section-4-1" class="pilcrow">¶</a></p>
+Sections <a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-9" class="relref">9</a> and <a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-10" class="relref">10</a> of <span>[<a href="#I-D.ietf-scone-protocol" class="cite xref">I-D.ietf-scone-protocol</a>]</span>.<a href="#section-4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1646,7 +1654,7 @@ Sections <a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protoco
 <dl class="references">
 <dt id="I-D.ietf-scone-protocol">[I-D.ietf-scone-protocol]</dt>
       <dd>
-<span class="refAuthor">Thomson, M.</span>, <span class="refAuthor">Huitema, C.</span>, <span class="refAuthor">Oku, K.</span>, <span class="refAuthor">Joras, M.</span>, and <span class="refAuthor">L. M. Ihlar</span>, <span class="refTitle">"Standard Communication with Network Elements (SCONE) Protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-scone-protocol-06</span>, <time datetime="2026-07-29" class="refDate">29 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06">https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-06</a>&gt;</span>. </dd>
+<span class="refAuthor">Thomson, M.</span>, <span class="refAuthor">Huitema, C.</span>, <span class="refAuthor">Oku, K.</span>, <span class="refAuthor">Joras, M.</span>, and <span class="refAuthor">L. M. Ihlar</span>, <span class="refTitle">"Standard Communication with Network Elements (SCONE) Protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-scone-protocol-07</span>, <time datetime="2026-08-20" class="refDate">20 August 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07">https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

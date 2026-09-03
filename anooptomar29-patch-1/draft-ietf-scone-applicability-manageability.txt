@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 7 February 2027                                           Nokia
+Expires: 7 March 2027                                              Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           6 August 2026
+                                                        3 September 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 February 2027.
+   This Internet-Draft will expire on 7 March 2027.
 
 Copyright Notice
 
@@ -263,10 +263,16 @@ Table of Contents
    [I-D.ietf-scone-protocol], "Applying Throughput Advice Signals").  A
    network element cannot expect a predictable or uniform signaling
    cadence from the traffic itself, and instead decides its own update
-   interval within that flexibility.  However it is allowed to the
-   application end point to decide on the SCONE packet sending
-   frequency, it can send SCONE packets at lower frequency if it helps
-   manage the processing load on the SCONE network element.
+   interval within that flexibility.
+
+   Applications are incentivized to keep the sending frequency low to
+   avoid high overhead, but still need to manage a sending rate that
+   enables adaptation to throughput advice changes in a reasonable time.
+   Even a high frequency is expected to be on the order of multiple
+   seconds, since most applications can only apply a change at discrete
+   intervals, such as an ABR application's next video segment.  Sending
+   at a much higher frequency than that would only waste resources for
+   both the network and the endpoints without additional benefit.
 
    A SCONE-enabled network element updates advice in SCONE packets at
    least twice per the 67-second monitoring period (Section 5.2 of
@@ -489,9 +495,9 @@ Table of Contents
               Thomson, M., Huitema, C., Oku, K., Joras, M., and L. M.
               Ihlar, "Standard Communication with Network Elements
               (SCONE) Protocol", Work in Progress, Internet-Draft,
-              draft-ietf-scone-protocol-06, 29 July 2026,
+              draft-ietf-scone-protocol-07, 20 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-scone-
-              protocol-06>.
+              protocol-07>.
 
 6.2.  Informative References
 
