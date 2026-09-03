@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 6 March 2027                                              Nokia
+Expires: 7 March 2027                                              Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                        2 September 2026
+                                                        3 September 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 March 2027.
+   This Internet-Draft will expire on 7 March 2027.
 
 Copyright Notice
 
@@ -438,7 +438,7 @@ Table of Contents
    complementary.
 
    Congestion control applies a throughput limit different from the
-   signaled SCONE advice.  Congestion control manages the immediate
+   signaled throughput advice.  Congestion control manages the immediate
    dynamics of the bottleneck link, while SCONE informs the application
    of the maximum rate allowed by network policy.  Congestion signals
    provide real-time information on transient congestion for a network
@@ -450,9 +450,9 @@ Table of Contents
    application adheres to it, congestion control remains application-
    limited and does not act.  However, in cases of high load, congestion
    control would limit the throughput below the provided advice, as the
-   SCONE advice is only an upper limit.  As such, congestion control or
-   a similar mechanism to react to congestion, such as a circuit
-   breaker, is always needed in addition to SCONE.
+   throughput advice is only an upper limit.  As such, congestion
+   control or a similar mechanism to react to congestion, such as a
+   circuit breaker, is always needed in addition to SCONE.
 
    Operators can use SCONE to communicate static or dynamically adapted
    advice based on available policy information, e.g. based on
@@ -464,10 +464,10 @@ Table of Contents
    cases.
 
    Network operators can deploy SCONE alongside L4S or standard ECN as
-   two independent network functions.  SCONE advice is carried within
-   the QUIC payload, which does not interact with or modify ECN markings
-   of the IP-layer ECN field.  Real-time congestion feedback mechanisms
-   remain outside the SCONE domain.
+   two independent network functions.  Throughput advice is carried
+   within the QUIC payload, which does not interact with or modify ECN
+   markings of the IP-layer ECN field.  Real-time congestion feedback
+   mechanisms remain outside the SCONE domain.
 
 4.  Security Considerations
 
