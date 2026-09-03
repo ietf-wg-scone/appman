@@ -210,7 +210,7 @@ application endpoint, not the network, and varies by application type and
 traffic pattern ({{Section 7.1 of I-D.ietf-scone-protocol}}, "Applying
 Throughput Advice Signals"). A network element cannot expect a predictable or
 uniform signaling cadence from the traffic itself, and instead decides its own
-update interval within that flexibility. 
+update interval within that flexibility.
 
 Applications are incentivized to keep the sending frequency low to
 avoid high overhead, but still need to manage a sending rate that
