@@ -285,29 +285,29 @@ flow (same UDP address tuple), along with the throughput advice values
 communicated.
 - Per-Flow Throughput: the observed throughput of SCONE-enabled flows
 over time, such as across successive monitoring periods.
-- Signaling Cessation: the cessation of SCONE packets arriving on a
-flow that was previously sending them.
 
 A network element cannot directly detect whether a SCONE packet was
 successfully delivered to or acted on by the endpoint, since SCONE
 provides no feedback channel from the endpoint (see {{Section 3.5 of
 SCONE}}). Operators can instead perform offline correlation of these
-logged metrics to help localize where an issue lies, though not
-necessarily why it occurred.
+logged metrics to help isolate where an issue lies, though not
+necessarily why it occurred. This distinction does not change how a
+network element's own conformance measurement function responds
+({{conformance-monitoring}}), which applies uniformly regardless
+of cause or location.
 
 When a flow's observed throughput does not appear to reflect the
 throughput advice provided, comparing the timestamps of issued updates
-against the flow's subsequent throughput can help narrow this down. If
+against the flow's subsequent throughput can help narrow this down,
+consistent with the monitoring guidance in {{Section 7.2 of SCONE}}. If
 updates continued but throughput did not change accordingly, the issue
 lies after the network element, indicating either that the updated
 packets were dropped before reaching the endpoint, or that the endpoint
-received them but did not act on the advice. If SCONE packets stopped
-arriving at the network element altogether, the issue lies before the
-network element, suggesting either a delivery failure on the path to
-it, or that the sender is no longer sending SCONE packets on that flow.
-Recording these metrics together in the logging infrastructure makes
-this correlation possible, aligning with the monitoring guidance in
-{{Section 7.2 of SCONE}}.
+received them but did not act on the advice. If a flow that is still
+generating throughput stops producing new SCONE update timestamps, the
+issue lies before the network element, suggesting either a delivery
+failure on the path to it, or that the sender is no longer sending
+SCONE packets on that flow.
 
 ## Conformance Measurement {#conformance-monitoring}
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
