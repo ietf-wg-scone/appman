@@ -1498,7 +1498,9 @@ stateless, this transition requires no explicit teardown or state transfer betwe
 the old and new network elements.<a href="#section-3.8-1" class="pilcrow">¶</a></p>
 <p id="section-3.8-2">As defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-6.3" class="relref">Section 6.3</a> of [<a href="#SCONE" class="cite xref">SCONE</a>]</span>, the endpoint sends
 SCONE packets early on the new path, so the new network element can detect the flow and provide
-its own advice.<a href="#section-3.8-2" class="pilcrow">¶</a></p>
+its own advice. Because this is not a new flow, the new network element does not observe the
+flow-start indication described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-6.1" class="relref">Section 6.1</a> of [<a href="#SCONE" class="cite xref">SCONE</a>]</span>. It detects the flow directly from
+the SCONE packet itself.<a href="#section-3.8-2" class="pilcrow">¶</a></p>
 <p id="section-3.8-3">If no SCONE-capable element is present on the new path, the previous advice
 expires after a monitoring period (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-07#section-5.4" class="relref">Section 5.4</a> of [<a href="#SCONE" class="cite xref">SCONE</a>]</span>) and the
 application operates without SCONE-advised limits.<a href="#section-3.8-3" class="pilcrow">¶</a></p>
