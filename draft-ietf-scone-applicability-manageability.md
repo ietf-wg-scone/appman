@@ -356,15 +356,15 @@ the QUIC flow does not exceed the throughput limits set by network policy. Alter
 can deploy SCONE purely as an advisory signal without any rate-limiting mechanism fallback, prioritizing
 cooperative application optimization over strict compliance enforcement.
 
-## In-Band Signaling and Network Integration {#network-integration}
+## Network Integration of SCONE In-Band Signaling {#network-integration}
 Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
-operates entirely in-band. It does not introduce any additional routing overhead or
-require the creation of out-of-band signaling interfaces. Instead, SCONE signaling
+operates entirely in-band. SCONE signaling
 inherently traverses the already established network path, such as the existing
 connection between a user device and a network gateway, associated with the QUIC flow
-for which the network element intends to send throughput advice. This ensures that
-SCONE seamlessly integrates into existing architectures without requiring new tunnels
-or data paths to be established.
+for which the network element intends to send throughput advice. As such,
+SCONE seamlessly integrates into existing network architectures without requiring
+new data paths, e.g. using tunnels, nor introducing any additional routing overhead.
+Similarly, operators are not required to deploy any additional out-of-band signaling interfaces.
 
 
 ## Interworking with Other Congestion Management Mechanisms
