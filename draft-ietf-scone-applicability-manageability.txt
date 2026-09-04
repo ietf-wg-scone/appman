@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 7 March 2027                                              Nokia
+Expires: 8 March 2027                                              Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                        3 September 2026
+                                                        4 September 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 March 2027.
+   This Internet-Draft will expire on 8 March 2027.
 
 Copyright Notice
 
@@ -223,14 +223,17 @@ Table of Contents
 
 3.3.  Considerations of Processing Complexity
 
-   As specified in Section 6.1 of [SCONE], SCONE-aware endpoints provide
-   a specific indication on the first SCONE packet to support the
-   identification of a SCONE-capable flow without any need for compute-
-   intensive flow classification.  Additionally, SCONE-capable
-   endpoints, through rate self-adaptation, remove the need for complex
-   rate-limiting functions in the network element.  Support for SCONE
-   indication and rate self-adaptation reduces complexity and CPU
-   processing load in the network element.
+   As specified in Section 6.1 of [SCONE], SCONE-aware endpoints add
+   SCONE indication bytes as the last two bytes of the payload of each
+   UDP datagram that starts a new flow, to support the identification of
+   a SCONE-capable flow without any need for compute-intensive flow
+   classification.  Additionally, SCONE-capable endpoints, through rate
+   self-adaptation, remove the need for complex rate-limiting functions
+   in the network element.  Support for SCONE indication and rate self-
+   adaptation reduces complexity and CPU processing load in the network
+   element.  Similarly, as explained in Section 7.1 of [SCONE],
+   detection and modification of a SCONE packet to update the rate
+   signal field is also a lightweight operation for a network element.
 
 3.4.  Network Element Overload Handling
 
