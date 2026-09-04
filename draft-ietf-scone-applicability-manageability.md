@@ -319,7 +319,7 @@ monitoring periods (a span of 134 seconds). If a network element cannot update t
 throughput advice in every traversing SCONE packet, operators might configure a
 longer sliding window to account for the possibility of packet loss.
 
-{{Section 7.2 of I-D.ietf-scone-protocol}} explains that the second monitoring period in this
+{{Section 7.2 of SCONE}} explains that the second monitoring period in this
 window compensates for SCONE packets not being delivered reliably. Two distinct delays make
 up that margin. The first, and usually the dominant one, is simply the interval between SCONE
 packets. A network element can only act when one arrives, so its updates lag the endpoint's
@@ -328,31 +328,33 @@ small by comparison and can typically be disregarded. The second is the possibil
 given SCONE packet carrying updated advice is lost before reaching the endpoint, against which
 the additional monitoring period also provides margin.
 
-A network element that can characterize its own downstream packet loss rate and track how
-many SCONE packets it has sent since a change in advice may be able to justify a shorter
-window for its own purposes. For example, an element serving an adaptive bitrate video flow
-that receives a SCONE packet with every video segment, typically every two seconds, would
-need to lose ten consecutive packets for the advice to be missed entirely. Assuming a two
-percent packet loss rate, that combined probability is many orders of magnitude smaller than
-the two percent loss rate for any single packet. This kind of reasoning goes beyond the
-illustrative monitoring approach described in {{Section 7.2 of I-D.ietf-scone-protocol}},
-which cautions that monitoring more strictly than the two-period baseline risks
-misclassifying a compliant application as non-conformant, while a longer window carries no
-such risk. Operators considering a shorter window should weigh that risk, the added tracking
-complexity, and how the flow is treated if an update is missed, against the benefit of a
+A network element that tracks how many SCONE packets it has sent since
+a change in advice may be able to shorten this window for its own
+purposes. If it has sent at least two updates carrying the new advice,
+it can restart the monitoring period for one more 67-second interval
+and reach a decision after that period, rather than waiting a full two
+periods from the original change. Operators that do not track sent
+updates this closely should simply wait the full two periods, which
+remains the safe and simpler choice. {{Section 7.2 of SCONE}} presents
+the two-period baseline as illustrative, not mandatory, but cautions
+that monitoring more strictly than that baseline risks misclassifying a
+compliant application as non-conformant, while a longer window carries
+no such risk. Operators should only shorten the window when they can
+track sent updates this reliably, weighing the added tracking
+complexity and how a missed update is treated against the benefit of a
 faster measurement cycle.
 
 To simplify the measurement function, reduce computational load, or offload this
 function to another node in the network, operators can select any value larger
-than the baseline 67 second window ({{Section 5.2 of I-D.ietf-scone-protocol}})
+than the baseline 67 second window ({{Section 5.2 of SCONE}})
 for their measurement and averaging period.
 
 Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle flows that exceed the limits that are set in their policies.
 Before applying rate-limiting (throttling) mechanisms on SCONE-capable flows, operators can use conformance measurement and/or diagnostic approach described in
 {{monitoring-and-logging}} to check that the flow requires intervention
-in order to maintain target rates per {{Section 7.3 of I-D.ietf-scone-protocol}}.
-If the conformance measurement function detects that an application is not respecting the
+in order to maintain target rates per {{Section 7.3 of SCONE}}.
+If the conformance measurement function detects that an application is not following the
 signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
 can deploy SCONE purely as an advisory signal without any rate-limiting mechanism fallback, prioritizing
