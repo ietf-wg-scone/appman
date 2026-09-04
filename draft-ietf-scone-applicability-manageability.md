@@ -324,7 +324,7 @@ the QUIC flow does not exceed the throughput limits set by network policy. Alter
 can deploy SCONE purely as an advisory signal without any throttling fallback, prioritizing
 cooperative application optimization over strict compliance enforcement.
 
-## Network Integration
+## Network Integration of SCONE In-Band Signaling
 
 Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
 operates entirely in-band. SCONE signaling
