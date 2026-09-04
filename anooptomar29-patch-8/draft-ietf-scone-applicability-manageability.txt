@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 7 February 2027                                           Nokia
+Expires: 8 March 2027                                              Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                           6 August 2026
+                                                        4 September 2026
 
 
          Applicability & Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 February 2027.
+   This Internet-Draft will expire on 8 March 2027.
 
 Copyright Notice
 
@@ -234,8 +234,19 @@ Table of Contents
    of [I-D.ietf-scone-protocol]), each active flow needs at least one
    rate signal update within each monitoring period.  When the number of
    concurrent SCONE flows grows unusually large, as can occur during
-   periods of elevated traffic or network stress, this update obligation
-   can become a processing concern.
+   periods of elevated traffic or network SCONE processing can be
+   stateless if all SCONE packets are always updated.  Only if the
+   network element decide to update potentially at a lower rate or only
+   a selected set of SCONE-enables flows, it might need to hold a
+   minimum amount of per-flow state to ensure that each active flow
+   receives the rate signal at least once within a monitoring period.
+   If no rate signal is received within a monitoring period, the rate
+   signal is consider as expired (at least for the next monitoring
+   period) (Section 5.4 of [I-D.ietf-scone-protocol]).  For stateful
+   network element, such as those that already apply rate limiting to a
+   selected set of flow, the additional state and processing effort is
+   minimal.  Network elements that were not designed to be stateful
+   could take additional measure to manage unexpected high load.
 
    Network element vendors and operators have three broad options for
    managing this.  One is to provision the network element with capacity
@@ -492,9 +503,9 @@ Table of Contents
               Thomson, M., Huitema, C., Oku, K., Joras, M., and L. M.
               Ihlar, "Standard Communication with Network Elements
               (SCONE) Protocol", Work in Progress, Internet-Draft,
-              draft-ietf-scone-protocol-06, 29 July 2026,
+              draft-ietf-scone-protocol-07, 20 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-scone-
-              protocol-06>.
+              protocol-07>.
 
 6.2.  Informative References
 
