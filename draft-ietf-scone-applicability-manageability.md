@@ -187,32 +187,33 @@ element.
 ## Network Element Overload Handling
 
 Processing SCONE packets creates a per-flow update obligation for
-network elements. To avoid throughput advice expiring
-({{Section 5.4 of SCONE}}), each active flow
-needs at least one rate signal update within each monitoring
-period. When the number of concurrent SCONE flows grows unusually
-large, as can occur during periods of elevated traffic or network
-stress, this update obligation can become a processing concern.
+network elements. To avoid throughput advice expiring ({{Section 5.4 of
+SCONE}}), each active flow needs at least one rate signal update within
+each monitoring period. When the number of concurrent SCONE flows grows
+unusually large, as can occur during periods of elevated traffic or
+network stress, this update obligation can become a processing concern.
 
 Network element vendors and operators have two broad options for
-managing this. One is to provision the network element with
-capacity that accommodates the expected range of concurrent flows,
-recognizing that what constitutes adequate capacity will vary by
-deployment. The other is to handle the condition gracefully when
-that capacity is reached. One approach for graceful handling is
-for the network element to stop updating SCONE packets for a
-subset of flows entirely, rather than attempting to serve all
-flows with intermittent or delayed updates. A flow that does not observe a SCONE update
-for a full monitoring period will have its
-throughput advice expire, causing the endpoint to operate without
-SCONE-advice. This
-outcome is more predictable than partial updates, which can cause
-endpoints to alternate between operating with SCONE throughput
-advice and operating without it. Which flows continue to receive
-updates and how that selection changes over time are operator
-policy decisions. Network element implementations can provide the
-configuration options through which operators define and adjust
-that policy.
+managing this. One is to provision the network element with capacity
+that accommodates the expected range of concurrent flows, recognizing
+that what constitutes adequate capacity will vary by deployment. The
+other is to reduce the per-flow processing burden itself.
+
+The act of updating a SCONE packet is inherently stateless, since a
+network element simply modifies a traversing packet based on its
+current policy, without needing to remember anything about the flow.
+Choosing to update at a lower rate, or to update only a selected set of
+SCONE-enabled flows, requires tracking which flows have already
+received an update, so it does need to hold a minimum amount of
+per-flow state to ensure that each active flow still receives a rate
+signal update at least once within a monitoring period. If a flow does
+not receive a rate signal within a monitoring period, the previous
+advice is considered expired for that period ({{Section 5.4 of
+SCONE}}). Where a network element already maintains per-flow state for
+other functions, such as rate limiting a selected set of flows, this
+additional state and processing effort is minimal. A network element
+with no other need for per-flow state could take additional measures to
+manage unexpectedly high load.
 
 ## Reliability of Throughput Advice Delivery
 The frequency at which SCONE packets arrive at a network element is set by the
