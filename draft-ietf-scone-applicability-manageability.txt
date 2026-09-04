@@ -83,7 +83,7 @@ Table of Contents
      3.8.  Change of Network Element
      3.9.  Monitoring and Logging
      3.10. Conformance Measurement
-     3.11. In-Band Signaling and Network Integration
+     3.11. Network Integration of SCONE In-Band Signaling
      3.12. Interworking with Other Congestion Management Mechanisms
    4.  Security Considerations
    5.  IANA Considerations
@@ -430,18 +430,18 @@ Table of Contents
    prioritizing cooperative application optimization over strict
    compliance enforcement.
 
-3.11.  In-Band Signaling and Network Integration
+3.11.  Network Integration of SCONE In-Band Signaling
 
    Because SCONE packets are always coalesced with ordinary QUIC
-   packets, SCONE signaling operates entirely in-band.  It does not
-   introduce any additional routing overhead or require the creation of
-   out-of-band signaling interfaces.  Instead, SCONE signaling
+   packets, SCONE signaling operates entirely in-band.  SCONE signaling
    inherently traverses the already established network path, such as
    the existing connection between a user device and a network gateway,
    associated with the QUIC flow for which the network element intends
-   to send throughput advice.  This ensures that SCONE seamlessly
-   integrates into existing architectures without requiring new tunnels
-   or data paths to be established.
+   to send throughput advice.  As such, SCONE seamlessly integrates into
+   existing network architectures without requiring new data paths, e.g.
+   using tunnels, nor introducing any additional routing overhead.
+   Similarly, operators are not required to deploy any additional out-
+   of-band signaling interfaces.
 
 3.12.  Interworking with Other Congestion Management Mechanisms
 
