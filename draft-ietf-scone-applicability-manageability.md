@@ -182,7 +182,18 @@ network elements. To avoid throughput advice expiring
 needs at least one rate signal update within each monitoring
 period. When the number of concurrent SCONE flows grows unusually
 large, as can occur during periods of elevated traffic or network
-stress, this update obligation can become a processing concern.
+SCONE processing can be stateless if all SCONE packets are always updated.
+Only if the network element decide to update potentially at a lower rate or only a
+selected set of SCONE-enables flows,
+it might need to hold a minimum amount of per-flow state to ensure that each active flow
+receives the rate signal at least once within a monitoring
+period. If no rate signal is received within a monitoring period,
+the rate signal is consider as expired (at least for the next monitoring period)
+({{Section 5.4 of I-D.ietf-scone-protocol}}).
+For stateful network element, such as those that already apply rate limiting to a selected set of flow,
+the additional state and processing effort is minimal.
+Network elements that were not designed to be stateful could take additional
+measure to manage unexpected high load.
 
 Network element vendors and operators have three broad options for
 managing this. One is to provision the network element with
