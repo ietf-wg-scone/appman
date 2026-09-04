@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 6 March 2027                                              Nokia
+Expires: 8 March 2027                                              Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                        2 September 2026
+                                                        4 September 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 March 2027.
+   This Internet-Draft will expire on 8 March 2027.
 
 Copyright Notice
 
@@ -344,30 +344,29 @@ Table of Contents
    *  Per-Flow Throughput: the observed throughput of SCONE-enabled
       flows over time, such as across successive monitoring periods.
 
-   *  Signaling Cessation: the cessation of SCONE packets arriving on a
-      flow that was previously sending them.
-
    A network element cannot directly detect whether a SCONE packet was
    successfully delivered to or acted on by the endpoint, since SCONE
    provides no feedback channel from the endpoint (see Section 3.5 of
    [SCONE]).  Operators can instead perform offline correlation of these
-   logged metrics to help localize where an issue lies, though not
-   necessarily why it occurred.
+   logged metrics to help isolate where an issue lies, though not
+   necessarily why it occurred.  This distinction does not change how a
+   network element's own conformance measurement function responds
+   (Section 3.10), which applies uniformly regardless of cause or
+   location.
 
    When a flow's observed throughput does not appear to reflect the
    throughput advice provided, comparing the timestamps of issued
    updates against the flow's subsequent throughput can help narrow this
-   down.  If updates continued but throughput did not change
+   down, consistent with the monitoring guidance in Section 7.2 of
+   [SCONE].  If updates continued but throughput did not change
    accordingly, the issue lies after the network element, indicating
    either that the updated packets were dropped before reaching the
    endpoint, or that the endpoint received them but did not act on the
-   advice.  If SCONE packets stopped arriving at the network element
-   altogether, the issue lies before the network element, suggesting
-   either a delivery failure on the path to it, or that the sender is no
-   longer sending SCONE packets on that flow.  Recording these metrics
-   together in the logging infrastructure makes this correlation
-   possible, aligning with the monitoring guidance in Section 7.2 of
-   [SCONE].
+   advice.  If a flow that is still generating throughput stops
+   producing new SCONE update timestamps, the issue lies before the
+   network element, suggesting either a delivery failure on the path to
+   it, or that the sender is no longer sending SCONE packets on that
+   flow.
 
 3.10.  Conformance Measurement
 
