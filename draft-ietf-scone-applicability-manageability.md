@@ -319,6 +319,7 @@ guidance in {{Section 7.2 of SCONE}}.
 
 
 ## Conformance Measurement {#conformance-monitoring}
+
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
 monitor QUIC flows and measure conformance to the throughput advice, either per flow of
 packets on the same UDP address tuple, or in aggregate across multiple QUIC flows if they
@@ -378,8 +379,43 @@ in order to maintain target rates per {{Section 7.3 of SCONE}}.
 If the conformance measurement function detects that an application is not following the
 signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
-can deploy SCONE purely as an advisory signal without any rate-limiting mechanism fallback, prioritizing
-cooperative application optimization over strict compliance enforcement.
+can deploy SCONE purely as an advisory signal without any rate-limiting mechanism fallback fallback, prioritizing
+cooperative application optimization over strict compliance enforcement. These
+deployment options are further explained in the next section.
+
+
+## Deployment Options
+
+SCONE provides explicit signaling of throughput advice. SCONE is an alternative to using in-network rate limiting for load management or enforcement of subscription policies, providing better quality of experience
+for application users. Note that the use of SCONE throughput advice signaling can also
+provide these benefits to networks that are not applying rate limiting. This leads to three
+different deployment options for operators:
+
+Signaling-only mode:
+: Operators that do not enforce any rate limits might provide SCONE throughput advice to
+  support the application with a choice of a stable rate below the capacity limit
+  leading to a more smooth user experience. This operation mode does not require
+  the deployment of rate limits or any conformance measurements.
+
+Dynamic rate enforcement mode:
+: Operators that use rate limits might disable rate enforcement for scone flows and only
+  enable it dynamically if a SCONE flow is detected to not apply the limit itself.
+  This mode saves network processing and buffer resources for compliant flows but requires
+  conformance measurements as described in the next section.
+
+Static rate enforcement mode:
+: While SCONE is designed independent of any
+  enforcement mechanism and it is therefore possible to statically enforce rate limits
+  even when SCONE is used, this deployment is not recommended as it can risk worse performance.
+  Doing so will remove most of the positive effects that SCONE provides, both
+  in terms of end-user QoE and for network simplifications. This is because SCONE is designed
+  to enable dynamic traffic behaviors by the application instead of enforcing hard limits.
+  This is enabled by SCONE as the throughput advice is intended to provide an average
+  over at least 67 seconds, whereas typical rate-limiting mechanisms operate on significantly shorter timescales.
+  Therefore if a static limit is enforced, the SCONE throughput advice needs to
+  be significantly below the actual enforcement rate. This mode does not require conformance measurements but
+  may realise less network savings and may risk unwanted application impairments.
+
 
 ## Network Integration of SCONE In-Band Signaling {#network-integration}
 Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
