@@ -190,7 +190,7 @@ SCONE processing is stateless if all SCONE packets are always updated.
 Only if the network element decides to update at a lower rate or only a
 selected set of SCONE-enabled flows, it might need to hold a minimum amount
 of per-flow state to ensure that each active flow
-receives the rate signal at least once within a monitoring period. 
+receives the rate signal at least once within a monitoring period.
 For stateful network element, such as those that already apply rate limiting to a selected set of flow,
 the additional state and processing load is minimal.
 Network elements that were not designed to be stateful could take additional
