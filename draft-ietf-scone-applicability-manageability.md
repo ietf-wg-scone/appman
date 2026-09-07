@@ -355,7 +355,8 @@ periods from the original change.
 
 Operators that do not track sent
 updates this closely should simply
-wait Operators should only shorten the window when they can
+wait for the full two periods, which remains the safe and simpler choice. 
+Operators should only shorten the window when they can
 track sent updates this reliably, weighing the added tracking
 complexity and how a missed update is treated against the benefit of a
 faster measurement cycle.
