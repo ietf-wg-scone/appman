@@ -149,7 +149,14 @@ element bases its throughput advice on that subscriber policy.
 certain types of traffic based on subscription tier or device type, for
 example video optimization for adaptive bitrate video, or traffic
 shaping for low-priority bulk transfers such as background software
-updates.
+- Application-Specific Policies: Operators may set maximum bitrates
+based on traffic type or device type, for example optimizing for
+adaptive bitrate video, prioritizing real-time interactive traffic,
+or shaping low-priority bulk transfers such as background software
+updates. The SCONE network element does not identify the application
+on a flow, the operator's own policy determines the advice value,
+which the SCONE network element then delivers uniformly to any flow
+that indicates support.
 
 - Dynamic Network Conditions: Constraints may be updated as network
 conditions change, for example when a flow moves to a different access
