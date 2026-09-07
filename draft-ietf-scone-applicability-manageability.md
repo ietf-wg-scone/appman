@@ -141,36 +141,21 @@ A SCONE-capable network
 element may derive its throughput advice from one or more of the
 following:
 
-- Subscriber Policies and Data Plans: Rate limits may apply when a
-subscriber reaches a data plan threshold or usage cap, and the network
-element bases its throughput advice on that subscriber policy.
+- Subscriber Policies and Data Plans: The throughput advice may be based on
+the user's subscription. However, even in those cases the rate limit might
+not be static but could be updated e.g. when a
+subscriber reaches a data plan threshold or usage cap. Similarly different
+limits may apply to different access technologies and a network or mobility
+event that implies a change of access technology then leads to an updated
+throughput advice signal.
 
-- Application-Specific Policies: Operators may set maximum bit-rates for
-certain types of traffic based on subscription tier or device type, for
-example video optimization for adaptive bitrate video, or traffic
-shaping for low-priority bulk transfers such as background software
-- Application-Specific Policies: Operators may set maximum bitrates
-based on traffic type or device type, for example optimizing for
-adaptive bitrate video, prioritizing real-time interactive traffic,
-or shaping low-priority bulk transfers such as background software
-updates. The SCONE network element does not identify the application
-on a flow, the operator's own policy determines the advice value,
-which the SCONE network element then delivers uniformly to any flow
-that indicates support.
-
-- Dynamic Network Conditions: Constraints may be updated as network
-conditions change, for example when a flow moves to a different access
-network.
-
-- Capacity and Load Management: During periods of unusually high usage,
-sustained overuse, or temporary equipment faults, the network element
-may temporarily lower its throughput advice to manage shared capacity
-- Capacity and Load Management: Constraints may be updated as network
+- Capacity and Load Management: The throughput advice signal may be updated as network
 conditions change, e.g. during periods of unusually high usage,
 sustained overuse, or temporary equipment faults. In this case, the network element
 may temporarily lower its throughput advice to manage shared capacity
 and guide application usage. In mobile network, this might also happen
-when when a flow moves to a different cell which has a different load profile.
+when when a flow moves to a different cell which has a different load profile,
+even without a change in radio access technology.
 
 ## Considerations of Processing Complexity {#processing-complexity}
 As specified in {{Section 6.1 of I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
