@@ -288,35 +288,40 @@ expires after a monitoring period ({{Section 5.4 of SCONE}}) and the
 application operates without SCONE-advised limits.
 
 ## Monitoring and Logging {#monitoring-and-logging}
+
 SCONE signaling can be integrated into existing operational and
 management frameworks to enable monitoring, troubleshooting, and fault
-isolation. Metrics of interest include:
+isolation. Operators benefit from collecting and logging the following
+flow-level information:
 
-- Rate of SCONE advisory messages issued per session
-- Correlation between SCONE advisories and user-plane throughput changes
-- Error conditions where SCONE signaling fails to reach the intended endpoints
+- Signaling Events: the timestamps of SCONE packet updates on a given
+flow (same UDP address tuple), along with the throughput advice values
+communicated.
+- Per-Flow Throughput: the observed throughput of SCONE-enabled flows
+over time, such as across successive monitoring periods.
 
-When throughput advice does not appear to be followed, it is
-useful to determine whether the advice reached the application
-at all, or whether the application received it but did not act
-on it. Operators can narrow the diagnosis by
-correlating the rate of SCONE advisories issued at the network
-element against the observed per-flow throughput over the
-following two monitoring periods. If the network element
-successfully updates traversing SCONE packets during that window
-but the flow's throughput does not change, it indicates either
-that all updated packets were dropped downstream before reaching the
-application, or that the application received the advice but did
-not act upon it, as SCONE is an advisory signal per
-{{Section 3.5 of SCONE}}. Conversely, if the
-network element stops observing traversing SCONE packets
-arriving from the sender, this suggests either an upstream delivery
-failure or the endpoint is no longer sending SCONE packets on that flow.
-Recording both the timestamps of updates to packets and the subsequent
-per-flow throughput measurements in the logging infrastructure
-makes this correlation possible, aligning with the monitoring
-guidance in {{Section 7.2 of SCONE}}.
+A network element cannot directly detect whether a SCONE packet was
+successfully delivered to or acted on by the endpoint, since SCONE
+provides no feedback channel from the endpoint (see {{Section 3.5 of
+SCONE}}). Operators can instead perform offline correlation of these
+logged metrics to help isolate where an issue lies, though not
+necessarily why it occurred. This distinction does not change how a
+network element's own conformance measurement function responds
+({{conformance-monitoring}}), which applies uniformly regardless
+of cause or location.
 
+When a flow's observed throughput does not appear to reflect the
+throughput advice provided, comparing the timestamps of issued updates
+against the flow's subsequent throughput can help narrow this down,
+consistent with the monitoring guidance in {{Section 7.2 of SCONE}}. If
+updates continued but throughput did not change accordingly, the issue
+lies after the network element, indicating either that the updated
+packets were dropped before reaching the endpoint, or that the endpoint
+received them but did not act on the advice. If a flow that is still
+generating throughput stops producing new SCONE update timestamps, the
+issue lies before the network element, suggesting either a delivery
+failure on the path to it, or that the sender is no longer sending
+SCONE packets on that flow.
 
 ## Conformance Measurement {#conformance-monitoring}
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
