@@ -337,30 +337,25 @@ SCONE packets to be updated, received by endpoints, and acted upon by the applic
 Operators can accommodate this by utilizing a sliding window approach. Operators should
 evaluate QUIC flows against the highest throughput limit advised over the preceding two
 monitoring periods (a span of 134 seconds). If a network element cannot update the
-throughput advice in every traversing SCONE packet, operators might configure a
+throughput advice in every traversing SCONE packet, operators might configure an even
 longer sliding window to account for the possibility of packet loss.
 
 {{Section 7.2 of SCONE}} explains that the second monitoring period in this
-window compensates for SCONE packets not being delivered reliably. Two distinct delays make
-up that margin. The first, and usually the dominant one, is simply the interval between SCONE
-packets. A network element can only act when one arrives, so its updates lag the endpoint's
-own sending cadence. Network transit delay and the endpoint's own processing delay are both
-small by comparison and can typically be disregarded. The second is the possibility that a
-given SCONE packet carrying updated advice is lost before reaching the endpoint, against which
-the additional monitoring period also provides margin.
-
-A network element that tracks how many SCONE packets it has sent since
-a change in advice may be able to shorten this window for its own
-purposes. If it has sent at least two updates carrying the new advice,
-it can restart the monitoring period for one more 67-second interval
-and reach a decision after that period, rather than waiting a full two
-periods from the original change. Operators that do not track sent
-updates this closely should simply wait the full two periods, which
-remains the safe and simpler choice. {{Section 7.2 of SCONE}} presents
-the two-period baseline as illustrative, not mandatory, but cautions
+window compensates for SCONE packets not being delivered reliably. 
+{{Section 7.2 of SCONE}} presents the two-period baseline as illustrative, not mandatory, but cautions
 that monitoring more strictly than that baseline risks misclassifying a
 compliant application as non-conformant, while a longer window carries
-no such risk. Operators should only shorten the window when they can
+no such risk. This full two periods is therefore the safe and simpler choice
+after a signaling update. A network element that can actively restart the monitoring
+window and track closely how many SCONE packets it has sent since an update in advice may be able
+to shorten this window. If it has sent at least two updates carrying the new advice for reliability,
+it can restart the monitoring period for one more 67-second interval
+and reach a decision after that period, rather than waiting a full two
+periods from the original change. 
+
+Operators that do not track sent
+updates this closely should simply
+wait Operators should only shorten the window when they can
 track sent updates this reliably, weighing the added tracking
 complexity and how a missed update is treated against the benefit of a
 faster measurement cycle.
