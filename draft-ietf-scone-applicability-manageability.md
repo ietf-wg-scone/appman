@@ -341,7 +341,7 @@ throughput advice in every traversing SCONE packet, operators might configure an
 longer sliding window to account for the possibility of packet loss.
 
 {{Section 7.2 of SCONE}} explains that the second monitoring period in this
-window compensates for SCONE packets not being delivered reliably. 
+window compensates for SCONE packets not being delivered reliably.
 {{Section 7.2 of SCONE}} presents the two-period baseline as illustrative, not mandatory, but cautions
 that monitoring more strictly than that baseline risks misclassifying a
 compliant application as non-conformant, while a longer window carries
@@ -351,7 +351,7 @@ window and track closely how many SCONE packets it has sent since an update in a
 to shorten this window. If it has sent at least two updates carrying the new advice for reliability,
 it can restart the monitoring period for one more 67-second interval
 and reach a decision after that period, rather than waiting a full two
-periods from the original change. 
+periods from the original change.
 
 Operators that do not track sent
 updates this closely should simply
