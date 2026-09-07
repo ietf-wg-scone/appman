@@ -158,7 +158,12 @@ network.
 - Capacity and Load Management: During periods of unusually high usage,
 sustained overuse, or temporary equipment faults, the network element
 may temporarily lower its throughput advice to manage shared capacity
-and guide application usage.
+- Capacity and Load Management: Constraints may be updated as network
+conditions change, e.g. during periods of unusually high usage,
+sustained overuse, or temporary equipment faults. In this case, the network element
+may temporarily lower its throughput advice to manage shared capacity
+and guide application usage. In mobile network, this might also happen
+when when a flow moves to a different cell which has a different load profile.
 
 ## Considerations of Processing Complexity {#processing-complexity}
 As specified in {{Section 6.1 of I-D.ietf-scone-protocol}}, SCONE-aware endpoints provide
