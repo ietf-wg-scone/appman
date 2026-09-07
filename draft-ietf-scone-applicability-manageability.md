@@ -344,13 +344,18 @@ Dynamic rate enforcement mode:
   conformance measurements as described in the next section.
 
 Static rate enforcement mode:
-: This deployment option is not recommended. While SONCE is designed independent of any
+: While SCONE is designed independent of any
   enforcement mechanism and it is therefore possible to statically enforce rate limits
-  even when SCONE is used, this deployment can risk worse performance. SCONE is designed
-  to enable more dynamic traffic behaviors by the application instead of enforcing hard limits.
+  even when SCONE is used, this deployment is not recommended as it can risk worse performance. 
+  Doing so will remove most of the positive effects that SCONE provides, both
+  in terms of end-user QoE and for network simplifications. This is because SCONE is designed
+  to enable dynamic traffic behaviors by the application instead of enforcing hard limits.
+  This is enabled by SCONE as the throughput advice is intended to provide an average
+  over at least 67 seconds, whereas typical rate-limiting mechanisms operate on significantly shorter timescales. 
   Therefore if a static limit is enforced, the SCONE throughput advice needs to 
   be significantly below the actual enforcement rate. This mode does not require conformance measurements but
   may realise less network savings and may risk unwanted application impairments.
+
 
 ## In-Band Signaling and Network Integration
 Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
