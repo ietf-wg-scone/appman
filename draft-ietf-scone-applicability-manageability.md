@@ -194,16 +194,16 @@ receives the rate signal at least once within a monitoring period.
 For stateful network element, such as those that already apply rate limiting to a selected set of flow,
 the additional state and processing load is minimal.
 Network elements that were not designed to be stateful could take additional
-measure to manage unexpected high load by simply limiting the the overall SCONE update rate
+measures to manage unexpected high load by simply limiting the overall SCONE update rate
 as SCONE is designed such that not every datagram that carries a SCONE packet
 needs to be updated.
 Only if no rate signal is received within a monitoring period,
-the rate signal is consider as expired (at least for the next monitoring period)
+the rate signal is considered expired (at least for the next monitoring period)
 ({{Section 5.4 of SCONE}}).
 
-If endpoints are capable to constantly maintaining SCONE advice
+If endpoints are capable of constantly maintaining SCONE advice
 for at least a selected set of flows, the
-outcome is more predictable than partial updates, which can cause
+advice signal they observe is more predictable than partial updates, which can cause
 endpoints to alternate between operating with SCONE throughput
 advice and operating without it. Which flows continue to receive
 updates and how that selection changes over time are operator
