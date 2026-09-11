@@ -186,7 +186,9 @@ element.
 
 ## Considerations of Processing Load
 
-SCONE processing is stateless if all SCONE packets are always updated.
+The act of updating a SCONE packet is inherently stateless, since a network
+element simply modifies a traversing packet based on its current policy,
+without needing to remember anything about the flow.
 Only if the network element decides to update at a lower rate or only a
 selected set of SCONE-enabled flows, it might need to hold a minimum amount
 of per-flow state to ensure that each active flow
