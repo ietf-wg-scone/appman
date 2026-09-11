@@ -159,7 +159,7 @@ element may derive its throughput advice from one or more of the
 following:
 
 - Subscriber Policies and Data Plans: The throughput advice may be based
-on the subscriber's data plan. However, that does mean that the rate limit is
+on the subscriber's data plan. However, that does not mean that the rate limit is
 static but could be updated e.g. when a
 subscriber reaches a data plan threshold or usage cap. Similarly different
 limits may apply to different access technologies and a network or mobility
