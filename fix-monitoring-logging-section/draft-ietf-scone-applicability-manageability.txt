@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 8 March 2027                                              Nokia
+Expires: 18 March 2027                                             Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                        4 September 2026
+                                                       14 September 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 March 2027.
+   This Internet-Draft will expire on 18 March 2027.
 
 Copyright Notice
 
@@ -348,11 +348,11 @@ Table of Contents
    successfully delivered to or acted on by the endpoint, since SCONE
    provides no feedback channel from the endpoint (see Section 3.5 of
    [SCONE]).  Operators can instead perform offline correlation of these
-   logged metrics to help isolate where an issue lies, though not
-   necessarily why it occurred.  This distinction does not change how a
-   network element's own conformance measurement function responds
-   (Section 3.10), which applies uniformly regardless of cause or
-   location.
+   logged metrics to localize a failure to a segment of the delivery
+   path, without needing to identify its cause.  This distinction does
+   not change how a network element's own conformance measurement
+   function responds (Section 3.10), which applies uniformly regardless
+   of cause or location.
 
    When a flow's observed throughput does not appear to reflect the
    throughput advice provided, comparing the timestamps of issued
@@ -490,9 +490,9 @@ Table of Contents
    [SCONE]    Thomson, M., Huitema, C., Oku, K., Joras, M., and L. M.
               Ihlar, "Standard Communication with Network Elements
               (SCONE) Protocol", Work in Progress, Internet-Draft,
-              draft-ietf-scone-protocol-07, 20 August 2026,
+              draft-ietf-scone-protocol-08, 8 September 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-scone-
-              protocol-07>.
+              protocol-08>.
 
 6.2.  Informative References
 
