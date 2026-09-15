@@ -184,7 +184,7 @@ element. Similarly, as explained in {{Section 7.1 of SCONE}}, detection and modi
 SCONE packet to update the rate signal field is also a lightweight operation for a network
 element.
 
-## Considerations of Processing Load
+## Managing Processing Load
 
 The act of updating a SCONE packet is inherently stateless, since a network
 element simply modifies a traversing packet based on its current policy,
