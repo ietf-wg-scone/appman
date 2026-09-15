@@ -408,7 +408,7 @@ Static rate enforcement mode:
   even when SCONE is used, this deployment is not recommended as it can risk worse performance.
   Doing so will remove most of the positive effects that SCONE provides, both
   in terms of end-user QoE and for network simplifications. This is because, SCONE enables traffic characteristic aware application driven bit-rate regulation
-  but on the other hand in-network rate limiters enforces the rate-limits arbitrarily and indiscriminately without being aware of traffic characteristics. 
+  but on the other hand in-network rate limiters enforces the rate-limits arbitrarily and indiscriminately without being aware of traffic characteristics.
   Therefore if static rate enforcement mode is used, in-network enforce rate needs to significantly higher than the SCONE throughput advice just to guard against worst case scenario.
   This mode does not require conformance measurements but may realize less network savings and may risk unwanted application impairments.
 
