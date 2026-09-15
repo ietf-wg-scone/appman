@@ -391,10 +391,10 @@ for application users. Note that the use of SCONE throughput advice signaling ca
 provide these benefits to networks that are not applying rate limiting. This leads to three
 different deployment options for operators:
 
-Signaling-only mode:
+SCONE Signaling-only mode:
 : Operators that do not enforce any rate limits might provide SCONE throughput advice to
   support the application with a choice of a stable rate below the capacity limit
-  leading to a more smooth user experience. This operation mode does not require
+  leading to a more smooth user experience. Operators can also use SCONE throughput advice to enforce different rates as per subscriber data plans. This operation mode does not require
   the deployment of rate limits or any conformance measurements.
 
 Dynamic rate enforcement mode:
@@ -404,17 +404,13 @@ Dynamic rate enforcement mode:
   conformance measurements as described in the next section.
 
 Static rate enforcement mode:
-: While SCONE is designed independent of any
-  enforcement mechanism and it is therefore possible to statically enforce rate limits
+: While SCONE is designed independent of any enforcement mechanism and it is therefore possible to statically enforce rate limits
   even when SCONE is used, this deployment is not recommended as it can risk worse performance.
   Doing so will remove most of the positive effects that SCONE provides, both
-  in terms of end-user QoE and for network simplifications. This is because SCONE is designed
-  to enable dynamic traffic behaviors by the application instead of enforcing hard limits.
-  This is enabled by SCONE as the throughput advice is intended to provide an average
-  over at least 67 seconds, whereas typical rate-limiting mechanisms operate on significantly shorter timescales.
-  Therefore if a static limit is enforced, the SCONE throughput advice needs to
-  be significantly below the actual enforcement rate. This mode does not require conformance measurements but
-  may realise less network savings and may risk unwanted application impairments.
+  in terms of end-user QoE and for network simplifications. This is because, SCONE enables traffic characteristic aware application driven bit-rate regulation
+  but on the other hand in-network rate limiters enforces the rate-limits arbitrarily and indiscriminately without being aware of traffic characteristics. 
+  Therefore if static rate enforcement mode is used, in-network enforce rate needs to significantly higher than the SCONE throughput advice just to guard against worst case scenario.
+  This mode does not require conformance measurements but may realize less network savings and may risk unwanted application impairments.
 
 
 ## Network Integration of SCONE In-Band Signaling {#network-integration}
