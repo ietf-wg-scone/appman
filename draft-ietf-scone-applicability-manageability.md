@@ -195,8 +195,8 @@ of per-flow state to ensure that each active flow
 receives the rate signal at least once within a monitoring period.
 Where a network element already maintains per-flow state for other functions,
 such as rate limiting a selected set of flows, this additional state and processing effort is minimal.
-Network elements that were not designed to be stateful could take additional
-measures to manage unexpected high load by simply limiting the overall SCONE update rate
+Alternatively, network elements that do not already maintain per-flow state, can
+manage load instead by simply limiting the overall SCONE update rate,
 as SCONE is designed such that not every datagram that carries a SCONE packet
 needs to be updated.
 Only if no rate signal is received within a monitoring period,
