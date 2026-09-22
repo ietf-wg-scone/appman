@@ -170,9 +170,10 @@ throughput advice signal.
 conditions change, e.g. during periods of unusually high usage,
 sustained overuse, or temporary equipment faults. In this case, the network element
 may temporarily lower its throughput advice to manage shared capacity
-and guide application usage. In mobile network, this might also happen
-when when a flow moves to a different cell which has a different load profile,
-even without a change in radio access technology.
+and guide application usage. A mobility event that moves the flow to a
+different cell with a different load profile, even without a change in
+access technology, can similarly trigger an updated throughput advice
+signal based on operator policy.
 
 ## Considerations of Processing Complexity {#processing-complexity}
 As specified in {{Section 6.1 of SCONE}}, SCONE-aware endpoints add SCONE indication bytes
