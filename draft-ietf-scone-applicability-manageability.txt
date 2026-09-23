@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 10 March 2027                                             Nokia
+Expires: 27 March 2027                                             Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                        6 September 2026
+                                                       23 September 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 March 2027.
+   This Internet-Draft will expire on 27 March 2027.
 
 Copyright Notice
 
@@ -75,7 +75,7 @@ Table of Contents
      3.1.  Flow Awareness and Per-Flow Signaling
      3.2.  Determining Throughput Constraints
      3.3.  Considerations of Processing Complexity
-     3.4.  Network Element Overload Handling
+     3.4.  Managing Processing Load
      3.5.  Reliability of Throughput Advice Delivery
      3.6.  Sending Updates for Dynamic Target Throughput Changes
      3.7.  Presence of Multiple SCONE Network Elements On the Data
@@ -235,33 +235,34 @@ Table of Contents
    detection and modification of a SCONE packet to update the rate
    signal field is also a lightweight operation for a network element.
 
-3.4.  Network Element Overload Handling
+3.4.  Managing Processing Load
 
-   Processing SCONE packets creates a per-flow update obligation for
-   network elements.  To avoid throughput advice expiring (Section 5.4
-   of [SCONE]), each active flow needs at least one rate signal update
-   within each monitoring period.  When the number of concurrent SCONE
-   flows grows unusually large, as can occur during periods of elevated
-   traffic or network stress, this update obligation can become a
-   processing concern.
+   The act of updating a SCONE packet is inherently stateless, since a
+   network element simply modifies a traversing packet based on its
+   current policy, without needing to remember anything about the flow.
+   Only if the network element decides to update at a lower rate or only
+   a selected set of SCONE-enabled flows, it might need to hold a
+   minimum amount of per-flow state to ensure that each active flow
+   receives the rate signal at least once within a monitoring period.
+   Where a network element already maintains per-flow state for other
+   functions, such as rate limiting a selected set of flows, this
+   additional state and processing effort is minimal.  Alternatively,
+   network elements that do not already maintain per-flow state, can
+   manage load instead by simply limiting the overall SCONE update rate,
+   as SCONE is designed such that not every datagram that carries a
+   SCONE packet needs to be updated.  Only if no rate signal is received
+   within a monitoring period, the rate signal is considered expired (at
+   least for the next monitoring period) (Section 5.4 of [SCONE]).
 
-   Network element vendors and operators have two broad options for
-   managing this.  One is to provision the network element with capacity
-   that accommodates the expected range of concurrent flows, recognizing
-   that what constitutes adequate capacity will vary by deployment.  The
-   other is to handle the condition gracefully when that capacity is
-   reached.  One approach for graceful handling is for the network
-   element to stop updating SCONE packets for a subset of flows
-   entirely, rather than attempting to serve all flows with intermittent
-   or delayed updates.  A flow that does not observe a SCONE update for
-   a full monitoring period will have its throughput advice expire,
-   causing the endpoint to operate without SCONE-advice.  This outcome
-   is more predictable than partial updates, which can cause endpoints
-   to alternate between operating with SCONE throughput advice and
-   operating without it.  Which flows continue to receive updates and
-   how that selection changes over time are operator policy decisions.
-   Network element implementations can provide the configuration options
-   through which operators define and adjust that policy.
+   If a network element maintains throughput advice for only a selected
+   set of flows, at least every flow in that set receives updates
+   persistently within each monitoring period.  Updating all flows at
+   partial intervals instead can cause endpoints to alternate between
+   operating with SCONE throughput advice and operating without it.
+   Which flows continue to receive updates and how that selection
+   changes over time are operator policy decisions.  Network element
+   implementations can provide the configuration options through which
+   operators define and adjust that policy.
 
 3.5.  Reliability of Throughput Advice Delivery
 
@@ -529,9 +530,9 @@ Table of Contents
    [SCONE]    Thomson, M., Huitema, C., Oku, K., Joras, M., and L. M.
               Ihlar, "Standard Communication with Network Elements
               (SCONE) Protocol", Work in Progress, Internet-Draft,
-              draft-ietf-scone-protocol-07, 20 August 2026,
+              draft-ietf-scone-protocol-08, 8 September 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-scone-
-              protocol-07>.
+              protocol-08>.
 
 6.2.  Informative References
 
