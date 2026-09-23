@@ -203,10 +203,10 @@ Only if no rate signal is received within a monitoring period,
 the rate signal is considered expired (at least for the next monitoring period)
 ({{Section 5.4 of SCONE}}).
 
-If endpoints are capable of constantly maintaining SCONE advice
-for at least a selected set of flows, the
-advice signal they observe is more predictable than partial updates, which can cause
-endpoints to alternate between operating with SCONE throughput
+If a network element maintains throughput advice for only a selected set of flows,
+at least every flow in that set receives updates persistently within each monitoring period.
+Updating all flows at partial intervals instead can cause endpoints to alternate
+between operating with SCONE throughput 
 advice and operating without it. Which flows continue to receive
 updates and how that selection changes over time are operator
 policy decisions. Network element implementations can provide the
