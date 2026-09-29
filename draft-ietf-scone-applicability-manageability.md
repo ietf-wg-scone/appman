@@ -352,7 +352,7 @@ the demultiplexed tunneled traffic, throughput advice can be applied to individu
 
 If a MASQUE tunnel uses a SCONE-enabled QUIC connection,
 the SCONE-capable network element is on the path between the MASQUE client and the MASQUE proxy.
-In this case, the tunnel is the only flow visible to the network element.
+In this case, only the QUIC connection of the tunnel is visible to the network element which might carry multiple end-to-end flows.
 
 Where flows are tunneled, throughput advice applies to the flow to which it was attached only.
 This might mean that a QUIC flow that is tunneled in QUIC
