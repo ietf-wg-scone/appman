@@ -146,7 +146,7 @@ the network element has to track the flow's throughput over multiple monitoring 
 per-flow context serves as the operational foundation for validating whether an application is
 adhering to the advised rate and for applying any potentially necessary policy enforcement.
 
-## Determining Throughput Constraints
+## Deriving Throughput Advice
 
 The specific algorithms used to calculate throughput advice are highly
 dependent on a combination of network policies,
