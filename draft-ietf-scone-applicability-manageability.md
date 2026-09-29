@@ -355,7 +355,8 @@ the SCONE-capable network element is on the path between the MASQUE client and t
 In this case, only the QUIC connection of the tunnel is visible to the network element which might carry multiple end-to-end flows.
 
 Where flows are tunneled, throughput advice applies to the flow to which it was attached only.
-This might mean that a QUIC flow that is tunneled in QUIC
+If the tunnel endpoint is also the application endpoint,
+this might mean that a QUIC flow that is tunneled in QUIC
 might have multiple, independent pieces of throughput advice.
 
 If the MASQUE client is not also the endpoint of the end-to-end QUIC connection, the tunnel egress
