@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 27 March 2027                                             Nokia
+Expires: 2 April 2027                                              Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                       23 September 2026
+                                                       29 September 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 March 2027.
+   This Internet-Draft will expire on 2 April 2027.
 
 Copyright Notice
 
@@ -73,7 +73,7 @@ Table of Contents
    2.  Terms and Definitions
    3.  Manageability and Operational Considerations
      3.1.  Flow Awareness and Per-Flow Signaling
-     3.2.  Determining Throughput Constraints
+     3.2.  Deriving Throughput Advice
      3.3.  Considerations of Processing Complexity
      3.4.  Managing Processing Load
      3.5.  Reliability of Throughput Advice Delivery
@@ -190,36 +190,34 @@ Table of Contents
    whether an application is adhering to the advised rate and for
    applying any potentially necessary policy enforcement.
 
-3.2.  Determining Throughput Constraints
+3.2.  Deriving Throughput Advice
 
    The specific algorithms used to calculate throughput advice are
-   highly dependent on an operator's network architecture.  In practice,
-   these constraints are often derived from a combination of network
-   policies, real-time conditions where applicable, and any other
-   business logic the operator applies.  The inputs below are
-   illustrative and will likely vary by operator, and they are not
-   exhaustive.  A SCONE-capable network element may derive its
-   throughput advice from one or more of the following:
+   highly dependent on a combination of network policies, real-time
+   conditions where applicable, and any other business logic the
+   operator applies.  The inputs below are illustrative and will likely
+   vary by operator, and they are not exhaustive.
 
-   *  Subscriber Policies and Data Plans: The network element bases its
-      throughput advice on the subscriber's data plan.  This includes
-      cases where rate limits apply once a subscriber's data volume
-      usage reaches a threshold or usage cap.
+   A SCONE-capable network element may derive its throughput advice from
+   one or more of the following:
 
-   *  Application-Specific Policies: Operators may set maximum bitrates
-      for certain types of traffic based on subscription tier or device
-      type, for example video optimization for ABR video, or traffic
-      shaping for low-priority bulk transfers such as background
-      software updates.
+   *  Subscriber Policies and Data Plans: The throughput advice may be
+      based on the subscriber's data plan.  However, that does not mean
+      that the rate limit is static but could be updated e.g. when a
+      subscriber reaches a data plan threshold or usage cap.  Similarly
+      different limits may apply to different access technologies and a
+      network or mobility event that implies a change of access
+      technology then leads to an updated throughput advice signal.
 
-   *  Dynamic Network Conditions: Constraints may be updated as network
-      conditions change, for example when a flow moves to a different
-      access network.
-
-   *  Capacity and Load Management: During periods of unusually high
-      usage, sustained overuse, or temporary equipment faults, the
-      network element may temporarily lower its throughput advice to
-      manage shared capacity and guide application usage.
+   *  Capacity and Load Management: The throughput advice signal may be
+      updated as network conditions change, e.g. during periods of
+      unusually high usage, sustained overuse, or temporary equipment
+      faults.  In this case, the network element may temporarily lower
+      its throughput advice to manage shared capacity and guide
+      application usage.  A mobility event that moves the flow to a
+      different cell with a different load profile, even without a
+      change in access technology, can similarly trigger an updated
+      throughput advice signal based on operator policy.
 
 3.3.  Considerations of Processing Complexity
 
@@ -530,9 +528,9 @@ Table of Contents
    [SCONE]    Thomson, M., Huitema, C., Oku, K., Joras, M., and L. M.
               Ihlar, "Standard Communication with Network Elements
               (SCONE) Protocol", Work in Progress, Internet-Draft,
-              draft-ietf-scone-protocol-08, 8 September 2026,
+              draft-ietf-scone-protocol-09, 24 September 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-scone-
-              protocol-08>.
+              protocol-09>.
 
 6.2.  Informative References
 
