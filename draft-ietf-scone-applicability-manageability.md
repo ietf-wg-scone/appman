@@ -288,12 +288,9 @@ over time, such as across successive monitoring periods.
 
 A network element cannot directly detect whether a SCONE packet was
 successfully delivered to or acted on by the endpoint, since SCONE
-provides no feedback channel from the endpoint (see {{Section 3.5 of
-SCONE}}). Operators can instead perform offline correlation of these
-logged metrics to localize a failure to a segment of the delivery
-path, without needing to identify its cause. This distinction does
-not change how a
-network element's own conformance measurement function responds
+provides no feedback channel from the endpoint (see {{Section 8.2 of
+SCONE}}). This distinction does not change how a network element's
+own conformance measurement function responds
 ({{conformance-monitoring}}), which applies uniformly regardless
 of cause or location.
 
