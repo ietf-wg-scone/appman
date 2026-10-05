@@ -379,7 +379,7 @@ in order to maintain target rates per {{Section 7.3 of SCONE}}.
 If the conformance measurement function detects that an application is not following the
 signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
-can deploy SCONE purely as an advisory signal without any rate-limiting mechanism fallback fallback, prioritizing
+can deploy SCONE purely as an advisory signal without any rate-limiting mechanism fallback, prioritizing
 cooperative application optimization over strict compliance enforcement. These
 deployment options are further explained in the next section.
 
@@ -397,19 +397,19 @@ SCONE Signaling-only mode:
   leading to a more smooth user experience. Operators can also use SCONE throughput advice to enforce different rates as per subscriber data plans. This operation mode does not require
   the deployment of rate limits or any conformance measurements.
 
-Dynamic rate enforcement mode:
+Conformance-based rate enforcement mode:
 : Operators that use rate limits might disable rate enforcement for scone flows and only
   enable it dynamically if a SCONE flow is detected to not apply the limit itself.
   This mode saves network processing and buffer resources for compliant flows but requires
   conformance measurements as described in the next section.
 
-Static rate enforcement mode:
+Unconditional rate enforcement mode:
 : While SCONE is designed independent of any enforcement mechanism and it is therefore possible to statically enforce rate limits
   even when SCONE is used, this deployment is not recommended as it can risk worse performance.
   Doing so will remove most of the positive effects that SCONE provides, both
   in terms of end-user QoE and for network simplifications. This is because, SCONE enables traffic characteristic aware application driven bit-rate regulation
   but on the other hand in-network rate limiters enforces the rate-limits arbitrarily and indiscriminately without being aware of traffic characteristics.
-  Therefore if static rate enforcement mode is used, in-network enforce rate needs to significantly higher than the SCONE throughput advice just to guard against worst case scenario.
+  Therefore if unconditional rate enforcement mode is used, the in-network enforced rate needs to be significantly higher than the SCONE throughput advice just to guard against worst case scenario.
   This mode does not require conformance measurements but may realize less network savings and may risk unwanted application impairments.
 
 
