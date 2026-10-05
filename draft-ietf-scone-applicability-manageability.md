@@ -343,6 +343,7 @@ or data paths to be established.
 
 ## Using SCONE in tunnels and for QUIC-based tunnels in MASQUE
 
+SCONE does not depend on MASQUE or any other tunneling mechanism but it can be used in tunneling scenarios if desired.
 When traffic is tunneled on the network path, such as when using MASQUE {{?I-D.schinazi-masque-proxy}},
 SCONE can be carried on the inner traffic but can also be used on a QUIC-based tunnel itself.
 
@@ -365,7 +366,7 @@ the inner SCONE-enabled flows.
 
 Using SCONE on a MASQUE QUIC tunnel connection can enable throughput advice also for tunneled
 non-QUIC traffic, however, this can only be applied if there is an interface or mechanism in the
-the tunnel that provides the throughput advice to the application.
+tunnel that provides the throughput advice to the application.
 
 
 ## Interworking with Other Congestion Management Mechanisms
