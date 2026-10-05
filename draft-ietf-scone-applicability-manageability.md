@@ -345,19 +345,19 @@ window compensates for SCONE packets not being delivered reliably.
 {{Section 7.2 of SCONE}} presents the two-period baseline as illustrative, not mandatory, but cautions
 that monitoring more strictly than that baseline risks misclassifying a
 compliant application as non-conformant, while a longer window carries
-no such risk. This full two periods is therefore the safe and simpler choice
+no such risk. Waiting the full two periods is therefore the safe and simpler choice
 after a signaling update. A network element that can actively restart the monitoring
-window and track closely how many SCONE packets it has sent since an update in advice may be able
-to shorten this window. If it has sent at least two updates carrying the new advice for reliability,
+window and track closely how many SCONE packets it has updated since a change in advice may be able
+to shorten this window. If it has updated at least two SCONE packets with the new advice for reliability,
 it can restart the monitoring period for one more 67-second interval
 and reach a decision after that period, rather than waiting a full two
 periods from the original change.
 
-Operators that do not track sent
+Operators that do not track
 updates this closely should simply
 wait for the full two periods, which remains the safe and simpler choice.
 Operators should only shorten the window when they can
-track sent updates this reliably, weighing the added tracking
+track updates this reliably, weighing the added tracking
 complexity and how a missed update is treated against the benefit of a
 faster measurement cycle.
 
