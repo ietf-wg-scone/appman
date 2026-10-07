@@ -398,10 +398,10 @@ SCONE Signaling-only mode:
   the deployment of rate limits or any conformance measurements.
 
 Conformance-based rate enforcement mode:
-: Operators that use rate limits might disable rate enforcement for scone flows and only
+: Operators that use rate limits might disable rate enforcement for SCONE flows and only
   enable it dynamically if a SCONE flow is detected to not apply the limit itself.
   This mode saves network processing and buffer resources for compliant flows but requires
-  conformance measurements as described in the next section.
+  conformance measurements as described in {{conformance-monitoring}}.
 
 Unconditional rate enforcement mode:
 : While SCONE is designed independent of any enforcement mechanism and it is therefore possible to statically enforce rate limits
