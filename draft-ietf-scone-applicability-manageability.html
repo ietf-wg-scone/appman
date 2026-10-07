@@ -1207,10 +1207,13 @@ communication networks utilizing the Standard Communication with Network Element
                 <p id="section-toc.1-1.3.2.10.1"><a href="#section-3.10" class="auto internal xref">3.10</a>. <a href="#name-conformance-measurement" class="internal xref">Conformance Measurement</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.11">
-                <p id="section-toc.1-1.3.2.11.1"><a href="#section-3.11" class="auto internal xref">3.11</a>. <a href="#name-network-integration-of-scon" class="internal xref">Network Integration of SCONE In-Band Signaling</a></p>
+                <p id="section-toc.1-1.3.2.11.1"><a href="#section-3.11" class="auto internal xref">3.11</a>. <a href="#name-deployment-options" class="internal xref">Deployment Options</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.12">
-                <p id="section-toc.1-1.3.2.12.1"><a href="#section-3.12" class="auto internal xref">3.12</a>. <a href="#name-interworking-with-other-con" class="internal xref">Interworking with Other Congestion Management Mechanisms</a></p>
+                <p id="section-toc.1-1.3.2.12.1"><a href="#section-3.12" class="auto internal xref">3.12</a>. <a href="#name-network-integration-of-scon" class="internal xref">Network Integration of SCONE In-Band Signaling</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.13">
+                <p id="section-toc.1-1.3.2.13.1"><a href="#section-3.13" class="auto internal xref">3.13</a>. <a href="#name-interworking-with-other-con" class="internal xref">Interworking with Other Congestion Management Mechanisms</a></p>
 </li>
             </ul>
 </li>
@@ -1276,7 +1279,7 @@ the throughput advice.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
 functional capability to identify and track SCONE-compliant QUIC
 flows, recognize and process SCONE packets within those flows, and
 map network policies into throughput advice to be inserted into the
-SCONE packets (see also <a href="#network-integration" class="auto internal xref">Section 3.11</a>).<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+SCONE packets (see also <a href="#network-integration" class="auto internal xref">Section 3.12</a>).<a href="#section-1.1-2" class="pilcrow">¶</a></p>
 <p id="section-1.1-3">By providing a standardized mechanism, SCONE allows network operators to provide
 throughput advice information to QUIC endpoints without custom APIs or per-network integrations. Applications can
 self-adapt to the throughput advice rather than relying on network rate limiters such as policers
@@ -1598,58 +1601,99 @@ If the conformance measurement function detects that an application is not follo
 signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
 can deploy SCONE purely as an advisory signal without any rate-limiting mechanism fallback, prioritizing
-cooperative application optimization over strict compliance enforcement.<a href="#section-3.10-7" class="pilcrow">¶</a></p>
+cooperative application optimization over strict compliance enforcement. These
+deployment options are further explained in the next section.<a href="#section-3.10-7" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="deployment-options">
+<section id="section-3.11">
+        <h3 id="name-deployment-options">
+<a href="#section-3.11" class="section-number selfRef">3.11. </a><a href="#name-deployment-options" class="section-name selfRef">Deployment Options</a>
+        </h3>
+<p id="section-3.11-1">SCONE provides explicit signaling of throughput advice. SCONE is an alternative to using in-network rate limiting for load management or enforcement of subscription policies, providing better quality of experience
+for application users. Note that the use of SCONE throughput advice signaling can also
+provide these benefits to networks that are not applying rate limiting. This leads to three
+different deployment options for operators:<a href="#section-3.11-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-3.11-2">
+          <dt id="section-3.11-2.1">SCONE Signaling-only mode:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.11-2.2">
+            <p id="section-3.11-2.2.1">Operators that do not enforce any rate limits might provide SCONE throughput advice to
+support the application with a choice of a stable rate below the capacity limit
+leading to a more smooth user experience. Operators can also use SCONE throughput advice to enforce different rates as per subscriber data plans. This operation mode does not require
+the deployment of rate limits or any conformance measurements.<a href="#section-3.11-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.11-2.3">Conformance-based rate enforcement mode:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.11-2.4">
+            <p id="section-3.11-2.4.1">Operators that use rate limits might disable rate enforcement for SCONE flows and only
+enable it dynamically if a SCONE flow is detected to not apply the limit itself.
+This mode saves network processing and buffer resources for compliant flows but requires
+conformance measurements as described in <a href="#conformance-monitoring" class="auto internal xref">Section 3.10</a>.<a href="#section-3.11-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.11-2.5">Unconditional rate enforcement mode:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.11-2.6">
+            <p id="section-3.11-2.6.1">While SCONE is designed independent of any enforcement mechanism and it is therefore possible to statically enforce rate limits
+even when SCONE is used, this deployment is not recommended as it can risk worse performance.
+Doing so will remove most of the positive effects that SCONE provides, both
+in terms of end-user QoE and for network simplifications. This is because, SCONE enables traffic characteristic aware application driven bit-rate regulation
+but on the other hand in-network rate limiters enforces the rate-limits arbitrarily and indiscriminately without being aware of traffic characteristics.
+Therefore if unconditional rate enforcement mode is used, the in-network enforced rate needs to be significantly higher than the SCONE throughput advice just to guard against worst case scenario.
+This mode does not require conformance measurements but may realize less network savings and may risk unwanted application impairments.<a href="#section-3.11-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
 </section>
 </div>
 <div id="network-integration">
-<section id="section-3.11">
+<section id="section-3.12">
         <h3 id="name-network-integration-of-scon">
-<a href="#section-3.11" class="section-number selfRef">3.11. </a><a href="#name-network-integration-of-scon" class="section-name selfRef">Network Integration of SCONE In-Band Signaling</a>
+<a href="#section-3.12" class="section-number selfRef">3.12. </a><a href="#name-network-integration-of-scon" class="section-name selfRef">Network Integration of SCONE In-Band Signaling</a>
         </h3>
-<p id="section-3.11-1">Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
+<p id="section-3.12-1">Because SCONE packets are always coalesced with ordinary QUIC packets, SCONE signaling
 operates entirely in-band. SCONE signaling
 inherently traverses the already established network path, such as the existing
 connection between a user device and a network gateway, associated with the QUIC flow
 for which the network element intends to send throughput advice. As such,
 SCONE seamlessly integrates into existing network architectures without requiring
 new data paths, e.g. using tunnels, nor introducing any additional routing overhead.
-Similarly, operators are not required to deploy any additional out-of-band signaling interfaces.<a href="#section-3.11-1" class="pilcrow">¶</a></p>
+Similarly, operators are not required to deploy any additional out-of-band signaling interfaces.<a href="#section-3.12-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="interworking-with-other-congestion-management-mechanisms">
-<section id="section-3.12">
+<section id="section-3.13">
         <h3 id="name-interworking-with-other-con">
-<a href="#section-3.12" class="section-number selfRef">3.12. </a><a href="#name-interworking-with-other-con" class="section-name selfRef">Interworking with Other Congestion Management Mechanisms</a>
+<a href="#section-3.13" class="section-number selfRef">3.13. </a><a href="#name-interworking-with-other-con" class="section-name selfRef">Interworking with Other Congestion Management Mechanisms</a>
         </h3>
-<p id="section-3.12-1">As stated in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-09#section-3.1" class="relref">Section 3.1</a> of [<a href="#SCONE" class="cite xref">SCONE</a>]</span>,
+<p id="section-3.13-1">As stated in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-09#section-3.1" class="relref">Section 3.1</a> of [<a href="#SCONE" class="cite xref">SCONE</a>]</span>,
 SCONE throughput advice is not a substitute for congestion control
 utilizing congestion signals such as packet loss based on transport acknowledgments, delay, or
 Explicit Congestion Notification (ECN) <span>[<a href="#RFC3168" class="cite xref">RFC3168</a>]</span> as also used by Low Latency, Low Loss, and Scalable
-Throughput (L4S) <span>[<a href="#RFC9330" class="cite xref">RFC9330</a>]</span>. Rather, they are complementary.<a href="#section-3.12-1" class="pilcrow">¶</a></p>
-<p id="section-3.12-2">Congestion control applies a throughput limit different from the signaled throughput advice.
+Throughput (L4S) <span>[<a href="#RFC9330" class="cite xref">RFC9330</a>]</span>. Rather, they are complementary.<a href="#section-3.13-1" class="pilcrow">¶</a></p>
+<p id="section-3.13-2">Congestion control applies a throughput limit different from the signaled throughput advice.
 Congestion control manages the immediate dynamics of the bottleneck
 link, while SCONE informs the application of the maximum rate allowed by network policy.
 Congestion signals provide real-time
 information on transient congestion for a network path, typically operating
 on the time scale of a round-trip time (RTT), whereas  SCONE throughput advice operates
-over a much longer period.<a href="#section-3.12-2" class="pilcrow">¶</a></p>
-<p id="section-3.12-3">When the throughput advice is below the
+over a much longer period.<a href="#section-3.13-2" class="pilcrow">¶</a></p>
+<p id="section-3.13-3">When the throughput advice is below the
 congestion limit and the application adheres to it, congestion control remains
 application-limited and does not act. However, in cases of high load, congestion control would
 limit the throughput below the provided advice, as the throughput advice is only an upper limit. As such,
 congestion control or a similar mechanism to react to congestion, such as a circuit breaker, is always
-needed in addition to SCONE.<a href="#section-3.12-3" class="pilcrow">¶</a></p>
-<p id="section-3.12-4">Operators can use SCONE to communicate static or dynamically adapted advice based on available
+needed in addition to SCONE.<a href="#section-3.13-3" class="pilcrow">¶</a></p>
+<p id="section-3.13-4">Operators can use SCONE to communicate static or dynamically adapted advice based on available
 policy information, e.g. based on subscriber data, or load management policies.
 Operators set this advice independent of
 instantaneous link congestion and do not need to coordinate throughput advice policies with
 congestion control. It is then up to the applications, such as ABR video
-clients or bulk downloads, to utilize this advice according to their specific use cases.<a href="#section-3.12-4" class="pilcrow">¶</a></p>
-<p id="section-3.12-5">Network operators can deploy SCONE alongside L4S or standard ECN as two
+clients or bulk downloads, to utilize this advice according to their specific use cases.<a href="#section-3.13-4" class="pilcrow">¶</a></p>
+<p id="section-3.13-5">Network operators can deploy SCONE alongside L4S or standard ECN as two
 independent network functions.
 Throughput advice is carried within the QUIC payload, which does not interact
 with or modify ECN markings of the IP-layer ECN field.
-Real-time congestion feedback mechanisms remain outside the SCONE domain.<a href="#section-3.12-5" class="pilcrow">¶</a></p>
+Real-time congestion feedback mechanisms remain outside the SCONE domain.<a href="#section-3.13-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
