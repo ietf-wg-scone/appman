@@ -396,6 +396,35 @@ new data paths, e.g. using tunnels, nor introducing any additional routing overh
 Similarly, operators are not required to deploy any additional out-of-band signaling interfaces.
 
 
+## Using SCONE in tunnels and for QUIC-based tunnels in MASQUE
+
+SCONE does not depend on MASQUE or any other tunneling mechanism but it can be used in tunneling scenarios if desired.
+When traffic is tunneled on the network path, such as when using MASQUE {{?I-D.schinazi-masque-proxy}},
+SCONE can be carried on the inner traffic but can also be used on a QUIC-based tunnel itself.
+
+If the inner traffic is SCONE-capable, each tunnel endpoint
+can be a SCONE-capable network element. In this case, as the tunnel endpoints have visibility into
+the demultiplexed tunneled traffic, throughput advice can be applied to individual tunneled flows.
+Which tunneled flows receive throughput advice is a matter of local policy at the network element.
+
+If a MASQUE tunnel uses a SCONE-enabled QUIC connection,
+the SCONE-capable network element is on the path between the MASQUE client and the MASQUE proxy.
+In this case, only the QUIC connection of the tunnel is visible to the network element which might carry multiple end-to-end flows.
+
+Where flows are tunneled, throughput advice applies to the flow to which it was attached only.
+If the tunnel endpoint is also the application endpoint,
+this might mean that a QUIC flow that is tunneled in QUIC
+might have multiple, independent pieces of throughput advice.
+
+If the MASQUE client is not also the endpoint of the end-to-end QUIC connection, the tunnel egress
+might consider the throughput advice of the outer tunnel when providing throughput advice on
+the inner SCONE-enabled flows.
+
+Using SCONE on a MASQUE QUIC tunnel connection can enable throughput advice also for tunneled
+non-QUIC traffic, however, this can only be applied if there is an interface or mechanism in the
+tunnel that provides the throughput advice to the application.
+
+
 ## Interworking with Other Congestion Management Mechanisms
 
 As stated in {{Section 3.1 of SCONE}},
@@ -431,6 +460,7 @@ independent network functions.
 Throughput advice is carried within the QUIC payload, which does not interact
 with or modify ECN markings of the IP-layer ECN field.
 Real-time congestion feedback mechanisms remain outside the SCONE domain.
+
 
 # Security Considerations
 This document does not add any additional security considerations. The core security and
