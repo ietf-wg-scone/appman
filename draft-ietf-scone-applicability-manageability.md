@@ -472,24 +472,10 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-The authors are grateful to Marcus Ihlar, Martin Thomson, and Christian Huitema for
-their thorough reviews and for proposing text that shaped many sections of this
-document. Their careful reading kept the guidance precise and grounded in how the
-SCONE protocol works.
+The authors thank Marcus Ihlar, Martin Thomson, Christian Huitema, Joe Clarke, Qin Wu,
+Brian Trammell, and Gorry Fairhurst for their detailed reviews, and especially
+Mirja Kühlewind for her reviews and extensive text contributions.
 
-The authors especially thank Mirja Kühlewind, whose guidance throughout the
-development of this document was invaluable. Her rigorous reviews and extensive text
-contributions ensured that the document stayed focused on manageability and remained
-consistent with the SCONE protocol specification.
-
-The authors also thank Joe Clarke for his Operations Directorate review, which
-strengthened the operational guidance in this document.
-
-The authors thank the SCONE working group chairs, Qin Wu and Brian Trammell, for
-their reviews and leadership, and Gorry Fairhurst, the responsible Area Director, for
-his detailed reviews and support.
-
-Finally, the authors thank Lucas Pardue, Tina Tsou, Tianji Jiang, Kevin Smith,
-Thomas Fossati, Lars Eggert, Magnus Westerlund, Wesley Eddy, and Renjie Tang for
-their helpful comments and contributions, and the members of the SCONE Working Group
-for their review and support.
+The authors also thank Lucas Pardue, Tina Tsou, Tianji Jiang, Kevin Smith, Thomas Fossati,
+Lars Eggert, Magnus Westerlund, Wesley Eddy, and Renjie Tang for their helpful comments,
+and the members of the SCONE Working Group for their support.
