@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 10 April 2027                                             Nokia
+Expires: 17 April 2027                                             Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                          7 October 2026
+                                                         14 October 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 April 2027.
+   This Internet-Draft will expire on 17 April 2027.
 
 Copyright Notice
 
@@ -267,11 +267,10 @@ Table of Contents
 
    The frequency at which SCONE packets arrive at a network element is
    set by the application endpoint, not the network, and varies by
-   application type and traffic pattern (Section 7.1 of [SCONE],
-   "Applying Throughput Advice Signals").  A network element cannot
-   expect a predictable or uniform signaling cadence from the traffic
-   itself, and instead decides its own update interval within that
-   flexibility.
+   application type and traffic pattern (Section 8.1 of [SCONE]).  A
+   network element cannot expect a predictable or uniform signaling
+   cadence from the traffic itself, and instead decides its own update
+   interval within that flexibility.
 
    Applications are incentivized to keep the sending frequency low to
    avoid high overhead, but still need to manage a sending rate that
@@ -283,7 +282,7 @@ Table of Contents
    both the network and the endpoints without additional benefit.
 
    A SCONE-enabled network element updates advice in SCONE packets at
-   least twice per the 67-second monitoring period (Section 5.2 of
+   least twice per the 67-second monitoring period (Section 7.1.2 of
    [SCONE], approximately every 20 to 30 seconds).  This baseline
    ensures advice reliably reaches the endpoint and does not expire
    across the monitoring period, since SCONE packets are not delivered
@@ -307,7 +306,7 @@ Table of Contents
    established.  When this happens, the network element updates the next
    SCONE packet it observes, rather than waiting for its update interval
    to elapse, to minimize the application's reaction time to the new
-   limit (see Section 9.3 of [SCONE]).  How soon the application sees
+   limit (see Section 7.1.1 of [SCONE]).  How soon the application sees
    the change depends on when the endpoint next sends a SCONE packet,
    since the network element cannot originate one.
 
@@ -444,16 +443,16 @@ Table of Contents
    (throttling) mechanisms on SCONE-capable flows, operators can use
    conformance measurement and/or diagnostic approach described in
    Section 3.9 to check that the flow requires intervention in order to
-   maintain target rates per Section 7.3 of [SCONE].  If the conformance
-   measurement function detects that an application is not following the
-   signaled throughput advice, the network can employ traditional rate-
-   limiting mechanisms, such as dropping or delaying packets, to ensure
-   the QUIC flow does not exceed the throughput limits set by network
-   policy.  Alternatively, operators can deploy SCONE purely as an
-   advisory signal without any rate-limiting mechanism fallback,
-   prioritizing cooperative application optimization over strict
-   compliance enforcement.  These deployment options are further
-   explained in the next section.
+   maintain target rates per Section 7.2.2 of [SCONE].  If the
+   conformance measurement function detects that an application is not
+   following the signaled throughput advice, the network can employ
+   traditional rate-limiting mechanisms, such as dropping or delaying
+   packets, to ensure the QUIC flow does not exceed the throughput
+   limits set by network policy.  Alternatively, operators can deploy
+   SCONE purely as an advisory signal without any rate-limiting
+   mechanism fallback, prioritizing cooperative application optimization
+   over strict compliance enforcement.  These deployment options are
+   further explained in the next section.
 
 3.11.  Deployment Options
 
@@ -597,17 +596,15 @@ Table of Contents
 
 Acknowledgments
 
-   The authors thank Wesley Eddy, Renjie Tang, Kevin Smith, Tina Tsou,
-   Tianji Jiang, Lucas Pardue, and Martin Thomson for their helpful
-   comments and contributions to this document.
+   The authors thank Marcus Ihlar, Martin Thomson, Christian Huitema,
+   Joe Clarke, Qin Wu, Brian Trammell, and Gorry Fairhurst for their
+   detailed reviews, and especially Mirja Kühlewind for her reviews and
+   extensive text contributions.
 
-   The authors are also grateful to Mirja Kühlewind, Gorry Fairhurst,
-   Marcus Ihlar, Qin Wu, Christian Huitema, and Brian Trammell for their
-   detailed reviews and contributions, which substantially improved this
-   document.
-
-   The authors also thank members of the SCONE Working Group for their
-   review and support throughout the development of this document.
+   The authors also thank Lucas Pardue, Tina Tsou, Tianji Jiang, Kevin
+   Smith, Thomas Fossati, Lars Eggert, Magnus Westerlund, Wesley Eddy,
+   and Renjie Tang for their helpful comments, and the members of the
+   SCONE Working Group for their support.
 
 Authors' Addresses
 
