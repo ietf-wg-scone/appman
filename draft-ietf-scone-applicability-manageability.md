@@ -218,8 +218,7 @@ that policy.
 ## Reliability of Throughput Advice Delivery
 The frequency at which SCONE packets arrive at a network element is set by the
 application endpoint, not the network, and varies by application type and
-traffic pattern ({{Section 7.1 of SCONE}}, "Applying
-Throughput Advice Signals"). A network element cannot expect a predictable or
+traffic pattern ({{Section 8.1 of SCONE}}). A network element cannot expect a predictable or
 uniform signaling cadence from the traffic itself, and instead decides its own
 update interval within that flexibility.
 
@@ -233,7 +232,7 @@ a much higher frequency than that would only waste resources for both
 the network and the endpoints without additional benefit.
 
 A SCONE-enabled network element updates advice in SCONE packets at least twice
-per the 67-second monitoring period ({{Section 5.2 of SCONE}},
+per the 67-second monitoring period ({{Section 7.1.2 of SCONE}},
 approximately every 20 to 30 seconds). This baseline ensures advice reliably
 reaches the endpoint and does not expire across the monitoring period, since
 SCONE packets are not delivered reliably for a variety of reasons. Operators
@@ -254,7 +253,7 @@ or when the bandwidth allocated to the subscriber or the bearer changes
 while the flow is already established. When this happens,
 the network element updates the next SCONE packet it observes,
 rather than waiting for its update interval to elapse, to minimize the
-application's reaction time to the new limit (see {{Section 9.3 of SCONE}}).
+application's reaction time to the new limit (see {{Section 7.1.1 of SCONE}}).
 How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.
 
@@ -375,7 +374,7 @@ Because some applications will not support SCONE, and others either will not or 
 the provided throughput advice, operators have flexibility in how they handle flows that exceed the limits that are set in their policies.
 Before applying rate-limiting (throttling) mechanisms on SCONE-capable flows, operators can use conformance measurement and/or diagnostic approach described in
 {{monitoring-and-logging}} to check that the flow requires intervention
-in order to maintain target rates per {{Section 7.3 of SCONE}}.
+in order to maintain target rates per {{Section 7.2.2 of SCONE}}.
 If the conformance measurement function detects that an application is not following the
 signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
@@ -473,12 +472,10 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-The authors thank Wesley Eddy, Renjie Tang, Kevin Smith, Tina Tsou, Tianji Jiang, Lucas Pardue,
-and Martin Thomson for their helpful comments and contributions to this document.
+The authors thank Marcus Ihlar, Martin Thomson, Christian Huitema, Joe Clarke, Qin Wu,
+Brian Trammell, and Gorry Fairhurst for their detailed reviews, and especially
+Mirja Kühlewind for her reviews and extensive text contributions.
 
-The authors are also grateful to Mirja Kühlewind, Gorry Fairhurst, Marcus Ihlar, Qin Wu,
-Christian Huitema, and Brian Trammell for their detailed reviews and contributions, which
-substantially improved this document.
-
-The authors also thank members of the SCONE Working Group for their review and support
-throughout the development of this document.
+The authors also thank Lucas Pardue, Tina Tsou, Tianji Jiang, Kevin Smith, Thomas Fossati,
+Lars Eggert, Magnus Westerlund, Wesley Eddy, and Renjie Tang for their helpful comments,
+and the members of the SCONE Working Group for their support.
