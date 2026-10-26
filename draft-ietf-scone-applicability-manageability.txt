@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 17 April 2027                                             Nokia
+Expires: 29 April 2027                                             Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                         14 October 2026
+                                                         26 October 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 April 2027.
+   This Internet-Draft will expire on 29 April 2027.
 
 Copyright Notice
 
@@ -85,7 +85,8 @@ Table of Contents
      3.10. Conformance Measurement
      3.11. Deployment Options
      3.12. Network Integration of SCONE In-Band Signaling
-     3.13. Interworking with Other Congestion Management Mechanisms
+     3.13. Using SCONE in tunnels and for QUIC-based tunnels in MASQUE
+     3.14. Interworking with Other Congestion Management Mechanisms
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -509,7 +510,51 @@ Table of Contents
    Similarly, operators are not required to deploy any additional out-
    of-band signaling interfaces.
 
-3.13.  Interworking with Other Congestion Management Mechanisms
+3.13.  Using SCONE in tunnels and for QUIC-based tunnels in MASQUE
+
+   SCONE does not depend on MASQUE or any other tunneling mechanism but
+   it can be used in tunneling scenarios if desired.  When traffic is
+   tunneled on the network path, such as when using MASQUE
+   [I-D.schinazi-masque-proxy], SCONE can be carried on the inner
+   traffic but can also be used on a QUIC-based tunnel itself.
+
+   If the inner traffic is SCONE-capable, each tunnel endpoint can be a
+   SCONE-capable network element.  In this case, as the tunnel endpoints
+   have visibility into the demultiplexed tunneled traffic, throughput
+   advice can be applied to individual tunneled flows.  Which tunneled
+   flows receive throughput advice is a matter of local policy at the
+   network element.
+
+   If a MASQUE tunnel uses a SCONE-enabled QUIC connection, the SCONE-
+   capable network element is on the path between the MASQUE client and
+   the MASQUE proxy.  In this case, only the QUIC connection of the
+   tunnel is visible to the network element which might carry multiple
+   end-to-end flows.
+
+   End-to-end SCONE packets ought not to be exposed outside a tunnel
+   unless the tunnel itself is intended to expose SCONE.  This also
+   holds when techniques such as QUIC-aware proxying
+   [I-D.ietf-masque-quic-proxy] are used, which currently apply only to
+   QUIC short header packets.  It is recommended that end-to-end SCONE
+   packets be fully encapsulated within the tunnel.
+
+   Where flows are tunneled, throughput advice applies to the flow to
+   which it was attached only.  If the tunnel endpoint is also the
+   application endpoint, this might mean that a QUIC flow that is
+   tunneled in QUIC might have multiple, independent pieces of
+   throughput advice.
+
+   If the MASQUE client is not also the endpoint of the end-to-end QUIC
+   connection, the tunnel egress might consider the throughput advice of
+   the outer tunnel when providing throughput advice on the inner SCONE-
+   enabled flows.
+
+   Using SCONE on a MASQUE QUIC tunnel connection can enable throughput
+   advice also for tunneled non-QUIC traffic, however, this can only be
+   applied if there is an interface or mechanism in the tunnel that
+   provides the throughput advice to the application.
+
+3.14.  Interworking with Other Congestion Management Mechanisms
 
    As stated in Section 3.1 of [SCONE], SCONE throughput advice is not a
    substitute for congestion control utilizing congestion signals such
@@ -572,6 +617,19 @@ Table of Contents
               protocol-09>.
 
 6.2.  Informative References
+
+   [I-D.ietf-masque-quic-proxy]
+              Pauly, T., Rosenberg, E., and D. Schinazi, "QUIC-Aware
+              Proxying Using HTTP", Work in Progress, Internet-Draft,
+              draft-ietf-masque-quic-proxy-09, 6 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-masque-
+              quic-proxy-09>.
+
+   [I-D.schinazi-masque-proxy]
+              Schinazi, D., "The MASQUE Architecture", Work in Progress,
+              Internet-Draft, draft-schinazi-masque-proxy-09, 27 August
+              2026, <https://datatracker.ietf.org/doc/html/draft-
+              schinazi-masque-proxy-09>.
 
    [RFC3168]  Ramakrishnan, K., Floyd, S., and D. Black, "The Addition
               of Explicit Congestion Notification (ECN) to IP",
