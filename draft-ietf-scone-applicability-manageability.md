@@ -94,7 +94,7 @@ implement the SCONE network element function that sets
 the throughput advice.
 
 To participate in SCONE, a network element is assumed to have the
-functional capability to identify and track SCONE-compliant QUIC
+functional capability to identify and track SCONE-capable QUIC
 flows, recognize and process SCONE packets within those flows, and
 map network policies into throughput advice to be inserted into the
 SCONE packets (see also {{network-integration}}).
@@ -140,7 +140,7 @@ per-flow state.
 
 While the signaling itself is stateless, managing the operational lifecycle of a SCONE
 deployment may require establishing and maintaining per-flow context. Specifically, to execute
-the monitoring, logging, and conformance evaluation functions detailed later in this document
+the monitoring, logging, and flow measurement functions detailed later in this document
 (see {{conformance-monitoring}}),
 the network element has to track the flow's throughput over multiple monitoring periods. This
 per-flow context serves as the operational foundation for validating whether an application is
@@ -304,7 +304,7 @@ A network element cannot directly detect whether a SCONE packet was
 successfully delivered to or acted on by the endpoint, since SCONE
 provides no feedback channel from the endpoint (see {{Section 8.2 of
 SCONE}}). This distinction does not change how a network element's
-own conformance measurement function responds
+own flow monitoring function responds
 ({{conformance-monitoring}}), which applies uniformly regardless
 of cause or location.
 
@@ -321,10 +321,10 @@ issue lies before the network element, suggesting either a delivery
 failure on the path to it, or that the sender is no longer sending
 SCONE packets on that flow.
 
-## Conformance Measurement {#conformance-monitoring}
+## Monitoring Flows Against Throughput Advice {#conformance-monitoring}
 
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
-monitor QUIC flows and measure conformance to the throughput advice, either per flow of
+monitor QUIC flows and measure flows against the throughput advice, either per flow of
 packets on the same UDP address tuple, or in aggregate across multiple QUIC flows if they
 contribute to a shared policy limit (such as a device or network subscription level). This
 will allow operators to validate whether applications are following the throughput advice.
@@ -332,11 +332,11 @@ will allow operators to validate whether applications are following the throughp
 While it is expected that operators will implement monitoring at the SCONE Network Element
 providing the advice, it could also be performed elsewhere in the network. However, network
 elements lack the capability to validate the legitimacy of SCONE packets coalesced with other
-QUIC packets. Therefore, operators need to ensure a network element evaluates conformance only
+QUIC packets. Therefore, operators need to ensure a network element monitors flows only
 against the throughput advice that it set itself, rather than enforcing limits based on advice
 set by other downstream network elements.
 
-When evaluating compliance, network operators will need to account for the time required for
+When monitoring flows, network operators will need to account for the time required for
 SCONE packets to be updated, received by endpoints, and acted upon by the application.
 Operators can accommodate this by utilizing a sliding window approach. Operators should
 evaluate QUIC flows against the highest throughput limit advised over the preceding two
@@ -347,8 +347,8 @@ longer sliding window to account for the possibility of packet loss.
 {{Section 7.2 of SCONE}} explains that the second monitoring period in this
 window compensates for SCONE packets not being delivered reliably.
 {{Section 7.2 of SCONE}} presents the two-period baseline as illustrative, not mandatory, but cautions
-that monitoring more strictly than that baseline risks misclassifying a
-compliant application as non-conformant, while a longer window carries
+that monitoring more strictly than that baseline risks incorrectly classifying an
+application as not following advice, while a longer window carries
 no such risk. Waiting the full two periods is therefore the safe and simpler choice
 after a signaling update. A network element that can actively restart the monitoring
 window and track closely how many SCONE packets it has updated since a change in advice may be able
@@ -372,14 +372,14 @@ for their measurement and averaging period.
 
 Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle flows that exceed the limits that are set in their policies.
-Before applying rate-limiting (throttling) mechanisms on SCONE-capable flows, operators can use conformance measurement and/or diagnostic approach described in
+Before applying rate-limiting (throttling) mechanisms on SCONE-capable flows, operators can use flow monitoring and/or the diagnostic approach described in
 {{monitoring-and-logging}} to check that the flow requires intervention
 in order to maintain target rates per {{Section 7.2.2 of SCONE}}.
-If the conformance measurement function detects that an application is not following the
+If flow monitoring detects that an application is not following the
 signaled throughput advice, the network can employ traditional rate-limiting mechanisms, such as dropping or delaying packets, to ensure
 the QUIC flow does not exceed the throughput limits set by network policy. Alternatively, operators
 can deploy SCONE purely as an advisory signal without any rate-limiting mechanism fallback, prioritizing
-cooperative application optimization over strict compliance enforcement. These
+cooperative application optimization over strict enforcement. These
 deployment options are further explained in the next section.
 
 
@@ -394,13 +394,13 @@ SCONE Signaling-only mode:
 : Operators that do not enforce any rate limits might provide SCONE throughput advice to
   support the application with a choice of a stable rate below the capacity limit
   leading to a more smooth user experience. Operators can also use SCONE throughput advice to enforce different rates as per subscriber data plans. This operation mode does not require
-  the deployment of rate limits or any conformance measurements.
+  the deployment of rate limits or any flow monitoring.
 
-Conformance-based rate enforcement mode:
+Monitoring-based rate enforcement mode:
 : Operators that use rate limits might disable rate enforcement for SCONE flows and only
   enable it dynamically if a SCONE flow is detected to not apply the limit itself.
-  This mode saves network processing and buffer resources for compliant flows but requires
-  conformance measurements as described in {{conformance-monitoring}}.
+  This mode saves network processing and buffer resources for flows that follow the advice but requires
+  flow monitoring as described in {{conformance-monitoring}}.
 
 Unconditional rate enforcement mode:
 : While SCONE is designed independent of any enforcement mechanism and it is therefore possible to statically enforce rate limits
@@ -409,7 +409,7 @@ Unconditional rate enforcement mode:
   in terms of end-user QoE and for network simplifications. This is because, SCONE enables traffic characteristic aware application driven bit-rate regulation
   but on the other hand in-network rate limiters enforces the rate-limits arbitrarily and indiscriminately without being aware of traffic characteristics.
   Therefore if unconditional rate enforcement mode is used, the in-network enforced rate needs to be significantly higher than the SCONE throughput advice just to guard against worst case scenario.
-  This mode does not require conformance measurements but may realize less network savings and may risk unwanted application impairments.
+  This mode does not require flow monitoring but may realize less network savings and may risk unwanted application impairments.
 
 
 ## Network Integration of SCONE In-Band Signaling {#network-integration}
