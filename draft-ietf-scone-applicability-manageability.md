@@ -356,6 +356,8 @@ If a MASQUE tunnel uses a SCONE-enabled QUIC connection,
 the SCONE-capable network element is on the path between the MASQUE client and the MASQUE proxy.
 In this case, only the QUIC connection of the tunnel is visible to the network element which might carry multiple end-to-end flows.
 
+End-to-end SCONE packets ought not to be exposed outside a tunnel unless the tunnel itself is intended to expose SCONE. This also holds when techniques such as QUIC-aware proxying {{?I-D.ietf-masque-quic-proxy}} are used, which currently apply only to QUIC short header packets. It is recommended that end-to-end SCONE packets be fully encapsulated within the tunnel.
+
 Where flows are tunneled, throughput advice applies to the flow to which it was attached only.
 If the tunnel endpoint is also the application endpoint,
 this might mean that a QUIC flow that is tunneled in QUIC
