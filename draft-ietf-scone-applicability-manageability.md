@@ -141,7 +141,7 @@ per-flow state.
 While the signaling itself is stateless, managing the operational lifecycle of a SCONE
 deployment may require establishing and maintaining per-flow context. Specifically, to execute
 the monitoring, logging, and flow measurement functions detailed later in this document
-(see {{conformance-monitoring}}),
+(see {{monitoring-flows}}),
 the network element has to track the flow's throughput over multiple monitoring periods. This
 per-flow context serves as the operational foundation for validating whether an application is
 adhering to the advised rate and for applying any potentially necessary policy enforcement.
@@ -305,7 +305,7 @@ successfully delivered to or acted on by the endpoint, since SCONE
 provides no feedback channel from the endpoint (see {{Section 8.2 of
 SCONE}}). This distinction does not change how a network element's
 own flow monitoring function responds
-({{conformance-monitoring}}), which applies uniformly regardless
+({{monitoring-flows}}), which applies uniformly regardless
 of cause or location.
 
 When a flow's observed throughput does not appear to reflect the
@@ -321,7 +321,7 @@ issue lies before the network element, suggesting either a delivery
 failure on the path to it, or that the sender is no longer sending
 SCONE packets on that flow.
 
-## Monitoring Flows Against Throughput Advice {#conformance-monitoring}
+## Monitoring Flows Against Throughput Advice {#monitoring-flows}
 
 Networks that choose to provide SCONE throughput advice can implement mechanisms to
 monitor QUIC flows and measure flows against the throughput advice, either per flow of
@@ -400,7 +400,7 @@ Monitoring-based rate enforcement mode:
 : Operators that use rate limits might disable rate enforcement for SCONE flows and only
   enable it dynamically if a SCONE flow is detected to not apply the limit itself.
   This mode saves network processing and buffer resources for flows that follow the advice but requires
-  flow monitoring as described in {{conformance-monitoring}}.
+  flow monitoring as described in {{monitoring-flows}}.
 
 Unconditional rate enforcement mode:
 : While SCONE is designed independent of any enforcement mechanism and it is therefore possible to statically enforce rate limits
