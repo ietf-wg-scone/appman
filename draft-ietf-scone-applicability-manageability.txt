@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 29 April 2027                                             Nokia
+Expires: 1 May 2027                                                Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                         26 October 2026
+                                                         28 October 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 April 2027.
+   This Internet-Draft will expire on 1 May 2027.
 
 Copyright Notice
 
@@ -82,7 +82,7 @@ Table of Contents
             Path
      3.8.  Change of Network Element
      3.9.  Monitoring and Logging
-     3.10. Conformance Measurement
+     3.10. Monitoring Flows Against Throughput Advice
      3.11. Deployment Options
      3.12. Network Integration of SCONE In-Band Signaling
      3.13. Using SCONE in tunnels and for QUIC-based tunnels in MASQUE
@@ -131,10 +131,10 @@ Table of Contents
    network element function that sets the throughput advice.
 
    To participate in SCONE, a network element is assumed to have the
-   functional capability to identify and track SCONE-compliant QUIC
-   flows, recognize and process SCONE packets within those flows, and
-   map network policies into throughput advice to be inserted into the
-   SCONE packets (see also Section 3.12).
+   functional capability to identify and track SCONE-capable QUIC flows,
+   recognize and process SCONE packets within those flows, and map
+   network policies into throughput advice to be inserted into the SCONE
+   packets (see also Section 3.12).
 
    By providing a standardized mechanism, SCONE allows network operators
    to provide throughput advice information to QUIC endpoints without
@@ -185,10 +185,10 @@ Table of Contents
    While the signaling itself is stateless, managing the operational
    lifecycle of a SCONE deployment may require establishing and
    maintaining per-flow context.  Specifically, to execute the
-   monitoring, logging, and conformance evaluation functions detailed
-   later in this document (see Section 3.10), the network element has to
-   track the flow's throughput over multiple monitoring periods.  This
-   per-flow context serves as the operational foundation for validating
+   monitoring, logging, and flow measurement functions detailed later in
+   this document (see Section 3.10), the network element has to track
+   the flow's throughput over multiple monitoring periods.  This per-
+   flow context serves as the operational foundation for validating
    whether an application is adhering to the advised rate and for
    applying any potentially necessary policy enforcement.
 
@@ -363,8 +363,8 @@ Table of Contents
    successfully delivered to or acted on by the endpoint, since SCONE
    provides no feedback channel from the endpoint (see Section 8.2 of
    [SCONE]).  This distinction does not change how a network element's
-   own conformance measurement function responds (Section 3.10), which
-   applies uniformly regardless of cause or location.
+   own flow monitoring function responds (Section 3.10), which applies
+   uniformly regardless of cause or location.
 
    When a flow's observed throughput does not appear to reflect the
    throughput advice provided, comparing the timestamps of issued
@@ -380,10 +380,10 @@ Table of Contents
    it, or that the sender is no longer sending SCONE packets on that
    flow.
 
-3.10.  Conformance Measurement
+3.10.  Monitoring Flows Against Throughput Advice
 
    Networks that choose to provide SCONE throughput advice can implement
-   mechanisms to monitor QUIC flows and measure conformance to the
+   mechanisms to monitor QUIC flows and measure flows against the
    throughput advice, either per flow of packets on the same UDP address
    tuple, or in aggregate across multiple QUIC flows if they contribute
    to a shared policy limit (such as a device or network subscription
@@ -395,30 +395,30 @@ Table of Contents
    performed elsewhere in the network.  However, network elements lack
    the capability to validate the legitimacy of SCONE packets coalesced
    with other QUIC packets.  Therefore, operators need to ensure a
-   network element evaluates conformance only against the throughput
-   advice that it set itself, rather than enforcing limits based on
-   advice set by other downstream network elements.
+   network element monitors flows only against the throughput advice
+   that it set itself, rather than enforcing limits based on advice set
+   by other downstream network elements.
 
-   When evaluating compliance, network operators will need to account
-   for the time required for SCONE packets to be updated, received by
-   endpoints, and acted upon by the application.  Operators can
-   accommodate this by utilizing a sliding window approach.  Operators
-   should evaluate QUIC flows against the highest throughput limit
-   advised over the preceding two monitoring periods (a span of 134
-   seconds).  If a network element cannot update the throughput advice
-   in every traversing SCONE packet, operators might configure an even
-   longer sliding window to account for the possibility of packet loss.
+   When monitoring flows, network operators will need to account for the
+   time required for SCONE packets to be updated, received by endpoints,
+   and acted upon by the application.  Operators can accommodate this by
+   utilizing a sliding window approach.  Operators should evaluate QUIC
+   flows against the highest throughput limit advised over the preceding
+   two monitoring periods (a span of 134 seconds).  If a network element
+   cannot update the throughput advice in every traversing SCONE packet,
+   operators might configure an even longer sliding window to account
+   for the possibility of packet loss.
 
    Section 7.2 of [SCONE] explains that the second monitoring period in
    this window compensates for SCONE packets not being delivered
    reliably.  Section 7.2 of [SCONE] presents the two-period baseline as
    illustrative, not mandatory, but cautions that monitoring more
-   strictly than that baseline risks misclassifying a compliant
-   application as non-conformant, while a longer window carries no such
-   risk.  Waiting the full two periods is therefore the safe and simpler
-   choice after a signaling update.  A network element that can actively
-   restart the monitoring window and track closely how many SCONE
-   packets it has updated since a change in advice may be able to
+   strictly than that baseline risks incorrectly classifying an
+   application as not following advice, while a longer window carries no
+   such risk.  Waiting the full two periods is therefore the safe and
+   simpler choice after a signaling update.  A network element that can
+   actively restart the monitoring window and track closely how many
+   SCONE packets it has updated since a change in advice may be able to
    shorten this window.  If it has updated at least two SCONE packets
    with the new advice for reliability, it can restart the monitoring
    period for one more 67-second interval and reach a decision after
@@ -442,18 +442,17 @@ Table of Contents
    have flexibility in how they handle flows that exceed the limits that
    are set in their policies.  Before applying rate-limiting
    (throttling) mechanisms on SCONE-capable flows, operators can use
-   conformance measurement and/or diagnostic approach described in
+   flow monitoring and/or the diagnostic approach described in
    Section 3.9 to check that the flow requires intervention in order to
-   maintain target rates per Section 7.2.2 of [SCONE].  If the
-   conformance measurement function detects that an application is not
-   following the signaled throughput advice, the network can employ
-   traditional rate-limiting mechanisms, such as dropping or delaying
-   packets, to ensure the QUIC flow does not exceed the throughput
-   limits set by network policy.  Alternatively, operators can deploy
-   SCONE purely as an advisory signal without any rate-limiting
-   mechanism fallback, prioritizing cooperative application optimization
-   over strict compliance enforcement.  These deployment options are
-   further explained in the next section.
+   maintain target rates per Section 7.2.2 of [SCONE].  If flow
+   monitoring detects that an application is not following the signaled
+   throughput advice, the network can employ traditional rate-limiting
+   mechanisms, such as dropping or delaying packets, to ensure the QUIC
+   flow does not exceed the throughput limits set by network policy.
+   Alternatively, operators can deploy SCONE purely as an advisory
+   signal without any rate-limiting mechanism fallback, prioritizing
+   cooperative application optimization over strict enforcement.  These
+   deployment options are further explained in the next section.
 
 3.11.  Deployment Options
 
@@ -471,14 +470,14 @@ Table of Contents
       limit leading to a more smooth user experience.  Operators can
       also use SCONE throughput advice to enforce different rates as per
       subscriber data plans.  This operation mode does not require the
-      deployment of rate limits or any conformance measurements.
+      deployment of rate limits or any flow monitoring.
 
-   Conformance-based rate enforcement mode:  Operators that use rate
+   Monitoring-based rate enforcement mode:  Operators that use rate
       limits might disable rate enforcement for SCONE flows and only
       enable it dynamically if a SCONE flow is detected to not apply the
       limit itself.  This mode saves network processing and buffer
-      resources for compliant flows but requires conformance
-      measurements as described in Section 3.10.
+      resources for flows that follow the advice but requires flow
+      monitoring as described in Section 3.10.
 
    Unconditional rate enforcement mode:  While SCONE is designed
       independent of any enforcement mechanism and it is therefore
@@ -493,9 +492,9 @@ Table of Contents
       characteristics.  Therefore if unconditional rate enforcement mode
       is used, the in-network enforced rate needs to be significantly
       higher than the SCONE throughput advice just to guard against
-      worst case scenario.  This mode does not require conformance
-      measurements but may realize less network savings and may risk
-      unwanted application impairments.
+      worst case scenario.  This mode does not require flow monitoring
+      but may realize less network savings and may risk unwanted
+      application impairments.
 
 3.12.  Network Integration of SCONE In-Band Signaling
 
@@ -612,9 +611,9 @@ Table of Contents
    [SCONE]    Thomson, M., Huitema, C., Oku, K., Joras, M., and L. M.
               Ihlar, "Standard Communication with Network Elements
               (SCONE) Protocol", Work in Progress, Internet-Draft,
-              draft-ietf-scone-protocol-09, 24 September 2026,
+              draft-ietf-scone-protocol-10, 28 October 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-scone-
-              protocol-09>.
+              protocol-10>.
 
 6.2.  Informative References
 
