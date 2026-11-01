@@ -435,18 +435,23 @@ the demultiplexed tunneled traffic, throughput advice can be applied to individu
 Which tunneled flows receive throughput advice is a matter of local policy at the network element.
 
 If a MASQUE tunnel uses a SCONE-enabled QUIC connection,
-the SCONE-capable network element is on the path between the MASQUE client and the MASQUE proxy.
-In this case, only the QUIC connection of the tunnel is visible to the network element which might carry multiple end-to-end flows.
+and a SCONE-capable network element is on the path of that connection,
+that network element can only provide throughput advice to the outermost flow,
+that is, the tunnel, which might carry multiple end-to-end flows
+(see {{Section 3.3 of SCONE}}).
 
-End-to-end SCONE packets ought not to be exposed outside a tunnel unless the tunnel itself is intended to expose SCONE. This also holds when techniques such as QUIC-aware proxying {{?I-D.ietf-masque-quic-proxy}} are used, which currently apply only to QUIC short header packets. It is recommended that end-to-end SCONE packets be fully encapsulated within the tunnel.
+Techniques such as QUIC-aware proxying {{?I-D.ietf-masque-quic-proxy}}
+currently apply only to QUIC short header packets.
+As SCONE packets are long header packets (see {{Section 5 of SCONE}}),
+they remain encapsulated in the tunnel when such techniques are used.
 
 Where flows are tunneled, throughput advice applies to the flow to which it was attached only.
-If the tunnel endpoint is also the application endpoint,
+If a tunnel endpoint is also the application endpoint,
 this might mean that a QUIC flow that is tunneled in QUIC
 might have multiple, independent pieces of throughput advice.
 
 If the MASQUE client is not also the endpoint of the end-to-end QUIC connection, the tunnel egress
-might consider the throughput advice of the outer tunnel when providing throughput advice on
+might consider the throughput advice of the outer tunnel if providing throughput advice on
 the inner SCONE-enabled flows.
 
 Using SCONE on a MASQUE QUIC tunnel connection can enable throughput advice also for tunneled
