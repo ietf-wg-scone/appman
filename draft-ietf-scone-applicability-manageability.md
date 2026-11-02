@@ -1,6 +1,6 @@
 ---
-title: "Manageability Considerations for SCONE"
-abbrev: "SCONE Manageability"
+title: "Manageability and Operational Considerations for SCONE"
+abbrev: "SCONE Manageability and Operations"
 docname: draft-ietf-scone-applicability-manageability-latest
 category: info
 submissionType: IETF
@@ -58,7 +58,7 @@ informative:
 
 
 --- abstract
-This document describes the manageability considerations for network operators
+This document describes the manageability and operational considerations for network operators
 for providing throughput advice to
 application endpoints. This guidance is specifically addressed within the context of
 communication networks utilizing the Standard Communication with Network Elements (SCONE) protocol {{SCONE}}.
@@ -71,13 +71,13 @@ The SCONE protocol {{SCONE}} provides a signaling mechanism that enables on-path
 
 Network elements capable of rate limiting can send notifications of the advisory maximum sustainable throughput in each direction of the observed traffic. This allows applications, particularly those using Adaptive bitrate (ABR)
 mechanisms,to proactively align their transmission rates with network policies. This document addresses the
-manageability considerations for deploying the SCONE protocol within communication networks.
+manageability and operational considerations for deploying the SCONE protocol within communication networks.
 The SCONE core protocol specification provides guidance for network deployment,
 specifically details on how to apply throughput advice signals in the SCONE header,
 on protocol requirements on flow monitoring and considerations for flows that exceed
 throughput advice (see {{Section 7 of SCONE}}). This document complements this guidance
-by discussing various deployment options and providing additional manageability
-considerations for network operators.
+by discussing various deployment options and providing additional manageability and
+operational considerations for network operators.
 
 ## SCONE Protocol Overview and Network Element Function {#scone-overview}
 
