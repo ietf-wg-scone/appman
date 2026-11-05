@@ -1679,20 +1679,16 @@ and a SCONE-capable network element is on the path of that connection,
 that network element can only provide throughput advice to the outermost flow,
 that is, the tunnel, which might carry multiple end-to-end flows
 (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-10#section-3.3" class="relref">Section 3.3</a> of [<a href="#SCONE" class="cite xref">SCONE</a>]</span>).<a href="#section-3.13-3" class="pilcrow">¶</a></p>
-<p id="section-3.13-4">Techniques such as QUIC-aware proxying in Forwarded Mode <span>[<a href="#I-D.ietf-masque-quic-proxy" class="cite xref">I-D.ietf-masque-quic-proxy</a>]</span>
-currently apply only to QUIC short header packets.
-As SCONE packets are long header packets (see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protocol-10#section-5" class="relref">Section 5</a> of [<a href="#SCONE" class="cite xref">SCONE</a>]</span>),
-they remain encapsulated in the tunnel when such techniques are used.<a href="#section-3.13-4" class="pilcrow">¶</a></p>
-<p id="section-3.13-5">Where flows are tunneled, throughput advice applies to the flow to which it was attached only.
+<p id="section-3.13-4">Where flows are tunneled, throughput advice applies to the flow to which it was attached only.
 If a tunnel endpoint is also the application endpoint,
 this might mean that a QUIC flow that is tunneled in QUIC
-might have multiple, independent pieces of throughput advice.<a href="#section-3.13-5" class="pilcrow">¶</a></p>
-<p id="section-3.13-6">If the MASQUE client is not also the endpoint of the end-to-end QUIC connection, the tunnel egress
+might have multiple, independent pieces of throughput advice.<a href="#section-3.13-4" class="pilcrow">¶</a></p>
+<p id="section-3.13-5">If the MASQUE client is not also the endpoint of the end-to-end QUIC connection, the tunnel egress
 might consider the throughput advice of the outer tunnel if providing throughput advice on
-the inner SCONE-enabled flows.<a href="#section-3.13-6" class="pilcrow">¶</a></p>
-<p id="section-3.13-7">Using SCONE on a MASQUE QUIC tunnel connection can enable throughput advice also for tunneled
+the inner SCONE-enabled flows.<a href="#section-3.13-5" class="pilcrow">¶</a></p>
+<p id="section-3.13-6">Using SCONE on a MASQUE QUIC tunnel connection can enable throughput advice also for tunneled
 non-QUIC traffic, however, this can only be applied if there is an interface or mechanism in the
-tunnel that provides the throughput advice to the application.<a href="#section-3.13-7" class="pilcrow">¶</a></p>
+tunnel that provides the throughput advice to the application.<a href="#section-3.13-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="interworking-with-other-congestion-management-mechanisms">
@@ -1775,10 +1771,6 @@ Sections <a href="https://datatracker.ietf.org/doc/html/draft-ietf-scone-protoco
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
-<dt id="I-D.ietf-masque-quic-proxy">[I-D.ietf-masque-quic-proxy]</dt>
-        <dd>
-<span class="refAuthor">Pauly, T.</span>, <span class="refAuthor">Rosenberg, E.</span>, and <span class="refAuthor">D. Schinazi</span>, <span class="refTitle">"QUIC-Aware Proxying Using HTTP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-masque-quic-proxy-10</span>, <time datetime="2026-11-02" class="refDate">2 November 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-masque-quic-proxy-10">https://datatracker.ietf.org/doc/html/draft-ietf-masque-quic-proxy-10</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.schinazi-masque-proxy">[I-D.schinazi-masque-proxy]</dt>
         <dd>
 <span class="refAuthor">Schinazi, D.</span>, <span class="refTitle">"The MASQUE Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-schinazi-masque-proxy-09</span>, <time datetime="2026-08-27" class="refDate">27 August 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-schinazi-masque-proxy-09">https://datatracker.ietf.org/doc/html/draft-schinazi-masque-proxy-09</a>&gt;</span>. </dd>

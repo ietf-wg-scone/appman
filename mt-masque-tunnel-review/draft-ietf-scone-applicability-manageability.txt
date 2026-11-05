@@ -530,12 +530,6 @@ Table of Contents
    flow, that is, the tunnel, which might carry multiple end-to-end
    flows (see Section 3.3 of [SCONE]).
 
-   Techniques such as QUIC-aware proxying in Forwarded Mode
-   [I-D.ietf-masque-quic-proxy] currently apply only to QUIC short
-   header packets.  As SCONE packets are long header packets (see
-   Section 5 of [SCONE]), they remain encapsulated in the tunnel when
-   such techniques are used.
-
    Where flows are tunneled, throughput advice applies to the flow to
    which it was attached only.  If a tunnel endpoint is also the
    application endpoint, this might mean that a QUIC flow that is
@@ -615,13 +609,6 @@ Table of Contents
               protocol-10>.
 
 6.2.  Informative References
-
-   [I-D.ietf-masque-quic-proxy]
-              Pauly, T., Rosenberg, E., and D. Schinazi, "QUIC-Aware
-              Proxying Using HTTP", Work in Progress, Internet-Draft,
-              draft-ietf-masque-quic-proxy-10, 2 November 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-masque-
-              quic-proxy-10>.
 
    [I-D.schinazi-masque-proxy]
               Schinazi, D., "The MASQUE Architecture", Work in Progress,
