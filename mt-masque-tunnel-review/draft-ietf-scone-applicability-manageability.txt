@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 6 May 2027                                                Nokia
+Expires: 9 May 2027                                                Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                         2 November 2026
+                                                         5 November 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 May 2027.
+   This Internet-Draft will expire on 9 May 2027.
 
 Copyright Notice
 
@@ -530,10 +530,11 @@ Table of Contents
    flow, that is, the tunnel, which might carry multiple end-to-end
    flows (see Section 3.3 of [SCONE]).
 
-   Techniques such as QUIC-aware proxying [I-D.ietf-masque-quic-proxy]
-   currently apply only to QUIC short header packets.  As SCONE packets
-   are long header packets (see Section 5 of [SCONE]), they remain
-   encapsulated in the tunnel when such techniques are used.
+   Techniques such as QUIC-aware proxying in Forwarded Mode
+   [I-D.ietf-masque-quic-proxy] currently apply only to QUIC short
+   header packets.  As SCONE packets are long header packets (see
+   Section 5 of [SCONE]), they remain encapsulated in the tunnel when
+   such techniques are used.
 
    Where flows are tunneled, throughput advice applies to the flow to
    which it was attached only.  If a tunnel endpoint is also the
@@ -618,9 +619,9 @@ Table of Contents
    [I-D.ietf-masque-quic-proxy]
               Pauly, T., Rosenberg, E., and D. Schinazi, "QUIC-Aware
               Proxying Using HTTP", Work in Progress, Internet-Draft,
-              draft-ietf-masque-quic-proxy-09, 6 July 2026,
+              draft-ietf-masque-quic-proxy-10, 2 November 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-masque-
-              quic-proxy-09>.
+              quic-proxy-10>.
 
    [I-D.schinazi-masque-proxy]
               Schinazi, D., "The MASQUE Architecture", Work in Progress,
