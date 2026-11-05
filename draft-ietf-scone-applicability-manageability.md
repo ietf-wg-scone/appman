@@ -440,11 +440,6 @@ that network element can only provide throughput advice to the outermost flow,
 that is, the tunnel, which might carry multiple end-to-end flows
 (see {{Section 3.3 of SCONE}}).
 
-Techniques such as QUIC-aware proxying in Forwarded Mode {{?I-D.ietf-masque-quic-proxy}}
-currently apply only to QUIC short header packets.
-As SCONE packets are long header packets (see {{Section 5 of SCONE}}),
-they remain encapsulated in the tunnel when such techniques are used.
-
 Where flows are tunneled, throughput advice applies to the flow to which it was attached only.
 If a tunnel endpoint is also the application endpoint,
 this might mean that a QUIC flow that is tunneled in QUIC
