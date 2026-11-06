@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 1 May 2027                                                Nokia
+Expires: 10 May 2027                                               Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                         28 October 2026
+                                                         6 November 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 May 2027.
+   This Internet-Draft will expire on 10 May 2027.
 
 Copyright Notice
 
@@ -524,28 +524,21 @@ Table of Contents
    flows receive throughput advice is a matter of local policy at the
    network element.
 
-   If a MASQUE tunnel uses a SCONE-enabled QUIC connection, the SCONE-
-   capable network element is on the path between the MASQUE client and
-   the MASQUE proxy.  In this case, only the QUIC connection of the
-   tunnel is visible to the network element which might carry multiple
-   end-to-end flows.
-
-   End-to-end SCONE packets ought not to be exposed outside a tunnel
-   unless the tunnel itself is intended to expose SCONE.  This also
-   holds when techniques such as QUIC-aware proxying
-   [I-D.ietf-masque-quic-proxy] are used, which currently apply only to
-   QUIC short header packets.  It is recommended that end-to-end SCONE
-   packets be fully encapsulated within the tunnel.
+   If a MASQUE tunnel uses a SCONE-enabled QUIC connection, and a SCONE-
+   capable network element is on the path of that connection, that
+   network element can only provide throughput advice to the outermost
+   flow, that is, the tunnel, which might carry multiple end-to-end
+   flows (see Section 3.3 of [SCONE]).
 
    Where flows are tunneled, throughput advice applies to the flow to
-   which it was attached only.  If the tunnel endpoint is also the
+   which it was attached only.  If a tunnel endpoint is also the
    application endpoint, this might mean that a QUIC flow that is
    tunneled in QUIC might have multiple, independent pieces of
    throughput advice.
 
    If the MASQUE client is not also the endpoint of the end-to-end QUIC
    connection, the tunnel egress might consider the throughput advice of
-   the outer tunnel when providing throughput advice on the inner SCONE-
+   the outer tunnel if providing throughput advice on the inner SCONE-
    enabled flows.
 
    Using SCONE on a MASQUE QUIC tunnel connection can enable throughput
@@ -616,13 +609,6 @@ Table of Contents
               protocol-10>.
 
 6.2.  Informative References
-
-   [I-D.ietf-masque-quic-proxy]
-              Pauly, T., Rosenberg, E., and D. Schinazi, "QUIC-Aware
-              Proxying Using HTTP", Work in Progress, Internet-Draft,
-              draft-ietf-masque-quic-proxy-09, 6 July 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-masque-
-              quic-proxy-09>.
 
    [I-D.schinazi-masque-proxy]
               Schinazi, D., "The MASQUE Architecture", Work in Progress,
