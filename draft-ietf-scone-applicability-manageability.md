@@ -38,6 +38,7 @@ author:
 
 normative:
   SCONE: I-D.ietf-scone-protocol
+  QUIC: RFC9000
 
 
 informative:
@@ -69,8 +70,8 @@ communication networks utilizing the Standard Communication with Network Element
 
 The SCONE protocol {{SCONE}} provides a signaling mechanism that enables on-path, SCONE-capable network elements to communicate "throughput advice", the advisory maximum sustainable throughput, to application endpoints via SCONE packets in the communication networks.
 
-Network elements capable of rate limiting can send notifications of the advisory maximum sustainable throughput in each direction of the observed traffic. This allows applications, particularly those using Adaptive bitrate (ABR)
-mechanisms,to proactively align their transmission rates with network policies. This document addresses the
+Network elements that are aware of a rate limit can send notifications of the advisory maximum sustainable throughput in each direction of the observed traffic. This allows applications, particularly those using Adaptive bitrate (ABR)
+mechanisms, to proactively align their transmission rates with network policies. This document addresses the
 manageability considerations for deploying the SCONE protocol within communication networks.
 The SCONE core protocol specification provides guidance for network deployment,
 specifically details on how to apply throughput advice signals in the SCONE header,
@@ -83,7 +84,7 @@ considerations for network operators.
 
 Deploying SCONE in a communication network involves the application
 endpoints and any SCONE-capable network elements along the path of a
-flow of QUIC UDP datagrams. SCONE is used on a QUIC flow only when its application endpoints
+flow of QUIC {{QUIC}} UDP datagrams. SCONE is used on a QUIC flow only when its application endpoints
 support it. SCONE packets are QUIC long header packets carrying a
 SCONE-specific version number, coalesced into the same UDP datagram
 as the QUIC packets they accompany.
@@ -138,8 +139,8 @@ network element simply identifies a traversing SCONE packet and updates its valu
 the configured policy for that flow or network scope, without needing to maintain active
 per-flow state.
 
-While the signaling itself is stateless, managing the operational lifecycle of a SCONE
-deployment may require establishing and maintaining per-flow context. Specifically, to execute
+While the signaling itself is stateless, some functions for managing the operational lifecycle of a SCONE
+deployment require establishing and maintaining per-flow context. Specifically, to execute
 the monitoring, logging, and flow measurement functions detailed later in this document
 (see {{monitoring-flows}}),
 the network element has to track the flow's throughput over multiple monitoring periods. This
@@ -405,8 +406,8 @@ Monitoring-based rate enforcement mode:
 Unconditional rate enforcement mode:
 : While SCONE is designed independent of any enforcement mechanism and it is therefore possible to statically enforce rate limits
   even when SCONE is used, this deployment is not recommended as it can risk worse performance.
-  Doing so will remove most of the positive effects that SCONE provides, both
-  in terms of end-user QoE and for network simplifications. This is because, SCONE enables traffic characteristic aware application driven bit-rate regulation
+  Enforcing a static rate limit in addition to SCONE throughput advice reduces the benefits that SCONE provides,
+  both for end-user QoE and for network simplification. This is because, SCONE enables traffic characteristic aware application driven bit-rate regulation
   but on the other hand in-network rate limiters enforces the rate-limits arbitrarily and indiscriminately without being aware of traffic characteristics.
   Therefore if unconditional rate enforcement mode is used, the in-network enforced rate needs to be significantly higher than the SCONE throughput advice just to guard against worst case scenario.
   This mode does not require flow monitoring but may realize less network savings and may risk unwanted application impairments.
