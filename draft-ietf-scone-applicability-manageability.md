@@ -256,6 +256,10 @@ rather than waiting for its update interval to elapse, to minimize the
 application's reaction time to the new limit (see {{Section 7.1.1 of SCONE}}).
 How soon the application sees the change depends on when the endpoint next sends a SCONE packet,
 since the network element cannot originate one.
+Updating early mainly helps when throughput advice decreases. The advice in effect is the lowest
+throughput advice received during the previous monitoring period ({{Section 5.4 of SCONE}}).
+An increase in throughput advice therefore does not take effect until no lower advice has been
+received for a full monitoring period.
 
 ## Presence of Multiple SCONE Network Elements On the Data Path
 
@@ -285,7 +289,9 @@ the SCONE packet itself.
 
 If no SCONE-capable element is present on the new path, the previous advice
 expires after a monitoring period ({{Section 5.4 of SCONE}}) and the
-application operates without SCONE-advised limits.
+application operates without SCONE-advised limits. The same applies on any path when no updated advice is
+received for a monitoring period, for example because a SCONE-capable network element no longer
+has the policy information for the flow, or because the SCONE packets carrying advice were lost.
 
 ## Monitoring and Logging {#monitoring-and-logging}
 
