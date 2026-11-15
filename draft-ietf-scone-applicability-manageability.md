@@ -399,7 +399,7 @@ SCONE Signaling-only mode:
 
 Monitoring-based rate enforcement mode:
 : Operators that use rate limits might disable rate enforcement for SCONE flows and only
-  enable it dynamically if a SCONE flow is detected to not apply the limit itself.
+  enable it dynamically if a SCONE flow is detected not to follow the throughput advice.
   This mode saves network processing and buffer resources for flows that follow the advice but requires
   flow monitoring as described in {{monitoring-flows}}.
 
@@ -407,9 +407,10 @@ Unconditional rate enforcement mode:
 : While SCONE is designed independent of any enforcement mechanism and it is therefore possible to statically enforce rate limits
   even when SCONE is used, this deployment is not recommended as it can risk worse performance.
   Enforcing a static rate limit in addition to SCONE throughput advice reduces the benefits that SCONE provides,
-  both for end-user QoE and for network simplification. This is because, SCONE enables traffic characteristic aware application driven bit-rate regulation
-  but on the other hand in-network rate limiters enforces the rate-limits arbitrarily and indiscriminately without being aware of traffic characteristics.
-  Therefore if unconditional rate enforcement mode is used, the in-network enforced rate needs to be significantly higher than the SCONE throughput advice just to guard against worst case scenario.
+  both for end-user QoE and for network simplification. This is because SCONE lets the application adapt its bitrate to the characteristics of its own traffic,
+  whereas an in-network rate limiter enforces a limit on all traffic without regard to those characteristics.
+  Therefore, if unconditional rate enforcement is used, the enforced rate needs to be set well above the throughput advice,
+  so that applications that follow the advice are not penalized by short-term rate variations such as bursts.
   This mode does not require flow monitoring but may realize less network savings and may risk unwanted application impairments.
 
 
