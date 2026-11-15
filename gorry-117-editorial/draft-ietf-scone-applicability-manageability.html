@@ -1055,7 +1055,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Mishra, et al.</td>
-<td class="center">Expires 16 May 2027</td>
+<td class="center">Expires 19 May 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg {
 <dd class="internet-draft">draft-ietf-scone-applicability-manageability-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-11-12" class="published">12 November 2026</time>
+<time datetime="2026-11-15" class="published">15 November 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-05-16">16 May 2027</time></dd>
+<dd class="expires"><time datetime="2027-05-19">19 May 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1133,7 +1133,7 @@ communication networks utilizing the Standard Communication with Network Element
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 16 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 19 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1628,7 +1628,7 @@ the deployment of rate limits or any flow monitoring.<a href="#section-3.11-2.2.
 <dt id="section-3.11-2.3">Monitoring-based rate enforcement mode:</dt>
           <dd style="margin-left: 1.5em" id="section-3.11-2.4">
             <p id="section-3.11-2.4.1">Operators that use rate limits might disable rate enforcement for SCONE flows and only
-enable it dynamically if a SCONE flow is detected to not apply the limit itself.
+enable it dynamically if a SCONE flow is detected not to follow the throughput advice.
 This mode saves network processing and buffer resources for flows that follow the advice but requires
 flow monitoring as described in <a href="#monitoring-flows" class="auto internal xref">Section 3.10</a>.<a href="#section-3.11-2.4.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1638,9 +1638,10 @@ flow monitoring as described in <a href="#monitoring-flows" class="auto internal
             <p id="section-3.11-2.6.1">While SCONE is designed independent of any enforcement mechanism and it is therefore possible to statically enforce rate limits
 even when SCONE is used, this deployment is not recommended as it can risk worse performance.
 Enforcing a static rate limit in addition to SCONE throughput advice reduces the benefits that SCONE provides,
-both for end-user QoE and for network simplification. This is because, SCONE enables traffic characteristic aware application driven bit-rate regulation
-but on the other hand in-network rate limiters enforces the rate-limits arbitrarily and indiscriminately without being aware of traffic characteristics.
-Therefore if unconditional rate enforcement mode is used, the in-network enforced rate needs to be significantly higher than the SCONE throughput advice just to guard against worst case scenario.
+both for end-user QoE and for network simplification. This is because SCONE lets the application adapt its bitrate to the characteristics of its own traffic,
+whereas an in-network rate limiter enforces a limit on all traffic without regard to those characteristics.
+Therefore, if unconditional rate enforcement is used, the enforced rate needs to be set well above the throughput advice,
+so that applications that follow the advice are not penalized by short-term rate variations such as bursts.
 This mode does not require flow monitoring but may realize less network savings and may risk unwanted application impairments.<a href="#section-3.11-2.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
