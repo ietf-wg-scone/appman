@@ -423,35 +423,47 @@ new data paths, e.g. using tunnels, nor introducing any additional routing overh
 Similarly, operators are not required to deploy any additional out-of-band signaling interfaces.
 
 
-## Using SCONE in tunnels and for QUIC-based tunnels in MASQUE
+## Tunnels and Encapsulation
 
-SCONE does not depend on MASQUE or any other tunneling mechanism but it can be used in tunneling scenarios if desired.
-When traffic is tunneled on the network path, such as when using MASQUE {{?I-D.schinazi-masque-proxy}},
-SCONE can be carried on the inner traffic but can also be used on a QUIC-based tunnel itself.
+Encapsulation is common in networks, for example for VPNs or traffic engineering.
+A SCONE-capable network element can only provide throughput advice to a flow if it can
+identify that flow's SCONE packets. When a flow is carried inside a tunnel or other
+encapsulation, a network element that sees only the outer packets might not be able to
+identify the inner SCONE packets. The inner flow then receives no throughput advice from
+that network element.
 
-If the inner traffic is SCONE-capable, each tunnel endpoint
-can be a SCONE-capable network element. In this case, as the tunnel endpoints have visibility into
-the demultiplexed tunneled traffic, throughput advice can be applied to individual tunneled flows.
-Which tunneled flows receive throughput advice is a matter of local policy at the network element.
-
-If a MASQUE tunnel uses a SCONE-enabled QUIC connection,
-and a SCONE-capable network element is on the path of that connection,
-that network element can only provide throughput advice to the outermost flow,
-that is, the tunnel, which might carry multiple end-to-end flows
-(see {{Section 3.3 of SCONE}}).
-
-Where flows are tunneled, throughput advice applies to the flow to which it was attached only.
-If a tunnel endpoint is also the application endpoint,
-this might mean that a QUIC flow that is tunneled in QUIC
-might have multiple, independent pieces of throughput advice.
-
+SCONE does not depend on MASQUE or any other tunneling mechanism, but it can be used
+both on a QUIC-based tunnel, such as one using MASQUE {{?I-D.schinazi-masque-proxy}},
+and on the flows that the tunnel carries.
+When a QUIC-based tunnel carries one SCONE-capable flow,
+and a SCONE-capable network element is on the path of the tunnel, that network element
+can provide throughput advice only to the tunnel, which is the outermost flow
+({{Section 3.3 of SCONE}}).
+A tunnel endpoint, such as a MASQUE proxy, sees the tunneled packets without the outer
+encapsulation. If it implements the SCONE network element function, it can identify the
+inner flow's SCONE packets and provide throughput advice to that flow, as any other
+SCONE-capable network element on the path of that flow can.
 If the MASQUE client is not also the endpoint of the end-to-end QUIC connection, the tunnel egress
 might consider the throughput advice of the outer tunnel if providing throughput advice on
 the inner SCONE-enabled flows.
 
-Using SCONE on a MASQUE QUIC tunnel connection can enable throughput advice also for tunneled
-non-QUIC traffic, however, this can only be applied if there is an interface or mechanism in the
-tunnel that provides the throughput advice to the application.
+When a tunnel carries multiple end-to-end flows, throughput advice on the tunnel applies
+to the tunnel as a whole. A tunnel endpoint can provide separate throughput advice to an
+inner flow, which applies to that flow only. Which inner flows receive throughput advice
+is a matter of local policy at the tunnel endpoint. If a tunnel endpoint is also the
+application endpoint, a QUIC flow tunneled in QUIC might therefore have multiple,
+independent pieces of throughput advice.
+
+If only some of the traffic in the tunnel follows throughput advice, for example because
+the tunnel also carries traffic that does not use SCONE, the tunnel's throughput can exceed
+the throughput advice provided for the tunnel ({{Section 3.5 of SCONE}}).
+Any enforcement on the tunnel needs to be the result of configuration or other authorized
+administrative action, not of throughput advice observed in SCONE packets received from
+other entities ({{Section 7.2.1 of SCONE}}).
+
+SCONE on a QUIC-based tunnel can also enable throughput advice for tunneled non-QUIC
+traffic, but only if there is an interface or mechanism in the tunnel that provides
+the throughput advice to the application.
 
 
 ## Interworking with Other Congestion Management Mechanisms
