@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-11-18T22:58:49.063144+00:00",
+  "timestamp": "2026-11-22T05:57:09.205711+00:00",
   "repo": "ietf-wg-scone/appman",
   "labels": [
     {
@@ -15236,7 +15236,7 @@
       "labels": [],
       "body": "Editorial changes from Gorry Fairhurst's review of -03 on the SCONE list:\r\nhttps://mailarchive.ietf.org/arch/msg/scone/Zhk2YutZbsiSCAzHtiu3BS77vto/\r\n\r\n- **Section 1:** \"Network elements capable of rate limiting\" becomes \"Network elements that are aware of a rate limit\". \r\n- **Section 3.1:** \"managing the operational lifecycle ... may require\" becomes \"some functions for managing the operational lifecycle ... require\" per-flow context.\r\n- **Section 3.11 (Unconditional rate enforcement mode):** \"Doing so will remove most of the positive effects\" becomes \"Enforcing a static rate limit in addition to SCONE throughput advice reduces the benefits that SCONE provides\". \r\n- **References:** adds QUIC {{RFC9000}} as a normative reference. Cited at the first QUIC mention in Section 1.1.\r\n\r\nAlso in Section 3.11, two related editorial fixes (not from Gorry's review):\r\n\r\n- **Section 3.11 (Monitoring-based rate enforcement mode):** \"detected to not apply the limit itself\" becomes \"detected not to follow the throughput advice\".\r\n- **Section 3.11 (Unconditional rate enforcement mode):** the \"This is because...\" and \"Therefore...\" sentences are reworded to say why the enforced rate needs to be set well above the throughput advice.\r\n\r\nFixes #117\r\n",
       "createdAt": "2026-11-12T23:27:17Z",
-      "updatedAt": "2026-11-15T22:11:13Z",
+      "updatedAt": "2026-11-19T19:20:33Z",
       "baseRepository": "ietf-wg-scone/appman",
       "baseRefName": "main",
       "baseRefOid": "28c5c9bf4a98bfb0a88402d0e2f28eaefa9534f1",
@@ -15268,6 +15268,19 @@
           "body": "LGTM",
           "createdAt": "2026-11-15T22:11:13Z",
           "updatedAt": "2026-11-15T22:11:13Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOPxzXgc8AAAABZIn2tQ",
+          "commit": {
+            "abbreviatedOid": "22821a0"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "WFM",
+          "createdAt": "2026-11-19T19:20:33Z",
+          "updatedAt": "2026-11-19T19:20:33Z",
           "comments": []
         }
       ]
@@ -15318,7 +15331,7 @@
       "labels": [],
       "body": "From Gorry Fairhurst's review of -03 on the SCONE list:\nhttps://mailarchive.ietf.org/arch/msg/scone/Zhk2YutZbsiSCAzHtiu3BS77vto/\n\n- **Section 3.10:** the \"To simplify the measurement function...\" paragraph is removed. The earlier 3.10 text and {{Section 7.2 of SCONE}} already cover longer windows.\n- Its {{Section 5.2 of SCONE}} reference moves to the \"even longer sliding window\" sentence.\n\n@gorryfair, agree that the paragraph was not adding much value. I have removed the paragraph.\n\nFixes #119",
       "createdAt": "2026-11-15T01:36:26Z",
-      "updatedAt": "2026-11-15T22:13:05Z",
+      "updatedAt": "2026-11-19T19:21:20Z",
       "baseRepository": "ietf-wg-scone/appman",
       "baseRefName": "main",
       "baseRefOid": "28c5c9bf4a98bfb0a88402d0e2f28eaefa9534f1",
@@ -15343,6 +15356,19 @@
           "createdAt": "2026-11-15T22:13:05Z",
           "updatedAt": "2026-11-15T22:13:05Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOPxzXgc8AAAABZIosoQ",
+          "commit": {
+            "abbreviatedOid": "39ee254"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "WFM",
+          "createdAt": "2026-11-19T19:21:20Z",
+          "updatedAt": "2026-11-19T19:21:20Z",
+          "comments": []
         }
       ]
     },
@@ -15358,7 +15384,7 @@
       "labels": [],
       "body": "From Gorry Fairhurst's review of -03 on the SCONE list:\nhttps://mailarchive.ietf.org/arch/msg/scone/Zhk2YutZbsiSCAzHtiu3BS77vto/\n\n- **Section 3.13:** \"Using SCONE in tunnels and for QUIC-based tunnels in MASQUE\" becomes \"Tunnels and Encapsulation\".\n- New first paragraph on tunnels and encapsulation in general.\n- The QUIC-in-QUIC text now covers one tunneled flow first, then multiple flows in a tunnel, then enforcement ({{Section 7.2.1 of SCONE}}). It builds on the #115 text, reordered and in places reworded.\n- Stays in Section 3.13, so the protocol's pointer to Section 3.13 of SCONE-MAN still resolves.\n\n@gorryfair, this follows the structure you suggested. The \"fully encapsulated\" wording was already removed in #115.\n\n@martinthomson, this builds on your #115 text. Please check that the rewording keeps your meaning.\n\nFixes #120",
       "createdAt": "2026-11-15T22:46:33Z",
-      "updatedAt": "2026-11-18T17:53:09Z",
+      "updatedAt": "2026-11-21T03:19:36Z",
       "baseRepository": "ietf-wg-scone/appman",
       "baseRefName": "main",
       "baseRefOid": "28c5c9bf4a98bfb0a88402d0e2f28eaefa9534f1",
@@ -15376,6 +15402,20 @@
           "body": "I think, we should try to cover the tunnel cases as generic as possible and then if we like we treat masque as an special case and be clear on why that is special. We also should be mentioning that scone endpoints may not be aware of tunnelling happed on the path.\r\n\r\nI see there are two cases when we have tunnels\r\n\r\n- Security tunnels : which hides SCONE packets completely from the SCONE NE, from the point tunneling is applied, unless the tunneling endpoint is SCONE aware. In this case, current text could be modified to describe the case and use masque as an example.\r\n- Encapsulation tunnel : in this case the SCONE NE might be able to see the SCONE packets if they are aware of the encapsulation semantics. Currently we don't cover this case.\r\n\r\nI would suggest that we structure this section to cover this two cases. ",
           "createdAt": "2026-11-18T17:53:09Z",
           "updatedAt": "2026-11-18T17:53:09Z"
+        },
+        {
+          "author": "smishra1200",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks @zaheduzzaman, @mirjak and @gorryfair. Here is a proposed rewrite of Section 3.13 that tries to address all your comments:\r\n\r\n```text\r\n## Tunnels and Encapsulation\r\n\r\nTunnels and other encapsulation are common in networks, for example for VPNs or\r\ntraffic engineering. A SCONE-capable network element can only provide throughput\r\nadvice to a flow if it can identify that flow's SCONE packets.\r\n\r\nIf a tunnel encrypts the traffic it carries, network elements between the tunnel\r\nendpoints cannot see the inner SCONE packets, and the inner flow receives no\r\nthroughput advice from them. A tunnel endpoint that implements the SCONE network\r\nelement function can still provide throughput advice to the inner flow. If the\r\nencapsulation is not encrypted, only a network element configured to parse the\r\nencapsulation headers can identify the inner SCONE packets. In either case,\r\nreceiving no throughput advice does not mean that no limits apply on the path\r\n({{Section 5.4 of SCONE}}).\r\n\r\nSCONE is negotiated by QUIC endpoints, so a tunnel can use SCONE only if the\r\ntunnel is itself a QUIC connection, such as one using MASQUE\r\n{{?I-D.schinazi-masque-proxy}}. QUIC flows that the tunnel carries can also use\r\nSCONE. When such a tunnel carries one SCONE-capable flow, a SCONE-capable network\r\nelement on the path of the tunnel can provide throughput advice only to the\r\ntunnel, which is the outermost flow ({{Section 3.3 of SCONE}}).\r\nAs for any tunnel, a tunnel endpoint can provide throughput advice to the inner\r\nflows. This document does not specify how it takes the tunnel's throughput advice\r\ninto account.\r\n\r\nWhen a tunnel carries multiple flows, throughput advice on the tunnel applies to\r\nthe tunnel as a whole. Throughput advice that a tunnel endpoint provides to an\r\ninner flow applies to that flow only. Which inner flows receive throughput advice\r\nis a matter of local policy at the tunnel endpoint. If a tunnel endpoint is also\r\nthe application endpoint, a QUIC flow tunneled in QUIC might therefore have\r\nmultiple, independent pieces of throughput advice.\r\n\r\nIf only some of the traffic in the tunnel follows throughput advice, for example\r\nbecause the tunnel also carries traffic that does not use SCONE, the tunnel's\r\nthroughput can exceed the throughput advice provided for the tunnel\r\n({{Section 3.5 of SCONE}}).\r\n\r\nSCONE on a QUIC-based tunnel can also enable throughput advice for tunneled non-QUIC\r\ntraffic, but only if there is an interface or mechanism at the tunnel endpoint\r\nthat provides the throughput advice to the application.\r\n```\r\n\r\n@mirjak, happy to work from your text instead if you prefer.\r\n",
+          "createdAt": "2026-11-20T03:26:27Z",
+          "updatedAt": "2026-11-20T16:34:24Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "For me: The variant included here appears to capture the main important items. This seems like one possible way forward, thanks for looking at the various points!!!GorrySent from my iPhoneOn 19 Nov 2026, at 19:26, Sanjay Mishra ***@***.***> wrote:\ufeffsmishra1200 left a comment (ietf-wg-scone/appman#124)\r\nThanks @zaheduzzaman, @mirjak and @gorryfair. Here is a proposed rewrite of Section 3.13 that tries to address all your comments:\r\n## Tunnels and Encapsulation\r\n\r\nTunnels and other encapsulation are common in networks, for example for VPNs or\r\ntraffic engineering. A SCONE-capable network element can only provide throughput\r\nadvice to a flow if it can identify that flow's SCONE packets.\r\n\r\nIf a tunnel encrypts the traffic it carries, network elements between the tunnel\r\nendpoints cannot see the inner SCONE packets, and the inner flow receives no\r\nthroughput advice from them. The SCONE endpoints might not be aware of the tunnel.\r\nIf the encapsulation is not encrypted, only a network element configured to parse\r\nthe encapsulation headers can identify the inner SCONE packets.\r\n\r\nSCONE is negotiated by QUIC endpoints, so a tunnel can use SCONE only if the\r\ntunnel is itself a QUIC connection, such as one using MASQUE\r\n{{?I-D.schinazi-masque-proxy}}. QUIC flows that the tunnel carries can also use\r\nSCONE. When such a tunnel carries one SCONE-capable flow, a SCONE-capable network\r\nelement on the path of the tunnel can provide throughput advice only to the\r\ntunnel, which is the outermost flow ({{Section 3.3 of SCONE}}).\r\nA tunnel endpoint can also implement the SCONE network element function for the\r\ninner flows and provide throughput advice to them, as any other SCONE-capable\r\nnetwork element on their path can. This document does not specify how a tunnel\r\nendpoint takes the tunnel's throughput advice into account.\r\n\r\nWhen a tunnel carries multiple flows, throughput advice on the tunnel applies to\r\nthe tunnel as a whole. Throughput advice that a tunnel endpoint provides to an\r\ninner flow applies to that flow only. Which inner flows receive throughput advice\r\nis a matter of local policy at the tunnel endpoint. If a tunnel endpoint is also\r\nthe application endpoint, a QUIC flow tunneled in QUIC might therefore have\r\nmultiple, independent pieces of throughput advice.\r\n\r\nIf only some of the traffic in the tunnel follows throughput advice, for example\r\nbecause the tunnel also carries traffic that does not use SCONE, the tunnel's\r\nthroughput can exceed the throughput advice provided for the tunnel\r\n({{Section 3.5 of SCONE}}).\r\n\r\nSCONE on a QUIC-based tunnel can also enable throughput advice for tunneled non-QUIC\r\ntraffic, but only if there is an interface or mechanism at the tunnel endpoint\r\nthat provides the throughput advice to the application.\r\n@mirjak, happy to work from your text instead if you prefer.\r\n\r\n\u2014Reply to this email directly, view it on GitHub, or unsubscribe.You are receiving this because you were mentioned.Message ID: ***@***.***>",
+          "createdAt": "2026-11-21T03:19:36Z",
+          "updatedAt": "2026-11-21T03:19:36Z"
         }
       ],
       "reviews": [
@@ -15396,6 +15436,146 @@
               "body": "This part looks like completely disconnected. It introduces masque and other tunneling mechanism. But then talk about scone's interpretation on masque. Might want to rephase it. \n\nI would suggest, if we are describing masque as an special case of tunneling, then lets be clear on why and put masque related text in the same place.  ",
               "createdAt": "2026-11-18T17:47:33Z",
               "updatedAt": "2026-11-18T17:47:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOPxzXgc8AAAABZIuxzg",
+          "commit": {
+            "abbreviatedOid": "643986b"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-11-19T19:26:41Z",
+          "updatedAt": "2026-11-19T19:26:41Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "Scone only works for QUIC. you can tunnel QUIC/scone traffic in any tunnel but you can only use scone on the out tunnel with masque because masque is the only quic-based tunnel technology.",
+              "createdAt": "2026-11-19T19:26:41Z",
+              "updatedAt": "2026-11-19T19:26:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOPxzXgc8AAAABZI53xA",
+          "commit": {
+            "abbreviatedOid": "643986b"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-11-19T19:38:45Z",
+          "updatedAt": "2026-11-19T19:38:45Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "why does it say \"might\"? It's just a fact that an outer element can't not see the inside of the tunnel; that's why you have a tunnel. That is not a problem either. It's just a fact. I don't think we need so many words to say that. I will proposed some new text later.",
+              "createdAt": "2026-11-19T19:38:45Z",
+              "updatedAt": "2026-11-19T19:38:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOPxzXgc8AAAABZI6PSw",
+          "commit": {
+            "abbreviatedOid": "643986b"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-11-19T19:39:10Z",
+          "updatedAt": "2026-11-19T19:39:10Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "```suggestion\nand on QUIC flows that the tunnel carries.\n```",
+              "createdAt": "2026-11-19T19:39:10Z",
+              "updatedAt": "2026-11-19T19:39:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOPxzXgc8AAAABZI-ClQ",
+          "commit": {
+            "abbreviatedOid": "643986b"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-11-19T19:43:07Z",
+          "updatedAt": "2026-11-19T19:43:07Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "At the meeting at IETF-125 be decided to not provide any such device. There is no easy 1:1 mapping. It's easier to see that as a model where the tunnel endpoints are the endpoints that consume the scone signal and might use that input in their role as an network element that sets the scone signal for inter packet. How that is done exactly, isn't completely obvious and we decide to not provide detailed advice. ",
+              "createdAt": "2026-11-19T19:43:07Z",
+              "updatedAt": "2026-11-19T19:43:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOPxzXgc8AAAABZI_Yow",
+          "commit": {
+            "abbreviatedOid": "643986b"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-11-19T19:44:29Z",
+          "updatedAt": "2026-11-19T19:44:30Z",
+          "comments": [
+            {
+              "originalPosition": 65,
+              "body": "I don't even understand this part fully. What is really meant here?",
+              "createdAt": "2026-11-19T19:44:30Z",
+              "updatedAt": "2026-11-19T19:44:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOPxzXgc8AAAABZLOJtQ",
+          "commit": {
+            "abbreviatedOid": "643986b"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-11-19T22:30:41Z",
+          "updatedAt": "2026-11-19T22:30:42Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "I thought that we decided to say something like this and not to explain the policy that is used to translate the outer tunnel SCONE advice to the tunnelled SCONE advice.",
+              "createdAt": "2026-11-19T22:30:42Z",
+              "updatedAt": "2026-11-19T22:30:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOPxzXgc8AAAABZLRQZw",
+          "commit": {
+            "abbreviatedOid": "643986b"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-11-19T22:35:18Z",
+          "updatedAt": "2026-11-19T22:35:18Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "\"might\" because tunnels/encaps that use well-known headers would at least permit a suitably configured network element to inspect the SCONE packet, without saying whether that is likely (but for some encaps this is possible.) ",
+              "createdAt": "2026-11-19T22:35:18Z",
+              "updatedAt": "2026-11-19T22:35:19Z"
             }
           ]
         }
