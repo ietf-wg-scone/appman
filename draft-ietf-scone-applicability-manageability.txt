@@ -5,12 +5,12 @@
 Standard Communication with Network Elements                   S. Mishra
 Internet-Draft                                                   Verizon
 Intended status: Informational                                 Z. Sarker
-Expires: 10 May 2027                                               Nokia
+Expires: 27 May 2027                                               Nokia
                                                                 A. Tomar
                                                                     Meta
                                                                 K. Abbas
                                                                  Verizon
-                                                         6 November 2026
+                                                        23 November 2026
 
 
                  Manageability Considerations for SCONE
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 May 2027.
+   This Internet-Draft will expire on 27 May 2027.
 
 Copyright Notice
 
@@ -103,32 +103,33 @@ Table of Contents
    application endpoints via SCONE packets in the communication
    networks.
 
-   Network elements capable of rate limiting can send notifications of
-   the advisory maximum sustainable throughput in each direction of the
-   observed traffic.  This allows applications, particularly those using
-   Adaptive bitrate (ABR) mechanisms,to proactively align their
-   transmission rates with network policies.  This document addresses
-   the manageability considerations for deploying the SCONE protocol
-   within communication networks.  The SCONE core protocol specification
-   provides guidance for network deployment, specifically details on how
-   to apply throughput advice signals in the SCONE header, on protocol
-   requirements on flow monitoring and considerations for flows that
-   exceed throughput advice (see Section 7 of [SCONE]).  This document
-   complements this guidance by discussing various deployment options
-   and providing additional manageability considerations for network
-   operators.
+   Network elements that are aware of a rate limit can send
+   notifications of the advisory maximum sustainable throughput in each
+   direction of the observed traffic.  This allows applications,
+   particularly those using Adaptive bitrate (ABR) mechanisms, to
+   proactively align their transmission rates with network policies.
+   This document addresses the manageability considerations for
+   deploying the SCONE protocol within communication networks.  The
+   SCONE core protocol specification provides guidance for network
+   deployment, specifically details on how to apply throughput advice
+   signals in the SCONE header, on protocol requirements on flow
+   monitoring and considerations for flows that exceed throughput advice
+   (see Section 7 of [SCONE]).  This document complements this guidance
+   by discussing various deployment options and providing additional
+   manageability considerations for network operators.
 
 1.1.  SCONE Protocol Overview and Network Element Function
 
    Deploying SCONE in a communication network involves the application
    endpoints and any SCONE-capable network elements along the path of a
-   flow of QUIC UDP datagrams.  SCONE is used on a QUIC flow only when
-   its application endpoints support it.  SCONE packets are QUIC long
-   header packets carrying a SCONE-specific version number, coalesced
-   into the same UDP datagram as the QUIC packets they accompany.  This
-   ensures that network elements that forward QUIC packets also forward
-   the SCONE packets.  Any network element can implement the SCONE
-   network element function that sets the throughput advice.
+   flow of QUIC [QUIC] UDP datagrams.  SCONE is used on a QUIC flow only
+   when its application endpoints support it.  SCONE packets are QUIC
+   long header packets carrying a SCONE-specific version number,
+   coalesced into the same UDP datagram as the QUIC packets they
+   accompany.  This ensures that network elements that forward QUIC
+   packets also forward the SCONE packets.  Any network element can
+   implement the SCONE network element function that sets the throughput
+   advice.
 
    To participate in SCONE, a network element is assumed to have the
    functional capability to identify and track SCONE-capable QUIC flows,
@@ -182,9 +183,9 @@ Table of Contents
    updates its value based on the configured policy for that flow or
    network scope, without needing to maintain active per-flow state.
 
-   While the signaling itself is stateless, managing the operational
-   lifecycle of a SCONE deployment may require establishing and
-   maintaining per-flow context.  Specifically, to execute the
+   While the signaling itself is stateless, some functions for managing
+   the operational lifecycle of a SCONE deployment require establishing
+   and maintaining per-flow context.  Specifically, to execute the
    monitoring, logging, and flow measurement functions detailed later in
    this document (see Section 3.10), the network element has to track
    the flow's throughput over multiple monitoring periods.  This per-
@@ -474,27 +475,27 @@ Table of Contents
 
    Monitoring-based rate enforcement mode:  Operators that use rate
       limits might disable rate enforcement for SCONE flows and only
-      enable it dynamically if a SCONE flow is detected to not apply the
-      limit itself.  This mode saves network processing and buffer
-      resources for flows that follow the advice but requires flow
-      monitoring as described in Section 3.10.
+      enable it dynamically if a SCONE flow is detected not to follow
+      the throughput advice.  This mode saves network processing and
+      buffer resources for flows that follow the advice but requires
+      flow monitoring as described in Section 3.10.
 
    Unconditional rate enforcement mode:  While SCONE is designed
       independent of any enforcement mechanism and it is therefore
       possible to statically enforce rate limits even when SCONE is
       used, this deployment is not recommended as it can risk worse
-      performance.  Doing so will remove most of the positive effects
-      that SCONE provides, both in terms of end-user QoE and for network
-      simplifications.  This is because, SCONE enables traffic
-      characteristic aware application driven bit-rate regulation but on
-      the other hand in-network rate limiters enforces the rate-limits
-      arbitrarily and indiscriminately without being aware of traffic
-      characteristics.  Therefore if unconditional rate enforcement mode
-      is used, the in-network enforced rate needs to be significantly
-      higher than the SCONE throughput advice just to guard against
-      worst case scenario.  This mode does not require flow monitoring
-      but may realize less network savings and may risk unwanted
-      application impairments.
+      performance.  Enforcing a static rate limit in addition to SCONE
+      throughput advice reduces the benefits that SCONE provides, both
+      for end-user QoE and for network simplification.  This is because
+      SCONE lets the application adapt its bitrate to the
+      characteristics of its own traffic, whereas an in-network rate
+      limiter enforces a limit on all traffic without regard to those
+      characteristics.  Therefore, if unconditional rate enforcement is
+      used, the enforced rate needs to be set well above the throughput
+      advice, so that applications that follow the advice are not
+      penalized by short-term rate variations such as bursts.  This mode
+      does not require flow monitoring but may realize less network
+      savings and may risk unwanted application impairments.
 
 3.12.  Network Integration of SCONE In-Band Signaling
 
@@ -601,12 +602,17 @@ Table of Contents
 
 6.1.  Normative References
 
+   [QUIC]     Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
+              Multiplexed and Secure Transport", RFC 9000,
+              DOI 10.17487/RFC9000, May 2021,
+              <https://www.rfc-editor.org/rfc/rfc9000>.
+
    [SCONE]    Thomson, M., Huitema, C., Oku, K., Joras, M., and L. M.
               Ihlar, "Standard Communication with Network Elements
               (SCONE) Protocol", Work in Progress, Internet-Draft,
-              draft-ietf-scone-protocol-10, 28 October 2026,
+              draft-ietf-scone-protocol-11, 16 November 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-scone-
-              protocol-10>.
+              protocol-11>.
 
 6.2.  Informative References
 
