@@ -343,7 +343,7 @@ Operators can accommodate this by utilizing a sliding window approach. Operators
 evaluate QUIC flows against the highest throughput limit advised over the preceding two
 monitoring periods (a span of 134 seconds). If a network element cannot update the
 throughput advice in every traversing SCONE packet, operators might configure an even
-longer sliding window to account for the possibility of packet loss.
+longer sliding window ({{Section 5.2 of SCONE}}) to account for the possibility of packet loss.
 
 {{Section 7.2 of SCONE}} explains that the second monitoring period in this
 window compensates for SCONE packets not being delivered reliably.
@@ -365,11 +365,6 @@ Operators should only shorten the window when they can
 track updates this reliably, weighing the added tracking
 complexity and how a missed update is treated against the benefit of a
 faster measurement cycle.
-
-To simplify the measurement function, reduce computational load, or offload this
-function to another node in the network, operators can select any value larger
-than the baseline 67 second window ({{Section 5.2 of SCONE}})
-for their measurement and averaging period.
 
 Because some applications will not support SCONE, and others either will not or cannot follow
 the provided throughput advice, operators have flexibility in how they handle flows that exceed the limits that are set in their policies.
